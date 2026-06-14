@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import CategoriaFilter from '../../components/CategoriaFilter.astro';
+import { posts } from '../../lib/posts';
+import { categorias } from '../../lib/categorias';
+
+const categoriaSlug = Astro.url.searchParams.get('categoria');
+const filteredPosts = categoriaSlug
+  ? posts.filter(p => p.categoriaSlug === categoriaSlug)
+  : posts;
+---
+
+<BaseLayout title="Publicaciones">
+  <section class="page-hero section">
+    <div class="container text-center">
+      <h1 id="page-title">Publicaciones</h1>
+      <p id="page-subtitle" class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CategoriaFilter categorias={categorias} activeSlug={categoriaSlug} />
+      {filteredPosts.length === 0 ? (
+        <p class="text-center">No hay publicaciones en esta categoría.</p>
+      ) : (
+        <div class="posts-grid" id="posts-grid">
+          {filteredPosts.map(p => <BlogCard {...p} />)}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { fadeInUp, staggerItems } from "../../utils/gsap";
+  fadeInUp(document.getElementById("page-title"));
+  fadeInUp(document.getElementById("page-subtitle"), 0.2);
+  staggerItems(document.getElementById("posts-grid"), 0.08);
+</script>
+
+<style>
+  .page-hero { padding-bottom: 0; }
+  .text-center { text-align: center; }
+  .text-lg { max-width: 600px; margin: 0 auto; }
+  .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+  @media (max-width: 768px) { .posts-grid { grid-template-columns: 1fr; } }
+  @media (min-width: 769px) and (max-width: 1024px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

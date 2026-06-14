@@ -1,0 +1,46 @@
+---
+import type { Categoria } from '../lib/categorias';
+interface Props {
+  categorias: Categoria[];
+  activeSlug?: string;
+}
+const { categorias, activeSlug } = Astro.props;
+---
+
+<div class="filter-wrapper" id="categoria-filter">
+  <a href="/publicaciones" class={`filter-btn ${!activeSlug ? 'active' : ''}`}>Todas</a>
+  {categorias.map(cat => (
+    <a
+      href={`/publicaciones?categoria=${cat.slug}`}
+      class={`filter-btn ${cat.slug === activeSlug ? 'active' : ''}`}
+    >
+      {cat.nombre}
+    </a>
+  ))}
+</div>
+
+<style>
+  .filter-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+    margin-bottom: var(--gap-lg);
+    justify-content: center;
+  }
+  .filter-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+</style>

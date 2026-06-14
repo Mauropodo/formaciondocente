@@ -1,0 +1,76 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Parvularias</h4>
+        <p>Cuidado y desarrollo infantil basado en evidencia científica.</p>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/quienes-somos">Quiénes Somos</a></li>
+          <li><a href="/la-investigacion">La Investigación</a></li>
+          <li><a href="/publicaciones">Publicaciones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>contacto@parbularias.com</li>
+          <li>Santiago, Chile</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} Parvularias. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-text);
+    color: #fff;
+    padding: var(--gap-xl) 0 var(--gap-lg);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--gap-lg);
+  }
+  .footer h4 {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    margin-bottom: var(--gap-md);
+    color: #fff;
+  }
+  .footer ul {
+    list-style: none;
+  }
+  .footer ul li {
+    margin-bottom: var(--gap-sm);
+  }
+  .footer a {
+    color: var(--color-primary-light);
+  }
+  .footer a:hover {
+    color: #fff;
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: var(--gap-lg);
+    padding-top: var(--gap-md);
+    text-align: center;
+    color: var(--color-text-light);
+  }
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

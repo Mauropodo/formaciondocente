@@ -1,0 +1,85 @@
+---
+interface TimelineItem {
+  year: string;
+  title: string;
+  description: string;
+}
+interface Props { items: TimelineItem[] }
+const { items } = Astro.props;
+---
+
+<section class="timeline-section">
+  <div class="container">
+    <div class="timeline" id="timeline">
+      {items.map((item, i) => (
+        <div class="timeline-item" id={`timeline-item-${i}`}>
+          <div class="timeline-marker">
+            <span class="timeline-year">{item.year}</span>
+          </div>
+          <div class="timeline-content">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { staggerItems } from "../utils/gsap";
+  const timeline = document.getElementById("timeline");
+  if (timeline) staggerItems(timeline, 0.15);
+</script>
+
+<style>
+  .timeline { position: relative; max-width: 700px; margin: 0 auto; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 60px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+  }
+  .timeline-item {
+    display: flex;
+    gap: var(--gap-lg);
+    margin-bottom: var(--gap-lg);
+    position: relative;
+  }
+  .timeline-marker {
+    min-width: 80px;
+    text-align: center;
+  }
+  .timeline-year {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+  }
+  .timeline-content {
+    flex: 1;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--gap-md);
+    box-shadow: var(--shadow);
+  }
+  .timeline-content h3 { color: var(--color-primary); margin-bottom: var(--gap-sm); font-size: 1.125rem; }
+  .timeline-content p { margin: 0; font-size: 0.9rem; color: var(--color-text-light); }
+  @media (max-width: 600px) {
+    .timeline::before { left: 30px; }
+    .timeline-marker { min-width: 60px; }
+    .timeline-year { width: 50px; height: 50px; font-size: 0.75rem; }
+  }
+</style>

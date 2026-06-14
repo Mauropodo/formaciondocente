@@ -1,0 +1,306 @@
+---
+export interface Props {
+  backgroundLabel?: string;
+}
+
+const { backgroundLabel = 'Fondo narrativo' } = Astro.props;
+---
+
+<section class="story-root" data-story-root aria-label={backgroundLabel}>
+  <div class="story-backdrop" aria-hidden="true">
+    <div class="story-orb story-orb-left"></div>
+    <div class="story-orb story-orb-right"></div>
+    <div class="story-path" data-story-decor>
+      <span>Trayectoria</span>
+    </div>
+  </div>
+
+  <div class="story-pin" data-story-pin>
+    <div class="story-stage">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const root = document.querySelector("[data-story-root]");
+  const pin = root?.querySelector("[data-story-pin]");
+  const decor = root?.querySelector("[data-story-decor]");
+  const panels = root ? Array.from(root.querySelectorAll("[data-story-panel]")) : [];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const clearStory = () => {
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (trigger.vars.id === "home-story-sequence") trigger.kill();
+      if (trigger.vars.id === "home-story-outro") trigger.kill();
+    });
+
+    if (!root || !panels.length) return;
+    gsap.killTweensOf([...panels, decor].filter(Boolean));
+    gsap.set(panels, { clearProps: "all" });
+    if (decor) gsap.set(decor, { clearProps: "all" });
+  };
+
+  const setupStory = () => {
+    if (!root || !pin || !panels.length) return;
+    clearStory();
+
+    root.style.setProperty("--story-count", String(panels.length));
+
+    if (reduceMotion.matches) {
+      root.dataset.motion = "reduced";
+      return;
+    }
+
+    root.dataset.motion = "active";
+
+    gsap.set(panels, { autoAlpha: 0, y: 40 });
+    gsap.set(panels[0], { autoAlpha: 1, y: 0 });
+
+    const timeline = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        id: "home-story-sequence",
+        trigger: root,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    panels.forEach((panel, index) => {
+      const step = index;
+
+      if (index > 0) {
+        timeline.fromTo(
+          panel,
+          { autoAlpha: 0, y: 40 },
+          { autoAlpha: 1, y: 0, duration: 0.32 },
+          step
+        );
+      }
+
+      if (index < panels.length - 1) {
+        timeline.to(
+          panel,
+          { autoAlpha: 0, y: -40, duration: 0.32 },
+          step + 0.68
+        );
+      } else {
+        timeline.to(
+          panel,
+          { autoAlpha: 0, y: -40, duration: 0.2 },
+          step + 0.78
+        );
+      }
+    });
+
+    if (decor) {
+      gsap.fromTo(
+        decor,
+        { yPercent: -6 },
+        {
+          yPercent: 12,
+          ease: "none",
+          scrollTrigger: {
+            id: "home-story-outro",
+            trigger: root,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    }
+  };
+
+  setupStory();
+  reduceMotion.addEventListener("change", setupStory);
+</script>
+
+<style>
+  .story-root {
+    --story-count: 4;
+    position: relative;
+    min-height: calc(var(--story-count) * 100svh);
+    background:
+      radial-gradient(circle at top left, rgba(191, 91, 43, 0.18), transparent 28%),
+      radial-gradient(circle at 80% 15%, rgba(37, 106, 111, 0.22), transparent 24%),
+      linear-gradient(180deg, #f8f5ef 0%, #f4efe4 55%, #efe7d8 100%);
+    overflow: clip;
+    isolation: isolate;
+  }
+
+  .story-backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .story-orb {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(10px);
+    opacity: 0.55;
+  }
+
+  .story-orb-left {
+    width: 320px;
+    height: 320px;
+    top: 12%;
+    left: -80px;
+    background: rgba(124, 128, 77, 0.14);
+  }
+
+  .story-orb-right {
+    width: 260px;
+    height: 260px;
+    right: -60px;
+    bottom: 12%;
+    background: rgba(37, 106, 111, 0.14);
+  }
+
+  .story-path {
+    position: absolute;
+    inset: 15% 8% auto auto;
+    width: min(34vw, 280px);
+    aspect-ratio: 1 / 1;
+    border-radius: 999px;
+    border: 1px dashed rgba(37, 106, 111, 0.25);
+    display: grid;
+    place-items: center;
+    color: rgba(37, 106, 111, 0.4);
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .story-path::before,
+  .story-path::after {
+    content: "";
+    position: absolute;
+    inset: 12%;
+    border-radius: inherit;
+    border: 1px solid rgba(191, 91, 43, 0.14);
+  }
+
+  .story-path::after {
+    inset: auto 6% 8% auto;
+    width: 42%;
+    height: 42%;
+    background: rgba(191, 91, 43, 0.08);
+  }
+
+  .story-pin {
+    position: sticky;
+    top: var(--nav-height);
+    min-height: calc(100svh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(24px, 5vw, 64px) var(--gap-md);
+  }
+
+  .story-stage {
+    position: relative;
+    width: min(100%, 1180px);
+    min-height: min(72svh, 760px);
+    display: grid;
+    place-items: center;
+  }
+
+  .story-stage :global([data-story-panel]) {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .story-stage :global([data-story-panel].is-interactive) {
+    pointer-events: auto;
+  }
+
+  .story-root[data-motion="reduced"] {
+    min-height: auto;
+  }
+
+  .story-root[data-motion="reduced"] .story-pin {
+    position: relative;
+    top: auto;
+    min-height: auto;
+    padding: var(--gap-xl) var(--gap-md);
+  }
+
+  .story-root[data-motion="reduced"] .story-stage {
+    min-height: auto;
+    gap: var(--gap-xl);
+  }
+
+  .story-root[data-motion="reduced"] .story-stage :global([data-story-panel]) {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  @media (max-width: 768px) {
+    .story-root {
+      min-height: calc(var(--story-count) * 92svh);
+    }
+
+    .story-pin {
+      top: var(--nav-height);
+      min-height: calc(100svh - var(--nav-height));
+      padding-inline: var(--gap-md);
+    }
+
+    .story-path {
+      inset: 8% 4% auto auto;
+      width: 150px;
+      font-size: 0.8rem;
+    }
+
+    .story-stage {
+      min-height: min(76svh, 680px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .story-root {
+      min-height: auto;
+    }
+
+    .story-pin {
+      position: relative;
+      top: auto;
+      min-height: auto;
+    }
+
+    .story-stage {
+      min-height: auto;
+      gap: var(--gap-xl);
+    }
+
+    .story-stage :global([data-story-panel]) {
+      position: relative;
+      inset: auto;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .story-path {
+      transform: none !important;
+    }
+  }
+</style>

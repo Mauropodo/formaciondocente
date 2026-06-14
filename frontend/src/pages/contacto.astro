@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout title="Contacto">
+  <section class="page-hero section">
+    <div class="container text-center">
+      <h1 id="page-title">Contacto</h1>
+      <p id="page-subtitle" class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info" id="contact-info">
+          <div class="info-item">
+            <h3>Dirección</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="info-item">
+            <h3>Correo electrónico</h3>
+            <p>contacto@parbularias.com</p>
+          </div>
+          <div class="info-item">
+            <h3>Teléfono</h3>
+            <p>+56 9 1234 5678</p>
+          </div>
+          <div class="info-item">
+            <h3>Horarios</h3>
+            <p>Lunes a viernes de 9:00 a 18:00 hrs</p>
+          </div>
+        </div>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { fadeInUp, staggerItems } from "../utils/gsap";
+  fadeInUp(document.getElementById("page-title"));
+  fadeInUp(document.getElementById("page-subtitle"), 0.2);
+  const info = document.getElementById("contact-info");
+  if (info) staggerItems(info, 0.1);
+</script>
+
+<style>
+  .page-hero { padding-bottom: 0; }
+  .text-center { text-align: center; }
+  .text-lg { max-width: 600px; margin: 0 auto; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-xl);
+    align-items: start;
+  }
+  .info-item {
+    margin-bottom: var(--gap-lg);
+    padding: var(--gap-md);
+    background: var(--color-bg-alt);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  .info-item h3 { color: var(--color-primary); font-size: 1rem; margin-bottom: var(--gap-sm); }
+  .info-item p { margin: 0; font-size: 0.9rem; color: var(--color-text-light); }
+  @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+</style>

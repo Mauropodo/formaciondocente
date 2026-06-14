@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCarousel from '../../components/BlogCarousel.astro';
+import { posts } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  return posts.map(p => ({
+    params: { slug: p.slug },
+    props: { post: p },
+  }));
+}
+
+const { post } = Astro.props;
+const otrosPosts = posts.filter(p => p.slug !== post.slug).slice(0, 5);
+---
+
+<BaseLayout title={post.title}>
+  <article class="section post-article">
+    <div class="container post-container">
+      <div class="post-meta">
+        <span class="post-categoria">{post.categoria}</span>
+        <span class="post-fecha">{post.fecha}</span>
+      </div>
+      <h1 id="post-title">{post.title}</h1>
+      {post.autor && <p class="post-autor">Por {post.autor}</p>}
+      <div class="post-img-placeholder"></div>
+      <div class="post-content" id="post-content" set:html={post.content} />
+    </div>
+  </article>
+
+  {otrosPosts.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="text-center">Artículos relacionados</h2>
+        <BlogCarousel posts={otrosPosts} />
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<script>
+  import { fadeInUp, fadeInDown } from "../../utils/gsap";
+  fadeInUp(document.getElementById("post-title"));
+  fadeInUp(document.getElementById("post-content"), 0.2);
+</script>
+
+<style>
+  .post-container { max-width: 750px; margin: 0 auto; }
+  .post-meta {
+    display: flex;
+    gap: var(--gap-md);
+    align-items: center;
+    margin-bottom: var(--gap-md);
+    font-size: 0.9rem;
+  }
+  .post-categoria {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .post-fecha { color: var(--color-text-light); }
+  .post-autor { color: var(--color-text-light); font-style: italic; margin-bottom: var(--gap-lg); }
+  .post-img-placeholder {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary));
+    border-radius: var(--radius);
+    margin-bottom: var(--gap-lg);
+  }
+  .post-content h2 { color: var(--color-primary); margin-top: var(--gap-lg); }
+  .post-content p { line-height: 1.8; }
+  .text-center { text-align: center; }
+</style>

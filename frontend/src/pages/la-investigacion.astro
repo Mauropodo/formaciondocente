@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
+---
+
+<BaseLayout title="La Investigación">
+  <section class="page-hero section">
+    <div class="container text-center">
+      <h1 id="page-title">La Investigación</h1>
+      <p id="page-subtitle" class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Metodología</h2>
+      <div class="grid-3" id="metodologia">
+        {[
+          { t: "Enfoque", d: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." },
+          { t: "Participantes", d: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." },
+          { t: "Resultados", d: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." },
+        ].map(item => (
+          <div class="card">
+            <h3>{item.t}</h3>
+            <p>{item.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Cronología del Estudio</h2>
+      <Timeline items={[
+        { year: "2019", title: "Revisión bibliográfica", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+        { year: "2020", title: "Diseño del estudio", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+        { year: "2021", title: "Recolección de datos", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+        { year: "2022", title: "Análisis de resultados", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+        { year: "2023", title: "Publicación", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+      ]} />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container text-center">
+      <h2>Publicaciones Relacionadas</h2>
+      <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+      <a href="/publicaciones" class="btn btn-primary">Ver todas las publicaciones</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { fadeInUp, staggerItems } from "../utils/gsap";
+  fadeInUp(document.getElementById("page-title"));
+  fadeInUp(document.getElementById("page-subtitle"), 0.2);
+  staggerItems(document.getElementById("metodologia"));
+</script>
+
+<style>
+  .page-hero { padding-bottom: 0; }
+  .text-center { text-align: center; }
+  .text-lg { max-width: 600px; margin: 0 auto var(--gap-lg); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+  .card h3 { color: var(--color-primary); margin-bottom: var(--gap-sm); }
+  @media (max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } }
+</style>

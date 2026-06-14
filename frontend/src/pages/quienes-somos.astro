@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
+---
+
+<BaseLayout title="Quiénes Somos">
+  <section class="page-hero section">
+    <div class="container text-center">
+      <h1 id="page-title">Quiénes Somos</h1>
+      <p id="page-subtitle" class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid-2" id="mision-vision">
+        <div class="card">
+          <h2>Misión</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div class="card">
+          <h2>Visión</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Nuestra Historia</h2>
+      <p class="text-center text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+      <Timeline items={[
+        { year: "2018", title: "Inicio del proyecto", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+        { year: "2020", title: "Primera investigación", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+        { year: "2022", title: "Publicación de resultados", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+        { year: "2024", title: "Expansión del programa", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+      ]} />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container text-center">
+      <h2>Equipo</h2>
+      <div class="grid-3" id="equipo">
+        {["Dra. María González", "Nut. Carolina Silva", "Dr. Pablo Martínez"].map(nombre => (
+          <div class="card team-card">
+            <div class="team-avatar"></div>
+            <h3>{nombre}</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { fadeInUp, staggerItems } from "../utils/gsap";
+  fadeInUp(document.getElementById("page-title"));
+  fadeInUp(document.getElementById("page-subtitle"), 0.2);
+  staggerItems(document.getElementById("mision-vision"));
+  staggerItems(document.getElementById("equipo"));
+</script>
+
+<style>
+  .page-hero { padding-bottom: 0; }
+  .text-center { text-align: center; }
+  .text-lg { max-width: 600px; margin: 0 auto; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-lg); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+  .card h2 { font-size: 1.5rem; color: var(--color-primary); margin-bottom: var(--gap-md); }
+  .team-card { text-align: center; }
+  .team-avatar {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: var(--color-primary-light);
+    margin: 0 auto var(--gap-md);
+  }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
