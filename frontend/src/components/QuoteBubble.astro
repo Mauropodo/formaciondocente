@@ -1,0 +1,155 @@
+---
+interface Props {
+  text: string;
+  label?: string;
+  class?: string;
+  textRotation?: string;
+  textMaxWidth?: string;
+  desktopPadding?: string;
+  mobilePadding?: string;
+}
+
+const {
+  text,
+  label = "Cita destacada",
+  class: className = "",
+  textRotation = "-3deg",
+  textMaxWidth = "80%",
+  desktopPadding = "0 4.6rem 4.2rem",
+  mobilePadding = "0 2.2rem 2.9rem",
+} = Astro.props;
+---
+
+<article
+  class:list={["bubble", "bubble--quote", className]}
+  aria-label={label}
+  style={`--bubble-text-rotation:${textRotation};--bubble-text-max-width:${textMaxWidth};--bubble-quote-padding:${desktopPadding};--bubble-quote-padding-mobile:${mobilePadding};`}
+>
+  <div class="bubble-shape" aria-hidden="true">
+    <svg viewBox="0 0 589 370" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <filter id="bubbleGreenShadow" x="0" y="0" width="589" height="370" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dx="0" dy="4" />
+          <feGaussianBlur stdDeviation="15.3" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+        </filter>
+      </defs>
+      <g filter="url(#bubbleGreenShadow)">
+        <path d="M554.823 96.2274C552.164 45.4868 508.874 6.50922 458.134 9.16842L98.6273 28.0094C47.8868 30.6686 8.9091 73.9576 11.5683 124.698L15.9213 207.759C18.5805 258.499 61.8696 297.477 112.61 294.818L156.55 292.515L199.458 290.266C215.826 289.409 232.126 292.939 246.673 300.493L317.694 337.375C318.145 337.609 318.651 337.719 319.159 337.692C321.315 337.579 322.57 335.206 321.451 333.36L308.145 311.42C301.008 299.651 309.011 284.525 322.756 283.805L472.117 275.977C522.857 273.318 561.835 230.029 559.176 179.288L554.823 96.2274Z" fill="#83BAA4" />
+      </g>
+    </svg>
+  </div>
+  <div class="bubble-quote">
+    <span class="bubble-mark bubble-mark--open" aria-hidden="true">“</span>
+    <p class="bubble-text">{text}</p>
+    <span class="bubble-mark bubble-mark--close" aria-hidden="true">“</span>
+  </div>
+</article>
+
+<style>
+  .bubble--quote {
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    isolation: isolate;
+    padding: 0;
+    color: #111;
+  }
+
+  .bubble--quote .bubble-shape {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    transform: rotate(0deg);
+    transform-origin: center;
+  }
+
+  .bubble--quote .bubble-shape svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .bubble--quote .bubble-quote {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--bubble-quote-padding);
+    transform: rotate(0deg);
+    transform-origin: center;
+  }
+
+  .bubble--quote .bubble-text {
+    margin: 0;
+    max-width: var(--bubble-text-max-width);
+    font-family: Inconsolata, monospace;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.18;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-wrap: balance;
+    color: #111;
+    align-self: center;
+    transform: rotate(var(--bubble-text-rotation));
+    transform-origin: center;
+  }
+
+  .bubble--quote .bubble-mark {
+    position: absolute;
+    z-index: 2;
+    font-family: "Playfair Display", serif;
+    font-size: 5.4rem;
+    line-height: 0.7;
+    color: #5b4747;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .bubble--quote .bubble-mark--open {
+    top: 3.25rem;
+    left: 4.1rem;
+  }
+
+  .bubble--quote .bubble-mark--close {
+    right: 5.2rem;
+    bottom: 4.2rem;
+  }
+
+  @media (max-width: 900px) {
+    .bubble--quote .bubble-quote {
+      padding: var(--bubble-quote-padding-mobile);
+    }
+
+    .bubble--quote .bubble-text {
+      max-width: 72%;
+      font-size: 20px;
+      line-height: 1.18;
+    }
+
+    .bubble--quote .bubble-mark {
+      font-size: 3.7rem;
+    }
+
+    .bubble--quote .bubble-mark--open {
+      top: 1.9rem;
+      left: 2rem;
+    }
+
+    .bubble--quote .bubble-mark--close {
+      right: 2.5rem;
+      bottom: 2rem;
+    }
+  }
+</style>

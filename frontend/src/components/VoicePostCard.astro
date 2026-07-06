@@ -1,0 +1,190 @@
+---
+import fallbackImage from "../assets/figma-mcp/inicio/relato-thumb.png";
+
+interface VoicePost {
+  title: string;
+  slug: string;
+  excerpt: string;
+  autor?: string;
+  imagen?: string;
+}
+
+interface Props {
+  post: VoicePost;
+  tone?: "teal" | "orange" | "coral";
+  rotation?: string;
+  offsetX?: string;
+  offsetY?: string;
+  layout?: "stacked" | "carousel";
+}
+
+const {
+  post,
+  tone = "teal",
+  rotation = "0deg",
+  offsetX = "0px",
+  offsetY = "0px",
+  layout = "stacked",
+} = Astro.props;
+
+const imageSrc =
+  !post.imagen || post.imagen.startsWith("/assets/img/placeholder")
+    ? fallbackImage.src
+    : post.imagen;
+---
+
+<article
+  class={`voice-post-card voice-post-card--${tone} voice-post-card--${layout}`}
+  style={`--voice-rotate:${rotation};--voice-offset-x:${offsetX};--voice-offset-y:${offsetY};`}
+>
+  <a class="voice-post-card__media" href={`/publicaciones/${post.slug}`} aria-label={post.title}>
+    <img src={imageSrc} alt={post.title} loading="lazy" />
+  </a>
+
+  <div class="voice-post-card__body">
+    <h3><a href={`/publicaciones/${post.slug}`}>{post.title}</a></h3>
+    <p>{post.excerpt}</p>
+    {post.autor && <div class="voice-post-card__author">{post.autor}</div>}
+  </div>
+</article>
+
+<style>
+  .voice-post-card {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 188px minmax(0, 1fr);
+    width: min(100%, 558px);
+    min-height: 312px;
+    border-radius: 44px;
+    overflow: hidden;
+    color: #fff;
+    box-shadow:
+      8.8px 11.2px 6.12px rgba(0,0,0,.23),
+      0 3.2px 1.6px rgba(0,0,0,.25),
+      2.4px 3.2px 0 rgba(0,0,0,.25),
+      -1.6px 3.2px 1.6px rgba(0,0,0,.4);
+    transform: translate3d(var(--voice-offset-x), var(--voice-offset-y), 0) rotate(var(--voice-rotate));
+    transform-origin: center;
+  }
+
+  .voice-post-card--carousel {
+    position: relative;
+    width: min(100%, 920px);
+    min-height: 320px;
+    margin: 0 auto;
+    transform: rotate(var(--voice-rotate));
+  }
+
+  .voice-post-card--teal { background: #3b959e; }
+  .voice-post-card--orange { background: #de8b21; }
+  .voice-post-card--coral { background: #c36438; }
+
+  .voice-post-card__media {
+    display: block;
+    height: 100%;
+    min-height: 312px;
+    overflow: hidden;
+    border-radius: 44px 0 0 44px;
+  }
+
+  .voice-post-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .voice-post-card__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 31px 24px 28px 26px;
+  }
+
+  .voice-post-card__body h3 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 28.8px;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .voice-post-card__body h3 a {
+    color: inherit;
+  }
+
+  .voice-post-card__body p {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-size: 17.6px;
+    line-height: 1.42;
+    color: rgba(255,255,255,.96);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+
+  .voice-post-card__author {
+    margin-top: auto;
+    font-family: Inconsolata, monospace;
+    font-size: 17.6px;
+    line-height: 1.2;
+    color: rgba(255,255,255,.96);
+  }
+
+  @media (max-width: 900px) {
+    .voice-post-card {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      transform: none;
+      grid-template-columns: 160px minmax(0, 1fr);
+    }
+
+    .voice-post-card--carousel {
+      max-width: 620px;
+      transform: none;
+    }
+
+    .voice-post-card__media,
+    .voice-post-card__media img {
+      min-height: 100%;
+    }
+
+    .voice-post-card__body {
+      padding: 24px 20px 24px 20px;
+    }
+
+    .voice-post-card__body h3 {
+      font-size: 24px;
+    }
+
+    .voice-post-card__body p,
+    .voice-post-card__author {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .voice-post-card {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      border-radius: 34px;
+    }
+
+    .voice-post-card__media {
+      min-height: 220px;
+      border-radius: 34px 34px 0 0;
+    }
+
+    .voice-post-card__body {
+      padding: 22px 18px 24px;
+    }
+  }
+</style>

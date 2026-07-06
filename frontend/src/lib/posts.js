@@ -84,3 +84,9 @@ export const posts = [
     autor: "Dra. María González",
   },
 ];
+
+export function getLatestPosts(limit = 3) {
+  return [...posts]
+    .sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
+    .slice(0, limit);
+}

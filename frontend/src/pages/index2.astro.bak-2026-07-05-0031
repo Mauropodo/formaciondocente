@@ -1,10 +1,6 @@
 ﻿---
 import VoicePostDeck from "../components/VoicePostDeck.astro";
 import { getLatestPosts } from "../lib/posts";
-import brandImage from "../assets/figma-mcp/inicio/logo.png";
-import heroSlideOne from "../assets/figma-mcp/inicio/hero-1.png";
-import heroSlideTwo from "../assets/figma-mcp/inicio/hero-2.png";
-import cardThumb from "../assets/figma-mcp/inicio/relato-thumb.png";
 
 const voicePosts = getLatestPosts(5);
 ---
@@ -70,32 +66,6 @@ const voicePosts = getLatestPosts(5);
       background: #fff;
       overflow: hidden;
       pointer-events: none;
-    }
-    .bg-freeze-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-      opacity: 0;
-      visibility: hidden;
-    }
-    .bg-freeze-layer.is-active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .bg-freeze-content {
-      position: absolute;
-      inset: 0;
-      height: 3175px;
-      transform: translate3d(0, var(--bg-freeze-offset, 0px), 0);
-    }
-    .bg-freeze-content .bg-shape {
-      position: absolute;
-      inset: 0;
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      animation: none !important;
     }
     .bg-shape {
       position: absolute;
@@ -513,9 +483,8 @@ const voicePosts = getLatestPosts(5);
       --bubble-shift-x: 0px;
       --bubble-shift-y: 0px;
       --bubble-rotate: 0deg;
-      --bubble-scale: 1;
       opacity: 0;
-      transform: translate3d(var(--bubble-shift-x), var(--bubble-shift-y), 0) rotate(var(--bubble-rotate)) scale(var(--bubble-scale));
+      transform: translate3d(var(--bubble-shift-x), var(--bubble-shift-y), 0) rotate(var(--bubble-rotate));
       will-change: transform, opacity;
     }
     .connect .bubble.green {
@@ -643,13 +612,11 @@ const voicePosts = getLatestPosts(5);
       box-shadow: 0.8px 2.4px 0 #464646, 0 6.4px 9.6px rgba(0,0,0,.15), 0 3.2px 3.2px rgba(0,0,0,.3);
     }
     .question-story {
-      --question-overlap: 0px;
       position: relative;
       background: linear-gradient(90deg, var(--paper) 0%, var(--paper) 50%, #f7efe6 50%, #f7efe6 100%);
       overflow: hidden;
-      z-index: 8;
+      z-index: 1;
       min-height: 100svh;
-      margin-top: var(--question-overlap);
     }
     .question-story__prompt-float {
       position: absolute;
@@ -968,7 +935,6 @@ const voicePosts = getLatestPosts(5);
       }
       .question-story {
         background: var(--paper);
-        margin-top: 0;
       }
       .question-story__prompt-float {
         width: 1380px;
@@ -1071,7 +1037,6 @@ const voicePosts = getLatestPosts(5);
 <body>
   <div class="page">
     <div class="layout">
-      <div class="bg-freeze-layer" aria-hidden="true"></div>
       <section class="story-stack">
         <div class="bg">
           <div class="bg-shape bg-shape--1" aria-hidden="true">
@@ -1158,7 +1123,7 @@ const voicePosts = getLatestPosts(5);
 
         <header class="menu">
           <a class="brand" href="#">
-              <img src={brandImage.src} alt="Parvularias" />
+            <img src="https://www.figma.com/api/mcp/asset/beaa7114-0cf9-4f78-9fc7-1e2909536c01" alt="Parvularias" />
           </a>
           <nav class="panel" aria-label="Principal">
             <ul class="links">
@@ -1182,8 +1147,8 @@ const voicePosts = getLatestPosts(5);
           <p class="eyebrow">Las voces que me habitan</p>
         </div>
         <div class="hero-slider" aria-label="Galería destacada">
-          <img class="hero-slide is-active" src={heroSlideOne.src} alt="" />
-          <img class="hero-slide is-second" src={heroSlideTwo.src} alt="" />
+          <img class="hero-slide is-active" src="https://www.figma.com/api/mcp/asset/f9268427-f1ef-4ec0-a427-05eb8350a906" alt="" />
+          <img class="hero-slide is-second" src="https://www.figma.com/api/mcp/asset/a810365e-2106-4c40-8336-01638988f480" alt="" />
         </div>
         <div class="scroll-hint" aria-hidden="true">
           <div>Desliza hacia abajo</div>
@@ -1262,7 +1227,7 @@ const voicePosts = getLatestPosts(5);
           <!--
           <div class="cards">
             <article class="voice-card teal">
-              <div class="photo"><img src={cardThumb.src} alt="" /></div>
+              <div class="photo"><img src="https://www.figma.com/api/mcp/asset/b67af63c-889a-43d4-b97c-9eaea71b9aa7" alt="" /></div>
               <div class="body">
                 <h3>Sostener sin soltarse a una misma...</h3>
                 <p>La educación no termina al finalizar la jornada, porque las experiencias permanecen emocionalmente...</p>
@@ -1270,7 +1235,7 @@ const voicePosts = getLatestPosts(5);
               </div>
             </article>
             <article class="voice-card orange">
-              <div class="photo"><img src={cardThumb.src} alt="" /></div>
+              <div class="photo"><img src="https://www.figma.com/api/mcp/asset/b67af63c-889a-43d4-b97c-9eaea71b9aa7" alt="" /></div>
               <div class="body">
                 <h3>Las grietas de la vocación...</h3>
                 <p>Durante mi práctica hubo momentos en los que sentí que la imagen que tenía de mí como futura educadora comenzó a derrumbarse...</p>
@@ -1278,7 +1243,7 @@ const voicePosts = getLatestPosts(5);
               </div>
             </article>
             <article class="voice-card coral">
-              <div class="photo"><img src={cardThumb.src} alt="" /></div>
+              <div class="photo"><img src="https://www.figma.com/api/mcp/asset/b67af63c-889a-43d4-b97c-9eaea71b9aa7" alt="" /></div>
               <div class="body">
                 <h3>Máscaras que se caen...</h3>
                 <p>Entendí que educar implica aceptar que no siempre podremos resolver todo de inmediato...</p>
@@ -1395,16 +1360,9 @@ const voicePosts = getLatestPosts(5);
   const heroSlider = document.querySelector(".hero-slider");
   const heroNodes = Array.from(document.querySelectorAll(".hero-copy, .hero-slider, .scroll-hint"));
   const storyStack = document.querySelector(".story-stack");
-  const storyBg = document.querySelector(".bg");
-  const bgFreezeLayer = document.querySelector(".bg-freeze-layer");
   const connectSection = document.querySelector(".connect");
   const connectContent = document.querySelector(".connect .content");
   const connectBubbles = Array.from(document.querySelectorAll(".connect .bubble--quote"));
-  const voicesSection = document.querySelector(".voices");
-  const questionStory = document.querySelector(".question-story");
-  const questionPromptPanel = document.querySelector(".question-story__panel--prompt");
-  const questionFollowupPanel = document.querySelector(".question-story__panel--followup");
-  const questionPromptFloat = document.querySelector(".question-story__prompt-float");
   const isDevScroll = new URLSearchParams(window.location.search).get("dev") === "1";
   const devReadout = document.querySelector("[data-dev-readout]");
   const devScrollValue = document.querySelector("[data-dev-scroll]");
@@ -1681,33 +1639,15 @@ const voicePosts = getLatestPosts(5);
     const connectMotionState = {
       initialOffsets: [],
       visibleOffsets: [],
-      initialScale: [],
-      visibleScale: [],
       visibleOpacity: [],
       cleanup: null,
     };
 
     const bubbleOrder = ["green", "teal", "coral", "orange"];
-    const bubbleTargets = {
-      green: { centerX: 0.42, centerY: 0.295, scaleAdjust: 1 },
-      teal: { centerX: 0.75, centerY: 0.55, scaleAdjust: 1 },
-      coral: { centerX: 0.31, centerY: 0.57, scaleAdjust: 0.98 },
-      orange: { centerX: 0.81, centerY: 0.25, scaleAdjust: 0.97 },
-    };
 
     const getBubbleOrderIndex = (bubble) => {
       const foundIndex = bubbleOrder.findIndex((className) => bubble.classList.contains(className));
       return foundIndex === -1 ? 0 : foundIndex;
-    };
-
-    const getBubbleKey = (bubble) =>
-      bubbleOrder.find((className) => bubble.classList.contains(className)) || "green";
-
-    const getConnectScale = (contentRect) => {
-      const widthProgress = clamp01((contentRect.width - 900) / 380);
-      const heightProgress = clamp01((contentRect.height - 700) / 220);
-      const spaciousness = Math.min(1, widthProgress * 0.7 + heightProgress * 0.3);
-      return 0.84 + spaciousness * 0.16;
     };
 
     const setupConnectMotion = () => {
@@ -1715,33 +1655,20 @@ const voicePosts = getLatestPosts(5);
         x: parseFloat(bubble.style.getPropertyValue("--bubble-shift-x")) || 0,
         y: parseFloat(bubble.style.getPropertyValue("--bubble-shift-y")) || 0,
       }));
-      connectMotionState.initialScale = connectBubbles.map(() => 1);
-
-      const contentRect = connectContent.getBoundingClientRect();
-      const baseScale = getConnectScale(contentRect);
-
       connectMotionState.visibleOffsets = connectBubbles.map((bubble) => {
-        const bubbleKey = getBubbleKey(bubble);
-        const target = bubbleTargets[bubbleKey] || bubbleTargets.green;
-        const scale = baseScale * target.scaleAdjust;
-        const baseWidth = bubble.offsetWidth;
-        const baseHeight = bubble.offsetHeight;
-        const scaledWidth = baseWidth * scale;
-        const scaledHeight = baseHeight * scale;
-        const baseCenterX = bubble.offsetLeft + baseWidth / 2;
-        const baseCenterY = bubble.offsetTop + baseHeight / 2;
-        const targetCenterX = contentRect.width * target.centerX;
-        const targetCenterY = contentRect.height * target.centerY;
-
-        return {
-          x: targetCenterX - (baseCenterX + (scaledWidth - baseWidth) / 2),
-          y: targetCenterY - (baseCenterY + (scaledHeight - baseHeight) / 2),
-        };
-      });
-      connectMotionState.visibleScale = connectBubbles.map((bubble) => {
-        const bubbleKey = getBubbleKey(bubble);
-        const target = bubbleTargets[bubbleKey] || bubbleTargets.green;
-        return baseScale * target.scaleAdjust;
+        if (bubble.classList.contains("green")) {
+          return { x: 250, y: 100 };
+        }
+        if (bubble.classList.contains("teal")) {
+          return { x: 0, y: -150 };
+        }
+        if (bubble.classList.contains("coral")) {
+          return { x: 100, y: -150 };
+        }
+        if (bubble.classList.contains("orange")) {
+          return { x: 56.02, y: 230.68 };
+        }
+        return { x: 0, y: 0 };
       });
       connectMotionState.visibleOpacity = connectBubbles.map((bubble) => {
         if (bubble.classList.contains("orange")) {
@@ -1756,10 +1683,11 @@ const voicePosts = getLatestPosts(5);
         connectSection.classList.add("is-active");
 
         connectBubbles.forEach((bubble, index) => {
+          const visibleX = connectMotionState.visibleOffsets[index]?.x || 0;
+          const visibleY = connectMotionState.visibleOffsets[index]?.y || 0;
           const visibleOpacity = connectMotionState.visibleOpacity[index] ?? 1;
-          bubble.style.setProperty("--bubble-shift-x", "0px");
-          bubble.style.setProperty("--bubble-shift-y", "0px");
-          bubble.style.setProperty("--bubble-scale", "1");
+          bubble.style.setProperty("--bubble-shift-x", `${visibleX.toFixed(2)}px`);
+          bubble.style.setProperty("--bubble-shift-y", `${visibleY.toFixed(2)}px`);
           bubble.style.opacity = String(visibleOpacity);
         });
         return;
@@ -1779,8 +1707,6 @@ const voicePosts = getLatestPosts(5);
         const initY = connectMotionState.initialOffsets[index]?.y || 0;
         const visibleX = connectMotionState.visibleOffsets[index]?.x || 0;
         const visibleY = connectMotionState.visibleOffsets[index]?.y || 0;
-        const initScale = connectMotionState.initialScale[index] ?? 1;
-        const visibleScale = connectMotionState.visibleScale[index] ?? 1;
         const visibleOpacity = connectMotionState.visibleOpacity[index] ?? 1;
         const bubbleAppearStart = revealStart + orderedIndex * revealSegment;
         const bubbleAppearEnd = bubbleAppearStart + revealSegment;
@@ -1788,11 +1714,9 @@ const voicePosts = getLatestPosts(5);
         const appeared = easeOutCubic(appearProgress);
         const currentX = initX + (visibleX - initX) * appeared;
         const currentY = initY + (visibleY - initY) * appeared;
-        const currentScale = initScale + (visibleScale - initScale) * appeared;
 
         bubble.style.setProperty("--bubble-shift-x", `${currentX.toFixed(2)}px`);
         bubble.style.setProperty("--bubble-shift-y", `${currentY.toFixed(2)}px`);
-        bubble.style.setProperty("--bubble-scale", `${currentScale.toFixed(4)}`);
         bubble.style.opacity = String(visibleOpacity * appeared);
       });
     };
@@ -1812,79 +1736,6 @@ const voicePosts = getLatestPosts(5);
       window.removeEventListener("scroll", updateConnectMotion);
       window.removeEventListener("resize", handleResize);
     };
-  }
-
-  if (storyStack && storyBg && bgFreezeLayer && voicesSection && questionStory) {
-    const ensureFreezeBackground = () => {
-      if (bgFreezeLayer.dataset.ready === "true") return;
-
-      const freezeContent = document.createElement("div");
-      freezeContent.className = "bg-freeze-content";
-      freezeContent.innerHTML = storyBg.innerHTML;
-      bgFreezeLayer.appendChild(freezeContent);
-      bgFreezeLayer.dataset.ready = "true";
-    };
-
-    const updateQuestionStoryHandoff = () => {
-      if (prefersReducedMotion.matches || narrowViewport.matches) {
-        questionStory.style.setProperty("--question-overlap", "0px");
-        bgFreezeLayer.classList.remove("is-active");
-        bgFreezeLayer.style.removeProperty("--bg-freeze-offset");
-        return;
-      }
-
-      ensureFreezeBackground();
-
-      const voicesRect = voicesSection.getBoundingClientRect();
-      const overlapProgress = clamp01((window.innerHeight - voicesRect.bottom) / Math.max(window.innerHeight, 1));
-      const overlapAmount = -window.innerHeight * overlapProgress;
-
-      questionStory.style.setProperty("--question-overlap", `${overlapAmount.toFixed(2)}px`);
-
-      if (overlapProgress > 0 && overlapProgress < 1) {
-        const bgOffset = storyStack.getBoundingClientRect().top;
-        bgFreezeLayer.style.setProperty("--bg-freeze-offset", `${bgOffset.toFixed(2)}px`);
-        bgFreezeLayer.classList.add("is-active");
-      } else {
-        bgFreezeLayer.classList.remove("is-active");
-        bgFreezeLayer.style.removeProperty("--bg-freeze-offset");
-      }
-    };
-
-    updateQuestionStoryHandoff();
-    window.addEventListener("scroll", updateQuestionStoryHandoff, { passive: true });
-    window.addEventListener("resize", updateQuestionStoryHandoff);
-  }
-
-  if (questionPromptPanel && questionFollowupPanel && questionPromptFloat) {
-    mm.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)", () => {
-      gsap.set(questionPromptFloat, { x: 0 });
-
-      const promptTimeline = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: questionPromptPanel,
-          start: "top top",
-          endTrigger: questionFollowupPanel,
-          end: "top top",
-          scrub: 1,
-          pin: questionPromptPanel,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      promptTimeline.to(questionPromptFloat, {
-        x: 1400,
-      });
-
-      return () => {
-        promptTimeline.scrollTrigger?.kill();
-        promptTimeline.kill();
-        gsap.set(questionPromptFloat, { clearProps: "transform" });
-      };
-    });
   }
 
   if (isDevScroll && devReadout && storyStack) {

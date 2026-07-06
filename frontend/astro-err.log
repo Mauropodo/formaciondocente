@@ -1,0 +1,353 @@
+[31m[1m01:21:23[22m [ERROR][39m ReferenceError: allBackgroundBubbles is not defined
+    at Object.default (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:33:1607)
+    at new AstroComponentInstance (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:29:30)
+    at createAstroComponentInstance (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:81:20)
+    at renderAstroComponent (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:380:74)
+    at renderComponent (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:401:12)
+    at eval (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:33:82)
+    at index2 (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:20:12)
+    at callComponentAsTemplateResultOrResponse (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:105:31)
+    at renderToAsyncIterable (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:137:32)
+    at renderPage (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:85:77)
+[31m[1m01:21:23[22m [ERROR][39m allBackgroundBubbles is not defined
+  [1mStack trace:[22m
+[2m    at C:\Users\mwill\Documents\CODEX\Sitio Parbularias\frontend\eval at runInlinedModule (file:\C:\Users\mwill\Documents\CODEX\Sitio%20Parbularias\frontend\node_modules\vite\dist\node\module-runner.js:913:9
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m01:21:27[22m [ERROR][39m ReferenceError: allBackgroundBubbles is not defined
+    at Object.default (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:33:1607)
+    at new AstroComponentInstance (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:29:30)
+    at createAstroComponentInstance (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:81:20)
+    at renderAstroComponent (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:380:74)
+    at renderComponent (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:401:12)
+    at eval (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:33:82)
+    at index2 (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:20:12)
+    at callComponentAsTemplateResultOrResponse (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:105:31)
+    at renderToAsyncIterable (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:137:32)
+    at renderPage (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:85:77)
+[31m[1m01:21:27[22m [ERROR][39m allBackgroundBubbles is not defined
+  [1mStack trace:[22m
+[2m    at Object.default (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:33:1607)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m01:21:29[22m [ERROR][39m ReferenceError: allBackgroundBubbles is not defined
+    at Object.default (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:33:1607)
+    at new AstroComponentInstance (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:29:30)
+    at createAstroComponentInstance (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:81:20)
+    at renderAstroComponent (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:380:74)
+    at renderComponent (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:401:12)
+    at eval (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:33:82)
+    at index2 (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:20:12)
+    at callComponentAsTemplateResultOrResponse (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:105:31)
+    at renderToAsyncIterable (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:137:32)
+    at renderPage (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:85:77)
+[31m[1m01:21:29[22m [ERROR][39m allBackgroundBubbles is not defined
+  [1mStack trace:[22m
+[2m    at Object.default (eval at runInlinedModule (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/module-runner.js:913:9), <anonymous>:33:1607)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:28[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:28[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:39[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:40[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:44[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:44[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:54[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:54[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:25:55[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:46[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:47[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:52[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:52[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:54[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:54[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:56[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:56[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:57[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:58[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:58[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:59[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:43:59[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:05[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:05[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:06[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:06[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:08[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:08[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:09[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:09[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:11[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:11[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:12[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:15[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:15[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:22[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m21:44:23[22m [ERROR][39m Could not import `/src/components/VoicePostDeck.astro`.
+  [1mHint:[22m
+[33m    This is often caused by a typo in the import path. Please make sure the file exists.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/[24m[39m
+  [1mStack trace:[22m
+[2m    at loadAndTransform (file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/vite/dist/node/chunks/config.js:22739:33)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m
+[31m[1m22:27:25[22m [ERROR][39m [31m[UnhandledRejection][39m Astro detected an unhandled rejection. Here's the stack trace:
+Error: EBUSY: resource busy or locked, open 'C:\Users\mwill\Documents\CODEX\Sitio Parbularias\frontend\src\pages\index2.astro'
+    at async open (node:internal/fs/promises:641:25)
+    at async Object.readFile (node:internal/fs/promises:1245:14)
+    at async file:///C:/Users/mwill/Documents/CODEX/Sitio%20Parbularias/frontend/node_modules/astro/dist/core/routing/create-manifest.js:494:25
+  [1mHint:[22m
+[33m    Make sure your promises all have an `await` or a `.catch()` handler.[39m
+  [1mError reference:[22m
+    [36m[4mhttps://docs.astro.build/en/reference/errors/unhandled-rejection/[24m[39m
+  [1mStack trace:[22m
+[2m    at async open (node:internal/fs/promises:641:25)
+    [...] See full stack trace in the browser, or rerun with --verbose.[22m

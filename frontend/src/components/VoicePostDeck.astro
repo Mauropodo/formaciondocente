@@ -1,0 +1,282 @@
+---
+import VoicePostCard from "./VoicePostCard.astro";
+
+interface PostItem {
+  title: string;
+  slug: string;
+  excerpt: string;
+  autor?: string;
+  imagen?: string;
+}
+
+interface Props {
+  posts: PostItem[];
+  moreHref?: string;
+}
+
+const { posts, moreHref = "/publicaciones" } = Astro.props;
+
+const latestPosts = posts.slice(0, 5);
+
+const palette = [
+  { tone: "teal", rotation: "-3deg" },
+  { tone: "orange", rotation: "4deg" },
+  { tone: "coral", rotation: "-4deg" },
+] as const;
+---
+
+<div class="voice-post-deck" data-voice-carousel>
+  <div class="voice-post-deck__cards" data-carousel-stage>
+    {latestPosts.map((post, index) => {
+      const variant = palette[index % palette.length];
+      return (
+        <div class="voice-post-deck__slide" data-carousel-slide data-index={index}>
+          <VoicePostCard
+            post={post}
+            tone={variant.tone}
+            rotation={variant.rotation}
+            offsetX="0px"
+            offsetY="0px"
+            layout="carousel"
+          />
+        </div>
+      );
+    })}
+  </div>
+
+  <a class="voice-post-deck__more" href={moreHref}>Ver mÃ¡s</a>
+</div>
+
+<style>
+  .voice-post-deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 71px;
+    width: min(1216px, 100%);
+  }
+
+  .voice-post-deck__cards {
+    position: relative;
+    width: min(1216px, 100%);
+    min-height: 430px;
+    overflow: visible;
+  }
+
+  .voice-post-deck__slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(240px, 28px, 0) scale(0.92);
+    transition:
+      transform 820ms cubic-bezier(.22,1,.36,1),
+      opacity 520ms ease,
+      filter 820ms cubic-bezier(.22,1,.36,1);
+    will-change: transform, opacity, filter;
+  }
+
+  .voice-post-deck__slide .voice-post-card {
+    width: min(100%, 558px);
+  }
+
+  .voice-post-deck__slide.is-prev {
+    opacity: 1;
+    z-index: 1;
+    transform: translate3d(-286px, 54px, 0) scale(0.96);
+    filter: saturate(.96) brightness(.98);
+  }
+
+  .voice-post-deck__slide.is-active {
+    opacity: 1;
+    z-index: 3;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: none;
+  }
+
+  .voice-post-deck__slide.is-next {
+    opacity: 1;
+    z-index: 2;
+    transform: translate3d(286px, 46px, 0) scale(0.96);
+    filter: saturate(.97) brightness(.99);
+  }
+
+  .voice-post-deck__slide.is-hidden-left {
+    opacity: 0;
+    z-index: 0;
+    transform: translate3d(-420px, 64px, 0) scale(0.9);
+  }
+
+  .voice-post-deck__slide.is-hidden-right {
+    opacity: 0;
+    z-index: 0;
+    transform: translate3d(420px, 64px, 0) scale(0.9);
+  }
+
+  .voice-post-deck__slide.is-prev .voice-post-card {
+    transform: rotate(-3deg);
+  }
+
+  .voice-post-deck__slide.is-active .voice-post-card {
+    transform: rotate(4deg);
+  }
+
+  .voice-post-deck__slide.is-next .voice-post-card {
+    transform: rotate(-4deg);
+  }
+
+  .voice-post-deck__slide.is-hidden-left .voice-post-card {
+    transform: rotate(-5deg);
+  }
+
+  .voice-post-deck__slide.is-hidden-right .voice-post-card {
+    transform: rotate(-4deg);
+  }
+
+  .voice-post-deck__more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 105px;
+    border-radius: 38px;
+    background: #464646;
+    color: #fff;
+    font-family: Inconsolata, monospace;
+    font-size: 28.8px;
+    font-weight: 900;
+    box-shadow: 0.8px 2.4px 0 #464646, 0 6.4px 9.6px rgba(0,0,0,.15), 0 3.2px 3.2px rgba(0,0,0,.3);
+  }
+
+  @media (max-width: 1100px) {
+    .voice-post-deck__cards {
+      min-height: 390px;
+    }
+
+    .voice-post-deck__slide.is-prev {
+      transform: translate3d(-220px, 42px, 0) scale(0.94);
+    }
+
+    .voice-post-deck__slide.is-next {
+      transform: translate3d(220px, 38px, 0) scale(0.94);
+    }
+
+    .voice-post-deck__slide.is-hidden-left {
+      transform: translate3d(-320px, 52px, 0) scale(0.88);
+    }
+
+    .voice-post-deck__slide.is-hidden-right {
+      transform: translate3d(320px, 52px, 0) scale(0.88);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .voice-post-deck {
+      gap: 32px;
+    }
+
+    .voice-post-deck__cards {
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .voice-post-deck__slide {
+      position: relative;
+      inset: auto;
+      display: none;
+      transform: none !important;
+      opacity: 0;
+      filter: none;
+    }
+
+    .voice-post-deck__slide.is-active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .voice-post-deck__slide .voice-post-card,
+    .voice-post-deck__slide.is-prev .voice-post-card,
+    .voice-post-deck__slide.is-active .voice-post-card,
+    .voice-post-deck__slide.is-next .voice-post-card {
+      width: 100%;
+      transform: none;
+    }
+
+    .voice-post-deck__more {
+      padding-inline: 48px;
+      font-size: 22px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll("[data-voice-carousel]").forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
+    if (slides.length === 0) return;
+
+    let activeIndex = 0;
+    let intervalId;
+
+    const getPrevIndex = (index) => (index - 1 + slides.length) % slides.length;
+    const getNextIndex = (index) => (index + 1) % slides.length;
+
+    const paint = () => {
+      const prevIndex = getPrevIndex(activeIndex);
+      const nextIndex = getNextIndex(activeIndex);
+
+      slides.forEach((slide, index) => {
+        slide.classList.remove(
+          "is-prev",
+          "is-active",
+          "is-next",
+          "is-hidden-left",
+          "is-hidden-right"
+        );
+
+        if (index === activeIndex) {
+          slide.classList.add("is-active");
+          return;
+        }
+
+        if (index === prevIndex) {
+          slide.classList.add("is-prev");
+          return;
+        }
+
+        if (index === nextIndex) {
+          slide.classList.add("is-next");
+          return;
+        }
+
+        const isAhead = (index - activeIndex + slides.length) % slides.length < slides.length / 2;
+        slide.classList.add(isAhead ? "is-hidden-right" : "is-hidden-left");
+      });
+    };
+
+    const stop = () => {
+      if (intervalId) {
+        window.clearInterval(intervalId);
+        intervalId = undefined;
+      }
+    };
+
+    const start = () => {
+      if (slides.length <= 1) return;
+      stop();
+      intervalId = window.setInterval(() => {
+        activeIndex = getNextIndex(activeIndex);
+        paint();
+      }, 4200);
+    };
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+
+    paint();
+    start();
+  });
+</script>

@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sin título - Figma Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f5f2;
+      --bg-soft: #f4ebe6;
+      --paper: #eee2d9;
+      --text: #620404;
+      --text-soft: #514444;
+      --primary: #be572a;
+      --accent: #d2892d;
+      --teal: #3b959e;
+      --orange: #c36438;
+      --green: #8bc5ae;
+      --shadow-paper: 0 1px 0 rgba(255,255,255,.6) inset, 0 12px 26px rgba(76,54,43,.14), 0 3px 10px rgba(76,54,43,.08);
+      --shadow-deep: 0 14px 34px rgba(76,54,43,.18);
+      --nav-h: 161px;
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .page {
+      position: relative;
+      min-height: 100vh;
+      isolation: isolate;
+    }
+    .layout {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+    .story-stack {
+      position: relative;
+      min-height: 3175px;
+      overflow: clip;
+      background: var(--bg);
+    }
+    .bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: var(--bg);
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      user-select: none;
+      pointer-events: none;
+    }
+    .menu {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 40;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 0 clamp(1rem, 5vw, 23rem);
+      min-height: var(--nav-h);
+      pointer-events: none;
+    }
+    .menu .brand {
+      width: 161px;
+      height: 161px;
+      flex: 0 0 auto;
+      pointer-events: auto;
+    }
+    .menu .panel {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 12.8px 50.4px;
+      background: #f9f5f2;
+      border-radius: 0 0 12.8px 12.8px;
+      box-shadow: none;
+      transform: translateX(-2px);
+      margin-top: 0;
+      min-width: min(100%, 735px);
+    }
+    .menu .dev-readout {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-left: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(98, 4, 4, 0.08);
+      color: var(--text);
+      font-family: Inconsolata, monospace;
+      font-size: 13px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .menu .dev-readout strong {
+      font-weight: 900;
+      color: var(--primary);
+    }
+    .menu .dev-readout.is-visible {
+      display: inline-flex;
+    }
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: Inconsolata, monospace;
+      font-size: 16px;
+      color: #000;
+      white-space: nowrap;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 27px;
+      border-radius: 48px;
+      background: var(--accent);
+      color: #eee2d9;
+      font-family: Inconsolata, monospace;
+      font-weight: 900;
+      box-shadow:
+        0.8px 2.4px 0 #464646,
+        0 6.4px 9.6px rgba(0,0,0,.15),
+        0 3.2px 3.2px rgba(0,0,0,.3);
+    }
+    .hero {
+      position: sticky;
+      top: 0;
+      min-height: 100svh;
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 120px);
+      overflow: clip;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(440px, 586px);
+      align-items: center;
+      column-gap: clamp(24px, 4vw, 56px);
+      z-index: 2;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: center;
+      transform: translateY(-10px);
+      max-width: 690px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 3.5vw, 44.8px);
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--text);
+      max-width: 690px;
+      text-wrap: balance;
+    }
+    .hero .eyebrow {
+      margin: 0;
+      font-family: "Red Hat Display", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 5.4px;
+      font-size: 20px;
+      color: var(--text);
+    }
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      max-width: 586px;
+      aspect-ratio: 11 / 8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      justify-self: end;
+      transform: translateY(-10px);
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 6.5px 9.8px 4.9px rgba(0,0,0,.15), 0 3.3px 3.3px rgba(0,0,0,.3);
+      opacity: 0;
+      transition: opacity 700ms ease, transform 700ms ease;
+      will-change: opacity, transform;
+      pointer-events: none;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-slide.is-active {
+      opacity: 1;
+      transform: rotate(-2deg) translateZ(0);
+      z-index: 2;
+    }
+    .hero-slide.is-second {
+      opacity: 1;
+      transform: rotate(1deg) translate(18px, 16px) scale(0.98);
+      z-index: 1;
+      filter: saturate(0.98) brightness(0.98);
+    }
+    .scroll-hint {
+      position: absolute;
+      right: 120px;
+      bottom: 54px;
+      width: 167px;
+      min-height: 76px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      font-family: Inconsolata, monospace;
+      font-weight: 400;
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .scroll-hint .hint-icons {
+      position: relative;
+      width: 100%;
+      height: 28px;
+    }
+    .scroll-hint .hint-icons img {
+      position: absolute;
+      right: 4px;
+      width: 32px;
+      height: 14px;
+      object-fit: contain;
+      opacity: 0;
+      transform: translateY(-2px);
+      will-change: opacity, transform;
+    }
+    .scroll-hint .hint-icons img:first-child {
+      top: 0;
+      animation: hintChevronOne 3s infinite ease-in-out;
+    }
+    .scroll-hint .hint-icons img:last-child {
+      top: 14px;
+      animation: hintChevronTwo 3s infinite ease-in-out;
+    }
+    @keyframes hintChevronOne {
+      0%, 14% { opacity: 0; transform: translateY(-2px); }
+      18% { opacity: 1; transform: translateY(0); }
+      64% { opacity: 1; transform: translateY(0); }
+      68%, 100% { opacity: 0; transform: translateY(2px); }
+    }
+    @keyframes hintChevronTwo {
+      0%, 48% { opacity: 0; transform: translateY(-2px); }
+      52% { opacity: 1; transform: translateY(0); }
+      64% { opacity: 1; transform: translateY(0); }
+      68%, 100% { opacity: 0; transform: translateY(2px); }
+    }
+    .connect {
+      position: relative;
+      min-height: 1138px;
+      overflow: clip;
+      padding: 0 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .connect .content {
+      position: relative;
+      width: min(960px, 100%);
+      height: 520px;
+    }
+    .bubble {
+      position: relative;
+      padding: 54px 40px 54px;
+      color: white;
+      border-radius: 92px;
+      min-height: 310px;
+      box-shadow: var(--shadow-paper);
+      overflow: hidden;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 62px;
+      height: 42px;
+      transform: translateX(-50%) rotate(8deg);
+      background: inherit;
+      clip-path: polygon(48% 0, 100% 45%, 74% 100%, 0 42%);
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.12));
+    }
+    .bubble h2, .bubble p { position: relative; z-index: 1; margin: 0; }
+    .bubble h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 28.8px;
+      margin-bottom: 18px;
+      line-height: 1.1;
+    }
+    .bubble p {
+      font-family: Inconsolata, monospace;
+      font-size: 17.6px;
+      line-height: 1.35;
+    }
+    .bubble.teal { background: var(--teal); }
+    .bubble.orange { background: #de8b21; }
+    .bubble.coral { background: var(--orange); }
+    .connect .bubble {
+      position: absolute;
+    }
+    .connect .bubble.green {
+      left: 0;
+      top: 8px;
+      width: 432px;
+      min-height: 248px;
+      transform: rotate(-2deg);
+    }
+    .connect .bubble.orange {
+      right: 0;
+      top: 0;
+      width: 430px;
+      min-height: 248px;
+      transform: rotate(3deg);
+    }
+    .connect .bubble.coral {
+      left: 0;
+      bottom: 14px;
+      width: 430px;
+      min-height: 248px;
+      transform: rotate(6deg);
+    }
+    .connect .bubble.teal {
+      right: 0;
+      bottom: 0;
+      width: 430px;
+      min-height: 248px;
+      transform: rotate(-4deg);
+    }
+    .voices {
+      position: relative;
+      min-height: 1064px;
+      padding: 10px 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 71px;
+      overflow: clip;
+      z-index: 1;
+    }
+    .voices h2,
+    .question h2,
+    .closing h2 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: 44.8px;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-align: center;
+      line-height: 1.05;
+    }
+    .cards {
+      position: relative;
+      width: min(1216px, 100%);
+      height: 410px;
+    }
+    .voice-card {
+      position: absolute;
+      width: 544px;
+      min-height: 310px;
+      border-radius: 48px;
+      padding: 32px 24px 32px 40px;
+      color: white;
+      box-shadow: 8.8px 11.2px 6.12px rgba(0,0,0,.23), 0 3.2px 1.6px rgba(0,0,0,.25), 2.4px 3.2px 0 rgba(0,0,0,.25), -1.6px 3.2px 1.6px rgba(0,0,0,.4);
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .voice-card.teal { left: 0; top: 53px; transform: rotate(-3deg); }
+    .voice-card.orange { left: 328px; top: 0; transform: rotate(4deg); }
+    .voice-card.coral { left: 658px; top: 49px; transform: rotate(-4deg); }
+    .voice-card .photo {
+      border-radius: 38.4px 0 0 38.4px;
+      overflow: hidden;
+      margin-right: 24px;
+    }
+    .voice-card .body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: Inter, sans-serif;
+    }
+    .voice-card h3 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: 28.8px;
+      line-height: 1.1;
+    }
+    .voice-card p {
+      margin: 0;
+      font-size: 17.6px;
+      line-height: 1.6;
+    }
+    .voice-card .author {
+      font-family: Inconsolata, monospace;
+      font-size: 17.6px;
+    }
+    .voice-card.teal { background: var(--teal); }
+    .voice-card.orange { background: #de8b21; }
+    .voice-card.coral { background: var(--orange); }
+    .voices .more {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 105px;
+      border-radius: 38px;
+      background: #464646;
+      color: white;
+      font-family: Inconsolata, monospace;
+      font-size: 28.8px;
+      font-weight: 900;
+      box-shadow: 0.8px 2.4px 0 #464646, 0 6.4px 9.6px rgba(0,0,0,.15), 0 3.2px 3.2px rgba(0,0,0,.3);
+    }
+    .question {
+      position: relative;
+      min-height: 1064px;
+      padding: 0 10px;
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .question .silhouette {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: min(420px, 34vw);
+      height: auto;
+    }
+    .question .text {
+      max-width: 680px;
+      text-align: center;
+      padding-left: 20px;
+    }
+    .question p {
+      margin: 18px auto 0;
+      max-width: 460px;
+      font-family: Inconsolata, monospace;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+    .speakers {
+      padding: 0 0 24px;
+      background: #f7efe6;
+      overflow: hidden;
+    }
+    .speakers .row {
+      display: flex;
+      gap: 0;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 0 16px;
+      transform: translateY(-18px);
+    }
+    .speakers .row img {
+      width: 92px;
+      height: 92px;
+      object-fit: contain;
+      margin-right: -8px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.12));
+    }
+    .closing {
+      padding: 71px 200px 43px;
+      background: rgba(249,244,241,.65);
+    }
+    .closing .wrap {
+      display: grid;
+      gap: 71px;
+      width: min(1216px, 100%);
+      margin: 0 auto;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+    .gallery img, .closing .col img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 6.5px 9.8px 4.9px rgba(0,0,0,.15), 0 3.3px 3.3px rgba(0,0,0,.3);
+    }
+    .closing .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1.6fr .8fr .9fr;
+      gap: 56px;
+      align-items: start;
+      background: white;
+      border-radius: 20px;
+      padding: 50px 56px;
+      box-shadow: 0 4px 2px rgba(0,0,0,.25);
+    }
+    .col h3 {
+      margin: 0 0 25px;
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+    .col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 11px;
+      font-family: Inconsolata, monospace;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 4.32px;
+    }
+    .social {
+      display: grid;
+      gap: 11px;
+    }
+    .social a {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-family: Inconsolata, monospace;
+      font-size: 16px;
+      letter-spacing: 4.32px;
+    }
+    .social img { width: 24px; height: 24px; }
+    @media (max-width: 1200px) {
+      .hero { padding: 0 40px 0 120px; grid-template-columns: 1fr 1fr; }
+      .menu { padding: 0 1rem; }
+      .closing { padding-left: 1rem; padding-right: 1rem; }
+      .connect { padding: 0 1rem; }
+    }
+    @media (max-width: 900px) {
+      .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .menu .panel { flex-wrap: wrap; justify-content: center; }
+      .hero {
+        min-height: auto;
+        width: 100%;
+        padding: 48px 1rem 32px;
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+      }
+      .hero-copy {
+        align-items: flex-start;
+        min-height: auto;
+        transform: none;
+      }
+      .hero-slider {
+        min-height: 0;
+        transform: none;
+        justify-self: start;
+      }
+      .hero-slide,
+      .hero-slide.is-active {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .scroll-hint {
+        right: 1rem;
+        bottom: 1rem;
+      }
+      .connect .content,
+      .cards,
+      .closing .grid,
+      .gallery {
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+      .connect .content { height: auto; }
+      .connect .bubble {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        transform: none;
+        min-height: 210px;
+      }
+      .voice-card {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        grid-template-columns: 1fr;
+        transform: none;
+      }
+      .voice-card .photo {
+        margin-right: 0;
+        border-radius: 24px 24px 0 0;
+      }
+      .voices h2,
+      .question h2,
+      .closing h2 {
+        font-size: 30px;
+      }
+      .question {
+        min-height: auto;
+        padding: 3rem 1rem;
+      }
+      .question .silhouette {
+        opacity: .35;
+        width: 55vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="layout">
+      <section class="story-stack">
+        <div class="bg">
+          <img src="/FONDO%20A.svg" alt="" />
+        </div>
+
+        <header class="menu">
+          <a class="brand" href="#">
+            <img src="https://www.figma.com/api/mcp/asset/beaa7114-0cf9-4f78-9fc7-1e2909536c01" alt="Parvularias" />
+          </a>
+          <nav class="panel" aria-label="Principal">
+            <ul class="links">
+              <li>Inicio</li>
+              <li>Quiénes somos</li>
+              <li>Investigación</li>
+              <li>Publicaciones</li>
+              <li>Contacto</li>
+            </ul>
+            <div class="dev-readout" data-dev-readout aria-live="polite">
+              <span>scroll <strong data-dev-scroll>0px</strong></span>
+              <span>hero <strong data-dev-hero>0%</strong></span>
+            </div>
+            <a class="cta" href="#">Relatos</a>
+          </nav>
+        </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>Susurros del aula<br />Historias que nos encuentran</h1>
+          <p class="eyebrow">Las voces que me habitan</p>
+        </div>
+        <div class="hero-slider" aria-label="Galería destacada">
+          <img class="hero-slide is-active" src="https://www.figma.com/api/mcp/asset/f9268427-f1ef-4ec0-a427-05eb8350a906" alt="" />
+          <img class="hero-slide is-second" src="https://www.figma.com/api/mcp/asset/a810365e-2106-4c40-8336-01638988f480" alt="" />
+        </div>
+        <div class="scroll-hint" aria-hidden="true">
+          <div>Desliza hacia abajo</div>
+          <div class="hint-icons">
+            <img src="https://www.figma.com/api/mcp/asset/270f4c7b-d6d1-4da3-a80f-ac5cfbae3551" alt="" />
+            <img src="https://www.figma.com/api/mcp/asset/270f4c7b-d6d1-4da3-a80f-ac5cfbae3551" alt="" />
+          </div>
+        </div>
+      </section>
+
+        <section class="connect">
+          <div class="content">
+            <article class="bubble green">
+              <p>“Hoy entiendo que dudar de una misma no es señal de debilidad, a veces es parte necesaria del proceso de convertirse en una docente más sensible frente al aula”</p>
+            </article>
+            <article class="bubble orange">
+              <p>“Entendí que educar implica aceptar que no siempre podremos resolver todo de inmediato...”</p>
+            </article>
+            <article class="bubble coral">
+              <p>“Enseñar también confronta nuestras propias emociones, límites y experiencias. Y en ese camino vas definiendo tu quehacer docente”</p>
+            </article>
+            <article class="bubble teal">
+              <p>“Descubrí que ser educadora no significa tener todas las respuestas, sino desarrollar la capacidad de sostenerse incluso cuando aparece la frustración”</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="voices">
+          <h2>Voces docentes</h2>
+          <div class="cards">
+            <article class="voice-card teal">
+              <div class="photo"><img src="https://www.figma.com/api/mcp/asset/b67af63c-889a-43d4-b97c-9eaea71b9aa7" alt="" /></div>
+              <div class="body">
+                <h3>Sostener sin soltarse a una misma...</h3>
+                <p>La educación no termina al finalizar la jornada, porque las experiencias permanecen emocionalmente...</p>
+                <div class="author">Docente Anónima</div>
+              </div>
+            </article>
+            <article class="voice-card orange">
+              <div class="photo"><img src="https://www.figma.com/api/mcp/asset/b67af63c-889a-43d4-b97c-9eaea71b9aa7" alt="" /></div>
+              <div class="body">
+                <h3>Las grietas de la vocación...</h3>
+                <p>Durante mi práctica hubo momentos en los que sentí que la imagen que tenía de mí como futura educadora comenzó a derrumbarse...</p>
+                <div class="author">Docente Anónima</div>
+              </div>
+            </article>
+            <article class="voice-card coral">
+              <div class="photo"><img src="https://www.figma.com/api/mcp/asset/b67af63c-889a-43d4-b97c-9eaea71b9aa7" alt="" /></div>
+              <div class="body">
+                <h3>Máscaras que se caen...</h3>
+                <p>Entendí que educar implica aceptar que no siempre podremos resolver todo de inmediato...</p>
+                <div class="author">Docente Anónima</div>
+              </div>
+            </article>
+          </div>
+          <a class="more" href="#">Ver más</a>
+        </section>
+      </section>
+
+      <section class="question">
+        <img class="silhouette" src="https://www.figma.com/api/mcp/asset/8aa6984e-7e63-4c7b-8953-076a0c319cdc" alt="" />
+        <div class="text">
+          <h2>¿Y QUÉ PIENSAS TÚ?</h2>
+          <p>Porque construir nuestra identidad docente también implica escucharnos, atrévete a compartir tu voz y aquello que el aula dejó en ti.</p>
+        </div>
+      </section>
+
+      <section class="speakers" aria-label="Relatos y redes">
+        <div class="row">
+          <img src="https://www.figma.com/api/mcp/asset/20ba3af2-e519-4d82-accc-66475432e664" alt="" />
+          <img src="https://www.figma.com/api/mcp/asset/eec0593c-be33-47b2-9a23-d97eb212d434" alt="" />
+          <img src="https://www.figma.com/api/mcp/asset/deb63b45-7ed9-47f7-9f75-8d6fbb23c33f" alt="" />
+          <img src="https://www.figma.com/api/mcp/asset/bfb1c1d8-716c-4658-a6ae-b12b0b6a9adf" alt="" />
+          <img src="https://www.figma.com/api/mcp/asset/1335ee43-f13f-403a-a999-ec0b4909e525" alt="" />
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="wrap">
+          <div style="display:grid; gap:24px; width:min(1216px,100%); margin:0 auto;">
+            <h2 style="text-align:left; max-width:566px;">Charlemos y compartamos también a través de...</h2>
+            <div class="social">
+              <a href="#"><img src="https://www.figma.com/api/mcp/asset/18865b8b-5c3d-4838-8969-9f23c6b478ea" alt="" /> LINKEDIN</a>
+              <a href="#"><img src="https://www.figma.com/api/mcp/asset/7ce239ae-1173-409f-9bd8-a440e9245f78" alt="" /> INSTAGRAM</a>
+            </div>
+            <div class="gallery">
+              <img src="https://www.figma.com/api/mcp/asset/760662cd-f2a2-4cb6-b121-3b7d423ba19a" alt="" />
+              <img src="https://www.figma.com/api/mcp/asset/d9a477fc-9292-4699-ab3c-35e0b84890d6" alt="" />
+              <img src="https://www.figma.com/api/mcp/asset/978cfb53-ef91-47f2-ab82-cb1eb3f96c0c" alt="" />
+              <img src="https://www.figma.com/api/mcp/asset/a810365e-2106-4c40-8336-01638988f480" alt="" />
+              <img src="https://www.figma.com/api/mcp/asset/318de0cb-f794-4ce3-8483-cd7c58be0784" alt="" />
+              <img src="https://www.figma.com/api/mcp/asset/50f6d531-f9d2-45f7-9023-cd01ca241244" alt="" />
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="col">
+              <h3>Mapa de sitio</h3>
+              <ul>
+                <li>Inicio</li>
+                <li>Voces</li>
+                <li>Investigación</li>
+                <li>Publicaciones</li>
+                <li>Contacto</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h3>Otras investigaciones</h3>
+              <ul>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h3>Colaboran</h3>
+              <img src="https://www.figma.com/api/mcp/asset/0760f57a-bfe5-425c-9a99-3ebce0b39a49" alt="" />
+            </div>
+            <div class="col">
+              <h3>Redes</h3>
+              <ul>
+                <li>Linkedin</li>
+                <li>Instagram</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+  <script>
+  const heroSlides = Array.from(document.querySelectorAll(".hero-slide"));
+  const heroNodes = Array.from(document.querySelectorAll(".hero-copy, .hero-slider, .scroll-hint"));
+  const storyStack = document.querySelector(".story-stack");
+  const isDevScroll = new URLSearchParams(window.location.search).get("dev") === "1";
+  const devReadout = document.querySelector("[data-dev-readout]");
+  const devScrollValue = document.querySelector("[data-dev-scroll]");
+  const devHeroValue = document.querySelector("[data-dev-hero]");
+
+  const loadScript = (src) =>
+    new Promise((resolve, reject) => {
+      const existing = document.querySelector(`script[src="${src}"]`);
+      if (existing) {
+        if (existing.dataset.loaded === "true") {
+          resolve();
+          return;
+        }
+        existing.addEventListener("load", () => resolve(), { once: true });
+        existing.addEventListener("error", reject, { once: true });
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.addEventListener(
+        "load",
+        () => {
+          script.dataset.loaded = "true";
+          resolve();
+        },
+        { once: true }
+      );
+      script.addEventListener("error", reject, { once: true });
+      document.head.appendChild(script);
+    });
+
+  if (heroSlides.length > 1) {
+    let current = 0;
+    const showSlide = (index) => {
+      heroSlides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("is-active", slideIndex === index);
+        slide.classList.toggle("is-second", slideIndex === (index + 1) % heroSlides.length);
+        slide.style.zIndex = slideIndex === index ? "2" : slideIndex === (index + 1) % heroSlides.length ? "1" : "0";
+      });
+    };
+    showSlide(current);
+    setInterval(() => {
+      current = (current + 1) % heroSlides.length;
+      showSlide(current);
+    }, 3800);
+  }
+
+  if (storyStack && heroNodes.length) {
+    const updateHeroFade = () => {
+      const stackTop = storyStack.offsetTop;
+      const heroHeight = window.innerHeight;
+      const fadeDistance = heroHeight * 0.55;
+      const progress = Math.min(Math.max((window.scrollY - stackTop) / fadeDistance, 0), 1);
+      const opacity = 1 - progress;
+      heroNodes.forEach((node) => {
+        node.style.opacity = String(opacity);
+      });
+    };
+
+    updateHeroFade();
+    window.addEventListener("scroll", updateHeroFade, { passive: true });
+    window.addEventListener("resize", updateHeroFade);
+  }
+
+  if (isDevScroll && devReadout && storyStack) {
+    devReadout.classList.add("is-visible");
+
+    const updateDevReadout = () => {
+      const stackTop = storyStack.offsetTop;
+      const heroHeight = window.innerHeight;
+      const fadeDistance = heroHeight * 0.55;
+      const heroProgress = Math.min(Math.max((window.scrollY - stackTop) / fadeDistance, 0), 1);
+
+      if (devScrollValue) {
+        devScrollValue.textContent = `${Math.round(window.scrollY)}px`;
+      }
+
+      if (devHeroValue) {
+        devHeroValue.textContent = `${Math.round(heroProgress * 100)}%`;
+      }
+    };
+
+    updateDevReadout();
+    window.addEventListener("scroll", updateDevReadout, { passive: true });
+    window.addEventListener("resize", updateDevReadout);
+  }
+
+  if (isDevScroll && storyStack) {
+    Promise.all([
+      loadScript("https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"),
+      loadScript("https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"),
+    ])
+      .then(() => {
+        if (!window.gsap || !window.ScrollTrigger) return;
+
+        window.gsap.registerPlugin(window.ScrollTrigger);
+
+        const sections = [
+          [".hero", "hero"],
+          [".connect", "connect"],
+          [".voices", "voices"],
+          [".question", "question"],
+          [".speakers", "speakers"],
+          [".closing", "closing"],
+        ];
+
+        window.ScrollTrigger.create({
+          trigger: storyStack,
+          start: "top top",
+          end: "bottom bottom",
+          markers: {
+            startColor: "#be572a",
+            endColor: "#be572a",
+            fontSize: "12px",
+            indent: 20,
+          },
+          id: "story-stack",
+        });
+
+        sections.forEach(([selector, id], index) => {
+          const element = document.querySelector(selector);
+          if (!element) return;
+
+          window.ScrollTrigger.create({
+            trigger: element,
+            start: "top 80%",
+            end: "bottom 20%",
+            markers: {
+              startColor: index % 2 === 0 ? "#3b959e" : "#d2892d",
+              endColor: index % 2 === 0 ? "#3b959e" : "#d2892d",
+              fontSize: "11px",
+              indent: 20 + index * 14,
+            },
+            id,
+          });
+        });
+
+        window.ScrollTrigger.refresh();
+      })
+      .catch(() => {
+        console.warn("No se pudo cargar GSAP dev markers.");
+      });
+  }
+</script>
+</html>
