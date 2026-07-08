@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCarousel from '../../components/BlogCarousel.astro';
 import { posts } from '../../lib/posts';
+import { categorias } from '../../lib/categorias';
 
 export async function getStaticPaths() {
   return posts.map(p => ({
@@ -12,21 +13,34 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const otrosPosts = posts.filter(p => p.slug !== post.slug).slice(0, 5);
+const categoriaObj = categorias.find(c => c.nombre === post.categoria);
+const tags = [post.categoria, ...(categoriaObj ? ["Relatos", "Marco teórico"].filter((_, i) => i < 2) : [])];
 ---
 
 <BaseLayout title={post.title}>
-  <article class="section post-article">
-    <div class="container post-container">
-      <div class="post-meta">
-        <span class="post-categoria">{post.categoria}</span>
-        <span class="post-fecha">{post.fecha}</span>
+  <article class="post-article">
+    <div class="container">
+      <div class="post-hero" id="post-hero">
+        <div class="post-hero-text">
+          <p class="post-meta-line">{post.autor} | {post.fecha}</p>
+          <h1 id="post-title">{post.title}</h1>
+          <p class="post-excerpt">{post.excerpt}</p>
+          <div class="post-tags">
+            {tags.map(tag => (
+              <span class={`post-tag tag-${tag.toLowerCase().replace(/\s+/g, '-')}`}>{tag}</span>
+            ))}
+          </div>
+        </div>
+        <div class="post-hero-img"></div>
       </div>
-      <h1 id="post-title">{post.title}</h1>
-      {post.autor && <p class="post-autor">Por {post.autor}</p>}
-      <div class="post-img-placeholder"></div>
-      <div class="post-content" id="post-content" set:html={post.content} />
     </div>
   </article>
+
+  <section class="post-body-section">
+    <div class="container">
+      <div class="post-content" id="post-content" set:html={post.content} />
+    </div>
+  </section>
 
   {otrosPosts.length > 0 && (
     <section class="section section-alt">
@@ -39,37 +53,127 @@ const otrosPosts = posts.filter(p => p.slug !== post.slug).slice(0, 5);
 </BaseLayout>
 
 <script>
-  import { fadeInUp, fadeInDown } from "../../utils/gsap";
-  fadeInUp(document.getElementById("post-title"));
-  fadeInUp(document.getElementById("post-content"), 0.2);
+  import { fadeInUp } from "../../utils/gsap";
+  fadeInUp(document.getElementById("post-hero"));
+  fadeInUp(document.getElementById("post-content"), 0.3);
 </script>
 
 <style>
-  .post-container { max-width: 750px; margin: 0 auto; }
-  .post-meta {
+  .post-article {
+    padding: 174px 0 0;
+  }
+  .post-hero {
     display: flex;
-    gap: var(--gap-md);
-    align-items: center;
+    gap: var(--gap-xl);
+    align-items: flex-start;
+  }
+  .post-hero-text {
+    flex: 1;
+    max-width: 663px;
+  }
+  .post-meta-line {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
     margin-bottom: var(--gap-md);
-    font-size: 0.9rem;
   }
-  .post-categoria {
-    background: var(--color-primary-light);
-    color: var(--color-primary-dark);
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-weight: 600;
+  .post-hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--gap-md);
+    font-size: clamp(2rem, 4vw, 3rem);
   }
-  .post-fecha { color: var(--color-text-light); }
-  .post-autor { color: var(--color-text-light); font-style: italic; margin-bottom: var(--gap-lg); }
-  .post-img-placeholder {
-    width: 100%;
-    height: 300px;
-    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary));
-    border-radius: var(--radius);
+  .post-excerpt {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
     margin-bottom: var(--gap-lg);
   }
-  .post-content h2 { color: var(--color-primary); margin-top: var(--gap-lg); }
-  .post-content p { line-height: 1.8; }
+  .post-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .post-tag {
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #161616;
+    border: 2px solid;
+  }
+  .post-tag.tag-relatos,
+  .post-tag.tag-relatos { background: #e5e5c6; border-color: #7b7a4a; }
+  .post-tag.tag-marco-teórico,
+  .post-tag.tag-marco-teorico { background: #f3b568; border-color: #f0a443; }
+  .post-tag.tag-hitos { background: #cee6dd; border-color: #98b5ab; }
+  .post-tag.tag-noticias { background: #f9f5f2; border-color: #e6cbcb; }
+  .post-tag.tag-reflexiones { background: #95b3a7; border-color: #214d51; }
+  .post-tag.tag-aprendizajes { background: #f0d0d0; border-color: #620404; }
+  .post-tag.tag-experiencias { background: #a1cad3; border-color: #4a5c7c; }
+  .post-tag.tag-papers { background: #f9f5f2; border-color: #e6cbcb; }
+  .post-tag.tag-buenas-prácticas,
+  .post-tag.tag-buenas-practicas { background: #f9f5f2; border-color: #e6cbcb; }
+  .post-tag.tag-comentarios { background: #f9f5f2; border-color: #e6cbcb; }
+
+  .post-hero-img {
+    flex: 0 0 496px;
+    height: 361px;
+    background: linear-gradient(135deg, var(--color-primary-200), var(--color-tertiary-300));
+    border-radius: var(--radius-xl);
+  }
+
+  .post-body-section {
+    padding: var(--gap-xl) 0;
+  }
+  .post-body-section .container {
+    max-width: 800px;
+  }
+  .post-content h2 {
+    font-family: var(--font-heading);
+    color: var(--color-text-primary);
+    margin-top: var(--gap-xl);
+    margin-bottom: var(--gap-md);
+  }
+  .post-content h3 {
+    font-family: var(--font-heading);
+    color: var(--color-text-primary);
+    margin-top: var(--gap-lg);
+    margin-bottom: var(--gap-sm);
+  }
+  .post-content p {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: var(--gap-md);
+  }
+  .post-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding: var(--gap-md) var(--gap-lg);
+    margin: var(--gap-lg) 0;
+    background: var(--color-bg-soft);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+  .post-content ul, .post-content ol {
+    padding-left: var(--gap-lg);
+    margin-bottom: var(--gap-md);
+    line-height: 1.8;
+  }
+  .post-content li { margin-bottom: var(--gap-sm); }
+  .post-content img {
+    border-radius: var(--radius-lg);
+    margin: var(--gap-lg) 0;
+  }
   .text-center { text-align: center; }
+
+  @media (max-width: 768px) {
+    .post-article { padding: 100px 0 0; }
+    .post-hero { flex-direction: column; }
+    .post-hero-img { flex: 1; width: 100%; height: 220px; }
+    .post-hero-text h1 { font-size: 1.8rem; }
+    .post-content p { font-size: 0.95rem; }
+  }
 </style>

@@ -1,46 +1,75 @@
 ---
-import type { Categoria } from '../lib/categorias';
+interface CategoriaConColor {
+  id: number;
+  nombre: string;
+  slug: string;
+  bg: string;
+  border: string;
+}
 interface Props {
-  categorias: Categoria[];
+  categorias: CategoriaConColor[];
   activeSlug?: string;
 }
 const { categorias, activeSlug } = Astro.props;
+
+const colores = {
+  "noticias":        { bg: "#f9f5f2", border: "#e6cbcb" },
+  "marco-teorico":   { bg: "#f3b568", border: "#f0a443" },
+  "reflexiones":     { bg: "#95b3a7", border: "#214d51" },
+  "hitos":           { bg: "#cee6dd", border: "#98b5ab" },
+  "relatos":         { bg: "#e5e5c6", border: "#7b7a4a" },
+  "aprendizajes":    { bg: "#f0d0d0", border: "#620404" },
+  "experiencias":    { bg: "#a1cad3", border: "#4a5c7c" },
+  "papers":          { bg: "#f9f5f2", border: "#e6cbcb" },
+  "buenas-practicas":{ bg: "#f9f5f2", border: "#e6cbcb" },
+  "comentarios":     { bg: "#f9f5f2", border: "#e6cbcb" },
+};
 ---
 
 <div class="filter-wrapper" id="categoria-filter">
   <a href="/publicaciones" class={`filter-btn ${!activeSlug ? 'active' : ''}`}>Todas</a>
-  {categorias.map(cat => (
-    <a
-      href={`/publicaciones?categoria=${cat.slug}`}
-      class={`filter-btn ${cat.slug === activeSlug ? 'active' : ''}`}
-    >
-      {cat.nombre}
-    </a>
-  ))}
+  {categorias.map(cat => {
+    const c = colores[cat.slug] || { bg: "#f9f5f2", border: "#e6cbcb" };
+    return (
+      <a
+        href={`/publicaciones?categoria=${cat.slug}`}
+        class={`filter-btn ${cat.slug === activeSlug ? 'active' : ''}`}
+        style={`--cat-bg:${c.bg};--cat-border:${c.border}`}
+      >
+        {cat.nombre}
+      </a>
+    );
+  })}
 </div>
 
 <style>
   .filter-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--gap-sm);
-    margin-bottom: var(--gap-lg);
-    justify-content: center;
+    gap: 6px 17px;
+    align-content: flex-start;
   }
   .filter-btn {
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    transition: var(--transition);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    background: var(--cat-bg, #f9f5f2);
+    border: 2px solid var(--cat-border, #e6cbcb);
+    color: #161616;
+    transition: box-shadow var(--transition), transform var(--transition);
     text-decoration: none;
+    line-height: 1.2;
   }
-  .filter-btn:hover, .filter-btn.active {
-    background: var(--color-primary);
-    color: #fff;
-    border-color: var(--color-primary);
+  .filter-btn:hover {
+    transform: translateY(-1px);
+  }
+  .filter-btn.active {
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-bg);
+  }
+  @media (max-width: 768px) {
+    .filter-btn { font-size: 16px; }
+    .filter-wrapper { gap: 4px 10px; }
   }
 </style>

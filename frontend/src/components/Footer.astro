@@ -1,76 +1,99 @@
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h4>Parvularias</h4>
-        <p>Cuidado y desarrollo infantil basado en evidencia científica.</p>
-      </div>
-      <div>
-        <h4>Enlaces</h4>
-        <ul>
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/quienes-somos">Quiénes Somos</a></li>
-          <li><a href="/la-investigacion">La Investigación</a></li>
-          <li><a href="/publicaciones">Publicaciones</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contacto</h4>
-        <ul>
-          <li>contacto@parbularias.com</li>
-          <li>Santiago, Chile</li>
-        </ul>
+---
+import colaboranImg from "../assets/figma-mcp/inicio/colaboran.png";
+---
+
+<footer class="footer-section">
+  <div class="footer-card" id="footerCard">
+    <div class="footer-col">
+      <p class="footer-title">Mapa de Sitio</p>
+      <div class="footer-links">
+        <a href="/">Inicio</a>
+        <a href="/publicaciones">Voces</a>
+        <a href="/la-investigacion">Investigación</a>
+        <a href="/publicaciones">Publicaciones</a>
+        <a href="/contacto">Contacto</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; {new Date().getFullYear()} Parvularias. Todos los derechos reservados.</p>
+    <div class="footer-col">
+      <p class="footer-title">Otras Investigaciones</p>
+      <div class="footer-links">
+        <span>Lorem Ipsum</span>
+        <span>Lorem Ipsum</span>
+        <span>Lorem Ipsum</span>
+        <span>Lorem Ipsum</span>
+        <span>Lorem Ipsum</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Colaboran</p>
+      <div class="footer-logo">
+        <img src={colaboranImg.src} alt="Colaboran" loading="lazy" />
+      </div>
+    </div>
+    <div class="footer-col">
+      <p class="footer-title">Redes</p>
+      <div class="footer-social">
+        <a href="#" class="footer-social-link">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M6 9H2V21H6V9Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          </svg>
+          LINKEDIN
+        </a>
+        <a href="#" class="footer-social-link">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path d="M17 2H7C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5931 15.1514 13.8416 15.5297C13.0901 15.9079 12.2384 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61992 14.1902 8.22773 13.4229 8.09407 12.5922C7.9604 11.7616 8.09207 10.9099 8.47033 10.1584C8.84859 9.40685 9.45419 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87659 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.12831C15.4785 9.73515 15.8741 10.5211 16 11.37Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path d="M17.5 6.5H17.51" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          </svg>
+          INSTAGRAM
+        </a>
+      </div>
     </div>
   </div>
 </footer>
 
+<script>
+  const card = document.getElementById('footerCard');
+  if (card) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          card.classList.add('is-visible');
+          observer.unobserve(card);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(card);
+  }
+</script>
+
 <style>
-  .footer {
-    background: var(--color-text);
-    color: #fff;
-    padding: var(--gap-xl) 0 var(--gap-lg);
+  .footer-section { position: relative; z-index: 1; width: 100%; background: #f9f4f1; padding: 4rem 8vw 5rem; display: flex; justify-content: center; }
+  .footer-card {
+    background: #fff; border-radius: 20px;
+    width: 100%; max-width: 1400px;
+    padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 3.5rem);
+    display: flex; flex-wrap: wrap; gap: 3rem;
+    justify-content: space-between; align-items: flex-start;
+    box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
+    opacity: 0; transform: translateY(60px); transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--gap-lg);
-  }
-  .footer h4 {
-    font-family: var(--font-heading);
-    font-size: 1.125rem;
-    margin-bottom: var(--gap-md);
-    color: #fff;
-  }
-  .footer ul {
-    list-style: none;
-  }
-  .footer ul li {
-    margin-bottom: var(--gap-sm);
-  }
-  .footer a {
-    color: var(--color-primary-light);
-  }
-  .footer a:hover {
-    color: #fff;
-  }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    margin-top: var(--gap-lg);
-    padding-top: var(--gap-md);
-    text-align: center;
-    color: var(--color-text-light);
-  }
-  .footer-bottom p {
-    margin: 0;
-    font-size: 0.875rem;
-  }
-  @media (max-width: 768px) {
-    .footer-grid {
-      grid-template-columns: 1fr;
-    }
+  .footer-card.is-visible { opacity: 1; transform: translateY(0); }
+  .footer-col { display: flex; flex-direction: column; gap: 1.5rem; min-width: 140px; }
+  .footer-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(18px, 1.5vw, 22px); color: #620404; text-transform: uppercase; }
+  .footer-links { display: flex; flex-direction: column; gap: 0.5rem; font-family: 'Inconsolata', monospace; font-size: 14px; letter-spacing: 3px; color: #620404; text-transform: uppercase; }
+  .footer-links a { color: #620404; text-decoration: none; transition: opacity .2s; }
+  .footer-links a:hover { opacity: .7; }
+  .footer-social { display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-social-link { display: flex; align-items: center; gap: 0.75rem; font-family: 'Inconsolata', monospace; font-size: 14px; letter-spacing: 3px; color: #620404; text-transform: uppercase; text-decoration: none; transition: opacity .2s; }
+  .footer-social-link:hover { opacity: .7; }
+  .footer-logo { width: 100%; max-width: 160px; aspect-ratio: 235/177; overflow: hidden; border-radius: 4px; }
+  .footer-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-card { opacity: 1; transform: none; transition: none; }
   }
 </style>

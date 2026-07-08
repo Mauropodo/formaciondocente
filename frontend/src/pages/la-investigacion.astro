@@ -7,7 +7,7 @@ import Timeline from '../components/Timeline.astro';
   <section class="page-hero section">
     <div class="container text-center">
       <h1 id="page-title">La Investigación</h1>
-      <p id="page-subtitle" class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p id="page-subtitle" class="text-lg">"Susurros del aula: Historias que nos encuentran" es un proyecto de investigación que indaga en las experiencias de formación inicial docente y su impacto en la construcción de la identidad profesional, a través de las voces y relatos de quienes protagonizan el aula.</p>
     </div>
   </section>
 
@@ -16,11 +16,11 @@ import Timeline from '../components/Timeline.astro';
       <h2 class="text-center">Metodología</h2>
       <div class="grid-3" id="metodologia">
         {[
-          { t: "Enfoque", d: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." },
-          { t: "Participantes", d: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." },
-          { t: "Resultados", d: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore." },
+          { t: "Enfoque", d: "Investigación cualitativa con enfoque biográfico-narrativo. Buscamos comprender los significados que las docentes en formación construyen sobre su experiencia educativa y su identidad profesional." },
+          { t: "Participantes", d: "Estudiantes de pedagogía de diversas universidades del país, en distintos momentos de su formación inicial. Sus relatos son la materia prima de esta investigación." },
+          { t: "Resultados", d: "Identificación de categorías emergentes como la vocación, la frustración, el acompañamiento, la reflexión crítica y la transformación personal como ejes de la identidad docente." },
         ].map(item => (
-          <div class="card">
+          <div class="card methodology-card">
             <h3>{item.t}</h3>
             <p>{item.d}</p>
           </div>
@@ -33,11 +33,11 @@ import Timeline from '../components/Timeline.astro';
     <div class="container">
       <h2 class="text-center">Cronología del Estudio</h2>
       <Timeline items={[
-        { year: "2019", title: "Revisión bibliográfica", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
-        { year: "2020", title: "Diseño del estudio", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
-        { year: "2021", title: "Recolección de datos", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
-        { year: "2022", title: "Análisis de resultados", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
-        { year: "2023", title: "Publicación", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
+        { year: "2019", title: "Revisión bibliográfica", description: "Identificación de vacíos en la literatura sobre identidad profesional docente y formación inicial en Chile." },
+        { year: "2020", title: "Diseño del estudio", description: "Definición del marco metodológico con enfoque biográfico-narrativo. Selección de instrumentos y participantes." },
+        { year: "2021", title: "Recolección de datos", description: "Realización de entrevistas en profundidad, grupos focales y talleres de narrativas autobiográficas." },
+        { year: "2022", title: "Análisis de resultados", description: "Codificación y análisis temático de relatos. Identificación de patrones y categorías emergentes sobre identidad docente." },
+        { year: "2023", title: "Publicación y difusión", description: "Publicación de hallazgos en revistas indexadas. Presentación en congresos nacionales e internacionales." },
       ]} />
     </div>
   </section>
@@ -45,7 +45,7 @@ import Timeline from '../components/Timeline.astro';
   <section class="section section-alt">
     <div class="container text-center">
       <h2>Publicaciones Relacionadas</h2>
-      <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+      <p class="text-lg">Conoce los artículos, reflexiones y relatos que han surgido de esta investigación. Cada publicación recoge una parte del camino recorrido.</p>
       <a href="/publicaciones" class="btn btn-primary">Ver todas las publicaciones</a>
     </div>
   </section>
@@ -61,8 +61,17 @@ import Timeline from '../components/Timeline.astro';
 <style>
   .page-hero { padding-bottom: 0; }
   .text-center { text-align: center; }
-  .text-lg { max-width: 600px; margin: 0 auto var(--gap-lg); }
+  .text-lg { max-width: 700px; margin: 0 auto var(--gap-lg); }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
-  .card h3 { color: var(--color-primary); margin-bottom: var(--gap-sm); }
+  .methodology-card { padding: var(--gap-lg); }
+  .methodology-card h3 {
+    color: var(--color-primary);
+    font-family: var(--font-ui);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    margin-bottom: var(--gap-md);
+  }
+  .methodology-card p { font-size: 0.95rem; margin: 0; }
   @media (max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } }
 </style>

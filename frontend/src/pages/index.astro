@@ -1,4 +1,5 @@
 ﻿---
+import Footer from '../components/Footer.astro';
 import VoicePostDeck from "../components/VoicePostDeck.astro";
 import { getLatestPosts } from "../lib/posts";
 import brandImage from "../assets/figma-mcp/inicio/logo.png";
@@ -1157,22 +1158,22 @@ const voicePosts = getLatestPosts(5);
         </div>
 
         <header class="menu">
-          <a class="brand" href="#">
+          <a class="brand" href="/">
               <img src={brandImage.src} alt="Parvularias" />
           </a>
           <nav class="panel" aria-label="Principal">
             <ul class="links">
-              <li>Inicio</li>
-              <li>Quiénes somos</li>
-              <li>Investigación</li>
-              <li>Publicaciones</li>
-              <li>Contacto</li>
+              <li><a href="/">Inicio</a></li>
+              <li><a href="/quienes-somos">Quiénes somos</a></li>
+              <li><a href="/la-investigacion">Investigación</a></li>
+              <li><a href="/publicaciones">Publicaciones</a></li>
+              <li><a href="/contacto">Contacto</a></li>
             </ul>
             <div class="dev-readout" data-dev-readout aria-live="polite">
               <span>scroll <strong data-dev-scroll>0px</strong></span>
               <span>hero <strong data-dev-hero>0%</strong></span>
             </div>
-            <a class="cta" href="#">Relatos</a>
+            <a class="cta" href="/publicaciones">Relatos</a>
           </nav>
         </header>
 
@@ -1382,6 +1383,7 @@ const voicePosts = getLatestPosts(5);
       </section>
     </div>
   </div>
+<Footer />
 </body>
 <script>
   import { gsap } from "gsap";

@@ -1,13 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Timeline from '../components/Timeline.astro';
+
+const equipo = [
+  { nombre: "Dra. María González", rol: "Investigadora Principal", descripcion: "Doctora en Ciencias de la Educación. Más de 15 años investigando sobre formación docente y narrativas pedagógicas." },
+  { nombre: "Nut. Carolina Silva", rol: "Co-Investigadora", descripcion: "Magíster en Salud Pública. Especialista en bienestar integral y desarrollo profesional docente." },
+  { nombre: "Dr. Pablo Martínez", rol: "Co-Investigador", descripcion: "Doctor en Psicología Educacional. Experto en metodologías cualitativas y análisis del discurso docente." },
+  { nombre: "Mg. Andrea Vega", rol: "Asistente de Investigación", descripcion: "Magíster en Educación. Apasionada por la investigación-acción participativa en contextos escolares." },
+];
 ---
 
 <BaseLayout title="Quiénes Somos">
   <section class="page-hero section">
     <div class="container text-center">
-      <h1 id="page-title">Quiénes Somos</h1>
-      <p id="page-subtitle" class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <h1 id="page-title">¿Quiénes ejecutan este proyecto?</h1>
+      <p id="page-subtitle" class="text-lg">Somos un equipo de investigadoras e investigadores comprometidos con la visibilización de las voces docentes y la transformación de la formación inicial docente en Chile.</p>
     </div>
   </section>
 
@@ -16,11 +23,11 @@ import Timeline from '../components/Timeline.astro';
       <div class="grid-2" id="mision-vision">
         <div class="card">
           <h2>Misión</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Investigar, sistematizar y difundir las experiencias y saberes pedagógicos de docentes en formación, contribuyendo a la construcción de una identidad profesional situada, reflexiva y sensible a las realidades del aula.</p>
         </div>
         <div class="card">
           <h2>Visión</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Ser un referente en la producción de conocimiento sobre formación docente desde las propias voces de sus protagonistas, promoviendo una educación más humana, crítica y contextualizada.</p>
         </div>
       </div>
     </div>
@@ -28,26 +35,44 @@ import Timeline from '../components/Timeline.astro';
 
   <section class="section">
     <div class="container">
-      <h2 class="text-center">Nuestra Historia</h2>
-      <p class="text-center text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
-      <Timeline items={[
-        { year: "2018", title: "Inicio del proyecto", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
-        { year: "2020", title: "Primera investigación", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
-        { year: "2022", title: "Publicación de resultados", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
-        { year: "2024", title: "Expansión del programa", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt." },
-      ]} />
+      <div class="fondet-section" id="fondet-info">
+        <div class="fondet-content">
+          <h3 class="fondet-label">FONDECYT</h3>
+          <div class="fondet-quote">
+            <p class="fondet-text">"Este proyecto es financiado por el Fondo Nacional de Desarrollo Científico y Tecnológico (FONDECYT), cuyo objetivo es comprender cómo las experiencias de formación inicial inciden en la construcción de la identidad profesional docente, a través de relatos y narrativas de estudiantes de pedagogía."</p>
+          </div>
+        </div>
+        <div class="fondet-brand">
+          <div class="fondet-logo-placeholder"></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Nuestra Historia</h2>
+      <p class="text-center text-lg">Este proyecto nace de la necesidad de escuchar y valorar las voces de quienes se están formando como docentes. A través de un enfoque narrativo y biográfico, hemos recorrido un camino de investigación que busca comprender la identidad profesional desde adentro.</p>
+      <Timeline items={[
+        { year: "2019", title: "Revisión bibliográfica", description: "Identificación de vacíos en la literatura sobre identidad profesional docente y formación inicial." },
+        { year: "2020", title: "Diseño del estudio", description: "Definición del marco metodológico con enfoque biográfico-narrativo y selección de participantes." },
+        { year: "2021", title: "Recolección de datos", description: "Aplicación de entrevistas en profundidad y talleres de narrativas con estudiantes de pedagogía." },
+        { year: "2022", title: "Análisis de resultados", description: "Codificación y análisis temático de los relatos docentes. Identificación de categorías emergentes." },
+        { year: "2023", title: "Publicación y difusión", description: "Publicación de resultados en revistas indexadas y presentación en congresos nacionales e internacionales." },
+      ]} />
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container text-center">
-      <h2>Equipo</h2>
-      <div class="grid-3" id="equipo">
-        {["Dra. María González", "Nut. Carolina Silva", "Dr. Pablo Martínez"].map(nombre => (
+      <h2>Equipo de Investigación</h2>
+      <div class="grid-4" id="equipo">
+        {equipo.map(miembro => (
           <div class="card team-card">
             <div class="team-avatar"></div>
-            <h3>{nombre}</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+            <h3>{miembro.nombre}</h3>
+            <span class="team-rol">{miembro.rol}</span>
+            <p>{miembro.descripcion}</p>
           </div>
         ))}
       </div>
@@ -60,24 +85,78 @@ import Timeline from '../components/Timeline.astro';
   fadeInUp(document.getElementById("page-title"));
   fadeInUp(document.getElementById("page-subtitle"), 0.2);
   staggerItems(document.getElementById("mision-vision"));
+  staggerItems(document.getElementById("fondet-info"));
   staggerItems(document.getElementById("equipo"));
 </script>
 
 <style>
   .page-hero { padding-bottom: 0; }
   .text-center { text-align: center; }
-  .text-lg { max-width: 600px; margin: 0 auto; }
+  .text-lg { max-width: 650px; margin: 0 auto; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-lg); }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-lg); }
   .card h2 { font-size: 1.5rem; color: var(--color-primary); margin-bottom: var(--gap-md); }
-  .team-card { text-align: center; }
+
+  .fondet-section {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: var(--gap-xl);
+    align-items: center;
+  }
+  .fondet-label {
+    font-family: var(--font-ui);
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--gap-md);
+  }
+  .fondet-quote {
+    position: relative;
+    padding: var(--gap-lg);
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-xl);
+    border-left: 4px solid var(--color-primary);
+  }
+  .fondet-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+  .fondet-logo-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-200));
+    border-radius: var(--radius-lg);
+  }
+
+  .team-card { text-align: center; padding: var(--gap-lg) var(--gap-md); }
   .team-avatar {
-    width: 100px; height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    background: var(--color-primary-light);
+    background: linear-gradient(135deg, var(--color-primary-200), var(--color-tertiary-200));
     margin: 0 auto var(--gap-md);
   }
+  .team-card h3 { font-size: 1.1rem; margin-bottom: var(--gap-xs); }
+  .team-rol {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--gap-sm);
+  }
+  .team-card p { font-size: 0.85rem; margin: 0; }
+
   @media (max-width: 768px) {
-    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .grid-2, .grid-4 { grid-template-columns: 1fr; }
+    .fondet-section { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
