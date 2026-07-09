@@ -647,18 +647,40 @@ const voicePosts = getLatestPosts(5);
       --question-overlap: 0px;
       position: relative;
       background: linear-gradient(90deg, var(--paper) 0%, var(--paper) 50%, #f7efe6 50%, #f7efe6 100%);
-      overflow: hidden;
       z-index: 8;
       min-height: 100svh;
       margin-top: var(--question-overlap);
     }
     .question-story__prompt-float {
       position: absolute;
-      inset: 0 auto 0 -1400px;
+      left: 0;
+      top: 0;
+      bottom: 0;
       z-index: 12;
-      width: 1920px;
+      width: max-content;
       height: 100%;
       pointer-events: none;
+      background: transparent;
+    }
+    @media (min-width: 901px) {
+      .question-story__viewport {
+        overflow: hidden;
+      }
+      .question-story__track {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row-reverse;
+        width: 200vw;
+      }
+      .question-story__panel {
+        flex: 0 0 100vw;
+        width: 100vw;
+        min-height: 100svh;
+      }
+      .question-story__panel--prompt {
+        position: relative;
+        top: auto;
+      }
     }
     .question-story__prompt-float svg {
       display: block;
@@ -688,16 +710,24 @@ const voicePosts = getLatestPosts(5);
       overflow: hidden;
     }
     .question-story__panel--prompt {
+      position: sticky;
+      top: 0;
       background: var(--paper);
       place-items: center;
       grid-template-columns: minmax(0, 1fr);
       padding: 0;
     }
     .question-story__panel--followup {
-      background: #f7efe6;
-      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
-      gap: clamp(32px, 5vw, 88px);
+      background: transparent;
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: center;
+      align-items: center;
       padding: 0 clamp(32px, 5vw, 88px);
+    }
+    .question-story__followup-copy {
+      text-align: center;
+      align-items: center;
+      color: #fff;
     }
     .question-story__prompt-copy,
     .question-story__followup-copy {
@@ -771,32 +801,6 @@ const voicePosts = getLatestPosts(5);
       filter: saturate(.9);
       transform: translate3d(0, 0, 0) scale(1.02);
       transform-origin: bottom left;
-    }
-    .question-story__voices {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: end;
-      min-height: 100%;
-      padding: 0 0 56px;
-      transform: none;
-      opacity: 1;
-    }
-    .question-story__voices .row {
-      display: flex;
-      gap: 0;
-      align-items: flex-end;
-      justify-content: center;
-      transform: translateY(0);
-    }
-    .question-story__voices .row img {
-      width: clamp(96px, 8vw, 122px);
-      height: clamp(96px, 8vw, 122px);
-      object-fit: contain;
-      margin-right: -10px;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.14));
-      transform-origin: center bottom;
     }
     .closing {
       padding: 71px 200px 43px;
@@ -977,8 +981,8 @@ const voicePosts = getLatestPosts(5);
         margin-top: 0;
       }
       .question-story__prompt-float {
-        width: 1380px;
-        left: -1220px;
+        width: max-content;
+        left: 0;
       }
       .question-story__viewport,
       .question-story__track {
@@ -998,7 +1002,7 @@ const voicePosts = getLatestPosts(5);
         padding: 3rem 1rem;
       }
       .question-story__panel--followup {
-        background: #f7efe6;
+        background: transparent;
         padding-top: 2rem;
       }
       .question-story__followup-bg {
@@ -1024,21 +1028,6 @@ const voicePosts = getLatestPosts(5);
       .question-story__prompt-copy p,
       .question-story__followup-copy p {
         font-size: 16px;
-      }
-      .question-story__voices {
-        min-height: auto;
-        padding-bottom: 0;
-        transform: none;
-        opacity: 1;
-      }
-      .question-story__voices .row {
-        flex-wrap: wrap;
-      }
-      .question-story__voices .row img {
-        width: 86px;
-        height: 86px;
-        transform: none;
-      }
     }
     @media (prefers-reduced-motion: reduce) {
       .menu {
@@ -1055,22 +1044,10 @@ const voicePosts = getLatestPosts(5);
         transform: translate3d(0, 0, 0);
       }
       .question-story__followup-copy,
-      .question-story__voices,
-      .question-story__followup-bg,
-      .question-story__voices .row img {
+      .question-story__followup-bg {
         opacity: 1;
         transform: none;
       }
-    }
-    html.lenis,
-    html.lenis body {
-      height: auto;
-    }
-    .lenis.lenis-smooth {
-      scroll-behavior: auto !important;
-    }
-    .lenis.lenis-stopped {
-      overflow: clip;
     }
   </style>
 </head>
@@ -1319,15 +1296,7 @@ const voicePosts = getLatestPosts(5);
                 <h2>Tu voz entra en escena</h2>
                 <p>Desliza y descubre cómo las otras voces se suman, se superponen y mantienen viva la conversación pedagógica.</p>
               </div>
-              <div class="question-story__voices" data-question-next-visual>
-                <div class="row">
-                  <img src="https://www.figma.com/api/mcp/asset/20ba3af2-e519-4d82-accc-66475432e664" alt="" />
-                  <img src="https://www.figma.com/api/mcp/asset/eec0593c-be33-47b2-9a23-d97eb212d434" alt="" />
-                  <img src="https://www.figma.com/api/mcp/asset/deb63b45-7ed9-47f7-9f75-8d6fbb23c33f" alt="" />
-                  <img src="https://www.figma.com/api/mcp/asset/bfb1c1d8-716c-4658-a6ae-b12b0b6a9adf" alt="" />
-                  <img src="https://www.figma.com/api/mcp/asset/1335ee43-f13f-403a-a999-ec0b4909e525" alt="" />
-                </div>
-              </div>
+
             </section>
           </div>
         </div>
@@ -1492,49 +1461,6 @@ const voicePosts = getLatestPosts(5);
     });
   }
 
-  const initLenis = () => {
-    if (prefersReducedMotion.matches || !window.Lenis) return;
-
-    if (window.__index2LenisRaf) {
-      window.cancelAnimationFrame(window.__index2LenisRaf);
-      window.__index2LenisRaf = null;
-    }
-
-    if (window.__index2Lenis) {
-      window.__index2Lenis.destroy();
-      window.__index2Lenis = null;
-    }
-
-    const lenis = new window.Lenis({
-      lerp: 0.085,
-      duration: 1.05,
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1,
-      syncTouch: false,
-      infinite: false,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
-
-    const raf = (time) => {
-      lenis.raf(time);
-      window.__index2LenisRaf = window.requestAnimationFrame(raf);
-    };
-
-    lenis.on("scroll", () => {
-      window.ScrollTrigger?.update();
-    });
-
-    window.__index2Lenis = lenis;
-    window.__index2LenisRaf = window.requestAnimationFrame(raf);
-  };
-
-  loadScript("https://cdn.jsdelivr.net/npm/lenis@1.1.16/dist/lenis.min.js")
-    .then(initLenis)
-    .catch(() => {
-      console.warn("No se pudo cargar Lenis; se mantiene scroll nativo.");
-    });
-
   const revealGroups = [
     { selector: ".voices h2", delay: 0 },
     { selector: ".voice-post-card", delayStep: 0.1 },
@@ -1696,10 +1622,10 @@ const voicePosts = getLatestPosts(5);
 
     const bubbleOrder = ["green", "teal", "coral", "orange"];
     const bubbleTargets = {
-      green: { centerX: 0.42, centerY: 0.295, scaleAdjust: 1 },
-      teal: { centerX: 0.75, centerY: 0.55, scaleAdjust: 1 },
-      coral: { centerX: 0.31, centerY: 0.57, scaleAdjust: 0.98 },
-      orange: { centerX: 0.81, centerY: 0.25, scaleAdjust: 0.97 },
+      green: { centerX: 0.218, centerY: 0.401, scaleAdjust: 1 },
+      teal: { centerX: 0.804, centerY: 0.642, scaleAdjust: 1 },
+      coral: { centerX: 0.253, centerY: 0.707, scaleAdjust: 0.98 },
+      orange: { centerX: 0.81, centerY: 0.333, scaleAdjust: 0.97 },
     };
 
     const getBubbleOrderIndex = (bubble) => {
@@ -1726,7 +1652,6 @@ const voicePosts = getLatestPosts(5);
 
       const contentRect = connectContent.getBoundingClientRect();
       const baseScale = getConnectScale(contentRect);
-      const hdYOffset = window.innerWidth >= 1280 ? 100 : 0;
 
       connectMotionState.visibleOffsets = connectBubbles.map((bubble) => {
         const bubbleKey = getBubbleKey(bubble);
@@ -1739,7 +1664,7 @@ const voicePosts = getLatestPosts(5);
         const baseCenterX = bubble.offsetLeft + baseWidth / 2;
         const baseCenterY = bubble.offsetTop + baseHeight / 2;
         const targetCenterX = contentRect.width * target.centerX;
-        const targetCenterY = contentRect.height * target.centerY + hdYOffset;
+        const targetCenterY = contentRect.height * target.centerY;
 
         return {
           x: targetCenterX - (baseCenterX + (scaledWidth - baseWidth) / 2),
@@ -1823,74 +1748,92 @@ const voicePosts = getLatestPosts(5);
   }
 
   if (storyStack && storyBg && bgFreezeLayer && voicesSection && questionStory) {
-    const ensureFreezeBackground = () => {
-      if (bgFreezeLayer.dataset.ready === "true") return;
-
+    if (bgFreezeLayer.dataset.ready !== "true") {
       const freezeContent = document.createElement("div");
       freezeContent.className = "bg-freeze-content";
       freezeContent.innerHTML = storyBg.innerHTML;
       bgFreezeLayer.appendChild(freezeContent);
       bgFreezeLayer.dataset.ready = "true";
-    };
+    }
 
-    const updateQuestionStoryHandoff = () => {
-      if (prefersReducedMotion.matches || narrowViewport.matches) {
+    mm.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)", () => {
+      const overlapTween = gsap.fromTo(questionStory,
+        { "--question-overlap": 0 },
+        {
+          "--question-overlap": -window.innerHeight,
+          ease: "none",
+          scrollTrigger: {
+            trigger: voicesSection,
+            start: "bottom bottom",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (self.progress > 0 && self.progress < 1) {
+                const bgOffset = storyStack.getBoundingClientRect().top;
+                bgFreezeLayer.style.setProperty("--bg-freeze-offset", `${bgOffset.toFixed(2)}px`);
+                bgFreezeLayer.classList.add("is-active");
+              } else {
+                bgFreezeLayer.classList.remove("is-active");
+                bgFreezeLayer.style.removeProperty("--bg-freeze-offset");
+              }
+            },
+          },
+        }
+      );
+
+      return () => {
+        overlapTween.scrollTrigger?.kill();
+        overlapTween.kill();
         questionStory.style.setProperty("--question-overlap", "0px");
         bgFreezeLayer.classList.remove("is-active");
         bgFreezeLayer.style.removeProperty("--bg-freeze-offset");
-        return;
-      }
-
-      ensureFreezeBackground();
-
-      const voicesRect = voicesSection.getBoundingClientRect();
-      const overlapProgress = clamp01((window.innerHeight - voicesRect.bottom) / Math.max(window.innerHeight, 1));
-      const overlapAmount = -window.innerHeight * overlapProgress;
-
-      questionStory.style.setProperty("--question-overlap", `${overlapAmount.toFixed(2)}px`);
-
-      if (overlapProgress > 0 && overlapProgress < 1) {
-        const bgOffset = storyStack.getBoundingClientRect().top;
-        bgFreezeLayer.style.setProperty("--bg-freeze-offset", `${bgOffset.toFixed(2)}px`);
-        bgFreezeLayer.classList.add("is-active");
-      } else {
-        bgFreezeLayer.classList.remove("is-active");
-        bgFreezeLayer.style.removeProperty("--bg-freeze-offset");
-      }
-    };
-
-    updateQuestionStoryHandoff();
-    window.addEventListener("scroll", updateQuestionStoryHandoff, { passive: true });
-    window.addEventListener("resize", updateQuestionStoryHandoff);
+      };
+    });
   }
 
-  if (questionPromptPanel && questionFollowupPanel && questionPromptFloat) {
+  if (questionStory && questionPromptFloat && questionFollowupPanel) {
     mm.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)", () => {
-      gsap.set(questionPromptFloat, { x: 0 });
+      const questionTrack = document.querySelector(".question-story__track");
 
-      const promptTimeline = gsap.timeline({
-        defaults: { ease: "none" },
+      gsap.set(questionPromptFloat, { xPercent: -80 });
+
+      const scrollDistance = () => window.innerWidth;
+
+      gsap.set(questionTrack, { x: () => -scrollDistance() });
+
+      const horizontalTween = gsap.to(questionTrack, {
+        x: 0,
+        ease: "none",
         scrollTrigger: {
-          trigger: questionPromptPanel,
-          start: "top top",
-          endTrigger: questionFollowupPanel,
-          end: "top top",
-          scrub: 1,
-          pin: questionPromptPanel,
-          pinSpacing: true,
+          trigger: questionStory,
+          pin: true,
           anticipatePin: 1,
+          start: "top top",
+          end: () => `+=${scrollDistance()}`,
+          scrub: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      promptTimeline.to(questionPromptFloat, {
-        x: 1400,
+      const floatTween = gsap.to(questionPromptFloat, {
+        xPercent: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: questionStory,
+          start: "top top",
+          end: () => `+=${scrollDistance()}`,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
       });
 
       return () => {
-        promptTimeline.scrollTrigger?.kill();
-        promptTimeline.kill();
-        gsap.set(questionPromptFloat, { clearProps: "transform" });
+        horizontalTween.scrollTrigger?.kill();
+        horizontalTween.kill();
+        floatTween.scrollTrigger?.kill();
+        floatTween.kill();
+        gsap.set([questionTrack, questionPromptFloat], { clearProps: "transform" });
       };
     });
   }
