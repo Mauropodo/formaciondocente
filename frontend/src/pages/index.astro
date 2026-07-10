@@ -15,6 +15,13 @@ const voicePosts = getLatestPosts(5);
 const photos = [
   galeria2, galeria3, galeria5, galeria6, galeria2, galeria3,
 ];
+const carasImages = [
+  "/assets/img/home/caras-1 2.svg",
+  "/assets/img/home/caras-2 2.svg",
+  "/assets/img/home/caras-3 2.svg",
+  "/assets/img/home/caras-4 2.svg",
+  "/assets/img/home/caras-6 2.svg",
+];
 ---
 
 <!DOCTYPE html>
@@ -170,7 +177,7 @@ const photos = [
       padding: 12.8px 50.4px;
       background: #f9f5f2;
       border-radius: 0 0 12.8px 12.8px;
-      box-shadow: 8.8px 11.2px 6.12px rgba(0,0,0,.23), 0 3.2px 1.6px rgba(0,0,0,.25), 2.4px 3.2px 0 rgba(0,0,0,.25), -1.6px 3.2px 1.6px rgba(0,0,0,.4);
+      box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
       transform: translateX(-2px);
       margin-top: 0;
       min-width: min(100%, 735px);
@@ -214,15 +221,14 @@ const photos = [
       justify-content: center;
       padding: 12px 27px;
       border-radius: 48px;
+      border: none;
       background: var(--accent);
       color: #eee2d9;
       font-family: Inconsolata, monospace;
       font-weight: 900;
-      box-shadow:
-        0.8px 2.4px 0 #464646,
-        0 6.4px 9.6px rgba(0,0,0,.15),
-        0 3.2px 3.2px rgba(0,0,0,.3);
-    }
+  box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
+}
+
     .hero {
       position: sticky;
       top: 0;
@@ -565,7 +571,7 @@ const photos = [
     .voices {
       position: relative;
       min-height: 1064px;
-      padding: 10px 10px 0;
+      padding: 10px 10px 150px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -635,19 +641,20 @@ const photos = [
     .voice-card.teal { background: var(--teal); }
     .voice-card.orange { background: #de8b21; }
     .voice-card.coral { background: var(--orange); }
-    .voices .more {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 105px;
-      border-radius: 38px;
-      background: #464646;
-      color: white;
-      font-family: Inconsolata, monospace;
-      font-size: 28.8px;
-      font-weight: 900;
-      box-shadow: 0.8px 2.4px 0 #464646, 0 6.4px 9.6px rgba(0,0,0,.15), 0 3.2px 3.2px rgba(0,0,0,.3);
-    }
+.voices .more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 105px;
+  border-radius: 38px;
+  border: none;
+  background: #464646;
+  color: white;
+  font-family: Inconsolata, monospace;
+  font-size: 28.8px;
+  font-weight: 900;
+  box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
+}
     .question-story {
       --question-overlap: 0px;
       position: relative;
@@ -681,6 +688,7 @@ const photos = [
       width: auto;
       height: 100%;
       overflow: visible;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.12)) drop-shadow(0 4px 15.3px rgba(0, 0, 0, 0.25));
     }
     .question-story__viewport {
       position: relative;
@@ -799,9 +807,52 @@ const photos = [
       transform: translate3d(0, 0, 0) scale(1.02);
       transform-origin: bottom left;
     }
+    .social-footer-wrapper {
+      position: relative;
+      z-index: 0;
+      background: var(--bg);
+      overflow: clip;
+    }
+    .social-footer-wrapper .bg {
+      background: transparent;
+    }
+    .social-footer-wrapper .bg-shape {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .social-footer-wrapper > :not(.bg) {
+      position: relative;
+      z-index: 1;
+    }
+    .caras-carousel {
+      width: 100vw;
+      margin-inline: calc(-50vw + 50%);
+      overflow: hidden;
+      background: none;
+    }
+    .caras-track {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0;
+      width: max-content;
+      animation: carasScroll 400s linear infinite;
+    }
+    .caras-slide {
+      flex: 0 0 auto;
+      height: clamp(100px, 12vw, 200px);
+      width: auto;
+      display: block;
+      object-fit: contain;
+      margin-right: -32px;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,.10)) drop-shadow(0 2px 5px rgba(0,0,0,.15));
+    }
+    @keyframes carasScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
     .social-section {
-      position: relative; z-index: 10;
-      background: linear-gradient(to bottom, rgba(249,244,241,0) 0%, #f9f4f1 58%);
+      position: relative;
       padding: 5rem 8vw;
       display: flex; flex-direction: column; align-items: center; gap: 3.5rem;
     }
@@ -830,14 +881,15 @@ const photos = [
     }
     .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .cta-row { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center; }
-    .cta-btn {
-      display: flex; align-items: center; gap: 0.9rem;
-      font-family: 'Inconsolata', monospace; font-weight: 900;
-      font-size: clamp(16px, 1.5vw, 21px);
-      color: #fff; padding: 0.75rem 4.5rem; border-radius: 30px;
-      transition: opacity .2s, transform .15s;
-      box-shadow: 0.6px 1.8px 0px #464646, 0px 4.8px 7.2px rgba(0,0,0,0.15), 0px 2.4px 2.4px rgba(0,0,0,0.3);
-    }
+.cta-btn {
+  display: flex; align-items: center; gap: 0.9rem;
+  font-family: 'Inconsolata', monospace; font-weight: 900;
+  font-size: clamp(16px, 1.5vw, 21px);
+  color: #fff; padding: 0.75rem 4.5rem; border-radius: 30px;
+  border: none;
+  transition: opacity .2s, transform .15s;
+  box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
+}
     .cta-btn:hover { opacity: .88; transform: translateY(-2px); }
     .cta-btn--linkedin  { background: #2a7bbe; }
     .cta-btn--instagram { background: #ff8f00; }
@@ -1150,6 +1202,10 @@ const photos = [
         <div class="hero-copy">
           <h1>Susurros del aula<br />Historias que nos encuentran</h1>
           <p class="eyebrow">Las voces que me habitan</p>
+          <a class="cta" href="/quienes-somos">
+            Sobre la investigación
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg>
+          </a>
         </div>
         <div class="hero-slider" aria-label="Galería destacada">
           <img class="hero-slide is-active" src={heroSlideOne.src} alt="" />
@@ -1283,6 +1339,7 @@ const photos = [
                 </svg>
               </div>
               <div class="question-story__prompt-copy" data-question-copy>
+                <span>Objetivo de investigación</span>
                 <h2>¿Y QUÉ PIENSAS TÚ?</h2>
                 <p>Porque construir nuestra identidad docente también implica escucharnos, atrévete a compartir tu voz y aquello que el aula dejó en ti.</p>
               </div>
@@ -1301,8 +1358,102 @@ const photos = [
           </div>
         </div>
       </section>
+    </div>
+
+    <div class="social-footer-wrapper">
+      <div class="bg" aria-hidden="true">
+        <div class="bg-shape bg-shape--1" aria-hidden="true">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <g filter="url(#bgFilter1)">
+              <rect x="-1400" y="0" width="1400" height="3215" fill="#7C7C4A"/>
+              <path d="M2483 0H195.304H79.2751V3164.27C72.0362 3183.6 204.984 3190.37 794.684 3062.76C1531.81 2903.25 2403.92 2260.69 1311.54 1564.63C219.157 868.574 2004.61 365.031 2483 0Z" fill="#7C7C4A"/>
+            </g>
+            <defs>
+              <filter id="bgFilter1" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="15.3"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg1"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg1" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div class="bg-shape bg-shape--2" aria-hidden="true">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <g filter="url(#bgFilter2)">
+              <rect x="-1400" y="0" width="1400" height="3215" fill="#F3B568"/>
+              <path d="M2404 0H116.304H0.275126V3164.27C-6.96376 3183.6 125.984 3190.37 715.684 3062.76C1452.81 2903.25 2324.92 2260.69 1232.54 1564.63C140.157 868.574 1925.61 365.031 2404 0Z" fill="#F3B568"/>
+            </g>
+            <defs>
+              <filter id="bgFilter2" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="15.3"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg2"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg2" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div class="bg-shape bg-shape--3" aria-hidden="true">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <g filter="url(#bgFilter3)">
+              <rect x="-1400" y="0" width="1400" height="3215" fill="#EEE2D9"/>
+              <path d="M1937.22 0H-720V3164C-5.61163 3183.33 101.522 3190.1 576.722 3062.5C1170.72 2903 1873.5 2260.5 993.222 1564.5C112.943 868.5 1551.72 365 1937.22 0Z" fill="#EEE2D9"/>
+            </g>
+            <defs>
+              <filter id="bgFilter3" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="15.3"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg3"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg3" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div class="bg-shape bg-shape--4" aria-hidden="true">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <g filter="url(#bgFilter4)">
+              <rect x="-1400" y="0" width="1400" height="3215" fill="#F9F4F1"/>
+              <path d="M1280 0H-720V3164.27C-3.70783 3183.61 67.0794 3190.37 381.063 3062.76C773.543 2903.25 1237.9 2260.69 656.261 1564.63C74.6262 868.574 1025.28 365.031 1280 0Z" fill="#F9F4F1"/>
+            </g>
+            <defs>
+              <filter id="bgFilter4" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="15.3"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg4"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg4" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+      </div>
 
       <section class="social-section" id="socialSection">
+        <div class="caras-carousel">
+          <div class="caras-track" data-caras-track>
+            {Array.from({ length: 24 }, (_, set) =>
+              carasImages.map((src, i) => (
+                <img src={src} alt="" class="caras-slide" data-caras-idx={i} />
+              ))
+            ).flat()}
+          </div>
+        </div>
         <div class="social-header">
           <h2 class="social-heading" id="socialHeading">
             Charlemos y compartamos también a través de...
@@ -1361,9 +1512,10 @@ const photos = [
           </button>
         </div>
       </section>
+
+      <Footer />
     </div>
   </div>
-<Footer />
 </body>
 <script>
   import { gsap } from "gsap";
