@@ -1,29 +1,6 @@
 ---
 import Nav from '../components/Nav.astro';
-import galeria2 from "../assets/figma-mcp/inicio/galeria-2.png";
-import galeria3 from "../assets/figma-mcp/inicio/galeria-3.png";
-import galeria5 from "../assets/figma-mcp/inicio/galeria-5.png";
-import galeria6 from "../assets/figma-mcp/inicio/galeria-6.png";
 import Footer from '../components/Footer.astro';
-
-const photos = [
-  galeria2, galeria3, galeria5, galeria6, galeria2, galeria3,
-];
-
-const faceColors = [
-  ["#F0A443", "#914162"],
-  ["#3B959E", "#83BAA4"],
-  ["#DA4744", "#F0A443"],
-  ["#7B7B49", "#135D68"],
-  ["#3B959E", "#74AC96"],
-  ["#FF8F00", "#914162"],
-  ["#3B959E", "#83BAA4"],
-  ["#DA4744", "#F0A443"],
-  ["#7B7B49", "#214A50"],
-  ["#3B959E", "#74AC96"],
-];
-
-const facesLoop = [...faceColors, ...faceColors];
 ---
 
 <!doctype html>
@@ -131,60 +108,10 @@ const facesLoop = [...faceColors, ...faceColors];
       .form-hint { font-family: 'Inconsolata', monospace; font-size: 14px; color: #161616; }
 
       /* ── Faces marquee ── */
-      .faces-band { position: relative; z-index: 10; width: 100%; overflow: hidden; box-shadow: 0px 6.5px 9.8px rgba(0,0,0,0.15), 0px 3.3px 3.3px rgba(0,0,0,0.3); }
-      .faces-track { display: flex; align-items: center; width: max-content; will-change: transform; }
-      .face-item { flex-shrink: 0; width: 190px; height: 205px; margin-right: -22px; }
-      .face-item svg { width: 100%; height: 100%; }
 
-      /* ── Social section ── */
-      .social-section {
-        position: relative; z-index: 10;
-        background: linear-gradient(to bottom, rgba(249,244,241,0) 0%, #f9f4f1 58%);
-        padding: 5rem 8vw;
-        display: flex; flex-direction: column; align-items: center; gap: 3.5rem;
-      }
-      .social-header { width: 100%; max-width: 960px; display: flex; flex-direction: column; gap: 1.5rem; }
-      .social-heading {
-        font-family: 'Playfair Display', serif; font-weight: 400;
-        font-size: clamp(24px, 2.8vw, 40px);
-        color: #620404; text-transform: uppercase;
-        max-width: 540px; line-height: 1.22;
-      }
-      .social-links { display: flex; flex-direction: column; gap: 0.75rem; }
-      .social-link {
-        display: flex; align-items: center; gap: 0.55rem;
-        font-family: 'Inter', sans-serif; font-size: 16px;
-        color: #620404; transition: opacity .2s;
-      }
-      .social-link:hover { opacity: .7; }
-
-      .photo-grid {
-        display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
-        width: 100%; max-width: 960px;
-      }
-      @media (min-width: 640px) { .photo-grid { grid-template-columns: repeat(6, 1fr); } }
-      .photo-item {
-        border-radius: 8px; overflow: hidden; aspect-ratio: 1;
-        box-shadow: 0px 6.5px 9.8px 4.9px rgba(0,0,0,0.15), 0px 3.3px 3.3px rgba(0,0,0,0.3);
-      }
-      .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-      .cta-row { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center; }
-      .cta-btn {
-        display: flex; align-items: center; gap: 0.9rem;
-        font-family: 'Inconsolata', monospace; font-weight: 900;
-        font-size: clamp(16px, 1.5vw, 21px);
-        color: #fff; padding: 0.75rem 4.5rem; border-radius: 30px;
-        transition: opacity .2s, transform .15s;
-        box-shadow: 0.6px 1.8px 0px #464646, 0px 4.8px 7.2px rgba(0,0,0,0.15), 0px 2.4px 2.4px rgba(0,0,0,0.3);
-      }
-      .cta-btn:hover { opacity: .88; transform: translateY(-2px); }
-      .cta-btn--linkedin  { background: #2a7bbe; }
-      .cta-btn--instagram { background: #ff8f00; }
-      .cta-btn--contact   { background: #be572a; }
 
       @media (prefers-reduced-motion: reduce) {
-        .faces-track, .form-card, .hand { animation: none !important; transition: none !important; }
+        .form-card, .hand { animation: none !important; transition: none !important; }
       }
     </style>
   </head>
@@ -314,86 +241,7 @@ const facesLoop = [...faceColors, ...faceColors];
         </div>
       </section>
 
-      <!-- Faces marquee -->
-      <div class="faces-band" aria-hidden="true">
-        <div class="faces-track" id="facesTrack">
-          {facesLoop.map(([c1, c2]) => (
-            <div class="face-item">
-              <svg fill="none" viewBox="0 0 274 292">
-                <clipPath id="fc">
-                  <rect width="274" height="292" fill="white"/>
-                </clipPath>
-                <g clip-path="url(#fc)">
-                  <path d="M250.056 188.927C248.894 189.541 247.797 190.589 246.61 191.891C235.323 204.291 221.612 213.492 205.585 219.745C206.829 242.91 203.195 258.995 187.02 275.562L186.374 276.037C186.57 275.947 186.75 275.832 186.881 275.701C176.404 286.596 159.378 297.22 145.136 289.166C153.329 286.768 160.794 284.713 166.107 278.484C172 271.576 175.127 263.063 177.026 254.55C177.239 253.625 177.427 252.7 177.607 251.783C179.285 243.123 179.4 233.964 176.109 225.492C173.023 217.519 166.606 211.184 158.519 211.593C155.408 202.147 158.994 190.122 163.397 180.693L166.843 173.31C168.464 169.831 171.46 167.506 175.348 167.195L190.671 165.984C194.248 165.705 198.693 161.997 197.391 158.33C196.164 154.852 195.967 153.763 198.341 150.554C199.43 149.097 196.352 145.708 195.247 144.513C197.293 143.515 199.511 142.942 200.305 141.37C201.214 139.569 199.872 137.171 198.095 135.673C199.315 132.735 204.431 132.374 205.102 129.714C206.281 125.065 196.818 118.467 193.659 109.996L195.271 101.18C195.157 91.6766 191.211 83.4011 186.865 75.6495C187.896 74.0534 188.862 72.2362 189.034 70.198C189.402 65.9826 186.783 63.928 183.362 63.5597C181.389 65.5405 178.565 65.9989 174.873 64.9348C165.927 60.5802 155.392 55.9718 145.823 53.5407C135.657 50.9541 119.933 56.3238 110.029 59.8844C99.8213 63.5515 95.2621 73.2266 91.4804 82.5171L78.2691 101.622L77.1396 104.749C75.8217 107.147 74.5448 109.611 73.4889 112.214C72.4329 114.825 71.5899 117.567 71.1315 120.538L68.3239 138.661L68.1356 153.141V153.55C68.1356 160.68 70.6813 167.621 76.7712 172.082C83.7452 177.198 94.5008 182.404 98.4053 178.057L100.55 177.713C100.992 189.148 97.7422 200.461 91.1121 210.111C70.4193 205.683 50.7498 196.753 34.4281 182.576C28.2645 177.222 23.6397 171.116 18.8594 165.067L17.9427 163.291C-4.0024 130.606 -4.66542 84.0396 9.71634 48.0811L10.6167 46.4276C14.2347 39.7892 18.0163 32.9544 23.8607 27.593C60.4331 -5.95084 123.641 -3.98634 169.839 7.72699C194.535 13.9888 216.66 25.3747 235.331 41.811C237.156 42.6459 236.845 43.3172 234.913 42.5805C247.944 53.4752 257.8 67.546 264.086 82.8118L267.549 91.2182C279.712 120.768 273.688 164.527 250.384 188.158C251.661 188.837 251.415 189.361 250.056 188.927Z" fill={c1} opacity="0.72"/>
-                  <path d="M100.55 177.714L98.4052 178.057C98.1514 175.512 99.4693 175.43 100.55 177.714Z" fill={c2} opacity="0.8"/>
-                  <path d="M177.607 251.783C177.427 252.699 177.239 253.624 177.026 254.549C176.961 253.174 177.124 252.175 177.607 251.783Z" fill={c2}/>
-                </g>
-              </svg>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      <!-- Social section -->
-      <section class="social-section" id="socialSection">
-        <div class="social-header">
-          <h2 class="social-heading" id="socialHeading">
-            Charlemos y compartamos también a través de...
-          </h2>
-          <div class="social-links" id="socialLinks">
-            <a href="#" class="social-link">
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-                <path d="M12.8 6.40022C14.073 6.40022 15.2939 6.90593 16.1941 7.8061C17.0943 8.70628 17.6 9.92718 17.6 11.2002V16.8002H14.4V11.2002C14.4 10.7759 14.2314 10.3689 13.9314 10.0688C13.6313 9.76879 13.2243 9.60021 12.8 9.60021C12.3757 9.60021 11.9687 9.76879 11.6686 10.0688C11.3686 10.3689 11.2 10.7759 11.2 11.2002V16.8002H8V11.2002C8 9.92718 8.50571 8.70628 9.40589 7.8061C10.3061 6.90593 11.527 6.40022 12.8 6.40022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-                <path d="M4.8 7.20022H1.6V16.8002H4.8V7.20022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-                <path d="M3.2 4.80022C4.08366 4.80022 4.8 4.08387 4.8 3.20022C4.8 2.31656 4.08366 1.60022 3.2 1.60022C2.31634 1.60022 1.6 2.31656 1.6 3.20022C1.6 4.08387 2.31634 4.80022 3.2 4.80022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-              </svg>
-              LINKEDIN
-            </a>
-            <a href="#" class="social-link">
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-                <path d="M13.6 1.60022H5.6C3.39086 1.60022 1.6 3.39108 1.6 5.60022V13.6002C1.6 15.8094 3.39086 17.6002 5.6 17.6002H13.6C15.8091 17.6002 17.6 15.8094 17.6 13.6002V5.60022C17.6 3.39108 15.8091 1.60022 13.6 1.60022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-                <path d="M12.7998 9.09646C12.8985 9.76225 12.7848 10.4422 12.4748 11.0397C12.1648 11.6371 11.6743 12.1216 11.0731 12.4242C10.4719 12.7268 9.79052 12.8321 9.12599 12.7252C8.46147 12.6183 7.84757 12.3045 7.37164 11.8286C6.8957 11.3526 6.58195 10.7388 6.47502 10.0742C6.36809 9.4097 6.47342 8.72837 6.77603 8.12716C7.07864 7.52594 7.56311 7.03545 8.16055 6.72545C8.75799 6.41545 9.43797 6.30173 10.1038 6.40046C10.7829 6.50116 11.4116 6.81763 11.8971 7.3031C12.3826 7.78858 12.6991 8.41732 12.7998 9.09646Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-                <path d="M14 5.20022H14.008" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-              </svg>
-              INSTAGRAM
-            </a>
-          </div>
-        </div>
-
-        <div class="photo-grid" id="photoGrid">
-          {photos.map((img, i) => (
-            <div class="photo-item">
-              <img src={img.src} alt={`Imagen ${i + 1}`} loading="lazy" />
-            </div>
-          ))}
-        </div>
-
-        <div class="cta-row" id="ctaRow">
-          <button class="cta-btn cta-btn--linkedin">
-            <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-              <path d="M12.8 6.40022C14.073 6.40022 15.2939 6.90593 16.1941 7.8061C17.0943 8.70628 17.6 9.92718 17.6 11.2002V16.8002H14.4V11.2002C14.4 10.7759 14.2314 10.3689 13.9314 10.0688C13.6313 9.76879 13.2243 9.60021 12.8 9.60021C12.3757 9.60021 11.9687 9.76879 11.6686 10.0688C11.3686 10.3689 11.2 10.7759 11.2 11.2002V16.8002H8V11.2002C8 9.92718 8.50571 8.70628 9.40589 7.8061C10.3061 6.90593 11.527 6.40022 12.8 6.40022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-              <path d="M4.8 7.20022H1.6V16.8002H4.8V7.20022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-              <path d="M3.2 4.80022C4.08366 4.80022 4.8 4.08387 4.8 3.20022C4.8 2.31656 4.08366 1.60022 3.2 1.60022C2.31634 1.60022 1.6 2.31656 1.6 3.20022C1.6 4.08387 2.31634 4.80022 3.2 4.80022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-            </svg>
-            Linkedin
-          </button>
-          <button class="cta-btn cta-btn--instagram">
-            <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-              <path d="M13.6 1.60022H5.6C3.39086 1.60022 1.6 3.39108 1.6 5.60022V13.6002C1.6 15.8094 3.39086 17.6002 5.6 17.6002H13.6C15.8091 17.6002 17.6 15.8094 17.6 13.6002V5.60022C17.6 3.39108 15.8091 1.60022 13.6 1.60022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-              <path d="M12.7998 9.09646C12.8985 9.76225 12.7848 10.4422 12.4748 11.0397C12.1648 11.6371 11.6743 12.1216 11.0731 12.4242C10.4719 12.7268 9.79052 12.8321 9.12599 12.7252C8.46147 12.6183 7.84757 12.3045 7.37164 11.8286C6.8957 11.3526 6.58195 10.7388 6.47502 10.0742C6.36809 9.4097 6.47342 8.72837 6.77603 8.12716C7.07864 7.52594 7.56311 7.03545 8.16055 6.72545C8.75799 6.41545 9.43797 6.30173 10.1038 6.40046C10.7829 6.50116 11.4116 6.81763 11.8971 7.3031C12.3826 7.78858 12.6991 8.41732 12.7998 9.09646Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-              <path d="M14 5.20022H14.008" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-            </svg>
-            Instagram
-          </button>
-          <button class="cta-btn cta-btn--contact">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-              <path d="M22 6L12 13L2 6" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-            </svg>
-            contáctanos
-          </button>
-        </div>
-      </section>
 
       <Footer />
       </div>
@@ -454,45 +302,9 @@ const facesLoop = [...faceColors, ...faceColors];
         scrollTrigger: { trigger: '.hero', start: 'top bottom', end: 'bottom top', scrub: 1.2 },
       });
 
-      (function initMarquee() {
-        const track = document.getElementById('facesTrack');
-        if (!track) return;
-        const halfWidth = track.scrollWidth / 2;
-        gsap.set(track, { x: 0 });
-        gsap.to(track, {
-          x: -halfWidth,
-          duration: 30,
-          ease: 'none',
-          repeat: -1,
-          modifiers: {
-            x: function(x) {
-              const v = parseFloat(x) % halfWidth;
-              return v + 'px';
-            }
-          }
-        });
-      })();
 
-      gsap.fromTo('#socialHeading',
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
-          scrollTrigger: { trigger: '#socialHeading', start: 'top 82%' } }
-      );
-      gsap.fromTo('#socialLinks .social-link',
-        { opacity: 0, x: -24 },
-        { opacity: 1, x: 0, duration: 0.55, stagger: 0.15, ease: 'power2.out',
-          scrollTrigger: { trigger: '#socialLinks', start: 'top 85%' } }
-      );
-      gsap.fromTo('#photoGrid .photo-item',
-        { opacity: 0, scale: 0.82, y: 28 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'back.out(1.5)',
-          scrollTrigger: { trigger: '#photoGrid', start: 'top 82%' } }
-      );
-      gsap.fromTo('#ctaRow .cta-btn',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.55, stagger: 0.12, ease: 'back.out(1.4)',
-          scrollTrigger: { trigger: '#ctaRow', start: 'top 88%' } }
-      );
+
+
     </script>
   </body>
 </html>
