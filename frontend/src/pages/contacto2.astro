@@ -1,6 +1,21 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import galeria2 from "../assets/figma-mcp/inicio/galeria-2.png";
+import galeria3 from "../assets/figma-mcp/inicio/galeria-3.png";
+import galeria5 from "../assets/figma-mcp/inicio/galeria-5.png";
+import galeria6 from "../assets/figma-mcp/inicio/galeria-6.png";
+
+const photos = [
+  galeria2, galeria3, galeria5, galeria6, galeria2, galeria3,
+];
+const carasImages = [
+  "/assets/img/home/caras-1 2.svg",
+  "/assets/img/home/caras-2 2.svg",
+  "/assets/img/home/caras-3 2.svg",
+  "/assets/img/home/caras-4 2.svg",
+  "/assets/img/home/caras-6 2.svg",
+];
 ---
 
 <!doctype html>
@@ -39,7 +54,6 @@ import Footer from '../components/Footer.astro';
       .story-stack {
         position: relative;
         overflow: clip;
-        background: #f9f5f2;
       }
       .bg {
         position: absolute; inset: 0; z-index: 0;
@@ -53,11 +67,11 @@ import Footer from '../components/Footer.astro';
         backface-visibility: hidden;
       }
       .bg-shape svg { width: 100%; height: 100%; display: block; user-select: none; pointer-events: none; overflow: visible; }
-      .story-stack.is-bg-revealed .bg-shape { animation: bgLayerEnter 1.25s cubic-bezier(.2,.75,.18,1) forwards; }
-      .story-stack.is-bg-revealed .bg-shape--1 { animation-delay: 0.12s; }
-      .story-stack.is-bg-revealed .bg-shape--2 { animation-delay: 0.34s; }
-      .story-stack.is-bg-revealed .bg-shape--3 { animation-delay: 0.56s; }
-      .story-stack.is-bg-revealed .bg-shape--4 { animation-delay: 0.78s; }
+      .layout.is-bg-revealed .bg-shape { animation: bgLayerEnter 1.25s cubic-bezier(.2,.75,.18,1) forwards; }
+      .layout.is-bg-revealed .bg-shape--1 { animation-delay: 0.12s; }
+      .layout.is-bg-revealed .bg-shape--2 { animation-delay: 0.34s; }
+      .layout.is-bg-revealed .bg-shape--3 { animation-delay: 0.56s; }
+      .layout.is-bg-revealed .bg-shape--4 { animation-delay: 0.78s; }
       @keyframes bgLayerEnter {
         0% { opacity: 0; transform: translate3d(-9vw, 0, 0); }
         100% { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -66,7 +80,7 @@ import Footer from '../components/Footer.astro';
 
       /* ── Hero ── */
       .hero {
-        position: relative; z-index: 10; min-height: 760px;
+        position: relative; z-index: 10; min-height: 80vh;
         display: flex; flex-wrap: wrap; align-items: center;
         justify-content: center;
         gap: clamp(2rem, 5vw, 5rem);
@@ -80,13 +94,13 @@ import Footer from '../components/Footer.astro';
         will-change: transform;
       }
       .hand {
-        position: absolute; pointer-events: none; opacity: .9;
+        position: absolute; pointer-events: none; opacity: .9; z-index: 1;
       }
-      .hand--left  { left: 3vw; top: -40px; width: 120px; transform: rotate(35deg); }
-      .hand--right { right: 3vw; bottom: 2rem; width: 120px; transform: rotate(82deg); }
+      .hand--left  { left: -55px; top: -55px; width: 120px; transform: rotate(35deg); }
+      .hand--right { right: 12px; bottom: -55px; width: 120px; transform: rotate(82deg); }
       @media (max-width: 1100px) { .hand { display: none; } }
 
-      .form-wrap { flex: 0 1 540px; display: flex; justify-content: center; will-change: transform; }
+      .form-wrap { flex: 0 1 540px; display: flex; justify-content: center; will-change: transform; position: relative; }
       .form-card {
         width: 100%; max-width: 520px;
         background: #F0A443; border-radius: 15px;
@@ -113,110 +127,173 @@ import Footer from '../components/Footer.astro';
       @media (prefers-reduced-motion: reduce) {
         .form-card, .hand { animation: none !important; transition: none !important; }
       }
+
+      /* ── Social footer wrapper ── */
+      .social-footer-wrapper {
+        position: relative; z-index: 0; overflow: clip;
+        background: linear-gradient(0deg, rgba(248, 243, 240, 1) 55%, rgba(248, 243, 240, 0) 100%);
+      }
+      .caras-carousel {
+        width: 100vw; margin-inline: calc(-50vw + 50%); overflow: hidden; background: none;
+      }
+      .caras-track {
+        display: flex; flex-wrap: nowrap; gap: 0; width: max-content;
+        animation: carasScroll 400s linear infinite;
+      }
+      .caras-slide {
+        flex: 0 0 auto; height: clamp(100px, 12vw, 200px); width: auto; display: block;
+        object-fit: contain; margin-right: -32px;
+        filter: drop-shadow(0 2px 3px rgba(0,0,0,.10)) drop-shadow(0 2px 5px rgba(0,0,0,.15));
+      }
+      @keyframes carasScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .social-section {
+        position: relative; padding: 5rem 8vw;
+        display: flex; flex-direction: column; align-items: center; gap: 3.5rem;
+      }
+      .social-header { width: 100%; max-width: 960px; display: flex; flex-direction: column; gap: 1.5rem; }
+      .social-heading {
+        font-family: 'Playfair Display', serif; font-weight: 400;
+        font-size: clamp(24px, 2.8vw, 40px);
+        color: #620404; text-transform: uppercase;
+        max-width: 540px; line-height: 1.22;
+      }
+      .social-links { display: flex; flex-direction: column; gap: 0.75rem; }
+      .social-link {
+        display: flex; align-items: center; gap: 0.55rem;
+        font-family: 'Inter', sans-serif; font-size: 16px;
+        color: #620404; transition: opacity .2s;
+      }
+      .social-link:hover { opacity: .7; }
+      .photo-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+        width: 100%; max-width: 960px;
+      }
+      @media (min-width: 640px) { .photo-grid { grid-template-columns: repeat(6, 1fr); } }
+      .photo-item {
+        border-radius: 8px; overflow: hidden; aspect-ratio: 1;
+        box-shadow: 0px 6.5px 9.8px 4.9px rgba(0,0,0,0.15), 0px 3.3px 3.3px rgba(0,0,0,0.3);
+      }
+      .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .cta-row { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center; }
+      .cta-btn {
+        display: flex; align-items: center; gap: 0.9rem;
+        font-family: 'Inconsolata', monospace; font-weight: 900;
+        font-size: clamp(16px, 1.5vw, 21px);
+        color: #fff; padding: 0.75rem 4.5rem; border-radius: 30px;
+        border: none;
+        transition: opacity .2s, transform .15s;
+        box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
+      }
+      .cta-btn:hover { opacity: .88; transform: translateY(-2px); }
+      .cta-btn--linkedin  { background: #2a7bbe; }
+      .cta-btn--instagram { background: #ff8f00; }
+      .cta-btn--contact   { background: #be572a; }
     </style>
   </head>
 
   <body>
     <div class="page">
     <div class="layout">
-      <div class="story-stack" id="story-stack">
-        <div class="bg">
-          <div class="bg-shape bg-shape--1" aria-hidden="true">
-            <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-              <g filter="url(#bgFilter1)">
-                <rect x="-1400" y="0" width="1400" height="3215" fill="#7C7C4A"/>
-                <path d="M2483 0H195.304H79.2751V3164.27C72.0362 3183.6 204.984 3190.37 794.684 3062.76C1531.81 2903.25 2403.92 2260.69 1311.54 1564.63C219.157 868.574 2004.61 365.031 2483 0Z" fill="#7C7C4A"/>
-              </g>
-              <defs>
-                <filter id="bgFilter1" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset dx="0" dy="4"/>
-                  <feGaussianBlur stdDeviation="15.3"/>
-                  <feComposite in2="hardAlpha" operator="out"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg1"/>
-                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg1" result="shape"/>
-                </filter>
-              </defs>
-            </svg>
-          </div>
-          <div class="bg-shape bg-shape--2" aria-hidden="true">
-            <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-              <g filter="url(#bgFilter2)">
-                <rect x="-1400" y="0" width="1400" height="3215" fill="#F3B568"/>
-                <path d="M2404 0H116.304H0.275126V3164.27C-6.96376 3183.6 125.984 3190.37 715.684 3062.76C1452.81 2903.25 2324.92 2260.69 1232.54 1564.63C140.157 868.574 1925.61 365.031 2404 0Z" fill="#F3B568"/>
-              </g>
-              <defs>
-                <filter id="bgFilter2" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset dx="0" dy="4"/>
-                  <feGaussianBlur stdDeviation="15.3"/>
-                  <feComposite in2="hardAlpha" operator="out"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg2"/>
-                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg2" result="shape"/>
-                </filter>
-              </defs>
-            </svg>
-          </div>
-          <div class="bg-shape bg-shape--3" aria-hidden="true">
-            <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-              <g filter="url(#bgFilter3)">
-                <rect x="-1400" y="0" width="1400" height="3215" fill="#EEE2D9"/>
-                <path d="M1937.22 0H-720V3164C-5.61163 3183.33 101.522 3190.1 576.722 3062.5C1170.72 2903 1873.5 2260.5 993.222 1564.5C112.943 868.5 1551.72 365 1937.22 0Z" fill="#EEE2D9"/>
-              </g>
-              <defs>
-                <filter id="bgFilter3" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset dx="0" dy="4"/>
-                  <feGaussianBlur stdDeviation="15.3"/>
-                  <feComposite in2="hardAlpha" operator="out"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg3"/>
-                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg3" result="shape"/>
-                </filter>
-              </defs>
-            </svg>
-          </div>
-          <div class="bg-shape bg-shape--4" aria-hidden="true">
-            <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-              <g filter="url(#bgFilter4)">
-                <rect x="-1400" y="0" width="1400" height="3215" fill="#F9F4F1"/>
-                <path d="M1280 0H-720V3164.27C-3.70783 3183.61 67.0794 3190.37 381.063 3062.76C773.543 2903.25 1237.9 2260.69 656.261 1564.63C74.6262 868.574 1025.28 365.031 1280 0Z" fill="#F9F4F1"/>
-              </g>
-              <defs>
-                <filter id="bgFilter4" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset dx="0" dy="4"/>
-                  <feGaussianBlur stdDeviation="15.3"/>
-                  <feComposite in2="hardAlpha" operator="out"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg4"/>
-                  <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg4" result="shape"/>
-                </filter>
-              </defs>
-            </svg>
-          </div>
+      <div class="bg">
+        <div class="bg-shape bg-shape--1" aria-hidden="true">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <g filter="url(#bgFilter1)">
+              <rect x="-1400" y="0" width="1400" height="3215" fill="#7C7C4A"/>
+              <path d="M2483 0H195.304H79.2751V3164.27C72.0362 3183.6 204.984 3190.37 794.684 3062.76C1531.81 2903.25 2403.92 2260.69 1311.54 1564.63C219.157 868.574 2004.61 365.031 2483 0Z" fill="#7C7C4A"/>
+            </g>
+            <defs>
+              <filter id="bgFilter1" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="15.3"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg1"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg1" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
         </div>
+        <div class="bg-shape bg-shape--2" aria-hidden="true">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <g filter="url(#bgFilter2)">
+              <rect x="-1400" y="0" width="1400" height="3215" fill="#F3B568"/>
+              <path d="M2404 0H116.304H0.275126V3164.27C-6.96376 3183.6 125.984 3190.37 715.684 3062.76C1452.81 2903.25 2324.92 2260.69 1232.54 1564.63C140.157 868.574 1925.61 365.031 2404 0Z" fill="#F3B568"/>
+            </g>
+            <defs>
+              <filter id="bgFilter2" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="15.3"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg2"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg2" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div class="bg-shape bg-shape--3" aria-hidden="true">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <g filter="url(#bgFilter3)">
+              <rect x="-1400" y="0" width="1400" height="3215" fill="#EEE2D9"/>
+              <path d="M1937.22 0H-720V3164C-5.61163 3183.33 101.522 3190.1 576.722 3062.5C1170.72 2903 1873.5 2260.5 993.222 1564.5C112.943 868.5 1551.72 365 1937.22 0Z" fill="#EEE2D9"/>
+            </g>
+            <defs>
+              <filter id="bgFilter3" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="15.3"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg3"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg3" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+        <div class="bg-shape bg-shape--4" aria-hidden="true">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <g filter="url(#bgFilter4)">
+              <rect x="-1400" y="0" width="1400" height="3215" fill="#F9F4F1"/>
+              <path d="M1280 0H-720V3164.27C-3.70783 3183.61 67.0794 3190.37 381.063 3062.76C773.543 2903.25 1237.9 2260.69 656.261 1564.63C74.6262 868.574 1025.28 365.031 1280 0Z" fill="#F9F4F1"/>
+            </g>
+            <defs>
+              <filter id="bgFilter4" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="0" dy="4"/>
+                <feGaussianBlur stdDeviation="15.3"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_bg4"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_bg4" result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+      </div>
 
+      <div class="story-stack" id="story-stack">
         <Nav />
 
         <section class="hero" id="hero">
-        <div class="hand hand--left" aria-hidden="true">
-          <svg fill="none" viewBox="0 0 183 269" width="100%">
-            <path d="M183.484 71.1972C183.488 71.1972 183.488 71.2016 183.485 71.2027C174.01 74.9488 164.355 76.5881 154.469 78.3972L129.419 82.9972L99.1807 91.6121C98.3756 91.8415 96.6424 92.4449 97.3193 92.9372C97.8359 93.3278 98.5054 93.4534 99.1298 93.2815C108.943 90.58 118.53 88.8433 128.649 87.5372C140.019 86.3672 150.989 85.5172 162.409 85.4572C163.489 85.4572 165.019 86.5072 165.539 87.1972C168.209 90.7972 157.819 99.4672 150.039 101.207L127.769 106.177C121.819 107.507 116.089 108.557 110.449 110.707C101.569 114.087 94.4594 119.437 88.1694 126.477C80.0094 135.597 71.0894 143.697 61.5294 151.327L50.3211 158.732C50.1001 158.878 50.0413 159.176 50.1903 159.395C50.3177 159.582 50.5594 159.654 50.768 159.566L55.6247 157.512C59.7626 155.762 64.4434 158.365 65.1396 162.803L67.0694 175.107C69.8294 187.457 74.5294 198.867 81.2394 209.487C85.8094 216.727 86.0994 224.767 83.5394 232.727C79.9294 243.927 75.0194 254.237 67.0294 262.937C61.4794 268.977 55.2194 273.987 47.6594 277.077C41.9894 279.397 35.8994 277.287 33.2094 271.597C29.6394 264.037 26.5194 256.407 24.0894 248.237C13.8794 213.947 9.59936 170.657 12.1694 135.057C13.0394 123.007 18.9094 112.117 25.9194 102.717L40.7394 82.8672L63.8794 51.0472L91.2793 17.6572C93.5993 14.8272 95.4794 11.2572 98.5894 9.31722C100.709 7.99722 103.279 11.7172 103.379 13.6172L103.849 22.6772C104.039 26.3172 102.689 29.2972 99.1094 30.8572L82.802 37.9858C82.2409 38.2311 82.0005 38.897 82.2755 39.4442C82.5301 39.9508 83.1362 40.1702 83.6561 39.9439L101.479 32.1872C119.249 24.4572 132.509 19.8572 152.359 22.4872C156.989 23.1072 161.729 22.4472 166.389 22.7972L176.279 23.5272C177.339 23.6072 178.799 24.9772 179.199 25.8172C179.689 26.8672 179.339 28.9672 178.559 29.8872C174.409 34.7772 168.699 36.3372 162.499 36.3272C141.018 36.2993 118.683 39.0511 99.4066 48.9697C97.4266 49.9885 97.7789 51.9243 99.7493 50.8872C118.109 41.1972 137.329 39.9872 157.639 38.9572L186.499 37.4972C189.119 37.3672 193.169 37.7672 194.019 40.8072C194.769 43.4872 192.709 47.1372 190.779 48.9572C189.039 50.5972 186.719 51.0072 184.339 51.4172L116.839 63.0572C114.056 63.5376 114.885 66.1267 117.678 65.706L130.949 63.7072L184.829 60.0472C186.189 59.9572 188.719 61.2372 188.899 62.3772C189.479 65.9127 187.125 69.7474 183.483 71.1917C183.48 71.1928 183.481 71.1972 183.484 71.1972Z" fill="#3B959E"/>
-          </svg>
-        </div>
-
         <h1 class="hero__heading" id="heroHeading">
           ¿Quieres saber más,<br />aportar<br />o simplemente comentar?
         </h1>
 
         <div class="form-wrap" id="formWrap">
+          <div class="hand hand--left" aria-hidden="true">
+            <svg fill="none" viewBox="0 0 183 269" width="100%">
+              <path d="M183.484 71.1972C183.488 71.1972 183.488 71.2016 183.485 71.2027C174.01 74.9488 164.355 76.5881 154.469 78.3972L129.419 82.9972L99.1807 91.6121C98.3756 91.8415 96.6424 92.4449 97.3193 92.9372C97.8359 93.3278 98.5054 93.4534 99.1298 93.2815C108.943 90.58 118.53 88.8433 128.649 87.5372C140.019 86.3672 150.989 85.5172 162.409 85.4572C163.489 85.4572 165.019 86.5072 165.539 87.1972C168.209 90.7972 157.819 99.4672 150.039 101.207L127.769 106.177C121.819 107.507 116.089 108.557 110.449 110.707C101.569 114.087 94.4594 119.437 88.1694 126.477C80.0094 135.597 71.0894 143.697 61.5294 151.327L50.3211 158.732C50.1001 158.878 50.0413 159.176 50.1903 159.395C50.3177 159.582 50.5594 159.654 50.768 159.566L55.6247 157.512C59.7626 155.762 64.4434 158.365 65.1396 162.803L67.0694 175.107C69.8294 187.457 74.5294 198.867 81.2394 209.487C85.8094 216.727 86.0994 224.767 83.5394 232.727C79.9294 243.927 75.0194 254.237 67.0294 262.937C61.4794 268.977 55.2194 273.987 47.6594 277.077C41.9894 279.397 35.8994 277.287 33.2094 271.597C29.6394 264.037 26.5194 256.407 24.0894 248.237C13.8794 213.947 9.59936 170.657 12.1694 135.057C13.0394 123.007 18.9094 112.117 25.9194 102.717L40.7394 82.8672L63.8794 51.0472L91.2793 17.6572C93.5993 14.8272 95.4794 11.2572 98.5894 9.31722C100.709 7.99722 103.279 11.7172 103.379 13.6172L103.849 22.6772C104.039 26.3172 102.689 29.2972 99.1094 30.8572L82.802 37.9858C82.2409 38.2311 82.0005 38.897 82.2755 39.4442C82.5301 39.9508 83.1362 40.1702 83.6561 39.9439L101.479 32.1872C119.249 24.4572 132.509 19.8572 152.359 22.4872C156.989 23.1072 161.729 22.4472 166.389 22.7972L176.279 23.5272C177.339 23.6072 178.799 24.9772 179.199 25.8172C179.689 26.8672 179.339 28.9672 178.559 29.8872C174.409 34.7772 168.699 36.3372 162.499 36.3272C141.018 36.2993 118.683 39.0511 99.4066 48.9697C97.4266 49.9885 97.7789 51.9243 99.7493 50.8872C118.109 41.1972 137.329 39.9872 157.639 38.9572L186.499 37.4972C189.119 37.3672 193.169 37.7672 194.019 40.8072C194.769 43.4872 192.709 47.1372 190.779 48.9572C189.039 50.5972 186.719 51.0072 184.339 51.4172L116.839 63.0572C114.056 63.5376 114.885 66.1267 117.678 65.706L130.949 63.7072L184.829 60.0472C186.189 59.9572 188.719 61.2372 188.899 62.3772C189.479 65.9127 187.125 69.7474 183.483 71.1917C183.48 71.1928 183.481 71.1972 183.484 71.1972Z" fill="#3B959E"/>
+            </svg>
+          </div>
           <div class="form-card" id="formCard">
             <div class="form-field">
               <label class="form-label" for="nombre">Nombre</label>
@@ -232,24 +309,92 @@ import Footer from '../components/Footer.astro';
               <span class="form-hint" id="charCount">0/500 caracteres</span>
             </div>
           </div>
-        </div>
-
-        <div class="hand hand--right" aria-hidden="true">
-          <svg fill="none" viewBox="0 0 183 270" width="100%">
-            <path d="M51.644 78.4448C51.6412 78.456 51.6301 78.4632 51.6187 78.4611C41.2262 76.5626 31.3828 74.9023 21.939 71.0348C19.3903 69.9871 17.322 67.4817 16.8089 64.8685C16.4605 63.094 17.2238 61.1039 18.926 60.4933C20.233 60.0244 21.8411 60.0015 23.109 60.0848L73.669 63.5348L87.4671 65.5683C90.452 66.0081 91.271 63.4449 88.299 62.9248L18.789 50.8748C13.339 49.9348 10.659 42.6248 11.639 40.5848C13.189 37.3648 16.899 37.3848 19.899 37.5348L49.079 38.9648C69.409 39.9548 88.209 41.4248 106.479 51.1148C108.249 52.0506 108.551 50.1375 106.779 49.2056C87.5151 39.0763 64.6867 36.2585 43.269 36.3148C37.089 36.3348 31.469 34.8148 27.249 30.0148C26.559 29.2248 26.029 27.3248 26.299 26.2548C27.329 22.2748 34.959 22.9948 40.329 22.7848L56.589 22.1448C72.719 20.0848 87.369 24.7848 102.049 31.2148L121.009 39.5003C122.016 39.9407 123.351 40.1081 123.699 39.0648C123.839 38.6448 122.909 37.8648 122.399 37.6448L106.499 30.7648C102.759 29.1448 101.699 25.8948 101.869 22.2048L102.239 14.1048C102.329 12.0948 104.629 8.0448 107.069 9.2648C109.789 10.6248 111.499 14.0448 113.469 16.4348L141.949 51.1848L167.729 86.6748L179.299 102.015C186.499 111.565 192.549 122.525 193.529 134.815C195.009 153.465 194.199 171.655 192.509 190.265C190.739 209.745 187.309 228.505 181.929 247.215C179.489 255.685 176.249 263.545 172.619 271.355C169.829 277.365 163.559 279.445 157.569 276.835C147.549 272.475 139.509 265.005 133.209 256.025C128.029 248.635 124.769 240.735 122.029 232.125C119.629 224.585 119.939 216.745 124.259 209.865C134.824 193.019 139.323 176.941 141.581 157.171C141.761 155.593 143.384 154.598 144.863 155.177C147.303 156.131 148.387 154.171 146.181 152.757C145.065 152.041 143.973 151.277 142.929 150.395C134.199 143.015 125.779 135.625 118.169 127.045C111.269 119.255 103.289 113.365 93.349 109.945L77.749 106.085C63.439 102.545 50.619 103.155 40.599 91.2048C39.779 90.2348 39.579 88.1748 40.119 87.2348C40.609 86.3948 42.379 85.2948 43.639 85.3648L74.339 87.2048C85.6295 87.8781 96.2343 90.3703 107.204 93.3803C107.647 93.502 108.103 93.2285 108.203 92.7796C108.296 92.3621 108.046 91.9448 107.634 91.83L74.589 82.6248L51.6693 78.4285C51.6579 78.4264 51.6468 78.4335 51.644 78.4448Z" fill="#3B959E"/>
-          </svg>
+          <div class="hand hand--right" aria-hidden="true">
+            <svg fill="none" viewBox="0 0 183 270" width="100%">
+              <path d="M51.644 78.4448C51.6412 78.456 51.6301 78.4632 51.6187 78.4611C41.2262 76.5626 31.3828 74.9023 21.939 71.0348C19.3903 69.9871 17.322 67.4817 16.8089 64.8685C16.4605 63.094 17.2238 61.1039 18.926 60.4933C20.233 60.0244 21.8411 60.0015 23.109 60.0848L73.669 63.5348L87.4671 65.5683C90.452 66.0081 91.271 63.4449 88.299 62.9248L18.789 50.8748C13.339 49.9348 10.659 42.6248 11.639 40.5848C13.189 37.3648 16.899 37.3848 19.899 37.5348L49.079 38.9648C69.409 39.9548 88.209 41.4248 106.479 51.1148C108.249 52.0506 108.551 50.1375 106.779 49.2056C87.5151 39.0763 64.6867 36.2585 43.269 36.3148C37.089 36.3348 31.469 34.8148 27.249 30.0148C26.559 29.2248 26.029 27.3248 26.299 26.2548C27.329 22.2748 34.959 22.9948 40.329 22.7848L56.589 22.1448C72.719 20.0848 87.369 24.7848 102.049 31.2148L121.009 39.5003C122.016 39.9407 123.351 40.1081 123.699 39.0648C123.839 38.6448 122.909 37.8648 122.399 37.6448L106.499 30.7648C102.759 29.1448 101.699 25.8948 101.869 22.2048L102.239 14.1048C102.329 12.0948 104.629 8.0448 107.069 9.2648C109.789 10.6248 111.499 14.0448 113.469 16.4348L141.949 51.1848L167.729 86.6748L179.299 102.015C186.499 111.565 192.549 122.525 193.529 134.815C195.009 153.465 194.199 171.655 192.509 190.265C190.739 209.745 187.309 228.505 181.929 247.215C179.489 255.685 176.249 263.545 172.619 271.355C169.829 277.365 163.559 279.445 157.569 276.835C147.549 272.475 139.509 265.005 133.209 256.025C128.029 248.635 124.769 240.735 122.029 232.125C119.629 224.585 119.939 216.745 124.259 209.865C134.824 193.019 139.323 176.941 141.581 157.171C141.761 155.593 143.384 154.598 144.863 155.177C147.303 156.131 148.387 154.171 146.181 152.757C145.065 152.041 143.973 151.277 142.929 150.395C134.199 143.015 125.779 135.625 118.169 127.045C111.269 119.255 103.289 113.365 93.349 109.945L77.749 106.085C63.439 102.545 50.619 103.155 40.599 91.2048C39.779 90.2348 39.579 88.1748 40.119 87.2348C40.609 86.3948 42.379 85.2948 43.639 85.3648L74.339 87.2048C85.6295 87.8781 96.2343 90.3703 107.204 93.3803C107.647 93.502 108.103 93.2285 108.203 92.7796C108.296 92.3621 108.046 91.9448 107.634 91.83L74.589 82.6248L51.6693 78.4285C51.6579 78.4264 51.6468 78.4335 51.644 78.4448Z" fill="#3B959E"/>
+            </svg>
+          </div>
         </div>
       </section>
+      </div>
 
+      <div class="social-footer-wrapper">
+        <section class="social-section" id="socialSection">
+          <div class="caras-carousel">
+            <div class="caras-track" data-caras-track>
+              {Array.from({ length: 24 }, (_, set) =>
+                carasImages.map((src, i) => (
+                  <img src={src} alt="" class="caras-slide" data-caras-idx={i} />
+                ))
+              ).flat()}
+            </div>
+          </div>
+          <div class="social-header">
+            <h2 class="social-heading" id="socialHeading">
+              Charlemos y compartamos también a través de...
+            </h2>
+            <div class="social-links" id="socialLinks">
+              <a href="#" class="social-link">
+                <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                  <path d="M12.8 6.40022C14.073 6.40022 15.2939 6.90593 16.1941 7.8061C17.0943 8.70628 17.6 9.92718 17.6 11.2002V16.8002H14.4V11.2002C14.4 10.7759 14.2314 10.3689 13.9314 10.0688C13.6313 9.76879 13.2243 9.60021 12.8 9.60021C12.3757 9.60021 11.9687 9.76879 11.6686 10.0688C11.3686 10.3689 11.2 10.7759 11.2 11.2002V16.8002H8V11.2002C8 9.92718 8.50571 8.70628 9.40589 7.8061C10.3061 6.90593 11.527 6.40022 12.8 6.40022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                  <path d="M4.8 7.20022H1.6V16.8002H4.8V7.20022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                  <path d="M3.2 4.80022C4.08366 4.80022 4.8 4.08387 4.8 3.20022C4.8 2.31656 4.08366 1.60022 3.2 1.60022C2.31634 1.60022 1.6 2.31656 1.6 3.20022C1.6 4.08387 2.31634 4.80022 3.2 4.80022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                </svg>
+                LINKEDIN
+              </a>
+              <a href="#" class="social-link">
+                <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                  <path d="M13.6 1.60022H5.6C3.39086 1.60022 1.6 3.39108 1.6 5.60022V13.6002C1.6 15.8094 3.39086 17.6002 5.6 17.6002H13.6C15.8091 17.6002 17.6 15.8094 17.6 13.6002V5.60022C17.6 3.39108 15.8091 1.60022 13.6 1.60022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                  <path d="M12.7998 9.09646C12.8985 9.76225 12.7848 10.4422 12.4748 11.0397C12.1648 11.6371 11.6743 12.1216 11.0731 12.4242C10.4719 12.7268 9.79052 12.8321 9.12599 12.7252C8.46147 12.6183 7.84757 12.3045 7.37164 11.8286C6.8957 11.3526 6.58195 10.7388 6.47502 10.0742C6.36809 9.4097 6.47342 8.72837 6.77603 8.12716C7.07864 7.52594 7.56311 7.03545 8.16055 6.72545C8.75799 6.41545 9.43797 6.30173 10.1038 6.40046C10.7829 6.50116 11.4116 6.81763 11.8971 7.3031C12.3826 7.78858 12.6991 8.41732 12.7998 9.09646Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                  <path d="M14 5.20022H14.008" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                </svg>
+                INSTAGRAM
+              </a>
+            </div>
+          </div>
 
+          <div class="photo-grid" id="photoGrid">
+            {photos.map((img, i) => (
+              <div class="photo-item">
+                <img src={img.src} alt={`Imagen ${i + 1}`} loading="lazy" />
+              </div>
+            ))}
+          </div>
 
-      <Footer />
+          <div class="cta-row" id="ctaRow">
+            <button class="cta-btn cta-btn--linkedin">
+              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                <path d="M12.8 6.40022C14.073 6.40022 15.2939 6.90593 16.1941 7.8061C17.0943 8.70628 17.6 9.92718 17.6 11.2002V16.8002H14.4V11.2002C14.4 10.7759 14.2314 10.3689 13.9314 10.0688C13.6313 9.76879 13.2243 9.60021 12.8 9.60021C12.3757 9.60021 11.9687 9.76879 11.6686 10.0688C11.3686 10.3689 11.2 10.7759 11.2 11.2002V16.8002H8V11.2002C8 9.92718 8.50571 8.70628 9.40589 7.8061C10.3061 6.90593 11.527 6.40022 12.8 6.40022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                <path d="M4.8 7.20022H1.6V16.8002H4.8V7.20022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                <path d="M3.2 4.80022C4.08366 4.80022 4.8 4.08387 4.8 3.20022C4.8 2.31656 4.08366 1.60022 3.2 1.60022C2.31634 1.60022 1.6 2.31656 1.6 3.20022C1.6 4.08387 2.31634 4.80022 3.2 4.80022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+              </svg>
+              Linkedin
+            </button>
+            <button class="cta-btn cta-btn--instagram">
+              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                <path d="M13.6 1.60022H5.6C3.39086 1.60022 1.6 3.39108 1.6 5.60022V13.6002C1.6 15.8094 3.39086 17.6002 5.6 17.6002H13.6C15.8091 17.6002 17.6 15.8094 17.6 13.6002V5.60022C17.6 3.39108 15.8091 1.60022 13.6 1.60022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                <path d="M12.7998 9.09646C12.8985 9.76225 12.7848 10.4422 12.4748 11.0397C12.1648 11.6371 11.6743 12.1216 11.0731 12.4242C10.4719 12.7268 9.79052 12.8321 9.12599 12.7252C8.46147 12.6183 7.84757 12.3045 7.37164 11.8286C6.8957 11.3526 6.58195 10.7388 6.47502 10.0742C6.36809 9.4097 6.47342 8.72837 6.77603 8.12716C7.07864 7.52594 7.56311 7.03545 8.16055 6.72545C8.75799 6.41545 9.43797 6.30173 10.1038 6.40046C10.7829 6.50116 11.4116 6.81763 11.8971 7.3031C12.3826 7.78858 12.6991 8.41732 12.7998 9.09646Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                <path d="M14 5.20022H14.008" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+              </svg>
+              Instagram
+            </button>
+            <button class="cta-btn cta-btn--contact">
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                <path d="M22 6L12 13L2 6" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+              </svg>
+              contáctanos
+            </button>
+          </div>
+        </section>
+
+        <Footer />
       </div>
     </div>
   </div>
 
     <script>
-      const storyStack = document.getElementById('story-stack');
+      const storyStack = document.querySelector('.layout');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const revealBackgroundLayers = () => {
         if (!storyStack) return;
@@ -292,14 +437,12 @@ import Footer from '../components/Footer.astro';
       });
 
       gsap.to('.hand--left', {
-        y: -80,
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top bottom', end: 'bottom top', scrub: 1.2 },
+        y: -6, rotation: -2,
+        duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1,
       });
       gsap.to('.hand--right', {
-        y: 80,
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top bottom', end: 'bottom top', scrub: 1.2 },
+        y: 6, rotation: 2,
+        duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1,
       });
 
 

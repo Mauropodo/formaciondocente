@@ -1,0 +1,285 @@
+---
+interface HighlightItem {
+  bold?: string;
+  rest?: string;
+  text?: string;
+}
+
+interface Props {
+  name: string;
+  photoSrc: string;
+  backPhotoSrc?: string;
+  size?: "side" | "center";
+  tilt?: string;
+  interactive?: boolean;
+  frontItems: HighlightItem[];
+  backEyebrow: string;
+  backTitle: string;
+  backItems: string[];
+}
+
+const {
+  name,
+  photoSrc,
+  backPhotoSrc = photoSrc,
+  size = "side",
+  tilt = "2deg",
+  interactive = false,
+  frontItems,
+  backEyebrow,
+  backTitle,
+  backItems,
+} = Astro.props;
+---
+
+<article
+  class:list={["profile-flip-card", `profile-flip-card--${size}`]}
+  style={`--card-tilt:${tilt};`}
+  data-interactive={interactive ? "true" : "false"}
+  tabindex={interactive ? "0" : "-1"}
+  aria-label={`Tarjeta de perfil de ${name}`}
+>
+  <div class="profile-flip-card__inner">
+    <section class="profile-flip-card__face profile-flip-card__face--front">
+      <div class="profile-flip-card__photo">
+        <div class="profile-flip-card__photo-inner">
+          <img src={photoSrc} alt={name} loading="lazy" />
+        </div>
+      </div>
+      <p class="profile-flip-card__name">{name}</p>
+      <ul class="profile-flip-card__list">
+        {frontItems.map((item) => (
+          <li>
+            {item.bold && <span class="bold">{item.bold}</span>}
+            {item.rest && <span class="mono">{item.rest}</span>}
+            {item.text && <span class="mono">{item.text}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="profile-flip-card__face profile-flip-card__face--back" aria-label={`Reverso de ${name}`}>
+      <p class="profile-flip-card__eyebrow">{backEyebrow}</p>
+      <p class="profile-flip-card__back-title">{backTitle}</p>
+      <div class="profile-flip-card__photo profile-flip-card__photo--back">
+        <div class="profile-flip-card__photo-inner">
+          <img src={backPhotoSrc} alt="" loading="lazy" aria-hidden="true" />
+        </div>
+      </div>
+      <ul class="profile-flip-card__back-list">
+        {backItems.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</article>
+
+<style>
+  .profile-flip-card {
+    width: 100%;
+    height: 100%;
+    perspective: 1800px;
+    transform: rotate(var(--card-tilt, 0deg));
+    transform-style: preserve-3d;
+    cursor: default;
+    outline: none;
+  }
+
+  .profile-flip-card[data-interactive="true"] {
+    cursor: pointer;
+  }
+
+  .profile-flip-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 760ms cubic-bezier(.22,1,.36,1);
+  }
+
+  @media (hover: hover) {
+    .profile-flip-card[data-interactive="true"]:hover .profile-flip-card__inner {
+      transform: rotateY(180deg);
+    }
+  }
+
+  .profile-flip-card[data-interactive="true"]:focus-visible .profile-flip-card__inner,
+  .profile-flip-card[data-interactive="true"]:focus-within .profile-flip-card__inner {
+    transform: rotateY(180deg);
+  }
+
+  .profile-flip-card__face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #eee2d9;
+    border-radius: 38px;
+    padding: 24px 0 20px;
+    box-shadow: 7px 9px 5px rgba(0,0,0,0.23), 0px 2.6px 1.3px rgba(0,0,0,0.25), 1.9px 2.6px 0px rgba(0,0,0,0.25), -1.3px 2.6px 1.3px rgba(0,0,0,0.4);
+    backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .profile-flip-card__face--back {
+    justify-content: flex-start;
+    background:
+      radial-gradient(circle at top left, rgba(139,197,174,0.38), transparent 38%),
+      linear-gradient(180deg, #f6ede8 0%, #e8d8cb 100%);
+    transform: rotateY(180deg);
+  }
+
+  .profile-flip-card__photo {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+  }
+
+  .profile-flip-card--side .profile-flip-card__photo {
+    width: 54.4%;
+  }
+
+  .profile-flip-card--center .profile-flip-card__photo {
+    width: 57.6%;
+  }
+
+  .profile-flip-card__photo--back {
+    width: 36.8%;
+    margin-top: 8px;
+  }
+
+  .profile-flip-card__photo-inner {
+    width: 100%;
+    height: 100%;
+    transform: rotate(175deg) scaleY(-1);
+  }
+
+  .profile-flip-card__photo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .profile-flip-card__name,
+  .profile-flip-card__back-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: #620404;
+    text-align: center;
+    width: 100%;
+    line-height: 1.05;
+  }
+
+  .profile-flip-card__name {
+    margin-top: 20px;
+  }
+
+  .profile-flip-card--side .profile-flip-card__name {
+    font-size: clamp(14px, 1.4vw, 23.3px);
+  }
+
+  .profile-flip-card--center .profile-flip-card__name {
+    font-size: clamp(16px, 1.6vw, 25.9px);
+  }
+
+  .profile-flip-card__list {
+    width: 100%;
+    padding: 0 10%;
+    margin-top: 20px;
+    list-style: disc;
+    margin-left: 4px;
+    padding-left: calc(10% + 16px);
+  }
+
+  .profile-flip-card--side .profile-flip-card__list li {
+    font-size: clamp(8px, 0.7vw, 11.3px);
+  }
+
+  .profile-flip-card--center .profile-flip-card__list li {
+    font-size: clamp(9px, 0.8vw, 12.6px);
+  }
+
+  .profile-flip-card__list li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+
+  .profile-flip-card__list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .profile-flip-card__list .bold {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+  }
+
+  .profile-flip-card__list .mono {
+    font-family: 'Inconsolata', monospace;
+  }
+
+  .profile-flip-card__eyebrow {
+    margin: 2px 0 8px;
+    font-family: 'Inconsolata', monospace;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #3b959e;
+  }
+
+  .profile-flip-card__back-title {
+    max-width: 78%;
+    margin: 0;
+    font-size: clamp(15px, 1.2vw, 22px);
+  }
+
+  .profile-flip-card__back-list {
+    width: 100%;
+    margin: 18px 0 0;
+    padding: 0 12%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: 'Inconsolata', monospace;
+    font-size: clamp(10px, 0.82vw, 13px);
+    color: #514444;
+    text-align: center;
+  }
+
+  .profile-flip-card__back-list li {
+    padding: 10px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(98,4,4,0.08);
+  }
+
+  @media (max-width: 768px) {
+    .profile-flip-card {
+      min-height: 460px;
+      transform: none;
+    }
+
+    .profile-flip-card__face {
+      position: relative;
+      min-height: 460px;
+    }
+
+    .profile-flip-card__face--back {
+      display: none;
+    }
+
+    .profile-flip-card__inner {
+      transform: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .profile-flip-card__inner {
+      transition: none;
+    }
+  }
+</style>

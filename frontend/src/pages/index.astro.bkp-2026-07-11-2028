@@ -74,7 +74,7 @@ const carasImages = [
     }
     .story-stack {
       position: relative;
-      min-height: 3595px;
+      min-height: 3175px;
       overflow: clip;
       background: var(--bg);
     }
@@ -102,7 +102,7 @@ const carasImages = [
     .bg-freeze-content {
       position: absolute;
       inset: 0;
-      height: 3595px;
+      height: 3175px;
       transform: translate3d(0, var(--bg-freeze-offset, 0px), 0);
     }
     .bg-freeze-content .bg-shape {
@@ -354,27 +354,6 @@ const carasImages = [
     .scroll-hint .hint-icons svg:last-child {
       top: 14px;
       animation: hintChevronTwo 3s infinite ease-in-out;
-    }
-    .hero-bridge {
-      position: relative;
-      z-index: 2;
-      width: min(100%, 1200px);
-      margin: 0 auto;
-      min-height: clamp(240px, 34vh, 360px);
-      padding: clamp(56px, 8vw, 104px) clamp(20px, 4vw, 40px) clamp(64px, 10vw, 120px);
-      display: grid;
-      place-items: center;
-    }
-    .hero-bridge__copy {
-      max-width: 760px;
-      margin: 0;
-      font-family: "Playfair Display", serif;
-      font-size: clamp(1.45rem, 2.6vw, 2.2rem);
-      line-height: 1.5;
-      text-align: center;
-      color: rgba(98, 4, 4, 0.92);
-      text-wrap: balance;
-      opacity: 0.92;
     }
     @keyframes hintChevronOne {
       0%, 14% { opacity: 0; transform: translateY(-2px); }
@@ -918,14 +897,6 @@ const carasImages = [
     @media (max-width: 1200px) {
       .hero { padding: 0 40px 0 120px; grid-template-columns: 1fr 1fr; }
       .menu { padding: 0 1rem; }
-      .hero-bridge {
-        min-height: 220px;
-        padding-top: 40px;
-        padding-bottom: 72px;
-      }
-      .hero-bridge__copy {
-        font-size: clamp(1.2rem, 2.4vw, 1.7rem);
-      }
       .connect { padding: 0 1rem; }
       .connect .content { width: min(100%, 1120px); }
     }
@@ -968,14 +939,6 @@ const carasImages = [
       .scroll-hint {
         right: 1rem;
         bottom: 1rem;
-      }
-      .hero-bridge {
-        min-height: auto;
-        padding: 20px 24px 48px;
-      }
-      .hero-bridge__copy {
-        font-size: 1.2rem;
-        line-height: 1.55;
       }
       .connect .content,
       .cards {
@@ -1261,12 +1224,6 @@ const carasImages = [
           </div>
         </div>
       </section>
-
-        <section class="hero-bridge" aria-label="Introducción">
-          <p class="hero-bridge__copy">
-            Entre la intuición, la práctica y la escucha, cada experiencia en el aula deja una huella que transforma la manera de enseñar y de habitar la vocación docente.
-          </p>
-        </section>
 
         <section class="connect">
           <div class="content">
@@ -1571,7 +1528,6 @@ const carasImages = [
   const heroCopy = document.querySelector(".hero-copy");
   const heroSlider = document.querySelector(".hero-slider");
   const heroNodes = Array.from(document.querySelectorAll(".hero-copy, .hero-slider, .scroll-hint"));
-  const heroBridgeCopy = document.querySelector(".hero-bridge__copy");
   const storyStack = document.querySelector(".story-stack");
   const storyBg = document.querySelector(".bg");
   const bgFreezeLayer = document.querySelector(".bg-freeze-layer");
@@ -1699,20 +1655,6 @@ const carasImages = [
   mm.add("(max-width: 767px)", () => {
     registerIndexStyleReveals(30, 0.6, "power2.out", "top 92%");
   });
-
-  if (heroBridgeCopy && !prefersReducedMotion.matches) {
-    gsap.from(heroBridgeCopy, {
-      opacity: 0,
-      y: 26,
-      duration: 0.85,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: heroBridgeCopy,
-        start: "top 84%",
-        once: true,
-      },
-    });
-  }
 
   if (heroSlides.length > 1) {
     let current = 0;
@@ -1914,9 +1856,9 @@ const carasImages = [
         return;
       }
 
-      const sectionProgress = getSectionProgress(connectSection, 260);
-      const revealStart = 0.18;
-      const revealEnd = 0.82;
+      const sectionProgress = getSectionProgress(connectSection, 600);
+      const revealStart = 0.08;
+      const revealEnd = 0.72;
       const revealSpan = Math.max(revealEnd - revealStart, 0.001);
       const revealSegment = revealSpan / connectBubbles.length;
 

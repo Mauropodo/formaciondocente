@@ -26,7 +26,92 @@ function paginationUrl(slug, pageNum) {
 }
 ---
 
-<BaseLayout title="Publicaciones">
+<BaseLayout title="Publicaciones" layoutClass="layout-shell--publicaciones">
+  <Fragment slot="pageBackground">
+    <div class="layout-page-background publicaciones-bg" aria-hidden="true">
+      <div class="publicaciones-bg__shape publicaciones-bg__shape--1">
+        <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+          <g filter="url(#pubBgFilter1)">
+            <rect x="-1400" y="0" width="1400" height="3215" fill="#7C7C4A"/>
+            <path d="M2483 0H195.304H79.2751V3164.27C72.0362 3183.6 204.984 3190.37 794.684 3062.76C1531.81 2903.25 2403.92 2260.69 1311.54 1564.63C219.157 868.574 2004.61 365.031 2483 0Z" fill="#7C7C4A"/>
+          </g>
+          <defs>
+            <filter id="pubBgFilter1" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dx="0" dy="4"/>
+              <feGaussianBlur stdDeviation="15.3"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_pub1"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_pub1" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div class="publicaciones-bg__shape publicaciones-bg__shape--2">
+        <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+          <g filter="url(#pubBgFilter2)">
+            <rect x="-1400" y="0" width="1400" height="3215" fill="#F3B568"/>
+            <path d="M2404 0H116.304H0.275126V3164.27C-6.96376 3183.6 125.984 3190.37 715.684 3062.76C1452.81 2903.25 2324.92 2260.69 1232.54 1564.63C140.157 868.574 1925.61 365.031 2404 0Z" fill="#F3B568"/>
+          </g>
+          <defs>
+            <filter id="pubBgFilter2" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dx="0" dy="4"/>
+              <feGaussianBlur stdDeviation="15.3"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_pub2"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_pub2" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div class="publicaciones-bg__shape publicaciones-bg__shape--3">
+        <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+          <g filter="url(#pubBgFilter3)">
+            <rect x="-1400" y="0" width="1400" height="3215" fill="#EEE2D9"/>
+            <path d="M1937.22 0H-720V3164C-5.61163 3183.33 101.522 3190.1 576.722 3062.5C1170.72 2903 1873.5 2260.5 993.222 1564.5C112.943 868.5 1551.72 365 1937.22 0Z" fill="#EEE2D9"/>
+          </g>
+          <defs>
+            <filter id="pubBgFilter3" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dx="0" dy="4"/>
+              <feGaussianBlur stdDeviation="15.3"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_pub3"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_pub3" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div class="publicaciones-bg__shape publicaciones-bg__shape--4">
+        <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+          <g filter="url(#pubBgFilter4)">
+            <rect x="-1400" y="0" width="1400" height="3215" fill="#F9F4F1"/>
+            <path d="M1280 0H-720V3164.27C-3.70783 3183.61 67.0794 3190.37 381.063 3062.76C773.543 2903.25 1237.9 2260.69 656.261 1564.63C74.6262 868.574 1025.28 365.031 1280 0Z" fill="#F9F4F1"/>
+          </g>
+          <defs>
+            <filter id="pubBgFilter4" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dx="0" dy="4"/>
+              <feGaussianBlur stdDeviation="15.3"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_pub4"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_pub4" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </Fragment>
+
   <section class="hero-section">
     <div class="container">
       <div class="hero-layout">
@@ -93,6 +178,20 @@ function paginationUrl(slug, pageNum) {
 </script>
 
 <style>
+  .publicaciones-bg {
+    opacity: 0.4;
+    background: var(--color-bg);
+  }
+  .publicaciones-bg__shape {
+    position: absolute;
+    inset: 0;
+  }
+  .publicaciones-bg__shape svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
   .hero-section {
     padding: 174px 0 143px;
   }

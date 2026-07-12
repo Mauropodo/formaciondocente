@@ -5,8 +5,9 @@ import Footer from '../components/Footer.astro';
 export interface Props {
   title: string;
   description?: string;
+  layoutClass?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, layoutClass } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -24,9 +25,34 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <Nav />
-    <main>
-      <slot />
-    </main>
-    <Footer />
+    <div class:list={['layout-shell', layoutClass]}>
+      <slot name="pageBackground" />
+      <main class="layout-main">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>
+
+<style is:global>
+  .layout-shell {
+    position: relative;
+    min-height: 100vh;
+    isolation: isolate;
+  }
+
+  .layout-shell > .layout-page-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .layout-shell > .layout-main,
+  .layout-shell > footer {
+    position: relative;
+    z-index: 1;
+  }
+</style>
