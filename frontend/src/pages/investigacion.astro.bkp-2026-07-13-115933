@@ -425,20 +425,6 @@ const REFS_DATA = [
         100% { transform: translateX(-50%); }
       }
       .marquee-tag {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        align-items: stretch;
-        width: 260px;
-        min-width: 260px;
-        height: 188px;
-      }
-      .marquee-tag:nth-child(odd) .marquee-tag__chip {
-        grid-row: 2;
-      }
-      .marquee-tag:nth-child(even) .marquee-tag__chip {
-        grid-row: 1;
-      }
-      .marquee-tag__chip {
         border-radius: 12px;
         display: flex;
         align-items: center;
@@ -463,82 +449,71 @@ const REFS_DATA = [
       }
       .objetivos-shell {
         position: relative;
-        min-height: 100svh;
-        overflow: visible;
+        height: 100vh;
       }
       .objetivos-track {
-        display: grid;
-        grid-template-areas: "stack";
-        width: 100%;
-        min-height: 100svh;
+        display: flex;
+        width: 400vw;
+        height: 100%;
         will-change: transform;
       }
       .objetivos-panel {
         position: relative;
-        grid-area: stack;
-        width: 100%;
-        min-height: 100svh;
-        height: auto;
-        padding: 0;
-        display: grid;
-        align-items: center;
-        overflow: visible;
-      }
-      .objetivos-panel__stage {
-        position: relative;
-        width: 100%;
-        height: 100%;
+        flex: 0 0 100vw;
+        width: 100vw;
+        height: 100vh;
         padding: clamp(128px, 14vw, 168px) clamp(24px, 6vw, 88px) clamp(48px, 6vw, 80px);
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      .obj-frame37 {
-        z-index: 1;
-      }
-      #objGroup0 {
-        z-index: 2;
-      }
-      #objGroup1 {
-        z-index: 3;
-      }
-      #objGroup2 {
-        z-index: 4;
+      .objetivos-panel__inner {
+        position: relative;
+        width: min(100%, 1320px);
+        min-height: min(72vh, 760px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .objetivos-panel__animate {
         will-change: transform, opacity;
       }
+      .objetivos-panel--intro .objetivos-panel__inner {
+        justify-content: center;
+      }
       .obj-group {
         position: relative;
-        width: 100%;
+        order: var(--obj-order, 1);
+        flex: 0 0 100vw;
+        width: 100vw;
         height: 100%;
+        width: 100%;
+        min-height: min(72vh, 760px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(128px, 14vw, 168px) clamp(24px, 6vw, 88px) clamp(48px, 6vw, 80px);
+        overflow: visible;
       }
       .obj-group__blob {
         position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        transform: none;
-        pointer-events: none;
+        left: 0;
+        top: 50%;
+        width: min(76%, 980px);
+        height: min(72vh, 660px);
+        transform: translateY(-50%);
       }
-      .obj-group__blob svg {
-        width: 100%;
-        height: 100%;
-        display: block;
-        transform: scale(1.08);
-        transform-origin: center center;
-      }
+      .obj-group__blob svg { width: 100%; height: 100%; }
       .obj-group__content {
         position: relative;
         z-index: 10;
-        width: min(100%, 1200px);
-        margin-inline: auto;
+        width: 100%;
         display: grid;
         grid-template-columns: minmax(0, 320px) minmax(320px, 460px);
         align-items: center;
         justify-content: space-between;
         gap: clamp(24px, 4vw, 64px);
-        padding-inline: 1rem;
+        padding-inline: clamp(12px, 4vw, 48px);
       }
       .obj-group__title {
         max-width: 320px;
@@ -564,36 +539,26 @@ const REFS_DATA = [
       .obj-frame37,
       .obj-intro {
         position: relative;
+        order: 0;
+        flex: 0 0 100vw;
+        width: 100vw;
+        height: 100%;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: clamp(128px, 14vw, 168px) clamp(24px, 6vw, 88px) clamp(48px, 6vw, 80px);
       }
       .obj-main-card-wrap {
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: fit-content;
-        max-width: min(100%, 720px);
+        width: min(100%, 720px);
       }
       .obj-hand {
         position: absolute;
         pointer-events: none;
-        z-index: 2;
-      }
-      .obj-hand--left {
-        left: 65px;
-        top: 30px;
-        width: 150px;
-        height: 220px;
-        transform: translate(-62%, -52%) rotate(35deg);
-      }
-      .obj-hand--right {
-        right: 110px;
-        bottom: 25px;
-        width: 150px;
-        height: 220px;
-        transform: translate(64%, 50%) rotate(85deg);
       }
       .obj-main-card {
         background: white;
@@ -704,76 +669,35 @@ const REFS_DATA = [
         color: #000;
         cursor: pointer;
       }
-      .pagination-section {
+      .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         width: 100%;
         max-width: 1050px;
         padding-top: 1.5rem;
       }
-      .pagination-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-      .pagination-info {
-        margin: 0;
+      .pagination__info {
         font-family: 'Inter', sans-serif;
         font-size: 14px;
-        color: #4b4b4b;
+        color: #0a0a0a;
       }
-      .pagination-controls {
+      .pagination__btns {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 4px;
       }
-      .page-btn,
       .pagination__btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
+        padding: 10px;
         border-radius: 8px;
-        border: 1px solid rgba(10, 10, 10, 0.14);
-        background: rgba(255,255,255,0.92);
         color: #0a0a0a;
-        transition: border-color .15s ease, color .15s ease, background .15s ease;
-      }
-      .page-btn:hover:not(.disabled),
-      .pagination__btn:hover:not(.pagination__btn--disabled) {
-        border-color: #be572a;
-        color: #be572a;
-      }
-      .page-btn.disabled,
-      .pagination__btn--disabled {
-        opacity: 0.3;
-        pointer-events: none;
-      }
-      .page-numbers {
-        display: flex;
-        gap: 2px;
-      }
-      .page-num {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
         font-family: 'Inter', sans-serif;
         font-size: 14px;
-        color: #0a0a0a;
-        transition: background .15s ease, color .15s ease;
+        transition: background .15s;
       }
-      .page-num:hover {
-        background: rgba(0,0,0,0.05);
-      }
-      .page-num.active {
-        background: #be572a;
-        color: #fff;
-        font-weight: 700;
-      }
+      .pagination__btn:hover { background: rgba(0,0,0,0.05); }
+      .pagination__btn--active { font-weight: 600; width: 40px; height: 37px; }
+      .pagination__btn--disabled { opacity: 0.5; }
 
       @media (prefers-reduced-motion: reduce) {
         .marquee-tag { transition: none !important; }
@@ -799,45 +723,27 @@ const REFS_DATA = [
       @media (max-width: 900px) {
         .objetivos-shell {
           height: auto;
-          overflow: visible;
         }
         .objetivos-track {
-          display: flex;
           width: 100%;
           height: auto;
-          min-height: 0;
           flex-direction: column;
-        }
-        .obj-frame37 {
-          order: 0;
-        }
-        #objGroup0 {
-          order: 1;
-        }
-        #objGroup1 {
-          order: 2;
-        }
-        #objGroup2 {
-          order: 3;
         }
         .objetivos-panel {
           width: 100%;
           min-width: 100%;
           height: auto;
           min-height: 100svh;
-          padding: 0;
-        }
-        .objetivos-panel__stage {
-          min-height: 100svh;
           padding: 128px 20px 40px;
         }
+        .objetivos-panel__inner,
         .obj-group {
           min-height: auto;
         }
         .obj-group__blob {
           width: 100%;
-          height: 100%;
-          min-height: 0;
+          height: 70%;
+          min-height: 320px;
         }
         .obj-group__content {
           grid-template-columns: 1fr;
@@ -860,13 +766,6 @@ const REFS_DATA = [
         }
         .objetivos-progress {
           display: none;
-        }
-        .pagination-wrapper {
-          flex-direction: column;
-          align-items: center;
-        }
-        .page-numbers {
-          gap: 0;
         }
       }
     </style>
@@ -1035,13 +934,9 @@ const REFS_DATA = [
               <div
                 class="marquee-tag"
                 data-tag-index={i % TAGS.length}
+                style={`background:${tag.color}; transform:rotate(${tag.rotate}deg) scale(1); border:2.4px solid #d4d4d4; box-shadow:2.4px 3.2px 0px rgba(0,0,0,0.2);`}
               >
-                <div
-                  class="marquee-tag__chip"
-                  style={`background:${tag.color}; transform:rotate(${tag.rotate}deg) scale(1); border:2.4px solid #d4d4d4; box-shadow:2.4px 3.2px 0px rgba(0,0,0,0.2);`}
-                >
-                  {tag.label}
-                </div>
+                {tag.label}
               </div>
             ))}
           </div>
@@ -1053,57 +948,56 @@ const REFS_DATA = [
       <div class="objetivos-section" id="objetivosSection">
         <div class="objetivos-shell">
           <div class="objetivos-track" id="objetivosTrack">
-            {OBJ_SPECIFICS.slice().reverse().map((obj, reverseIndex) => {
-              const realIndex = OBJ_SPECIFICS.length - 1 - reverseIndex;
-              return (
-                <div class="obj-group objetivos-panel objetivos-panel__animate" id={`objGroup${realIndex}`}>
-                  <div class="objetivos-panel__stage">
-                  <div class="obj-group__blob">
-                    <svg fill="none" viewBox="0 0 2375 1075" preserveAspectRatio="xMaxYMid slice">
-                      <path d={obj.svgPath} fill={obj.blobColor} />
-                    </svg>
-                  </div>
-                  <div class="obj-group__content">
-                    <p class="obj-group__title" style={`color:${obj.titleColor}`}>
-                      OBJETIVOS<br />ESPECÍFICOS
-                    </p>
-                    <div
-                      class="obj-group__card"
-                      style={`background:${obj.cardBg}; transform:rotate(${obj.cardRotate})`}
-                    >
-                      {obj.cardText}
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              );
-            })}
 
-            <div class="obj-frame37 objetivos-panel objetivos-panel__animate objetivos-panel--intro">
-              <div class="objetivos-panel__stage">
-              <div class="obj-main-card-wrap" id="objMainCard">
-                <div class="obj-hand obj-hand--left">
-                  <svg fill="none" viewBox="0 0 183 269" width="100%" height="100%">
-                    <path d="M183.484 71.1972C183.488 71.1972 183.488 71.2016 183.485 71.2027C174.01 74.9488 164.355 76.5881 154.469 78.3972L129.419 82.9972L99.1807 91.6121C98.3756 91.8415 96.6424 92.4449 97.3193 92.9372C97.8359 93.3278 98.5054 93.4534 99.1298 93.2815C108.943 90.58 118.53 88.8433 128.649 87.5372C140.019 86.3672 150.989 85.5172 162.409 85.4572C163.489 85.4572 165.019 86.5072 165.539 87.1972C168.209 90.7972 157.819 99.4672 150.039 101.207L127.769 106.177C121.819 107.507 116.089 108.557 110.449 110.707C101.569 114.087 94.4594 119.437 88.1694 126.477C80.0094 135.597 71.0894 143.697 61.5294 151.327L50.3211 158.732C50.1001 158.878 50.0413 159.176 50.1903 159.395C50.3177 159.582 50.5594 159.654 50.768 159.566L55.6247 157.512C59.7626 155.762 64.4434 158.365 65.1396 162.803L67.0694 175.107C69.8294 187.457 74.5294 198.867 81.2394 209.487C85.8094 216.727 86.0994 224.767 83.5394 232.727C79.9294 243.927 75.0194 254.237 67.0294 262.937C61.4794 268.977 55.2194 273.987 47.6594 277.077C41.9894 279.397 35.8994 277.287 33.2094 271.597C29.6394 264.037 26.5194 256.407 24.0894 248.237C13.8794 213.947 9.59936 170.657 12.1694 135.057C13.0394 123.007 18.9094 112.117 25.9194 102.717L40.7394 82.8672L63.8794 51.0472L91.2793 17.6572C93.5993 14.8272 95.4794 11.2572 98.5894 9.31722C100.709 7.99722 103.279 11.7172 103.379 13.6172L103.849 22.6772C104.039 26.3172 102.689 29.2972 99.1094 30.8572L82.802 37.9858C82.2409 38.2311 82.0005 38.897 82.2755 39.4442C82.5301 39.9508 83.1362 40.1702 83.6561 39.9439L101.479 32.1872C119.249 24.4572 132.509 19.8572 152.359 22.4872C156.989 23.1072 161.729 22.4472 166.389 22.7972L176.279 23.5272C177.339 23.6072 178.799 24.9772 179.199 25.8172C179.689 26.8672 179.339 28.9672 178.559 29.8872C174.409 34.7772 168.699 36.3372 162.499 36.3272C141.018 36.2993 118.683 39.0511 99.4066 48.9697C97.4266 49.9885 97.7789 51.9243 99.7493 50.8872C118.109 41.1972 137.329 39.9872 157.639 38.9572L186.499 37.4972C189.119 37.3672 193.169 37.7672 194.019 40.8072C194.769 43.4872 192.709 47.1372 190.779 48.9572C189.039 50.5972 186.719 51.0072 184.339 51.4172L116.839 63.0572C114.056 63.5376 114.885 66.1267 117.678 65.706L130.949 63.7072L184.829 60.0472C186.189 59.9572 188.719 61.2372 188.899 62.3772C189.479 65.9127 187.125 69.7474 183.483 71.1917C183.48 71.1928 183.481 71.1972 183.484 71.1972Z" fill="#3B959E"/>
-                  </svg>
-                </div>
-
-                <div class="obj-main-card">
-                  <p class="obj-main-card__title">OBJETIVOS</p>
-                  <p class="obj-main-card__body">
-                    Porque construir nuestra identidad docente también implica escucharnos, atrévete a compartir tu voz y aquello que el aula dejó en ti.
-                  </p>
-                </div>
-
-                <div class="obj-hand obj-hand--right">
-                  <svg fill="none" viewBox="0 0 183 269" width="100%" height="100%">
-                    <path d="M51.644 78.4448C51.6412 78.456 51.6301 78.4632 51.6187 78.4611C41.2262 76.5626 31.3828 74.9023 21.939 71.0348C19.3903 69.9871 17.322 67.4817 16.8089 64.8685C16.4605 63.094 17.2238 61.1039 18.926 60.4933C20.233 60.0244 21.8411 60.0015 23.109 60.0848L73.669 63.5348L87.4671 65.5683C90.452 66.0081 91.271 63.4449 88.299 62.9248L18.789 50.8748C13.339 49.9348 10.659 42.6248 11.639 40.5848C13.189 37.3648 16.899 37.3848 19.899 37.5348L49.079 38.9648C69.409 39.9548 88.209 41.4248 106.479 51.1148C108.249 52.0506 108.551 50.1375 106.779 49.2056C87.5151 39.0763 64.6867 36.2585 43.269 36.3148C37.089 36.3348 31.469 34.8148 27.249 30.0148C26.559 29.2248 26.029 27.3248 26.299 26.2548C27.329 22.2748 34.959 22.9948 40.329 22.7848L56.589 22.1448C72.719 20.0848 87.369 24.7848 102.049 31.2148L121.009 39.5003C122.016 39.9407 123.351 40.1081 123.699 39.0648C123.839 38.6448 122.909 37.8648 122.399 37.6448L106.499 30.7648C102.759 29.1448 101.699 25.8948 101.869 22.2048L102.239 14.1048C102.329 12.0948 104.629 8.0448 107.069 9.2648C109.789 10.6248 111.499 14.0448 113.469 16.4348L141.949 51.1848L167.729 86.6748L179.299 102.015C186.499 111.565 192.549 122.525 193.529 134.815C195.009 153.465 194.199 171.655 192.509 190.265C190.739 209.745 187.309 228.505 181.929 247.215C179.489 255.685 176.249 263.545 172.619 271.355C169.829 277.365 163.559 279.445 157.569 276.835C147.549 272.475 139.509 265.005 133.209 256.025C128.029 248.635 124.769 240.735 122.029 232.125C119.629 224.585 119.939 216.745 124.259 209.865C134.824 193.019 139.323 176.941 141.581 157.171C141.761 155.593 143.384 154.598 144.863 155.177C147.303 156.131 148.387 154.171 146.181 152.757C145.065 152.041 143.973 151.277 142.929 150.395C134.199 143.015 125.779 135.625 118.169 127.045C111.269 119.255 103.289 113.365 93.349 109.945L77.749 106.085C63.439 102.545 50.619 103.155 40.599 91.2048C39.779 90.2348 39.579 88.1748 40.119 87.2348C40.609 86.3948 42.379 85.2948 43.639 85.3648L74.339 87.2048C85.6295 87.8781 96.2343 90.3703 107.204 93.3803C107.647 93.502 108.103 93.2285 108.203 92.7796C108.296 92.3621 108.046 91.9448 107.634 91.83L74.589 82.6248L51.6693 78.4285C51.6579 78.4264 51.6468 78.4335 51.644 78.4448Z" fill="#3B959E"/>
-                  </svg>
-                </div>
-              </div>
+        <!-- LEFT: sliding panels -->
+        {OBJ_SPECIFICS.map((obj, i) => (
+          <div class="obj-group objetivos-panel objetivos-panel__animate" id={`objGroup${i}`} style={`--obj-order:${i + 1}`}>
+            <div class="obj-group__blob">
+              <svg fill="none" viewBox="0 0 2375 1075" preserveAspectRatio="xMaxYMid slice">
+                <path d={obj.svgPath} fill={obj.blobColor} />
+              </svg>
+            </div>
+            <div class="obj-group__content">
+              <p class="obj-group__title" style={`color:${obj.titleColor}`}>
+                OBJETIVOS<br />ESPECÍFICOS
+              </p>
+              <div
+                class="obj-group__card"
+                style={`background:${obj.cardBg}; transform:rotate(${obj.cardRotate})`}
+              >
+                {obj.cardText}
               </div>
             </div>
           </div>
+        ))}
+
+        <!-- RIGHT: Frame37 always-visible card -->
+        <div class="obj-frame37 objetivos-panel objetivos-panel__animate" style="order:0">
+          <div class="obj-main-card-wrap" id="objMainCard">
+            <!-- Left hand -->
+            <div class="obj-hand" style="left:-220px; top:-50px; width:150px; height:220px; transform:rotate(35deg)">
+              <svg fill="none" viewBox="0 0 183 269" width="100%" height="100%">
+                <path d="M183.484 71.1972C183.488 71.1972 183.488 71.2016 183.485 71.2027C174.01 74.9488 164.355 76.5881 154.469 78.3972L129.419 82.9972L99.1807 91.6121C98.3756 91.8415 96.6424 92.4449 97.3193 92.9372C97.8359 93.3278 98.5054 93.4534 99.1298 93.2815C108.943 90.58 118.53 88.8433 128.649 87.5372C140.019 86.3672 150.989 85.5172 162.409 85.4572C163.489 85.4572 165.019 86.5072 165.539 87.1972C168.209 90.7972 157.819 99.4672 150.039 101.207L127.769 106.177C121.819 107.507 116.089 108.557 110.449 110.707C101.569 114.087 94.4594 119.437 88.1694 126.477C80.0094 135.597 71.0894 143.697 61.5294 151.327L50.3211 158.732C50.1001 158.878 50.0413 159.176 50.1903 159.395C50.3177 159.582 50.5594 159.654 50.768 159.566L55.6247 157.512C59.7626 155.762 64.4434 158.365 65.1396 162.803L67.0694 175.107C69.8294 187.457 74.5294 198.867 81.2394 209.487C85.8094 216.727 86.0994 224.767 83.5394 232.727C79.9294 243.927 75.0194 254.237 67.0294 262.937C61.4794 268.977 55.2194 273.987 47.6594 277.077C41.9894 279.397 35.8994 277.287 33.2094 271.597C29.6394 264.037 26.5194 256.407 24.0894 248.237C13.8794 213.947 9.59936 170.657 12.1694 135.057C13.0394 123.007 18.9094 112.117 25.9194 102.717L40.7394 82.8672L63.8794 51.0472L91.2793 17.6572C93.5993 14.8272 95.4794 11.2572 98.5894 9.31722C100.709 7.99722 103.279 11.7172 103.379 13.6172L103.849 22.6772C104.039 26.3172 102.689 29.2972 99.1094 30.8572L82.802 37.9858C82.2409 38.2311 82.0005 38.897 82.2755 39.4442C82.5301 39.9508 83.1362 40.1702 83.6561 39.9439L101.479 32.1872C119.249 24.4572 132.509 19.8572 152.359 22.4872C156.989 23.1072 161.729 22.4472 166.389 22.7972L176.279 23.5272C177.339 23.6072 178.799 24.9772 179.199 25.8172C179.689 26.8672 179.339 28.9672 178.559 29.8872C174.409 34.7772 168.699 36.3372 162.499 36.3272C141.018 36.2993 118.683 39.0511 99.4066 48.9697C97.4266 49.9885 97.7789 51.9243 99.7493 50.8872C118.109 41.1972 137.329 39.9872 157.639 38.9572L186.499 37.4972C189.119 37.3672 193.169 37.7672 194.019 40.8072C194.769 43.4872 192.709 47.1372 190.779 48.9572C189.039 50.5972 186.719 51.0072 184.339 51.4172L116.839 63.0572C114.056 63.5376 114.885 66.1267 117.678 65.706L130.949 63.7072L184.829 60.0472C186.189 59.9572 188.719 61.2372 188.899 62.3772C189.479 65.9127 187.125 69.7474 183.483 71.1917C183.48 71.1928 183.481 71.1972 183.484 71.1972Z" fill="#3B959E"/>
+              </svg>
+            </div>
+
+            <!-- White OBJETIVOS card -->
+            <div class="obj-main-card">
+              <p class="obj-main-card__title">OBJETIVOS</p>
+              <p class="obj-main-card__body">
+                Porque construir nuestra identidad docente también implica escucharnos, atrévete a compartir tu voz y aquello que el aula dejó en ti.
+              </p>
+            </div>
+
+            <!-- Right hand -->
+            <div class="obj-hand" style="right:-260px; bottom:-70px; width:150px; height:220px; transform:rotate(85deg)">
+              <svg fill="none" viewBox="0 0 183 269" width="100%" height="100%">
+                <path d="M51.644 78.4448C51.6412 78.456 51.6301 78.4632 51.6187 78.4611C41.2262 76.5626 31.3828 74.9023 21.939 71.0348C19.3903 69.9871 17.322 67.4817 16.8089 64.8685C16.4605 63.094 17.2238 61.1039 18.926 60.4933C20.233 60.0244 21.8411 60.0015 23.109 60.0848L73.669 63.5348L87.4671 65.5683C90.452 66.0081 91.271 63.4449 88.299 62.9248L18.789 50.8748C13.339 49.9348 10.659 42.6248 11.639 40.5848C13.189 37.3648 16.899 37.3848 19.899 37.5348L49.079 38.9648C69.409 39.9548 88.209 41.4248 106.479 51.1148C108.249 52.0506 108.551 50.1375 106.779 49.2056C87.5151 39.0763 64.6867 36.2585 43.269 36.3148C37.089 36.3348 31.469 34.8148 27.249 30.0148C26.559 29.2248 26.029 27.3248 26.299 26.2548C27.329 22.2748 34.959 22.9948 40.329 22.7848L56.589 22.1448C72.719 20.0848 87.369 24.7848 102.049 31.2148L121.009 39.5003C122.016 39.9407 123.351 40.1081 123.699 39.0648C123.839 38.6448 122.909 37.8648 122.399 37.6448L106.499 30.7648C102.759 29.1448 101.699 25.8948 101.869 22.2048L102.239 14.1048C102.329 12.0948 104.629 8.0448 107.069 9.2648C109.789 10.6248 111.499 14.0448 113.469 16.4348L141.949 51.1848L167.729 86.6748L179.299 102.015C186.499 111.565 192.549 122.525 193.529 134.815C195.009 153.465 194.199 171.655 192.509 190.265C190.739 209.745 187.309 228.505 181.929 247.215C179.489 255.685 176.249 263.545 172.619 271.355C169.829 277.365 163.559 279.445 157.569 276.835C147.549 272.475 139.509 265.005 133.209 256.025C128.029 248.635 124.769 240.735 122.029 232.125C119.629 224.585 119.939 216.745 124.259 209.865C134.824 193.019 139.323 176.941 141.581 157.171C141.761 155.593 143.384 154.598 144.863 155.177C147.303 156.131 148.387 154.171 146.181 152.757C145.065 152.041 143.973 151.277 142.929 150.395C134.199 143.015 125.779 135.625 118.169 127.045C111.269 119.255 103.289 113.365 93.349 109.945L77.749 106.085C63.439 102.545 50.619 103.155 40.599 91.2048C39.779 90.2348 39.579 88.1748 40.119 87.2348C40.609 86.3948 42.379 85.2948 43.639 85.3648L74.339 87.2048C85.6295 87.8781 96.2343 90.3703 107.204 93.3803C107.647 93.502 108.103 93.2285 108.203 92.7796C108.296 92.3621 108.046 91.9448 107.634 91.83L74.589 82.6248L51.6693 78.4285C51.6579 78.4264 51.6468 78.4335 51.644 78.4448Z" fill="#3B959E"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
 
           <div class="objetivos-progress" id="objetivosProgress" aria-hidden="true">
             {[0, 1, 2, 3].map((index) => (
@@ -1133,20 +1027,17 @@ const REFS_DATA = [
           ))}
         </div>
 
-        <section class="pagination-section">
-          <div class="pagination-wrapper">
-            <p class="pagination-info">Mostrando 1 a 5 de 8 resultados</p>
-            <div class="pagination-controls">
+        <div class="pagination">
+          <p class="pagination__info">Mostrando <strong>1</strong> a <strong>5</strong> de <strong>8</strong> resultados</p>
+          <div class="pagination__btns">
             <button class="pagination__btn pagination__btn--disabled" aria-label="Primera página">
               <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M7.33333 11.3333L4 8L7.33333 4.66667" stroke="#0A0A0A" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33"/><path d="M12 11.3333L8.66667 8L12 4.66667" stroke="#0A0A0A" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33"/></svg>
             </button>
             <button class="pagination__btn pagination__btn--disabled" aria-label="Página anterior">
               <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M10 12L6 8L10 4" stroke="#0A0A0A" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33"/></svg>
             </button>
-              <div class="page-numbers">
-                <a href="#" class="page-num active">1</a>
-                <a href="#" class="page-num">2</a>
-              </div>
+            <button class="pagination__btn pagination__btn--active">1</button>
+            <button class="pagination__btn">2</button>
             <button class="pagination__btn" aria-label="Página siguiente">
               <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M6 12L10 8L6 4" stroke="#0A0A0A" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.33"/></svg>
             </button>
@@ -1217,6 +1108,7 @@ const REFS_DATA = [
 
       // ── Objetivos: scroll lateral de 4 paneles ──────────────────
       const objSection = document.getElementById('objetivosSection');
+      const objTrack = document.getElementById('objetivosTrack');
       const objPanels = [
         document.querySelector('.obj-frame37'),
         document.getElementById('objGroup0'),
@@ -1224,12 +1116,8 @@ const REFS_DATA = [
         document.getElementById('objGroup2'),
       ].filter(Boolean);
       const objDots = Array.from(document.querySelectorAll('[data-obj-dot]'));
-      let currentObjectiveStep = -1;
 
       function setObjectiveStep(step) {
-        if (step === currentObjectiveStep) return;
-        currentObjectiveStep = step;
-
         objDots.forEach((dot, index) => {
           dot.classList.toggle('is-active', index === step);
         });
@@ -1239,9 +1127,9 @@ const REFS_DATA = [
           if (!animatedNode) return;
 
           gsap.to(animatedNode, {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
+            autoAlpha: index === step ? 1 : 0.45,
+            y: index === step ? 0 : 20,
+            scale: index === step ? 1 : 0.96,
             duration: 0.35,
             ease: 'power2.out',
             overwrite: 'auto',
@@ -1258,34 +1146,22 @@ const REFS_DATA = [
         (context) => {
           const { desktop, reduceMotion } = context.conditions;
 
-          currentObjectiveStep = -1;
           setObjectiveStep(0);
 
-          if (!desktop || reduceMotion || !objSection || objPanels.length !== 4) {
-            gsap.set(objPanels, { clearProps: 'transform,opacity,visibility' });
+          if (!desktop || reduceMotion || !objSection || !objTrack || objPanels.length !== 4) {
+            gsap.set(objTrack, { clearProps: 'transform' });
+            gsap.set(objPanels, { clearProps: 'all' });
             return;
           }
 
-          gsap.set(objPanels[0], {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
-            x: 0,
+          gsap.set(objPanels, {
+            xPercent: (index) => index * 100,
+            zIndex: (index) => objPanels.length - index,
           });
 
-          gsap.set(objPanels.slice(1), {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
-            x: (index) => {
-              if (index === 0) return -(window.innerWidth - 400);
-              if (index === 1) return -(window.innerWidth - 350);
-              if (index === 2) return -(window.innerWidth - 300);
-              return -window.innerWidth * 1.2;
-            },
-          });
-
-          const panelTimeline = gsap.timeline({
+          const panelTween = gsap.to(objPanels, {
+            xPercent: (index) => (index - (objPanels.length - 1)) * 100,
+            ease: 'none',
             scrollTrigger: {
               trigger: objSection,
               start: 'top top',
@@ -1307,15 +1183,28 @@ const REFS_DATA = [
             },
           });
 
-          objPanels.slice(1).forEach((panel) => {
-            panelTimeline.to(panel, {
-              x: 0,
-              duration: 1,
-              ease: 'none',
-            });
-          });
+          objPanels.forEach((panel) => {
+            const animatedNode = panel.querySelector('.obj-group__content, .obj-main-card-wrap');
+            if (!animatedNode) return;
 
-          ScrollTrigger.refresh();
+            gsap.fromTo(
+              animatedNode,
+              { autoAlpha: 0, y: 36, scale: 0.94 },
+              {
+                autoAlpha: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.7,
+                ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: panel,
+                  containerAnimation: panelTween,
+                  start: 'left 72%',
+                  toggleActions: 'play reverse play reverse',
+                },
+              }
+            );
+          });
         }
       );
 
