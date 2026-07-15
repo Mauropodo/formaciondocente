@@ -2259,20 +2259,41 @@ const carasImages = [
       });
     };
 
+    let connectScrollBound = false;
+
     const handleResize = () => {
       setupConnectMotion();
       updateConnectMotion();
+      syncConnectMotionListeners();
+    };
+
+    const syncConnectMotionListeners = () => {
+      if (narrowViewport.matches) {
+        if (connectScrollBound) {
+          window.removeEventListener("scroll", updateConnectMotion);
+          connectScrollBound = false;
+        }
+        return;
+      }
+
+      if (!connectScrollBound) {
+        window.addEventListener("scroll", updateConnectMotion, { passive: true });
+        connectScrollBound = true;
+      }
     };
 
     setupConnectMotion();
     updateConnectMotion();
-
-    window.addEventListener("scroll", updateConnectMotion, { passive: true });
+    syncConnectMotionListeners();
     window.addEventListener("resize", handleResize);
+    narrowViewport.addEventListener("change", syncConnectMotionListeners);
 
     connectMotionState.cleanup = () => {
-      window.removeEventListener("scroll", updateConnectMotion);
+      if (connectScrollBound) {
+        window.removeEventListener("scroll", updateConnectMotion);
+      }
       window.removeEventListener("resize", handleResize);
+      narrowViewport.removeEventListener("change", syncConnectMotionListeners);
     };
 
     mm.add("(max-width: 900px) and (prefers-reduced-motion: no-preference)", () => {
@@ -2414,9 +2435,27 @@ const carasImages = [
       }
     };
 
+    let questionHandoffScrollBound = false;
+
+    const syncQuestionHandoffListeners = () => {
+      if (narrowViewport.matches) {
+        if (questionHandoffScrollBound) {
+          window.removeEventListener("scroll", updateQuestionStoryHandoff);
+          questionHandoffScrollBound = false;
+        }
+        return;
+      }
+
+      if (!questionHandoffScrollBound) {
+        window.addEventListener("scroll", updateQuestionStoryHandoff, { passive: true });
+        questionHandoffScrollBound = true;
+      }
+    };
+
     updateQuestionStoryHandoff();
-    window.addEventListener("scroll", updateQuestionStoryHandoff, { passive: true });
+    syncQuestionHandoffListeners();
     window.addEventListener("resize", updateQuestionStoryHandoff);
+    narrowViewport.addEventListener("change", syncQuestionHandoffListeners);
   }
 
   if (questionStory && questionPromptPanel && questionFollowupPanel && questionPromptFloat && questionPromptFloatSecondary && mainFloatSVG && greenFloatSVG && grayFloatSVG) {
