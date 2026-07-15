@@ -1984,7 +1984,7 @@ const carasImages = [
       });
     } else {
       gsap.set(heroBridge, { autoAlpha: 0 });
-      gsap.set(heroBridgeCopy, { autoAlpha: 0, y: 28 });
+      gsap.set(heroBridgeCopy, { autoAlpha: 0 });
 
       const heroBridgeTimeline = gsap.timeline({
         scrollTrigger: {
@@ -1998,7 +1998,7 @@ const carasImages = [
 
       heroBridgeTimeline
         .to(heroBridge, { autoAlpha: 1, duration: 0.18, ease: "none" }, 0.08)
-        .to(heroBridgeCopy, { autoAlpha: 1, y: 0, duration: 0.24, ease: "none" }, 0.12)
+        .to(heroBridgeCopy, { autoAlpha: 1, duration: 0.24, ease: "none" }, 0.12)
         .to(heroBridgeCopy, { autoAlpha: 0, duration: 0.2, ease: "none" }, 0.76)
         .to(heroBridge, { autoAlpha: 0, duration: 0.16, ease: "none" }, 0.8);
     }
