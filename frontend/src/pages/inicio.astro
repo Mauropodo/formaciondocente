@@ -1192,6 +1192,16 @@ const carasImages = [
         aspect-ratio: 589 / 370;
         min-height: 0;
       }
+      .bubble {
+        box-shadow: none;
+      }
+      .bubble::after {
+        filter: none;
+      }
+      .bubble--quote .bubble-shape svg,
+      .question-story__float-shape {
+        filter: none;
+      }
       .bubble--quote .bubble-quote {
         padding: 0 2.2rem 2.9rem;
         transform: rotate(0deg);
