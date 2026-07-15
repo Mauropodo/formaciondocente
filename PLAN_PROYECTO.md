@@ -207,13 +207,13 @@ Astro no tiene backend. Opciones para producción:
 
 En desarrollo:
 ```
-WP Studio: http://sitio-parbularias.local/wp-json
+WP Studio: http://sitio-parbularias.local/graphql
 Astro dev: http://localhost:4321
 ```
 
 En producción:
 ```
-WP Hosting: https://www.tudominio.com/wp-json
+WP Hosting: https://www.tudominio.com/graphql
 Astro build → Netlify: https://www.tudominio.com
 ```
 

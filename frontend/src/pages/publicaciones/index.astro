@@ -1,21 +1,47 @@
 ---
+export const prerender = false;
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
 import CategoriaFilter from '../../components/CategoriaFilter.astro';
-import { posts } from '../../lib/posts';
-import { categorias } from '../../lib/categorias';
+import type { CategoryBadge } from '../../types/category';
+import { getAllCategories } from '../../services/wordpress/categories';
+import { getPaginatedPosts } from '../../services/wordpress/posts';
 
-const CATS_PER_PAGE = 6;
+const CATS_PER_PAGE = 12;
 const categoriaSlug = Astro.url.searchParams.get('categoria');
-const page = parseInt(Astro.url.searchParams.get('pagina')) || 1;
+const pageParam = Number.parseInt(Astro.url.searchParams.get('pagina') ?? '1', 10);
+const page = Number.isNaN(pageParam) ? 1 : pageParam;
 
-const filteredPosts = categoriaSlug
-  ? posts.filter(p => p.categoriaSlug === categoriaSlug)
-  : posts;
+const [categories, postsResult] = await Promise.all([
+  getAllCategories(),
+  getPaginatedPosts({
+    categorySlug: categoriaSlug,
+    page,
+    perPage: CATS_PER_PAGE,
+  }),
+]);
 
-const totalPages = Math.ceil(filteredPosts.length / CATS_PER_PAGE);
-const currentPage = Math.min(page, totalPages || 1);
-const pagePosts = filteredPosts.slice((currentPage - 1) * CATS_PER_PAGE, currentPage * CATS_PER_PAGE);
+const categorias: CategoryBadge[] = categories.map((category) => ({
+  id: category.id,
+  nombre: category.name,
+  slug: category.slug,
+}));
+
+const totalPages = postsResult.totalPages;
+const currentPage = postsResult.currentPage;
+const filteredPostsCount = postsResult.totalItems;
+const pagePosts = postsResult.items.map((post) => ({
+  title: post.title,
+  slug: post.slug,
+  excerpt: post.excerpt,
+  fecha: post.date,
+  imageUrl: post.imageUrl,
+  categories: post.categories,
+  categoria: post.primaryCategory?.name ?? '',
+  categoriaSlug: post.primaryCategory?.slug ?? '',
+  autor: post.authorName ?? undefined,
+}));
 
 function paginationUrl(slug, pageNum) {
   const params = new URLSearchParams();
@@ -142,7 +168,7 @@ function paginationUrl(slug, pageNum) {
     <section class="pagination-section">
       <div class="container">
         <div class="pagination-wrapper">
-          <p class="pagination-info">Mostrando {(currentPage - 1) * CATS_PER_PAGE + 1} a {Math.min(currentPage * CATS_PER_PAGE, filteredPosts.length)} de {filteredPosts.length} resultados</p>
+          <p class="pagination-info">Mostrando {(currentPage - 1) * CATS_PER_PAGE + 1} a {Math.min(currentPage * CATS_PER_PAGE, filteredPostsCount)} de {filteredPostsCount} resultados</p>
           <div class="pagination-controls">
             <a href={paginationUrl(categoriaSlug, 1)} class={`page-btn ${currentPage === 1 ? 'disabled' : ''}`} aria-label="Primera página">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 3L6 8L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>

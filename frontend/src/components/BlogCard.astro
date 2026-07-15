@@ -1,32 +1,83 @@
 ---
+interface CardCategory {
+  slug: string;
+  name: string;
+}
+
 interface Props {
   title: string;
   slug: string;
   excerpt: string;
-  fecha: string;
-  categoria: string;
-  categoriaSlug: string;
+  fecha?: string;
+  categoria?: string;
+  categoriaSlug?: string;
+  categories?: CardCategory[];
+  imageUrl?: string | null;
   autor?: string;
   index?: number;
 }
-const { title, slug, excerpt, fecha, categoria, categoriaSlug, autor, index = 0 } = Astro.props;
+
+const {
+  title,
+  slug,
+  excerpt,
+  categoria,
+  categoriaSlug,
+  categories = [],
+  imageUrl = null,
+  autor,
+  index = 0,
+} = Astro.props;
+
 const rotations = ["-2deg", "1deg", "-3deg"];
 const rotation = rotations[index % 3];
 const cardBg = "#eee2d9";
+
+const fallbackCategories = categoria && categoriaSlug
+  ? [{ name: categoria, slug: categoriaSlug }]
+  : [];
+
+const resolvedCategories = (categories.length > 0 ? categories : fallbackCategories).slice(0, 3);
+
+const categoryColors = {
+  "noticias":        { bg: "#f9f5f2", border: "#e6cbcb" },
+  "marco-teorico":   { bg: "#f3b568", border: "#f0a443" },
+  "reflexiones":     { bg: "#95b3a7", border: "#214d51" },
+  "hitos":           { bg: "#cee6dd", border: "#98b5ab" },
+  "relatos":         { bg: "#e5e5c6", border: "#7b7a4a" },
+  "aprendizajes":    { bg: "#f0d0d0", border: "#620404" },
+  "experiencias":    { bg: "#a1cad3", border: "#4a5c7c" },
+  "papers":          { bg: "#f9f5f2", border: "#e6cbcb" },
+  "buenas-practicas":{ bg: "#f9f5f2", border: "#e6cbcb" },
+  "comentarios":     { bg: "#f9f5f2", border: "#e6cbcb" },
+  "uncategorized":   { bg: "#f9f5f2", border: "#e6cbcb" },
+};
 ---
 
 <article class="blog-card" style={`--card-rotate:${rotation};--card-bg:${cardBg}`}>
   <div class="card-inner">
-    <div class="card-img"></div>
+    <div class={`card-img ${imageUrl ? 'card-img--has-image' : 'card-img--fallback'}`}>
+      {imageUrl && <img src={imageUrl} alt={title} loading="lazy" />}
+    </div>
     <div class="card-content">
       <h3 class="card-title"><a href={`/publicaciones/${slug}`}>{title}</a></h3>
       <p class="card-text">{excerpt}</p>
       <div class="card-footer">
-        <div class="card-tags">
-          <span class="card-tag tag-relatos">Relatos</span>
-          <span class="card-tag tag-marco">Marco teórico</span>
-          <span class="card-tag tag-hitos">Hitos</span>
-        </div>
+        {resolvedCategories.length > 0 && (
+          <div class="card-tags">
+            {resolvedCategories.map((category) => {
+              const colors = categoryColors[category.slug] || { bg: "#f9f5f2", border: "#e6cbcb" };
+              return (
+                <span
+                  class="card-tag"
+                  style={`--tag-bg:${colors.bg};--tag-border:${colors.border}`}
+                >
+                  {category.name}
+                </span>
+              );
+            })}
+          </div>
+        )}
         {autor && <span class="card-author">{autor}</span>}
       </div>
     </div>
@@ -58,10 +109,18 @@ const cardBg = "#eee2d9";
   }
   .card-img {
     flex: 0 0 auto;
-    width: 77px;
+    width: 110px;
     align-self: stretch;
-    background: linear-gradient(135deg, var(--color-primary-300), var(--color-tertiary-300));
     border-radius: 38.4px 0 0 38.4px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-primary-300), var(--color-tertiary-300));
+  }
+  .card-img--has-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   .card-content {
     flex: 1;
@@ -95,6 +154,10 @@ const cardBg = "#eee2d9";
     color: var(--color-text-secondary);
     margin: 0;
     line-height: 1.3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
   }
   .card-footer {
     display: flex;
@@ -115,11 +178,9 @@ const cardBg = "#eee2d9";
     font-size: 12px;
     font-weight: 400;
     color: #161616;
-    border: 2px solid;
+    border: 2px solid var(--tag-border, #e6cbcb);
+    background: var(--tag-bg, #f9f5f2);
   }
-  .tag-relatos { background: #e5e5c6; border-color: #7b7a4a; }
-  .tag-marco { background: #f3b568; border-color: #f0a443; }
-  .tag-hitos { background: #cee6dd; border-color: #98b5ab; }
   .card-author {
     font-family: 'Inconsolata', monospace;
     font-weight: 400;
@@ -133,6 +194,6 @@ const cardBg = "#eee2d9";
     .card-img { width: 100%; height: 120px; border-radius: 38.4px 38.4px 0 0; }
     .card-content { padding: 20px; }
     .card-title { font-size: 22px; line-height: 1.2; }
-    .card-text { font-size: 15px; }
+    .card-text { font-size: 15px; -webkit-line-clamp: 5; }
   }
 </style>

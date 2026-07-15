@@ -13,7 +13,7 @@ Fecha de consolidacion: 2026-07-14
 
 ## Objetivo General
 
-Integrar la seccion `/publicaciones` con WordPress Headless en `https://cms.identidadprofesional.cl`, reemplazando por completo los datos mock actuales por contenido dinamico obtenido desde el REST API de WordPress.
+Integrar la seccion `/publicaciones` con WordPress Headless en `https://cms.identidadprofesional.cl`, reemplazando por completo los datos mock actuales por contenido dinamico obtenido desde WPGraphQL.
 
 Esta etapa no incluye el detalle del post en `/publicaciones/[slug]`.
 
@@ -38,7 +38,7 @@ Netlify (Astro)
          |
          v
 https://cms.identidadprofesional.cl
-WordPress Headless / REST API
+WordPress Headless / WPGraphQL
 ```
 
 ## Restriccion Principal de Renderizado
@@ -182,14 +182,41 @@ Decision operativa:
 - Este documento se crea antes de iniciar cualquier implementacion.
 - Sera la referencia de trabajo para validar cada fase antes de ejecutarla.
 
+### Decision 6: Cambio de estrategia desde REST API a WPGraphQL
+
+Solicitud del usuario:
+
+- "actualiza todo a WPGraphQL"
+
+Decision operativa:
+
+- Desde esta decision, la integracion futura deja de basarse en WordPress REST API.
+- La arquitectura desde Fase 2 en adelante se redefine para usar WPGraphQL.
+- La variable de entorno objetivo pasa a ser `PUBLIC_WORDPRESS_GRAPHQL_URL`.
+- El endpoint esperado sera normalmente `/graphql`.
+- Si la instalacion no usa pretty permalinks, el fallback posible sera `/index.php?graphql`.
+- Antes de implementar la Fase 2 se debera confirmar cual endpoint exacto responde en el entorno real.
+
+### Decision 7: Verificacion del endpoint WPGraphQL
+
+Verificacion realizada el 2026-07-15:
+
+- `https://cms.identidadprofesional.cl/graphql` responde correctamente.
+- `https://cms.identidadprofesional.cl/index.php?graphql` tambien responde correctamente.
+
+Decision operativa:
+
+- Se tomara `/graphql` como endpoint principal recomendado.
+- Se dejara `/index.php?graphql` documentado como fallback valido.
+
 ## Confirmaciones Obligatorias Antes de Continuar
 
 Segun el requerimiento original, Codex no debe asumir configuraciones. Antes de avanzar en las fases correspondientes, se debe confirmar:
 
 ### Configuracion
 
-- URL definitiva de WordPress para `PUBLIC_WORDPRESS_URL`
-- Confirmacion de que el REST API responde correctamente
+- URL definitiva de WordPress para `PUBLIC_WORDPRESS_GRAPHQL_URL`
+- Confirmacion de que WPGraphQL responde correctamente
 - Confirmacion de que Astro ya puede operar con el adaptador SSR de Netlify en el contexto requerido
 
 ### WordPress
@@ -270,16 +297,16 @@ src/
 - La fuente ya no se consume directamente desde `src/lib/*` en la pagina objetivo.
 - La nueva arquitectura queda lista para la integracion real.
 
-## Fase 2 - Cliente WordPress
+## Fase 2 - Cliente WPGraphQL
 
 ### Objetivo
 
-Crear un cliente HTTP reutilizable y centralizado.
+Crear un cliente GraphQL reutilizable y centralizado.
 
 ### Arquitectura deseada
 
 ```text
-WordpressClient
+WPGraphQLClient
   |
   v
 PostsService
@@ -300,16 +327,21 @@ UI
   - logging
   - autenticacion
 - No dejar URLs hardcodeadas.
+- Centralizar documentos GraphQL y variables.
 
 ### Variables de entorno
 
 Crear:
 
-- `PUBLIC_WORDPRESS_URL`
+- `PUBLIC_WORDPRESS_GRAPHQL_URL`
 
 Ejemplo esperado:
 
-- `https://cms.identidadprofesional.cl/wp-json`
+- `https://cms.identidadprofesional.cl/graphql`
+
+Nota:
+
+- Si la instalacion no expone pretty permalinks, el endpoint podria ser `https://cms.identidadprofesional.cl/index.php?graphql`.
 
 Actualizar tambien:
 
@@ -317,10 +349,10 @@ Actualizar tambien:
 
 ### Pasos detallados propuestos
 
-1. Solicitar confirmacion de la URL definitiva de WordPress.
-2. Solicitar confirmacion de que el REST API responde.
+1. Solicitar confirmacion de la URL definitiva del endpoint GraphQL.
+2. Solicitar confirmacion de que WPGraphQL responde.
 3. Crear capa de configuracion para variables de entorno.
-4. Implementar el cliente HTTP base.
+4. Implementar el cliente GraphQL base.
 5. Definir opciones extensibles para timeout, retry y futuros headers.
 6. Ajustar `posts` y `categories` service para usar el cliente central.
 7. Mantener aun el cambio acotado sin romper visualmente la pagina.
@@ -335,13 +367,13 @@ Actualizar tambien:
 
 - Existe un cliente central reutilizable.
 - La URL vive en entorno y no en el codigo.
-- La capa ya esta lista para consumir WordPress real.
+- La capa ya esta lista para consumir WordPress real via WPGraphQL.
 
 ## Fase 3 - Modelo de Datos
 
 ### Objetivo
 
-Desacoplar totalmente la UI del formato REST de WordPress.
+Desacoplar totalmente la UI del schema de WPGraphQL.
 
 ### Modelos requeridos
 
@@ -368,13 +400,13 @@ Desacoplar totalmente la UI del formato REST de WordPress.
 
 ### Regla central
 
-- La interfaz nunca debe depender directamente del JSON que devuelve WordPress.
+- La interfaz nunca debe depender directamente del payload que devuelve WPGraphQL.
 - Toda transformacion debe hacerse dentro de `services`.
 
 ### Pasos detallados propuestos
 
 1. Diseñar el contrato normalizado final.
-2. Implementar funciones de mapeo desde respuesta REST hacia modelos internos.
+2. Implementar funciones de mapeo desde respuesta GraphQL hacia modelos internos.
 3. Limpiar HTML del extracto y normalizar datos faltantes.
 4. Preparar `formattedDate` aunque no se use visualmente aun.
 5. Garantizar que la UI reciba un contrato estable.
@@ -389,41 +421,45 @@ Desacoplar totalmente la UI del formato REST de WordPress.
 ### Criterio de exito
 
 - La UI trabaja con modelos propios del proyecto.
-- Ningun componente depende del shape REST de WordPress.
+- Ningun componente depende del shape de WPGraphQL.
 
-## Fase 4 - Integracion REST API
+## Fase 4 - Integracion WPGraphQL
 
 ### Objetivo
 
-Conectar realmente con WordPress usando solo los endpoints autorizados.
+Conectar realmente con WordPress usando WPGraphQL.
 
-### Endpoints permitidos
+### Endpoint esperado
 
-- `/wp/v2/posts?_embed=1`
-- `/wp/v2/categories`
+- `/graphql`
+
+Fallback posible:
+
+- `/index.php?graphql`
 
 ### Restriccion de integracion
 
-Usar `_embed=1` para obtener:
-
-- imagen destacada
-- categorias
-- autor
-
-Sin hacer multiples llamadas por cada post.
+- Utilizar queries GraphQL que pidan solo los campos necesarios para:
+  - imagen destacada
+  - categorias
+  - autor
+  - slug
+  - excerpt
+  - date
+- Evitar sobrepedir datos.
 
 ### Pasos detallados propuestos
 
-1. Conectar `PostsService` al endpoint real de posts.
-2. Conectar `CategoriesService` al endpoint real de categorias.
+1. Definir documento GraphQL para listado de posts.
+2. Definir documento GraphQL para categorias con publicaciones.
 3. Implementar transformadores hacia modelos internos.
 4. Verificar que el listado renderice datos reales.
 5. Verificar respuestas incompletas y fallback de campos.
 
 ### Riesgos a vigilar
 
-- Diferencias entre categorias embebidas y categorias de listado.
-- Cambios en campos `_embedded`.
+- Diferencias entre el schema real del sitio y el schema esperado.
+- Campos no expuestos publicamente en WPGraphQL.
 - Posts privados o sin contenido publico.
 
 ### Criterio de exito
@@ -599,8 +635,8 @@ No romper:
 1. Confirmar decision final sobre TypeScript en la nueva capa:
    - opcion recomendada: TypeScript solo para `services`, `types` y `config`
    - alternativa: JavaScript en toda la nueva capa
-2. Confirmar `PUBLIC_WORDPRESS_URL` definitiva.
-3. Confirmar si el API REST responde correctamente desde el entorno actual.
+2. Confirmar `PUBLIC_WORDPRESS_GRAPHQL_URL` definitiva.
+3. Confirmar si WPGraphQL responde correctamente desde el entorno actual.
 4. Confirmar cantidad de publicaciones por pagina.
 5. Confirmar si todas las publicaciones tendran imagen destacada.
 6. Confirmar si el autor sera publico.
@@ -632,4 +668,4 @@ Al terminar cada fase se debe informar:
 
 ## Nota Final
 
-No se iniciara ninguna fase de implementacion hasta que el usuario valide este documento y confirme la decision pendiente sobre TypeScript en la nueva capa.
+No se iniciara ninguna fase adicional que dependa del backend hasta confirmar el endpoint real de WPGraphQL y los campos expuestos por el sitio.

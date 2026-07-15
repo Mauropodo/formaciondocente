@@ -47,7 +47,7 @@ frontend/
 │   ├── lib/
 │   │   ├── posts.js               # Datos estáticos placeholder (7 posts)
 │   │   ├── categorias.js          # Categorías estáticas
-│   │   └── wordpress.js           # (Futuro) Funciones para WP REST API
+│   │   └── wordpress.js           # (Futuro) Funciones para WPGraphQL
 │   │
 │   ├── styles/
 │   │   └── global.css             # Sistema de diseño completo (color system, tipografía, radios, sombras)
@@ -115,5 +115,5 @@ frontend/
 1. Cambiar `astro.config.mjs` a `output: 'server'` para SSR (posts nuevos sin rebuild)
 2. Ajustar `[slug].astro` para SSR
 3. Instalar WordPress Studio y crear contenido real
-4. Conectar Astro a WP via REST API
+4. Conectar Astro a WP via WPGraphQL
 5. Deploy a Netlify + Hostinger (WordPress en subdominio `api.tudominio.com`)
