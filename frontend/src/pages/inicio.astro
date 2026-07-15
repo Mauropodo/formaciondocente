@@ -52,6 +52,7 @@ const carasImages = [
       --story-stack-height: 3595px;
       --hero-stage-height: 100svh;
       --hero-bridge-stage-height: 100svh;
+      --mobile-frozen-vh: 100vh;
       --connect-offset: 0px;
       --connect-mobile-offset: 0px;
     }
@@ -1147,7 +1148,7 @@ const carasImages = [
         align-self: start;
       }
       .hero-bridge {
-        min-height: 100svh;
+        min-height: var(--mobile-frozen-vh);
         padding: 0 24px;
       }
       .hero-bridge__copy {
@@ -1832,6 +1833,22 @@ const carasImages = [
   const clamp01 = (value) => Math.min(Math.max(value, 0), 1);
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
   const mm = gsap.matchMedia();
+  const rootStyle = document.documentElement;
+
+  const setFrozenMobileViewportHeight = () => {
+    if (!narrowViewport.matches) {
+      rootStyle.style.removeProperty("--mobile-frozen-vh");
+      return;
+    }
+
+    rootStyle.style.setProperty("--mobile-frozen-vh", `${window.innerHeight}px`);
+  };
+
+  setFrozenMobileViewportHeight();
+  window.addEventListener("orientationchange", () => {
+    window.setTimeout(setFrozenMobileViewportHeight, 120);
+  });
+  narrowViewport.addEventListener("change", setFrozenMobileViewportHeight);
 
   const syncMenuState = (isOpen) => {
     navPanel?.classList.toggle("open", isOpen);
