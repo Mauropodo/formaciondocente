@@ -232,6 +232,34 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
     }
     .cta:hover { color: #eee2d9; filter: brightness(0.98); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      pointer-events: auto;
+      margin-left: auto;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #000;
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .menu.open .nav-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu.open .nav-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu.open .nav-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
 
     /* ── Quiénes Somos sections ── */
 
@@ -616,49 +644,92 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     }
     @media (max-width: 900px) {
       .menu {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-      }
-      .menu .panel { flex-wrap: wrap; justify-content: center; }
-    }
-    @media (max-width: 768px) {
-      .menu {
-        min-height: auto;
         padding: 12px 16px;
         flex-direction: row;
         align-items: center;
-        flex-wrap: wrap;
+        min-height: auto;
       }
       .menu .brand {
         width: 88px;
         height: 88px;
+        position: relative;
+        z-index: 2;
       }
       .menu .panel {
-        display: none;
+        position: fixed;
+        inset: 0;
         width: 100%;
-        order: 3;
-        background: rgba(249, 245, 242, 0.94);
-        backdrop-filter: blur(10px);
-        border-radius: 0 0 12.8px 12.8px;
-        padding: 16px;
-        gap: 16px;
+        height: 100dvh;
+        min-height: 100dvh;
+        max-height: none;
+        margin: 0;
+        border-radius: 0;
+        padding: 132px 28px 32px;
+        background:
+          linear-gradient(180deg, rgba(249, 245, 242, 0.98), rgba(238, 226, 217, 0.98));
+        backdrop-filter: blur(12px);
         flex-direction: column;
-        align-items: stretch;
-        transform: none;
-        min-width: auto;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 28px;
+        min-width: 0;
+        max-width: none;
         box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
+        transform: translate3d(100%, 0, 0);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          transform 0.35s ease,
+          opacity 0.25s ease,
+          visibility 0s linear 0.35s;
       }
       .menu .panel.open {
-        display: flex;
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition:
+          transform 0.35s ease,
+          opacity 0.25s ease,
+          visibility 0s;
       }
       .links {
         flex-direction: column;
-        gap: 12px;
         align-items: flex-start;
+        gap: 20px;
+        width: 100%;
+      }
+      .links li {
+        width: 100%;
+      }
+      .links a {
+        display: block;
+        width: 100%;
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 0.95;
+      }
+      .menu .dev-readout {
+        margin-left: 0;
       }
       .cta {
         align-self: flex-start;
+        margin-top: auto;
+        font-size: 1rem;
+        padding: 14px 28px;
+      }
+      .nav-toggle {
+        display: flex;
+        position: relative;
+        z-index: 2;
+        width: 52px;
+        height: 52px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border-radius: 999px;
+        background: rgba(249, 245, 242, 0.92);
+        box-shadow: 0.8px 2.4px 0 #464646, 0 6.4px 9.6px rgba(0,0,0,.12);
       }
       .qs-hero { padding-top: 140px; }
       .qs-hero__content { flex-direction: column; align-items: center; }
@@ -716,6 +787,9 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     :global(.quienes-footer .footer-section) {
       background: #f9f5f2;
     }
+    body.nav-menu-open {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
@@ -725,7 +799,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       <a class="brand" href="/inicio">
           <img src={brandImage.src} alt="Parvularias" />
       </a>
-      <nav class="panel" aria-label="Principal">
+      <nav class="panel" id="nav-panel" aria-label="Principal">
         <ul class="links">
           <li><a href="/inicio">Inicio</a></li>
           <li><a href="/quienes-somos">Quiénes somos</a></li>
@@ -740,6 +814,16 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         </div>
         <a class="cta" href="/publicaciones">Relatos</a>
       </nav>
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        type="button"
+        aria-label="Menú"
+        aria-controls="nav-panel"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
     </header>
 
     <div class="qs-bg" aria-hidden="true">
@@ -953,6 +1037,9 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   gsap.registerPlugin(ScrollTrigger);
 
   const menu = document.getElementById("navbar");
+  const navToggle = document.getElementById("nav-toggle");
+  const navPanel = menu?.querySelector(".panel");
+  const mobileMenuQuery = window.matchMedia("(max-width: 900px)");
   const qsHero = document.getElementById("qs-hero");
   const qsHeroTitle = document.querySelector(".qs-hero__title");
   const teamSection = document.querySelector(".team-section");
@@ -977,6 +1064,37 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     "is-hidden": { left: 32.3, top: 16, width: 28, height: 74, opacity: 0, scale: 0.94, zIndex: 1 },
   };
   let isProfileAnimating = false;
+
+  const syncMenuState = (isOpen) => {
+    navPanel?.classList.toggle("open", isOpen);
+    menu?.classList.toggle("open", isOpen);
+    navToggle?.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("nav-menu-open", isOpen && mobileMenuQuery.matches);
+  };
+
+  navToggle?.addEventListener("click", () => {
+    syncMenuState(!navPanel?.classList.contains("open"));
+  });
+
+  [...(menu?.querySelectorAll(".links a") ?? []), ...(menu?.querySelectorAll(".cta") ?? [])].forEach((link) => {
+    link.addEventListener("click", () => {
+      syncMenuState(false);
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navPanel?.classList.contains("open")) {
+      syncMenuState(false);
+    }
+  });
+
+  mobileMenuQuery.addEventListener("change", (event) => {
+    if (!event.matches) {
+      syncMenuState(false);
+    } else {
+      document.body.classList.toggle("nav-menu-open", navPanel?.classList.contains("open") ?? false);
+    }
+  });
 
   const wrapProfileIndex = (value, total) => {
     if (!total) return 0;

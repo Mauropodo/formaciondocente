@@ -52,8 +52,6 @@ const carasImages = [
       --story-stack-height: 3595px;
       --hero-stage-height: 100svh;
       --hero-bridge-stage-height: 100svh;
-      --connect-offset: 0px;
-      --connect-mobile-offset: 0px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -363,27 +361,23 @@ const carasImages = [
       animation: hintChevronTwo 3s infinite ease-in-out;
     }
     .hero-bridge {
-      position: fixed;
-      inset: 0;
+      position: sticky;
+      top: 0;
       z-index: 3;
       width: 100%;
       margin: 0 auto;
-      min-height: 100svh;
-      padding: clamp(24px, 4vw, 40px);
+      min-height: var(--hero-bridge-stage-height);
+      padding: 0 clamp(20px, 4vw, 40px);
       display: grid;
       place-items: center;
       isolation: isolate;
       overflow: clip;
-      pointer-events: none;
-      opacity: 0;
-      visibility: hidden;
     }
     @media (min-width: 901px) {
       :root {
         --story-stack-height: calc(3595px - 70svh);
         --hero-stage-height: 90svh;
         --hero-bridge-stage-height: 72svh;
-        --connect-offset: 520px;
       }
     }
     .hero-bridge::after {
@@ -436,7 +430,7 @@ const carasImages = [
       position: relative;
       min-height: 220svh;
       width: 100%;
-      margin: var(--connect-offset) 0 0;
+      margin: 0;
       overflow: clip;
       padding: 0 clamp(16px, 3vw, 32px);
       z-index: 2;
@@ -749,12 +743,12 @@ const carasImages = [
       transform: translateY(-7px) rotate(-45deg);
     }
     .question-story {
-      --question-handoff-y: 100%;
-      --question-handoff-opacity: 0;
+      --question-overlap: 0px;
       position: relative;
-      background: #ffffff;
+      background: linear-gradient(90deg, var(--paper) 0%, var(--paper) 50%, #f7efe6 50%, #f7efe6 100%);
       z-index: 8;
       min-height: 100svh;
+      margin-top: var(--question-overlap);
     }
     .question-story__prompt-float,
     .question-story__prompt-float-secondary {
@@ -789,15 +783,6 @@ const carasImages = [
       height: auto;
       overflow: visible;
       z-index: 1;
-    }
-    .question-story.is-handoff-active .question-story__viewport {
-      position: fixed;
-      inset: 0;
-      height: 100svh;
-      transform: translate3d(0, var(--question-handoff-y), 0);
-      opacity: var(--question-handoff-opacity);
-      pointer-events: none;
-      will-change: transform, opacity;
     }
     .question-story__track {
       display: grid;
@@ -1000,8 +985,9 @@ const carasImages = [
       .hero { padding: 0 40px 0 120px; grid-template-columns: 1fr 1fr; }
       .menu { padding: 0 1rem; }
       .hero-bridge {
-        min-height: 100svh;
-        padding: 40px 24px 72px;
+        min-height: 220px;
+        padding-top: 40px;
+        padding-bottom: 72px;
       }
       .hero-bridge__copy {
         font-size: clamp(1.2rem, 2.4vw, 1.7rem);
@@ -1010,10 +996,6 @@ const carasImages = [
       .connect .content { width: min(100%, 1120px); }
     }
     @media (max-width: 900px) {
-      :root {
-        --connect-mobile-offset: 640px;
-        --connect-offset: var(--connect-mobile-offset);
-      }
       .story-stack {
         min-height: auto;
       }
@@ -1955,42 +1937,29 @@ const carasImages = [
   });
 
   if (heroBridge && heroBridgeCopy) {
-    const getHeroBridgeStart = () => (narrowViewport.matches ? 80 : 300);
-    const getHeroBridgeEnd = () => (narrowViewport.matches ? 900 : 1650);
-
     if (prefersReducedMotion.matches) {
-      gsap.set(heroBridge, { autoAlpha: 0 });
-      gsap.set(heroBridgeCopy, { autoAlpha: 1, y: 0 });
-
-      ScrollTrigger.create({
-        trigger: storyStack,
-        start: getHeroBridgeStart,
-        end: getHeroBridgeEnd,
-        invalidateOnRefresh: true,
-        onEnter: () => gsap.set(heroBridge, { autoAlpha: 1 }),
-        onLeave: () => gsap.set(heroBridge, { autoAlpha: 0 }),
-        onEnterBack: () => gsap.set(heroBridge, { autoAlpha: 1 }),
-        onLeaveBack: () => gsap.set(heroBridge, { autoAlpha: 0 }),
-      });
+      heroBridge.style.opacity = "1";
+      heroBridgeCopy.style.opacity = "1";
+      heroBridgeCopy.style.transform = "none";
     } else {
-      gsap.set(heroBridge, { autoAlpha: 0 });
-      gsap.set(heroBridgeCopy, { autoAlpha: 0, y: 28 });
+      gsap.set(heroBridge, { opacity: 0 });
+      gsap.set(heroBridgeCopy, { opacity: 0, y: 28 });
 
       const heroBridgeTimeline = gsap.timeline({
         scrollTrigger: {
-          trigger: storyStack,
-          start: getHeroBridgeStart,
-          end: getHeroBridgeEnd,
+          trigger: () => (narrowViewport.matches ? storyStack : heroSection),
+          start: () => (narrowViewport.matches ? 80 : "bottom 80%"),
+          end: () => (narrowViewport.matches ? 900 : 1650),
           scrub: 1,
           invalidateOnRefresh: true,
         },
       });
 
       heroBridgeTimeline
-        .to(heroBridge, { autoAlpha: 1, duration: 0.18, ease: "none" }, 0.08)
-        .to(heroBridgeCopy, { autoAlpha: 1, y: 0, duration: 0.24, ease: "none" }, 0.12)
-        .to(heroBridgeCopy, { autoAlpha: 0, y: -26, duration: 0.2, ease: "none" }, 0.76)
-        .to(heroBridge, { autoAlpha: 0, duration: 0.16, ease: "none" }, 0.8);
+        .to(heroBridge, { opacity: 1, duration: 0.18, ease: "none" }, 0.08)
+        .to(heroBridgeCopy, { opacity: 1, y: 0, duration: 0.24, ease: "none" }, 0.12)
+        .to(heroBridgeCopy, { opacity: 0, y: -26, duration: 0.2, ease: "none" }, 0.76)
+        .to(heroBridge, { opacity: 0, duration: 0.16, ease: "none" }, 0.8);
     }
   }
 
@@ -2189,7 +2158,7 @@ const carasImages = [
     };
 
     const updateConnectMotion = () => {
-      if (prefersReducedMotion.matches) {
+      if (prefersReducedMotion.matches || narrowViewport.matches) {
         connectSection.classList.add("is-active");
 
         connectBubbles.forEach((bubble, index) => {
@@ -2202,24 +2171,9 @@ const carasImages = [
         return;
       }
 
-      if (narrowViewport.matches) {
-        connectSection.classList.add("is-active");
-
-        connectBubbles.forEach((bubble) => {
-          bubble.style.setProperty("--bubble-shift-x", "0px");
-          bubble.style.setProperty("--bubble-shift-y", "0px");
-          bubble.style.setProperty("--bubble-scale", "1");
-        });
-        return;
-      }
-
-      const revealScrollStart = 1600;
-      const revealScrollEnd = 2550;
-      const sectionProgress = clamp01(
-        (window.scrollY - revealScrollStart) / Math.max(revealScrollEnd - revealScrollStart, 1)
-      );
-      const revealStart = 0;
-      const revealEnd = 1;
+      const sectionProgress = getSectionProgress(connectSection, 260);
+      const revealStart = 0.18;
+      const revealEnd = 0.82;
       const revealSpan = Math.max(revealEnd - revealStart, 0.001);
       const revealSegment = revealSpan / connectBubbles.length;
 
@@ -2264,93 +2218,6 @@ const carasImages = [
       window.removeEventListener("scroll", updateConnectMotion);
       window.removeEventListener("resize", handleResize);
     };
-
-    mm.add("(max-width: 900px) and (prefers-reduced-motion: no-preference)", () => {
-      const mobileBubbleDirections = {
-        green: -120,
-        orange: 120,
-        coral: -120,
-        teal: 120,
-      };
-      const mobileBubbleTimelines = [];
-
-      connectSection.classList.add("is-active");
-
-      connectBubbles.forEach((bubble) => {
-        const bubbleKey = getBubbleKey(bubble);
-        const startX = mobileBubbleDirections[bubbleKey] ?? -120;
-        const bubbleText = bubble.querySelector(".bubble-text");
-        const bubbleMarks = bubble.querySelectorAll(".bubble-mark");
-
-        gsap.set(bubble, { xPercent: startX, autoAlpha: 0 });
-        if (bubbleText) {
-          gsap.set(bubbleText, { x: startX > 0 ? 28 : -28, autoAlpha: 0 });
-        }
-        if (bubbleMarks.length) {
-          gsap.set(bubbleMarks, { autoAlpha: 0 });
-        }
-
-        const bubbleTimeline = gsap.timeline({
-          defaults: { ease: "power3.out" },
-          scrollTrigger: {
-            trigger: bubble,
-            start: "top center",
-            toggleActions: "play none none reverse",
-            invalidateOnRefresh: true,
-          },
-        });
-
-        bubbleTimeline.to(bubble, {
-          xPercent: 0,
-          autoAlpha: 1,
-          duration: 0.62,
-        });
-
-        if (bubbleText) {
-          bubbleTimeline.to(
-            bubbleText,
-            {
-              x: 0,
-              autoAlpha: 1,
-              duration: 0.38,
-            },
-            "<+=0.10"
-          );
-        }
-
-        if (bubbleMarks.length) {
-          bubbleTimeline.to(
-            bubbleMarks,
-            {
-              autoAlpha: 1,
-              duration: 0.24,
-              stagger: 0.04,
-            },
-            "<"
-          );
-        }
-
-        mobileBubbleTimelines.push(bubbleTimeline);
-      });
-
-      return () => {
-        mobileBubbleTimelines.forEach((timeline) => {
-          timeline.scrollTrigger?.kill();
-          timeline.kill();
-        });
-        connectBubbles.forEach((bubble) => {
-          const bubbleText = bubble.querySelector(".bubble-text");
-          const bubbleMarks = bubble.querySelectorAll(".bubble-mark");
-          gsap.set(bubble, { clearProps: "xPercent,opacity,visibility" });
-          if (bubbleText) {
-            gsap.set(bubbleText, { clearProps: "x,opacity,visibility" });
-          }
-          if (bubbleMarks.length) {
-            gsap.set(bubbleMarks, { clearProps: "opacity,visibility" });
-          }
-        });
-      };
-    });
   }
 
   if (storyStack && storyBg && bgFreezeLayer && voicesSection && questionStory) {
@@ -2366,9 +2233,7 @@ const carasImages = [
 
     const updateQuestionStoryHandoff = () => {
       if (prefersReducedMotion.matches || narrowViewport.matches) {
-        questionStory.classList.remove("is-handoff-active");
-        questionStory.style.setProperty("--question-handoff-y", "0%");
-        questionStory.style.setProperty("--question-handoff-opacity", "1");
+        questionStory.style.setProperty("--question-overlap", "0px");
         bgFreezeLayer.classList.remove("is-active");
         bgFreezeLayer.style.removeProperty("--bg-freeze-offset");
         return;
@@ -2377,30 +2242,18 @@ const carasImages = [
       ensureFreezeBackground();
 
       const voicesRect = voicesSection.getBoundingClientRect();
-      const questionRect = questionStory.getBoundingClientRect();
       const overlapProgress = clamp01((window.innerHeight - voicesRect.bottom) / Math.max(window.innerHeight, 1));
-      const handoffProgress = easeOutCubic(overlapProgress);
-      const handoffIsActive = questionRect.top > 0 && overlapProgress > 0;
+      const overlapAmount = -window.innerHeight * overlapProgress;
 
-      questionStory.style.setProperty("--question-handoff-y", `${((1 - handoffProgress) * 100).toFixed(2)}%`);
-      questionStory.style.setProperty("--question-handoff-opacity", handoffProgress.toFixed(4));
-      questionStory.classList.toggle("is-handoff-active", handoffIsActive);
+      questionStory.style.setProperty("--question-overlap", `${overlapAmount.toFixed(2)}px`);
 
-      if (handoffIsActive) {
+      if (overlapProgress > 0 && overlapProgress < 1) {
         const bgOffset = storyStack.getBoundingClientRect().top;
         bgFreezeLayer.style.setProperty("--bg-freeze-offset", `${bgOffset.toFixed(2)}px`);
         bgFreezeLayer.classList.add("is-active");
       } else {
         bgFreezeLayer.classList.remove("is-active");
         bgFreezeLayer.style.removeProperty("--bg-freeze-offset");
-
-        if (questionRect.top <= 0) {
-          questionStory.style.setProperty("--question-handoff-y", "0%");
-          questionStory.style.setProperty("--question-handoff-opacity", "1");
-        } else {
-          questionStory.style.setProperty("--question-handoff-y", "100%");
-          questionStory.style.setProperty("--question-handoff-opacity", "0");
-        }
       }
     };
 

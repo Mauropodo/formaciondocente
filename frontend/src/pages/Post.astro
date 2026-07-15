@@ -10,6 +10,8 @@
  *   a10ce666...png  → colaboran.png
  */
 
+import Nav from '../components/Nav.astro';
+
 const tags = [
   { label: "Relatos",       bg: "#e5e5c6", border: "#7b7a4a" },
   { label: "Marco teórico", bg: "#f3b568", border: "#f0a443" },
@@ -420,18 +422,7 @@ const navLinks = ["Inicio", "Quiénes somos", "Investigación", "Publicaciones",
     </svg>
   </div>
 
-  <!-- ══ Nav ══ -->
-  <nav class="nav">
-    <div class="nav__logo">
-      <img src="/images/post/logo.png" alt="Logo" />
-    </div>
-    <div class="nav__bar">
-      {navLinks.map(link => (
-        <a href="#" class="nav__link">{link}</a>
-      ))}
-      <a href="/post" class="nav__cta">Relatos</a>
-    </div>
-  </nav>
+  <Nav />
 
   <!-- ══ Hero ══ -->
   <section class="hero" id="hero">
