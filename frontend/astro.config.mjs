@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import netlify from '@astrojs/netlify';
 
 export default defineConfig({
-  output: 'static',
+  output: 'server',
   adapter: netlify(),
-  site: 'https://www.tudominio.com',
+  site: 'https://identidadprofesional.cl',
 });
