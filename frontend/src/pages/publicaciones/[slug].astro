@@ -133,13 +133,27 @@ const categoryColors = {
 <script>
   import { fadeInUp } from "../../utils/gsap";
 
-  fadeInUp(document.getElementById("postHeroMeta"));
-  fadeInUp(document.getElementById("postHeroImage"), 0.15);
-  fadeInUp(document.getElementById("postContentSection"), 0.2);
-  fadeInUp(document.getElementById("postRelatedSection"), 0.25);
+  const animateChildren = (selector, delay = 0) => {
+    const container = document.querySelector(selector);
+    if (!container) return;
+
+    Array.from(container.children).forEach((element, index) => {
+      fadeInUp(element, delay + index * 0.08);
+    });
+  };
+
+  animateChildren("#postHeroMeta");
+  animateChildren("#postHeroImage", 0.15);
+  animateChildren("#postContent", 0.2);
+  animateChildren(".post-related-section__header", 0.25);
+  animateChildren(".post-related-grid", 0.25);
 </script>
 
 <style>
+  :global(.footer-section) {
+    background: #F9F4F1;
+  }
+
   .post-detail-bg {
     opacity: 0.32;
     background: #f9f4f1;
@@ -276,10 +290,9 @@ const categoryColors = {
     background: #f9f4f1;
     padding: 30px 0 64px;
   }
-  .post-content-section__inner {
-    max-width: 940px;
-  }
   .post-content {
+    width: 100%;
+    max-width: 940px;
     font-family: 'Poppins', sans-serif;
     color: #474747;
     line-height: 1.7;

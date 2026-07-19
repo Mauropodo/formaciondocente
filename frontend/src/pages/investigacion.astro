@@ -99,6 +99,11 @@ const REFS_DATA = [
         overflow-x: hidden;
       }
 
+      /* Diagnostic: prevents overflow-x from creating a nested vertical scroller on desktop. */
+      @media (min-width: 901px) {
+        .page { overflow: clip; }
+      }
+
       .intro-stack {
         position: relative;
         isolation: isolate;
@@ -241,9 +246,7 @@ const REFS_DATA = [
         display: flex;
         flex-direction: column;
         align-items: center;
-        flex: 0 1 min(561px, 100%);
-        width: min(561px, 100%);
-        margin-left: auto;
+        flex-shrink: 0;
       }
       .fondecyt__label {
         position: relative;
@@ -258,7 +261,8 @@ const REFS_DATA = [
       .fondecyt__bubbles {
         position: relative;
         width: min(561px, 82vw);
-        height: 363px;
+        height: auto;
+        aspect-ratio: 552 / 511;
       }
       .bubble-q {
         position: absolute;
@@ -266,7 +270,7 @@ const REFS_DATA = [
       }
       .bubble-q--orange {
         width: 98%; height: 321px;
-        bottom: -83px;
+        bottom: -100px;
         left: 50%;
         transform: translateX(calc(-50% - 117px)) rotate(2deg);
         z-index: 0;
@@ -286,8 +290,8 @@ const REFS_DATA = [
         inset: 0;
         z-index: 3;
         isolation: isolate;
-        width: 100%;
-        aspect-ratio: 589 / 370;
+        width: 80%;
+        aspect-ratio: 552 / 511;
         min-height: 0;
       }
       .qs-bubble .bubble-shape {
@@ -314,7 +318,7 @@ const REFS_DATA = [
       }
       .qs-bubble .bubble-text {
         margin: 0;
-        max-width: 80%;
+        max-width: 100%;
         font-family: Inconsolata, monospace;
         font-size: 20px;
         font-weight: 400;
@@ -349,16 +353,23 @@ const REFS_DATA = [
       .temas-section {
         position: relative;
         z-index: 10;
-        height: 86vh;
+        min-height: 86vh;
+        padding: 200px 0 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 48px;
         overflow: hidden;
         background: transparent;
       }
       .temas-info-group {
-        position: absolute;
+        position: relative;
         z-index: 10;
-        right: clamp(40px, 13vw, 260px);
-        top: 200px;
+        right: auto;
+        top: auto;
+        align-self: flex-end;
         width: fit-content;
+        margin-right: clamp(40px, 13vw, 260px);
       }
       .temas-info-card {
         position: relative;
@@ -400,12 +411,13 @@ const REFS_DATA = [
         z-index: 11;
       }
       .temas-marquee-wrap {
-        position: absolute;
-        bottom: 40px;
-        left: 0;
-        right: 0;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
         width: 100vw;
         margin-inline: calc(-50vw + 50%);
+        margin-top: 0;
         overflow: hidden;
         z-index: 3;
         background: none;
@@ -575,6 +587,7 @@ const REFS_DATA = [
         justify-content: center;
         width: fit-content;
         max-width: min(100%, 720px);
+        --hand-corner-offset: clamp(0px, 1vw, 12px);
       }
       .obj-hand {
         position: absolute;
@@ -582,18 +595,18 @@ const REFS_DATA = [
         z-index: 2;
       }
       .obj-hand--left {
-        left: 65px;
-        top: 30px;
+        left: var(--hand-corner-offset);
+        top: calc(var(--hand-corner-offset) - clamp(8px, 2.5vw, 10px));
         width: 150px;
         height: 220px;
-        transform: translate(-62%, -52%) rotate(35deg);
+        transform: translate(-28%, -24%) rotate(35deg);
       }
       .obj-hand--right {
-        right: 110px;
-        bottom: 25px;
+        right: calc(var(--hand-corner-offset) + clamp(16px, 5vw, 20px));
+        bottom: calc(var(--hand-corner-offset) - clamp(8px, 2.5vw, 10px));
         width: 150px;
         height: 220px;
-        transform: translate(64%, 50%) rotate(85deg);
+        transform: translate(28%, 24%) rotate(85deg);
       }
       .obj-main-card {
         background: white;
@@ -797,16 +810,69 @@ const REFS_DATA = [
         }
       }
       @media (max-width: 900px) {
-        .objetivos-shell {
+        .intro-stack__backdrop {
+          opacity: 0.3;
+        }
+        .hero__title {
+          flex: 0 0 100%;
+          width: 100%;
+          max-width: none;
+          text-align: center;
+        }
+        .fondecyt {
+          width: 100%;
+          max-width: none;
+        }
+        .fondecyt__bubbles {
+          width: 100vw;
+          max-width: 100vw;
           height: auto;
-          overflow: visible;
+          aspect-ratio: 552 / 511;
+        }
+        .qs-bubble {
+          width: 100%;
+          max-width: 100%;
+          aspect-ratio: 552 / 511;
+        }
+        .qs-bubble .bubble-quote {
+          padding: clamp(1.6rem, 6vw, 2.3rem) clamp(1.5rem, 7vw, 2.7rem) clamp(2.4rem, 9vw, 3.6rem);
+        }
+        .qs-bubble .bubble-text {
+          max-width: 100%;
+          font-size: 18px;
+          line-height: 1.18;
+        }
+        .qs-bubble .bubble-mark {
+          font-size: 5.4rem;
+        }
+        .qs-bubble .bubble-mark--open {
+          top: 3.25rem;
+          left: 2.1rem;
+        }
+        .qs-bubble .bubble-mark--close {
+          right: 2.2rem;
+          bottom: 2.2rem;
+        }
+        .temas-info-group {
+          left: 0;
+          right: auto;
+          align-self: stretch;
+          width: 100%;
+          margin-right: 0;
+        }
+        .temas-info-card {
+          width: 100vw;
+          max-width: none;
+        }
+        .objetivos-shell {
+          min-height: 100svh;
+          overflow: hidden;
         }
         .objetivos-track {
-          display: flex;
+          display: grid;
+          grid-template-areas: "stack";
           width: 100%;
-          height: auto;
-          min-height: 0;
-          flex-direction: column;
+          min-height: 100svh;
         }
         .obj-frame37 {
           order: 0;
@@ -823,7 +889,8 @@ const REFS_DATA = [
         .objetivos-panel {
           width: 100%;
           min-width: 100%;
-          height: auto;
+          grid-area: stack;
+          height: 100svh;
           min-height: 100svh;
           padding: 0;
         }
@@ -832,7 +899,8 @@ const REFS_DATA = [
           padding: 128px 20px 40px;
         }
         .obj-group {
-          min-height: auto;
+          height: 100%;
+          min-height: 0;
         }
         .obj-group__blob {
           width: 100%;
@@ -856,7 +924,9 @@ const REFS_DATA = [
           white-space: normal;
         }
         .obj-hand {
-          display: none;
+          display: block;
+          width: clamp(90px, 28vw, 150px);
+          height: auto;
         }
         .objetivos-progress {
           display: none;
@@ -869,6 +939,7 @@ const REFS_DATA = [
           gap: 0;
         }
       }
+
     </style>
   </head>
 
@@ -989,14 +1060,14 @@ const REFS_DATA = [
                 </svg>
                 <article class="qs-bubble" aria-label="Cita destacada">
                   <div class="bubble-shape" aria-hidden="true">
-                    <svg viewBox="0 0 589 370" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                      <path d="M554.823 96.2274C552.164 45.4868 508.874 6.50922 458.134 9.16842L98.6273 28.0094C47.8868 30.6686 8.9091 73.9576 11.5683 124.698L15.9213 207.759C18.5805 258.499 61.8696 297.477 112.61 294.818L156.55 292.515L199.458 290.266C215.826 289.409 232.126 292.939 246.673 300.493L317.694 337.375C318.145 337.609 318.651 337.719 319.159 337.692C321.315 337.579 322.57 335.206 321.451 333.36L308.145 311.42C301.008 299.651 309.011 284.525 322.756 283.805L472.117 275.977C522.857 273.318 561.835 230.029 559.176 179.288L554.823 96.2274Z" fill="#83BAA4" />
+                    <svg viewBox="0 0 552 511" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                      <path d="M543.422 89.1416C541.818 37.5907 498.157 -2.57092 446.652 0.128343L87.1866 18.9671C37.2072 21.5864 -1.51017 63.6778 0.0460051 113.702L8.28445 378.53C9.88813 430.081 53.5498 470.242 105.055 467.543L147.02 465.344L189.929 463.095C206.297 462.237 222.597 465.768 237.143 473.322L308.164 510.203C308.616 510.438 309.121 510.547 309.629 510.521C311.785 510.408 313.041 508.035 311.921 506.189L298.615 484.248C291.478 472.48 299.481 457.354 313.226 456.633L464.52 448.704C514.499 446.085 553.217 403.993 551.661 353.97L543.422 89.1416Z" fill="#83BAA4" />
                     </svg>
                   </div>
                   <div class="bubble-quote">
-                    <span class="bubble-mark bubble-mark--open" aria-hidden="true">"</span>
+                    <span class="bubble-mark bubble-mark--open" aria-hidden="true">“</span>
                     <p class="bubble-text">Aprendí que mi identidad profesional no se construye desde la perfección, sino desde la capacidad de reflexionar sobre mis experiencias y seguir aprendiendo incluso en medio de la incertidumbre</p>
-                    <span class="bubble-mark bubble-mark--close" aria-hidden="true">"</span>
+                    <span class="bubble-mark bubble-mark--close" aria-hidden="true">”</span>
                   </div>
                 </article>
               </div>
@@ -1226,13 +1297,15 @@ const REFS_DATA = [
       const objDots = Array.from(document.querySelectorAll('[data-obj-dot]'));
       let currentObjectiveStep = -1;
 
-      function setObjectiveStep(step) {
+      function setObjectiveStep(step, animateContent = true) {
         if (step === currentObjectiveStep) return;
         currentObjectiveStep = step;
 
         objDots.forEach((dot, index) => {
           dot.classList.toggle('is-active', index === step);
         });
+
+        if (!animateContent) return;
 
         objPanels.forEach((panel, index) => {
           const animatedNode = panel.querySelector('.obj-group__content, .obj-main-card-wrap');
@@ -1253,16 +1326,88 @@ const REFS_DATA = [
       objMM.add(
         {
           desktop: '(min-width: 901px)',
+          mobile: '(max-width: 900px)',
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         (context) => {
-          const { desktop, reduceMotion } = context.conditions;
+          const { desktop, mobile, reduceMotion } = context.conditions;
 
           currentObjectiveStep = -1;
           setObjectiveStep(0);
 
-          if (!desktop || reduceMotion || !objSection || objPanels.length !== 4) {
+          if (reduceMotion || !objSection || objPanels.length !== 4) {
             gsap.set(objPanels, { clearProps: 'transform,opacity,visibility' });
+            return;
+          }
+
+          if (mobile) {
+            gsap.set(objPanels[0], {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+            });
+
+            gsap.set(objPanels.slice(1), {
+              autoAlpha: 1,
+              x: -window.innerWidth,
+              scale: 1,
+            });
+
+            const mobilePanelTimeline = gsap.timeline({
+              scrollTrigger: {
+                trigger: objSection,
+                start: 'top top',
+                end: () => `+=${window.innerWidth * (objPanels.length - 1)}`,
+                pin: true,
+                scrub: 0.9,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                snap: {
+                  snapTo: 1 / (objPanels.length - 1),
+                  duration: { min: 0.18, max: 0.38 },
+                  delay: 0.04,
+                  ease: 'power1.inOut',
+                },
+                onUpdate: (self) => {
+                  const nextStep = Math.round(self.progress * (objPanels.length - 1));
+                  setObjectiveStep(nextStep, false);
+                },
+              },
+            });
+
+            mobilePanelTimeline.to(objPanels[0], {
+              autoAlpha: 0,
+              duration: 1,
+              ease: 'none',
+            }, 0);
+
+            const firstSpecificContent = objPanels[1].querySelector('.obj-group__content');
+            if (firstSpecificContent) {
+              mobilePanelTimeline.to(firstSpecificContent, {
+                autoAlpha: 0,
+                duration: 1,
+                ease: 'none',
+              }, 1);
+            }
+
+            const secondSpecificContent = objPanels[2].querySelector('.obj-group__content');
+            if (secondSpecificContent) {
+              mobilePanelTimeline.to(secondSpecificContent, {
+                autoAlpha: 0,
+                duration: 1,
+                ease: 'none',
+              }, 2);
+            }
+
+            objPanels.slice(1).forEach((panel, index) => {
+              mobilePanelTimeline.to(panel, {
+                x: 0,
+                duration: 1,
+                ease: 'none',
+              }, index);
+            });
+
+            ScrollTrigger.refresh();
             return;
           }
 

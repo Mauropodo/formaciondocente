@@ -33,20 +33,22 @@ const imageSrc =
     : post.imagen;
 ---
 
-<article
+<a
   class={`voice-post-card voice-post-card--${tone} voice-post-card--${layout}`}
+  href={`/publicaciones/${post.slug}`}
+  aria-label={post.title}
   style={`--voice-rotate:${rotation};--voice-offset-x:${offsetX};--voice-offset-y:${offsetY};`}
 >
-  <a class="voice-post-card__media" href={`/publicaciones/${post.slug}`} aria-label={post.title}>
+  <div class="voice-post-card__media" aria-hidden="true">
     <img src={imageSrc} alt={post.title} loading="lazy" />
-  </a>
+  </div>
 
   <div class="voice-post-card__body">
-    <h3><a href={`/publicaciones/${post.slug}`}>{post.title}</a></h3>
+    <h3>{post.title}</h3>
     <p>{post.excerpt}</p>
     {post.autor && <div class="voice-post-card__author">{post.autor}</div>}
   </div>
-</article>
+</a>
 
 <style>
   .voice-post-card {
@@ -58,6 +60,9 @@ const imageSrc =
     border-radius: 44px;
     overflow: hidden;
     color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    pointer-events: auto;
     box-shadow:
       8.8px 11.2px 6.12px rgba(0,0,0,.23),
       0 3.2px 1.6px rgba(0,0,0,.25),
@@ -65,6 +70,11 @@ const imageSrc =
       -1.6px 3.2px 1.6px rgba(0,0,0,.4);
     transform: translate3d(var(--voice-offset-x), var(--voice-offset-y), 0) rotate(var(--voice-rotate));
     transform-origin: center;
+  }
+
+  .voice-post-card,
+  .voice-post-card * {
+    text-decoration: none;
   }
 
   .voice-post-card--carousel {
@@ -112,11 +122,6 @@ const imageSrc =
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-  }
-
-  .voice-post-card__body h3 a {
-    color: inherit;
-    text-decoration: none;
   }
 
   .voice-post-card__body p {
@@ -180,8 +185,16 @@ const imageSrc =
     }
 
     .voice-post-card__media {
+      width: 100%;
+      height: clamp(220px, 58vw, 300px);
       min-height: 220px;
       border-radius: 34px 34px 0 0;
+    }
+
+    .voice-post-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .voice-post-card__body {

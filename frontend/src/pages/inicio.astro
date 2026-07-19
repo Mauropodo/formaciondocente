@@ -1,7 +1,7 @@
 ﻿---
 import Footer from '../components/Footer.astro';
 import VoicePostDeck from "../components/VoicePostDeck.astro";
-import { getLatestPosts } from "../lib/posts";
+import { getAllPosts } from "../services/wordpress/posts";
 import brandImage from "../assets/figma-mcp/inicio/logo.png";
 import heroSlideOne from "../assets/figma-mcp/inicio/hero-1.png";
 import heroSlideTwo from "../assets/figma-mcp/inicio/hero-2.png";
@@ -11,7 +11,13 @@ import galeria3 from "../assets/figma-mcp/inicio/galeria-3.png";
 import galeria5 from "../assets/figma-mcp/inicio/galeria-5.png";
 import galeria6 from "../assets/figma-mcp/inicio/galeria-6.png";
 
-const voicePosts = getLatestPosts(5);
+const voicePosts = (await getAllPosts()).slice(0, 5).map((post) => ({
+  title: post.title,
+  slug: post.slug,
+  excerpt: post.excerpt,
+  autor: post.authorName ?? undefined,
+  imagen: post.imageUrl ?? undefined,
+}));
 const photos = [
   galeria2, galeria3, galeria5, galeria6, galeria2, galeria3,
 ];
@@ -644,7 +650,7 @@ const carasImages = [
       justify-content: center;
       gap: 71px;
       overflow: clip;
-      z-index: 1;
+      z-index: 3;
     }
     .voices h2,
     .question h2 {

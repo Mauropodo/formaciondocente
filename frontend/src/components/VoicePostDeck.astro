@@ -341,8 +341,20 @@ const palette = [
       }, 4200);
     };
 
-    carousel.addEventListener("mouseenter", stop);
-    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const card = target.closest(".voice-post-card");
+      const slide = card?.closest("[data-carousel-slide]");
+      if (!slide || slide.classList.contains("is-active")) return;
+
+      event.preventDefault();
+      activeIndex = slides.indexOf(slide);
+      paint();
+      start();
+    });
+
     carousel.addEventListener("focusin", stop);
     carousel.addEventListener("focusout", start);
 

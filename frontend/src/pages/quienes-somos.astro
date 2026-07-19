@@ -11,6 +11,14 @@ const TAGS = [
   { bg: "#95b3a7",  text: "white"   },
 ];
 
+const TEAM_NAMES = [
+  "Esteban Fica-Pinol",
+  "Francisca Lohaus Reyes",
+  "Montserrat V.Ibaceta",
+  "Catalina Rossel Wojciechowski",
+  "Ignacio Figueroa Céspedes",
+];
+
 const ROW1_IDX = [0, 1, 2, 3, 4, 1, 3, 0, 1, 2, 3, 4, 1, 3];
 const ROW2_IDX = [3, 4, 0, 2, 4, 1, 2, 3, 4, 0, 2, 4, 1, 2];
 const ROW3_IDX = [3, 1, 3, 0, 1, 4, 0, 3, 1, 3, 0, 1, 4, 0];
@@ -30,9 +38,9 @@ const PROFILES = [
   {
     size: "center",
     tilt: "2deg",
-    name: "Jose Andrea Velasquez",
-    photoSrc: "/images/quienes-somos/profile1.png",
-    backPhotoSrc: "/images/quienes-somos/profile2.png",
+    name: "Esteban Fica-Pinol",
+    photoSrc: "/images/quienes-somos/Esteban.jpg",
+    backPhotoSrc: "/images/quienes-somos/Esteban.jpg",
     frontItems: ACHIEVEMENTS,
     backEyebrow: "Rol y foco",
     backTitle: "Trayectoria docente e investigaciÃ³n aplicada",
@@ -45,9 +53,9 @@ const PROFILES = [
   {
     size: "center",
     tilt: "-2deg",
-    name: "Jose Andrea Velasquez",
-    photoSrc: "/images/quienes-somos/profile2.png",
-    backPhotoSrc: "/images/quienes-somos/profile1.png",
+    name: "Francisca Lohaus Reyes",
+    photoSrc: "/images/quienes-somos/Francisca.jpg",
+    backPhotoSrc: "/images/quienes-somos/Francisca.jpg",
     frontItems: ACHIEVEMENTS,
     backEyebrow: "LÃ­neas de trabajo",
     backTitle: "Voces docentes, relato y transformaciÃ³n pedagÃ³gica",
@@ -60,9 +68,9 @@ const PROFILES = [
   {
     size: "center",
     tilt: "2deg",
-    name: "Jose Andrea Velasquez",
-    photoSrc: "/images/quienes-somos/profile1.png",
-    backPhotoSrc: "/images/quienes-somos/profile2.png",
+    name: "Montserrat V.Ibaceta",
+    photoSrc: "/images/quienes-somos/Montserrat.jpg",
+    backPhotoSrc: "/images/quienes-somos/Montserrat.jpg",
     frontItems: ACHIEVEMENTS,
     backEyebrow: "ContribuciÃ³n",
     backTitle: "InvestigaciÃ³n situada para comunidades educativas",
@@ -75,9 +83,9 @@ const PROFILES = [
   {
     size: "center",
     tilt: "-2deg",
-    name: "Jose Andrea Velasquez",
-    photoSrc: "/images/quienes-somos/profile2.png",
-    backPhotoSrc: "/images/quienes-somos/profile1.png",
+    name: "Catalina Rossel Wojciechowski",
+    photoSrc: "/images/quienes-somos/Catalina.jpg",
+    backPhotoSrc: "/images/quienes-somos/Catalina.jpg",
     frontItems: ACHIEVEMENTS,
     backEyebrow: "Perspectiva",
     backTitle: "AcompaÃ±amiento reflexivo en formaciÃ³n inicial docente",
@@ -90,9 +98,9 @@ const PROFILES = [
   {
     size: "center",
     tilt: "2deg",
-    name: "Jose Andrea Velasquez",
-    photoSrc: "/images/quienes-somos/profile1.png",
-    backPhotoSrc: "/images/quienes-somos/profile2.png",
+    name: "Ignacio Figueroa Céspedes",
+    photoSrc: "/images/quienes-somos/Ignacio.jpg",
+    backPhotoSrc: "/images/quienes-somos/Ignacio.jpg",
     frontItems: ACHIEVEMENTS,
     backEyebrow: "ProyecciÃ³n",
     backTitle: "Comunidades de aprendizaje para la educaciÃ³n parvularia",
@@ -384,7 +392,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     .fondecyt__bubbles {
       position: relative;
       width: min(561px, 82vw);
-      height: 363px;
+      height: auto;
+      aspect-ratio: 552 / 511;
     }
     .bubble-q {
       position: absolute;
@@ -392,7 +401,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     }
     .bubble-q--orange {
       width: 98%; height: 321px;
-      bottom: -83px;
+      bottom: -100px;
       left: 50%;
       transform: translateX(calc(-50% - 117px)) rotate(2deg);
       z-index: 0;
@@ -412,8 +421,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       inset: 0;
       z-index: 3;
       isolation: isolate;
-      width: 100%;
-      aspect-ratio: 589 / 370;
+      width: 80%;
+      aspect-ratio: 552 / 511;
       min-height: 0;
     }
     .qs-bubble .bubble-shape {
@@ -440,7 +449,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     }
     .qs-bubble .bubble-text {
       margin: 0;
-      max-width: 80%;
+      max-width: 100%;
       font-family: Inconsolata, monospace;
       font-size: 20px;
       font-weight: 400;
@@ -533,6 +542,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       position: relative;
       flex: 1;
       width: 100%;
+      opacity: 0.3;
     }
 
     .team-title {
@@ -596,6 +606,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     .profile-card-wrap.is-next {
       opacity: 1;
       z-index: 12;
+      pointer-events: auto;
+      cursor: pointer;
     }
     .profile-card-wrap.is-far-prev,
     .profile-card-wrap.is-far-next {
@@ -734,6 +746,40 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       .qs-hero { padding-top: 140px; }
       .qs-hero__content { flex-direction: column; align-items: center; }
       .qs-hero__inner { gap: 2rem; }
+      .fondecyt {
+        width: 100%;
+        max-width: none;
+      }
+      .fondecyt__bubbles {
+        width: 100vw;
+        max-width: 100vw;
+        height: auto;
+        aspect-ratio: 552 / 511;
+      }
+      .qs-bubble {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 552 / 511;
+      }
+      .qs-bubble .bubble-quote {
+        padding: clamp(1.6rem, 6vw, 2.3rem) clamp(1.5rem, 7vw, 2.7rem) clamp(2.4rem, 9vw, 3.6rem);
+      }
+      .qs-bubble .bubble-text {
+        max-width: 100%;
+        font-size: 18px;
+        line-height: 1.18;
+      }
+      .qs-bubble .bubble-mark {
+        font-size: 5.4rem;
+      }
+      .qs-bubble .bubble-mark--open {
+        top: 3.25rem;
+        left: 2.1rem;
+      }
+      .qs-bubble .bubble-mark--close {
+        right: 2.2rem;
+        bottom: 2.2rem;
+      }
       .team-profile-stage {
         min-height: auto;
       }
@@ -750,25 +796,64 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       }
       .profile-container {
         height: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        width: min(560px, 100%);
+        min-height: 500px;
+        display: block;
+        width: min(560px, calc(100% - 48px));
+        touch-action: pan-y;
       }
       .profile-card-wrap {
-        position: static;
-        inset: auto;
+        position: absolute;
+        inset: 0;
         width: 100% !important;
-        height: auto !important;
+        height: 100% !important;
+        left: 0 !important;
+        top: 0 !important;
+        opacity: 0 !important;
+        pointer-events: none;
+        transition:
+          left 620ms cubic-bezier(.22, 1, .36, 1),
+          width 620ms cubic-bezier(.22, 1, .36, 1),
+          opacity 320ms ease;
+        will-change: left, width, opacity;
+      }
+      .profile-card-wrap.is-active {
         opacity: 1 !important;
-        left: auto !important;
-        top: auto !important;
+        z-index: 20;
         pointer-events: auto;
-        will-change: auto;
+      }
+      .profile-card-wrap.is-prev,
+      .profile-card-wrap.is-next,
+      .profile-card-wrap.is-far-prev,
+      .profile-card-wrap.is-far-next,
+      .profile-card-wrap.is-hidden {
+        opacity: 0 !important;
+        pointer-events: none;
+      }
+      .profile-card-wrap.is-prev,
+      .profile-card-wrap.is-next {
+        width: 62% !important;
+        height: 92% !important;
+        top: 4% !important;
+        opacity: 0.42 !important;
+        pointer-events: auto;
+        z-index: 12;
+      }
+      .profile-card-wrap.is-prev {
+        left: -46% !important;
+      }
+      .profile-card-wrap.is-next {
+        left: 84% !important;
       }
       .profile-carousel__button {
-        display: none;
+        display: inline-flex;
+        width: 44px;
+        height: 44px;
+        opacity: 1;
+        pointer-events: auto;
+        font-size: 24px;
       }
+      .profile-carousel__button--prev { left: -22px; }
+      .profile-carousel__button--next { right: -22px; }
       .team-section { min-height: 60vh; }
     }
 
@@ -937,14 +1022,14 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
             </svg>
             <article class="qs-bubble" aria-label="Cita destacada">
               <div class="bubble-shape" aria-hidden="true">
-                <svg viewBox="0 0 589 370" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                  <path d="M554.823 96.2274C552.164 45.4868 508.874 6.50922 458.134 9.16842L98.6273 28.0094C47.8868 30.6686 8.9091 73.9576 11.5683 124.698L15.9213 207.759C18.5805 258.499 61.8696 297.477 112.61 294.818L156.55 292.515L199.458 290.266C215.826 289.409 232.126 292.939 246.673 300.493L317.694 337.375C318.145 337.609 318.651 337.719 319.159 337.692C321.315 337.579 322.57 335.206 321.451 333.36L308.145 311.42C301.008 299.651 309.011 284.525 322.756 283.805L472.117 275.977C522.857 273.318 561.835 230.029 559.176 179.288L554.823 96.2274Z" fill="#83BAA4" />
+                <svg viewBox="0 0 552 511" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                  <path d="M543.422 89.1416C541.818 37.5907 498.157 -2.57092 446.652 0.128343L87.1866 18.9671C37.2072 21.5864 -1.51017 63.6778 0.0460051 113.702L8.28445 378.53C9.88813 430.081 53.5498 470.242 105.055 467.543L147.02 465.344L189.929 463.095C206.297 462.237 222.597 465.768 237.143 473.322L308.164 510.203C308.616 510.438 309.121 510.547 309.629 510.521C311.785 510.408 313.041 508.035 311.921 506.189L298.615 484.248C291.478 472.48 299.481 457.354 313.226 456.633L464.52 448.704C514.499 446.085 553.217 403.993 551.661 353.97L543.422 89.1416Z" fill="#83BAA4" />
                 </svg>
               </div>
               <div class="bubble-quote">
-                <span class="bubble-mark bubble-mark--open" aria-hidden="true">"</span>
+                <span class="bubble-mark bubble-mark--open" aria-hidden="true">“</span>
                 <p class="bubble-text">Aprendí que mi identidad profesional no se construye desde la perfección, sino desde la capacidad de reflexionar sobre mis experiencias y seguir aprendiendo incluso en medio de la incertidumbre</p>
-                <span class="bubble-mark bubble-mark--close" aria-hidden="true">"</span>
+                <span class="bubble-mark bubble-mark--close" aria-hidden="true">”</span>
               </div>
             </article>
           </div>
@@ -967,7 +1052,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
           <div class="marquee-track" id="marqueeRow1">
             {doubled1.map((idx) => (
               <div class="name-tag" style={`background:${TAGS[idx].bg}; color:${TAGS[idx].text};`}>
-                Nombre Apellido
+                {TEAM_NAMES[idx]}
               </div>
             ))}
           </div>
@@ -977,7 +1062,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
           <div class="marquee-track" id="marqueeRow2">
             {doubled2.map((idx) => (
               <div class="name-tag" style={`background:${TAGS[idx].bg}; color:${TAGS[idx].text};`}>
-                Nombre Apellido
+                {TEAM_NAMES[idx]}
               </div>
             ))}
           </div>
@@ -987,7 +1072,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
           <div class="marquee-track" id="marqueeRow3">
             {doubled3.map((idx) => (
               <div class="name-tag" style={`background:${TAGS[idx].bg}; color:${TAGS[idx].text};`}>
-                Nombre Apellido
+                {TEAM_NAMES[idx]}
               </div>
             ))}
           </div>
@@ -1052,6 +1137,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   const devHeightValue = document.querySelector("[data-dev-height]");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const mobileViewport = window.matchMedia("(max-width: 768px)");
+  const profileContainer = document.querySelector("[data-profile-carousel]");
   const profileCards = Array.from(document.querySelectorAll(".profile-card-wrap"));
   const profilePrevButton = document.querySelector(".profile-carousel__button--prev");
   const profileNextButton = document.querySelector(".profile-carousel__button--next");
@@ -1161,6 +1247,18 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     }, 640);
   };
 
+  profileCards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      if (card.classList.contains("is-next")) {
+        event.stopPropagation();
+        changeProfile(1);
+      } else if (card.classList.contains("is-prev")) {
+        event.stopPropagation();
+        changeProfile(-1);
+      }
+    }, true);
+  });
+
   profilePrevButton?.addEventListener("click", () => {
     changeProfile(-1);
   });
@@ -1168,6 +1266,32 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   profileNextButton?.addEventListener("click", () => {
     changeProfile(1);
   });
+
+  let profileTouchStartX = null;
+  let profileTouchStartY = null;
+
+  profileContainer?.addEventListener("touchstart", (event) => {
+    if (event.touches.length !== 1) return;
+    profileTouchStartX = event.touches[0].clientX;
+    profileTouchStartY = event.touches[0].clientY;
+  }, { passive: true });
+
+  profileContainer?.addEventListener("touchend", (event) => {
+    if (profileTouchStartX === null || profileTouchStartY === null) return;
+
+    const deltaX = event.changedTouches[0].clientX - profileTouchStartX;
+    const deltaY = event.changedTouches[0].clientY - profileTouchStartY;
+    profileTouchStartX = null;
+    profileTouchStartY = null;
+
+    if (Math.abs(deltaX) < 50 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+    changeProfile(deltaX < 0 ? 1 : -1);
+  }, { passive: true });
+
+  profileContainer?.addEventListener("touchcancel", () => {
+    profileTouchStartX = null;
+    profileTouchStartY = null;
+  }, { passive: true });
 
   if (menu && !prefersReducedMotion.matches) {
     const enterY = Number.parseFloat(getComputedStyle(menu).getPropertyValue("--enter-y")) || -18;

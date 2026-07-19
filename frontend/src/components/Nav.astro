@@ -6,7 +6,7 @@ const menuItems = [
   { label: 'Quiénes Somos', href: '/quienes-somos' },
   { label: 'La Investigación', href: '/investigacion' },
   { label: 'Publicaciones', href: '/publicaciones' },
-  { label: 'Contacto', href: '/contacto2' },
+  { label: 'Contacto', href: '/contacto' },
 ];
 ---
 
@@ -131,6 +131,7 @@ const menuItems = [
     display: block;
   }
   .menu .panel {
+    box-sizing: border-box;
     pointer-events: auto;
     display: flex;
     align-items: center;
@@ -200,6 +201,7 @@ const menuItems = [
     font-family: 'Inconsolata', monospace;
     font-weight: 900;
     text-decoration: none;
+    flex-shrink: 0;
     box-shadow:
       0.8px 2.4px 0 #464646,
       0 6.4px 9.6px rgba(0,0,0,.15),
@@ -260,10 +262,12 @@ const menuItems = [
       width: 100%;
       height: 100dvh;
       min-height: 100dvh;
-      max-height: none;
+      max-height: 100dvh;
       margin: 0;
       border-radius: 0;
       padding: 132px 28px 32px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
       background:
         linear-gradient(180deg, rgba(249, 245, 242, 0.98), rgba(238, 226, 217, 0.98));
       backdrop-filter: blur(12px);

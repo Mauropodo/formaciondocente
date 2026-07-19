@@ -30,6 +30,8 @@ const {
   backTitle,
   backItems,
 } = Astro.props;
+
+const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+/gi, "-")}`;
 ---
 
 <article
@@ -39,9 +41,19 @@ const {
   tabindex={interactive ? "0" : "-1"}
   aria-label={`Tarjeta de perfil de ${name}`}
 >
+  <svg class="profile-flip-card__clip-defs" aria-hidden="true" width="0" height="0">
+    <defs>
+      <clipPath id={photoClipId} clipPathUnits="objectBoundingBox">
+        <path
+          transform="scale(0.0039215686)"
+          d="M254.336 91.6181C256.729 45.9516 221.649 6.9915 175.982 4.59822L90.4506 0.11569C44.7841 -2.27759 5.82388 32.8023 3.4306 78.4688L0.0878757 142.252C-1.72767 176.895 24.884 206.45 59.5268 208.265L61.1658 208.351C80.2001 209.349 98.0616 217.856 110.832 232.006L130.374 253.66C130.63 253.944 130.988 254.114 131.369 254.134C132.342 254.185 133.084 253.276 132.839 252.332L127.793 232.895C125.049 222.325 133.367 212.135 144.272 212.707L194.663 215.347C223.958 216.883 248.95 194.38 250.485 165.085L254.336 91.6181Z"
+        />
+      </clipPath>
+    </defs>
+  </svg>
   <div class="profile-flip-card__inner">
     <section class="profile-flip-card__face profile-flip-card__face--front">
-      <div class="profile-flip-card__photo">
+      <div class="profile-flip-card__photo" style={`clip-path:url(#${photoClipId});`}>
         <div class="profile-flip-card__photo-inner">
           <img src={photoSrc} alt={name} loading="lazy" />
         </div>
@@ -61,7 +73,7 @@ const {
     <section class="profile-flip-card__face profile-flip-card__face--back" aria-label={`Reverso de ${name}`}>
       <p class="profile-flip-card__eyebrow">{backEyebrow}</p>
       <p class="profile-flip-card__back-title">{backTitle}</p>
-      <div class="profile-flip-card__photo profile-flip-card__photo--back">
+      <div class="profile-flip-card__photo profile-flip-card__photo--back" style={`clip-path:url(#${photoClipId});`}>
         <div class="profile-flip-card__photo-inner">
           <img src={backPhotoSrc} alt="" loading="lazy" aria-hidden="true" />
         </div>
@@ -98,15 +110,12 @@ const {
     transition: transform 760ms cubic-bezier(.22,1,.36,1);
   }
 
-  @media (hover: hover) {
-    .profile-flip-card[data-interactive="true"]:hover .profile-flip-card__inner {
-      transform: rotateY(180deg);
-    }
+  .profile-flip-card[data-flipped="true"] .profile-flip-card__inner {
+    transform: rotateY(180deg);
   }
 
-  .profile-flip-card[data-interactive="true"]:focus-visible .profile-flip-card__inner,
-  .profile-flip-card[data-interactive="true"]:focus-within .profile-flip-card__inner {
-    transform: rotateY(180deg);
+  .profile-flip-card[data-interactive="true"][data-flipped="false"] .profile-flip-card__inner {
+    transform: rotateY(0deg);
   }
 
   .profile-flip-card__face {
@@ -148,6 +157,7 @@ const {
 
   .profile-flip-card__photo--back {
     width: 36.8%;
+    max-width: 100%;
     margin-top: 8px;
   }
 
@@ -264,16 +274,12 @@ const {
     }
 
     .profile-flip-card__face {
-      position: relative;
+      position: absolute;
       min-height: 460px;
     }
 
     .profile-flip-card__face--back {
-      display: none;
-    }
-
-    .profile-flip-card__inner {
-      transform: none !important;
+      display: flex;
     }
   }
 
@@ -283,3 +289,29 @@ const {
     }
   }
 </style>
+
+<script>
+  const flipCards = document.querySelectorAll<HTMLElement>('.profile-flip-card');
+
+  flipCards.forEach((card) => {
+    const toggleFlip = () => {
+      if (card.dataset.interactive !== 'true') return;
+
+      const isFlipped = card.dataset.flipped === 'true';
+      card.dataset.flipped = String(!isFlipped);
+
+      if (isFlipped) {
+        card.blur();
+      } else {
+        card.focus({ preventScroll: true });
+      }
+    };
+
+    card.addEventListener('click', toggleFlip);
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      toggleFlip();
+    });
+  });
+</script>
