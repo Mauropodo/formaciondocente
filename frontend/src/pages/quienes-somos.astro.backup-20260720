@@ -37,12 +37,12 @@ const PROFILES = [
     frontItems: [
       { bold: "Profesión y estudios:", rest: " Doctorando en Educación por la Universidad Metropolitana de Ciencias de la Educación, Chile. Psicólogo por la Universidad de Santiago, Chile. Es Coordinador de Investigación y Desarrollo de Prospectiva Educativa." },
       { bold: "Intereses investigativos:", rest: " Desarrollo Profesional Docente; Identidad Profesional; Inclusión y Participación Educativa; Elección Profesional; Vocación Docente." },
-      { bold: "Algo sobre mi:", rest: " Futbolero hasta los huesos y fanático del Universo Marvel." },
+      { bold: "Dato random:", rest: " Futbolero hasta los huesos y fanático del Universo Marvel." },
     ],
     backEyebrow: "Principal motivación para participar del proyecto",
     backTitle: "Esteban Fica-Pinol",
     backItems: [
-      "Mi principal motivación refiere a la relevancia de los procesos identitarios que conducen las elecciones profesionales de las y los futuros docentes del país. En un contexto de incertidumbre, relevar la construcción identitaria instala un eje de resistencia ante la tecnificación de los procesos reflexivos que constituyen profesionalidad; esto plantea preguntas en quienes liderarán los procesos pedagógicos del futuro: ¿qué tipo de docente queremos para la próxima década?, ¿qué educación proyectamos luego de las múltiples crisis mundiales?, ¿cómo establecer un desarrollo profesional que valore la docencia? Creo que el proyecto liderado por Ignacio puede aportar respuestas.",
+      "Mi principal motivación refiere a la relevancia de los procesos identitarios que permiten conducir las elecciones profesionales de las y los futuros docentes del país. En un contexto de incertidumbre constante, el relevar la construcción identitaria instala un eje de resistencia ante la tecnificación de los procesos reflexivos y que constituyen profesionalidad; esto instala preguntas fundamentales en quienes liderarán los procesos pedagógicos del futuro: ¿qué tipo de docente queremos para la próxima década?, ¿qué tipo de educación proyecta luego de las múltiples crisis mundiales?, ¿cómo se establece un desarrollo profesional que establezca condiciones de valoración de la docencia? Creo que el proyecto liderado por Ignacio puede relevar aspectos de relevancia para responder estas preguntas.",
     ],
   },
   {
@@ -54,7 +54,7 @@ const PROFILES = [
     frontItems: [
       { bold: "Profesión y estudios:", rest: " Técnico Nivel Superior Inglés-Español - Profesora de Educación Técnico Profesional - Magíster en Educación, mención currículum y comunidad educativa - Doctorante en Educación, UDP-UAH." },
       { bold: "Intereses investigativos:", rest: " Inclusión educativa; currículum; diversidad; identidades." },
-      { bold: "Algo sobre mi:", rest: " Toco 15 instrumentos musicales y contando. Tengo una hija gatuna más emancipada que yo." },
+      { bold: "Dato random:", rest: " Toco 15 instrumentos musicales y contando. Tengo una hija gatuna más emancipada que yo." },
     ],
     backEyebrow: "Principal motivación para participar del proyecto",
     backTitle: "Francisca Lohaus Reyes",
@@ -71,7 +71,7 @@ const PROFILES = [
     frontItems: [
       { bold: "Profesión y estudios:", rest: " Técnico en atención de párvulos nivel medio - Educadora de Párvulos y Licenciada en Educación de la Universidad Diego Portales." },
       { bold: "Intereses investigativos:", rest: " Construcción de la Identidad Profesional Docente; Formación Inicial de Educadoras de Párvulos; Vocación Docente; Prácticas Formativas; Desarrollo Profesional Docente; Aprendizaje Significativo." },
-      { bold: "Algo sobre mi:", rest: " Toco el clarinete y me se de memoria todo el musical de WICKED." },
+      { bold: "Dato random:", rest: " Toco el clarinete y me se de memoria todo el musical de WICKED." },
     ],
     backEyebrow: "Principal motivación para participar del proyecto",
     backTitle: "Montserrat V.Ibaceta",
@@ -88,12 +88,12 @@ const PROFILES = [
     frontItems: [
       { bold: "Profesión y estudios:", rest: " Educadora diferencial con mención en Desarrollo Cognitivo de la Universidad Diego Portales - Magíster en Desarrollo Cognitivo para la Inclusión Educativa ©." },
       { bold: "Intereses investigativos:", rest: " Identidades; agencia; proyectos de vida; formación inicial docente; narrativas." },
-      { bold: "Algo sobre mi:", rest: " Hay semanas en las que he comido más completos italianos de los que puedo recordar." },
+      { bold: "Dato random:", rest: " Hay semanas en las que he comido más completos italianos de los que puedo recordar." },
     ],
     backEyebrow: "Principal motivación para participar del proyecto",
     backTitle: "Catalina Rossel Wojciechowski",
     backItems: [
-      "Mi principal motivación surge del interés por comprender cómo las biografías y narrativas forman un tejido que incide en las decisiones sobre los proyectos de vida, y cómo leer este entramado puede dar luces sobre la construcción de las identidades profesionales docentes en el contexto educativo chileno. Creo en la riqueza del relato como fuente de conocimiento y en su potencial para orientar la formación inicial docente, especialmente la práctica, donde estas identidades se ponen en juego, se tensionan y se resignifican. Me motiva aportar evidencia para repensar y fortalecer estos procesos, contribuyendo a una formación inicial más consciente y reflexiva sobre cómo los futuros profesores construyen su identidad profesional.",
+      "Mi principal motivación surge desde el interés por comprender cómo las biografías y narrativas constituyen un tejido que va incidiendo en las decisiones que se toman respecto a los proyectos de vida, y en cómo la lectura de este entramado puede dar luces sobre la construcción de las identidades profesionales de los y las docentes en el contexto educativo chileno. Creo en la riqueza del relato como fuente de conocimiento y en su potencial para orientar los procesos de formación inicial docente, particularmente en lo que respecta a la formación práctica como espacio privilegiado donde estas identidades se ponen en juego, se tensionan y se resignifican. Me motiva especialmente aportar evidencia que permita repensar y fortalecer dichos procesos formativos, contribuyendo a que la formación inicial docente se constituya en un espacio más consciente y reflexivo del modo en que los y las futuros/as profesores/as construyen su identidad profesional.",
     ],
   },
   {
@@ -105,12 +105,12 @@ const PROFILES = [
     frontItems: [
       { bold: "Profesión y estudios:", rest: " Psicólogo, doctor en Educación y magíster en Desarrollo Cognitivo. Académico e investigador de la Facultad de Educación de la Universidad Diego Portales." },
       { bold: "Intereses investigativos:", rest: " Identidad profesional docente, formación práctica, inclusión educativa, incidentes críticos, mediación cognitiva, reflexión profesional y agencia docente." },
-      { bold: "Algo sobre mi:", rest: " Me gustan los Beatles, los cuentos de Cortázar y las historietas de Quino." },
+      { bold: "Dato random:", rest: " Me gustan los Beatles, los cuentos de Cortázar y las historietas de Quino." },
     ],
     backEyebrow: "Principal motivación para participar del proyecto",
     backTitle: "Ignacio Figueroa Céspedes",
     backItems: [
-      "Mi interés por investigar la identidad profesional docente surge en el doctorado, a partir de mi indagación sobre las dinámicas de aprendizaje profesional en educación parvularia. Después de trabajar con educadoras experimentadas y sus relatos biográficos, me interesé en comprender cómo las y los futuros docentes construyen, negocian y transforman su manera de ser profesionales durante la formación práctica. Me interesa analizar cómo las experiencias biográficas, especialmente las inesperadas como los incidentes críticos, aportan a la construcción de posicionamientos, saberes y posibilidades de agencia. Creo que investigar estos procesos aporta a una formación docente más reflexiva, situada e inclusiva.",
+      "Mi interés por investigar la identidad profesional docente surge en el doctorado, cuando a partir de mi indagación en las dinámicas de aprendizaje profesional docente en educación parvularia descubro el concepto. Después de trabajar con educadoras experimentadas y sus relatos biográficos, me interesé en comprender cómo las y los futuros docentes construyen, negocian y transforman su manera de ser profesionales a lo largo de su formación práctica. Me interesa especialmente analizar cómo las experiencias biográficas y en particular aquellas inesperadas (como los incidentes críticos) aportan a la construcción de posicionamientos, saberes y posibilidades de agencia. Creo que investigar estos procesos aporta a una formación docente más reflexiva, situada e inclusiva.",
     ],
   },
 ];
@@ -603,10 +603,10 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       left: 32.3%;
       top: 4%;
       width: 35.55%;
-      height: 92%;
+      height: 90%;
       opacity: 0;
       pointer-events: none;
-      will-change: left, top, opacity, transform;
+      will-change: left, top, width, height, opacity, transform;
     }
     .profile-card-wrap.is-active {
       opacity: 1;
@@ -819,17 +819,15 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         height: 100% !important;
         left: 0 !important;
         top: 0 !important;
-        transform: scale(1);
         opacity: 0 !important;
         pointer-events: none;
         transition:
           left 620ms cubic-bezier(.22, 1, .36, 1),
-          transform 620ms cubic-bezier(.22, 1, .36, 1),
+          width 620ms cubic-bezier(.22, 1, .36, 1),
           opacity 320ms ease;
-        will-change: left, transform, opacity;
+        will-change: left, width, opacity;
       }
       .profile-card-wrap.is-active {
-        transform: scale(1);
         opacity: 1 !important;
         z-index: 20;
         pointer-events: auto;
@@ -839,21 +837,17 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       .profile-card-wrap.is-far-prev,
       .profile-card-wrap.is-far-next,
       .profile-card-wrap.is-hidden {
-        transform: scale(0.5);
         opacity: 0 !important;
         pointer-events: none;
       }
       .profile-card-wrap.is-prev,
       .profile-card-wrap.is-next {
+        width: 62% !important;
+        height: 92% !important;
         top: 4% !important;
-        transform: scale(0.8);
         opacity: 0.42 !important;
         pointer-events: auto;
         z-index: 12;
-      }
-      .profile-card-wrap.is-far-prev,
-      .profile-card-wrap.is-far-next {
-        transform: scale(0.7);
       }
       .profile-card-wrap.is-prev {
         left: -46% !important;
@@ -1159,12 +1153,12 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   const profilePrevButton = document.querySelector(".profile-carousel__button--prev");
   const profileNextButton = document.querySelector(".profile-carousel__button--next");
   const profileCardLayouts = {
-    "is-active": { left: 32.3, top: 4, width: 35.55, height: 92, opacity: 1, scale: 1, zIndex: 30 },
-    "is-prev": { left: 5.9, top: 8.6, width: 35.55, height: 92, opacity: 1, scale: 0.8, zIndex: 18 },
-    "is-next": { left: 62.1, top: 8.6, width: 35.55, height: 92, opacity: 1, scale: 0.8, zIndex: 18 },
-    "is-far-prev": { left: -8.2, top: 12.5, width: 35.55, height: 92, opacity: 1, scale: 0.7, zIndex: 8 },
-    "is-far-next": { left: 80.7, top: 12.5, width: 35.55, height: 92, opacity: 1, scale: 0.7, zIndex: 8 },
-    "is-hidden": { left: 32.3, top: 16, width: 35.55, height: 92, opacity: 0, scale: 0.5, zIndex: 1 },
+    "is-active": { left: 32.3, top: 4, width: 35.55, height: 90, opacity: 1, scale: 1, zIndex: 30 },
+    "is-prev": { left: 5.9, top: 8.6, width: 31.95, height: 82.8, opacity: 1, scale: 1, zIndex: 18 },
+    "is-next": { left: 62.1, top: 8.6, width: 31.95, height: 82.8, opacity: 1, scale: 1, zIndex: 18 },
+    "is-far-prev": { left: -8.2, top: 12.5, width: 27.5, height: 74, opacity: 1, scale: 1, zIndex: 8 },
+    "is-far-next": { left: 80.7, top: 12.5, width: 27.5, height: 74, opacity: 1, scale: 1, zIndex: 8 },
+    "is-hidden": { left: 32.3, top: 16, width: 28, height: 74, opacity: 0, scale: 0.94, zIndex: 1 },
   };
   let isProfileAnimating = false;
 
@@ -1227,6 +1221,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         gsap.to(card, {
           left: `${layout.left}%`,
           top: `${layout.top}%`,
+          width: `${layout.width}%`,
+          height: `${layout.height}%`,
           opacity: layout.opacity,
           scale: layout.scale,
           duration: immediate ? 0 : 0.62,
@@ -1374,7 +1370,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   if (row1) {
     const half1 = row1.scrollWidth / 2;
     gsap.to(row1, {
-      x: -half1, duration: 112, ease: 'none', repeat: -1,
+      x: -half1, duration: 28, ease: 'none', repeat: -1,
       modifiers: { x: (x) => (parseFloat(x) % half1) + 'px' }
     });
   }
@@ -1383,7 +1379,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   if (row2) {
     const half2 = row2.scrollWidth / 2;
     gsap.to(row2, {
-      x: -half2, duration: 80, ease: 'none', repeat: -1,
+      x: -half2, duration: 20, ease: 'none', repeat: -1,
       modifiers: { x: (x) => (parseFloat(x) % half2) + 'px' }
     });
   }
@@ -1391,7 +1387,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   const row3 = document.getElementById('marqueeRow3');
   if (row3) {
     const half3 = row3.scrollWidth / 2;
-    gsap.fromTo(row3, { x: -half3 }, { x: 0, duration: 128, ease: 'none', repeat: -1 });
+    gsap.fromTo(row3, { x: -half3 }, { x: 0, duration: 32, ease: 'none', repeat: -1 });
   }
 
   gsap.fromTo('.team-title h2',

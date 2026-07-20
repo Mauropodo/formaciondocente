@@ -71,7 +71,6 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
     </section>
 
     <section class="profile-flip-card__face profile-flip-card__face--back" aria-label={`Reverso de ${name}`}>
-      <p class="profile-flip-card__eyebrow">{backEyebrow}</p>
       <p class="profile-flip-card__back-title">{backTitle}</p>
       <div class="profile-flip-card__photo profile-flip-card__photo--back" style={`clip-path:url(#${photoClipId});`}>
         <div class="profile-flip-card__photo-inner">
@@ -126,7 +125,7 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
     align-items: center;
     background: #eee2d9;
     border-radius: 38px;
-    padding: 24px 0 20px;
+    padding: 24px 4% 20px;
     box-shadow: 7px 9px 5px rgba(0,0,0,0.23), 0px 2.6px 1.3px rgba(0,0,0,0.25), 1.9px 2.6px 0px rgba(0,0,0,0.25), -1.3px 2.6px 1.3px rgba(0,0,0,0.4);
     backface-visibility: hidden;
     overflow: hidden;
@@ -134,9 +133,7 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
 
   .profile-flip-card__face--back {
     justify-content: flex-start;
-    background:
-      radial-gradient(circle at top left, rgba(139,197,174,0.38), transparent 38%),
-      linear-gradient(180deg, #f6ede8 0%, #e8d8cb 100%);
+    background: #3B959E;
     transform: rotateY(180deg);
   }
 
@@ -156,9 +153,16 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
   }
 
   .profile-flip-card__photo--back {
-    width: 36.8%;
     max-width: 100%;
     margin-top: 8px;
+  }
+
+  .profile-flip-card--side .profile-flip-card__photo--back {
+    width: 43.52%;
+  }
+
+  .profile-flip-card--center .profile-flip-card__photo--back {
+    width: 46.08%;
   }
 
   .profile-flip-card__photo-inner {
@@ -223,7 +227,7 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
   }
 
   .profile-flip-card__list .bold {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inconsolata', monospace;
     font-weight: 700;
   }
 
@@ -231,19 +235,11 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
     font-family: 'Inconsolata', monospace;
   }
 
-  .profile-flip-card__eyebrow {
-    margin: 2px 0 8px;
-    font-family: 'Inconsolata', monospace;
-    font-size: 11px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: #3b959e;
-  }
-
   .profile-flip-card__back-title {
     max-width: 78%;
     margin: 0;
     font-size: clamp(15px, 1.2vw, 22px);
+    color: #fff;
   }
 
   .profile-flip-card__back-list {
@@ -256,15 +252,16 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
     gap: 10px;
     font-family: 'Inconsolata', monospace;
     font-size: clamp(10px, 0.82vw, 13px);
-    color: #514444;
+    color: #161616;
     text-align: center;
   }
 
   .profile-flip-card__back-list li {
     padding: 10px 12px;
-    border-radius: 999px;
+    border-radius: 16px;
     background: rgba(255,255,255,0.5);
     border: 1px solid rgba(98,4,4,0.08);
+    text-align: left;
   }
 
   @media (max-width: 768px) {
