@@ -38,7 +38,7 @@ const carasImages = [
   <title>Sin título - Figma Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f9f5f2;
@@ -68,7 +68,7 @@ const carasImages = [
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: Inter, sans-serif;
+      font-family: "Open Sans", sans-serif;
       line-height: 1.5;
       overflow-x: hidden;
     }
@@ -881,8 +881,8 @@ const carasImages = [
     .question-story__followup-copy p {
       margin: 0;
       max-width: 460px;
-      font-family: Inconsolata, monospace;
-      font-size: 18px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 20px;
       line-height: 1.45;
       color: var(--text-soft);
     }
@@ -1499,7 +1499,7 @@ const carasImages = [
 
         <section class="hero-bridge" aria-label="Introducción">
           <p class="hero-bridge__copy">
-            Creemos que la identidad profesional no se forma de manera lineal ni automática, sino que se construye a través de experiencias, tensiones, dilemas y reflexiones
+            Construcción de la Identidad Profesional Docente en la Formación Práctica de Educación Parvularia: Un Estudio Narrativo-Longitudinal.
           </p>
         </section>
 
@@ -1840,7 +1840,6 @@ const carasImages = [
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
   const mm = gsap.matchMedia();
   const rootStyle = document.documentElement;
-
   const setFrozenMobileViewportHeight = () => {
     if (!narrowViewport.matches) {
       rootStyle.style.removeProperty("--mobile-frozen-vh");

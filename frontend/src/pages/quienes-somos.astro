@@ -134,7 +134,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   <title>¿Quiénes Somos? | Parvularias</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f9f5f2;
@@ -284,7 +284,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
 
     .qs-bg {
       position: absolute;
-      inset: 0;
+      inset: 0 auto auto 0;
       overflow: hidden;
       pointer-events: none;
       z-index: 0;
@@ -303,7 +303,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 80px 0 60px;
+      padding: 150px 0 60px;
       background: #fff;
       overflow: clip;
     }
@@ -349,12 +349,11 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       }
     }
     .qs-hero__content {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      justify-content: center;
-      gap: clamp(3rem, 10vw, 200px);
-      padding: 0 clamp(2rem, 10vw, 260px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(235px, 1fr);
+      align-items: center;
+      gap: clamp(2rem, 6vw, 7rem);
+      padding: 0 clamp(1.5rem, 5vw, 5rem);
       width: 100%;
       position: relative;
       z-index: 1;
@@ -402,9 +401,9 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     }
     .fondecyt__bubbles {
       position: relative;
-      width: min(561px, 82vw);
+      width: min(561px, 100%);
       height: auto;
-      aspect-ratio: 552 / 511;
+      height: auto;
     }
     .bubble-q {
       position: absolute;
@@ -412,29 +411,33 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     }
     .bubble-q--orange {
       width: 98%; height: 321px;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(calc(-50% - 117px)) rotate(2deg);
+      top: 0;
+      right: 0;
+      left: auto;
+      transform: translate(33.333%, -16.333%) rotate(2deg);
       z-index: 0;
       filter: drop-shadow(8.8px 11.2px 6.12px rgba(0,0,0,0.23)) drop-shadow(0px 3.2px 1.6px rgba(0,0,0,0.25));
     }
     .bubble-q--copper {
       width: 100%; height: 321px;
-      bottom: 86px;
-      left: 50%;
-      transform: translateX(calc(-50% + 161px)) rotate(175deg) scaleY(-1);
+      bottom: 0;
+      left: 0;
+      top: auto;
+      transform: translate(-33.333%, 16.333%) rotate(175deg) scaleY(-1);
       z-index: 1;
       filter: drop-shadow(8.8px 11.2px 6.12px rgba(0,0,0,0.23)) drop-shadow(0px 3.2px 1.6px rgba(0,0,0,0.25));
     }
 
     .qs-bubble {
-      position: absolute;
-      inset: 0;
+      position: relative;
+      inset: auto;
       z-index: 3;
       isolation: isolate;
-      width: 80%;
-      aspect-ratio: 552 / 511;
+      width: 33.333vw;
+      max-width: 560px;
       min-height: 0;
+      height: auto;
+      margin: 0;
     }
     .qs-bubble .bubble-shape {
       position: absolute;
@@ -450,52 +453,43 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       filter: drop-shadow(0 4px 15.3px rgba(0,0,0,0.25));
     }
     .qs-bubble .bubble-quote {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
+      position: relative;
+      inset: auto;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 4.6rem 4.2rem;
+      width: 100%;
+      min-width: 0;
+      align-self: center;
+      margin-inline: auto;
+      box-sizing: border-box;
+      padding: 3rem 4.6rem;
+      background: #83BAA4;
+      border-radius: 85px;
+      box-shadow: 0 4px 15.3px rgba(0,0,0,0.25);
+      rotate: -3deg;
     }
     .qs-bubble .bubble-text {
       margin: 0;
       max-width: 100%;
-      font-family: Inconsolata, monospace;
+      font-family: "Open Sans", sans-serif;
       font-size: 20px;
       font-weight: 400;
       line-height: 1.18;
       letter-spacing: 0.01em;
-      text-align: center;
+      text-align: justify;
       text-wrap: balance;
       color: #111;
       align-self: center;
-      transform: rotate(-3deg);
+      transform: none;
     }
-    .qs-bubble .bubble-mark {
-      position: absolute;
-      z-index: 2;
-      font-family: "Playfair Display", serif;
-      font-size: 5.4rem;
-      line-height: 0.7;
-      color: #5b4747;
-      pointer-events: none;
-      user-select: none;
-    }
-    .qs-bubble .bubble-mark--open {
-      top: 3.25rem;
-      left: 4.1rem;
-    }
-    .qs-bubble .bubble-mark--close {
-      right: 5.2rem;
-      bottom: 4.2rem;
-    }
-
     .colaboran {
       flex-shrink: 0;
       width: 235px;
       height: 185px;
-      margin-top: 120px;
+      margin-top: 0;
+      justify-self: center;
     }
     .colaboran img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -665,6 +659,50 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     @media (max-width: 1200px) {
       .menu { padding: 0 1rem; }
     }
+    @media (max-width: 1137px) {
+      .fondecyt__bubbles {
+        width: min(100%, 900px);
+        height: auto !important;
+        aspect-ratio: auto;
+      }
+      .qs-bubble {
+        position: relative;
+        inset: auto;
+        display: block;
+        width: 100%;
+        max-width: 70%;
+        margin: 0;
+        left: auto;
+        transform: none;
+        margin-inline: auto;
+        height: auto;
+        aspect-ratio: auto;
+      }
+      .qs-bubble .bubble-quote {
+        position: relative !important;
+        inset: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 5vw, 4.5rem);
+      }
+      .qs-bubble .bubble-text {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        max-width: 900px;
+        margin-inline: auto;
+        box-sizing: border-box;
+        overflow-wrap: normal;
+        word-break: normal;
+        white-space: normal !important;
+        text-wrap: wrap;
+      }
+    }
     @media (max-width: 900px) {
       .menu {
         padding: 12px 16px;
@@ -755,30 +793,37 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         box-shadow: 0.8px 2.4px 0 #464646, 0 6.4px 9.6px rgba(0,0,0,.12);
       }
       .qs-hero { padding-top: 140px; }
-      .qs-hero__content { flex-direction: column; align-items: center; }
+      .qs-hero__content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 2rem;
+      }
       .qs-hero__inner { gap: 2rem; }
       .fondecyt {
         width: 100%;
         max-width: none;
+        transform: translate(-26px, 0);
       }
-      .fondecyt__bubbles {
-        width: 100vw;
-        max-width: 100vw;
-        height: auto;
-        aspect-ratio: 552 / 511;
+        .fondecyt__bubbles {
+          width: 100vw;
+          max-width: 100vw;
+          height: auto;
+          aspect-ratio: auto;
       }
-      .qs-bubble {
-        width: 100%;
-        max-width: 100%;
-        aspect-ratio: 552 / 511;
+        .qs-bubble {
+          width: 90%;
+          max-width: 90%;
+          margin-inline: auto;
+          aspect-ratio: auto;
       }
       .qs-bubble .bubble-quote {
         padding: clamp(1.6rem, 6vw, 2.3rem) clamp(1.5rem, 7vw, 2.7rem) clamp(2.4rem, 9vw, 3.6rem);
       }
       .qs-bubble .bubble-text {
         max-width: 100%;
-        font-size: 18px;
+        font-size: 20px;
         line-height: 1.18;
+        text-align: center;
       }
       .qs-bubble .bubble-mark {
         font-size: 5.4rem;
@@ -1031,24 +1076,17 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         <div class="qs-hero__content">
         <div class="fondecyt">
           <div class="fondecyt__bubbles">
-            <svg class="bubble-q bubble-q--orange" fill="none" viewBox="0 0 567 340">
-              <path d={BUBBLE_PATH} fill="#F0A443"/>
-            </svg>
-            <svg class="bubble-q bubble-q--copper" fill="none" viewBox="0 0 567 340">
-              <path d={BUBBLE_PATH} fill="#C36438"/>
-            </svg>
-            <article class="qs-bubble" aria-label="Cita destacada">
-              <div class="bubble-shape" aria-hidden="true">
-                <svg viewBox="0 0 552 511" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                  <path d="M543.422 89.1416C541.818 37.5907 498.157 -2.57092 446.652 0.128343L87.1866 18.9671C37.2072 21.5864 -1.51017 63.6778 0.0460051 113.702L8.28445 378.53C9.88813 430.081 53.5498 470.242 105.055 467.543L147.02 465.344L189.929 463.095C206.297 462.237 222.597 465.768 237.143 473.322L308.164 510.203C308.616 510.438 309.121 510.547 309.629 510.521C311.785 510.408 313.041 508.035 311.921 506.189L298.615 484.248C291.478 472.48 299.481 457.354 313.226 456.633L464.52 448.704C514.499 446.085 553.217 403.993 551.661 353.97L543.422 89.1416Z" fill="#83BAA4" />
-                </svg>
-              </div>
+            <div class="qs-bubble" aria-label="Cita destacada">
+              <svg class="bubble-q bubble-q--orange" fill="none" viewBox="0 0 567 340">
+                <path d={BUBBLE_PATH} fill="#F0A443"/>
+              </svg>
+              <svg class="bubble-q bubble-q--copper" fill="none" viewBox="0 0 567 340">
+                <path d={BUBBLE_PATH} fill="#C36438"/>
+              </svg>
               <div class="bubble-quote">
-                <span class="bubble-mark bubble-mark--open" aria-hidden="true">“</span>
-                <p class="bubble-text">Aprendí que mi identidad profesional no se construye desde la perfección, sino desde la capacidad de reflexionar sobre mis experiencias y seguir aprendiendo incluso en medio de la incertidumbre</p>
-                <span class="bubble-mark bubble-mark--close" aria-hidden="true">”</span>
+                <p class="bubble-text">Durante tres años, escucharemos las historias de 15 estudiantes a través de entrevistas, biogramas y espacios de conversación colectiva, siguiéndolas incluso después de que egresen. Queremos dar voz a sus tensiones, aprendizajes y momentos de quiebre, porque creemos que ahí, en esos relatos, se juega gran parte de lo que significa convertirse en educadora. Este es un nivel educativo que rara vez ocupa el centro de la investigación, y por eso nuestro interés se focaliza allí, para aportar evidencia real y situada que ayude a repensar cómo acompañamos mejor a quienes se están formando para cuidar y educar a la primera infancia en Chile.</p>
               </div>
-            </article>
+            </div>
           </div>
         </div>
 
@@ -1153,7 +1191,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   const devStageValue = document.querySelector("[data-dev-stage]");
   const devHeightValue = document.querySelector("[data-dev-height]");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const mobileViewport = window.matchMedia("(max-width: 768px)");
+  const mobileViewport = window.matchMedia("(max-width: 900px)");
   const profileContainer = document.querySelector("[data-profile-carousel]");
   const profileCards = Array.from(document.querySelectorAll(".profile-card-wrap"));
   const profilePrevButton = document.querySelector(".profile-carousel__button--prev");

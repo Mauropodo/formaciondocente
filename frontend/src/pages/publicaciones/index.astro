@@ -197,9 +197,41 @@ function paginationUrl(slug, pageNum) {
 </BaseLayout>
 
 <script>
-  import { fadeInUp, staggerItems } from "../../utils/gsap";
-  fadeInUp(document.getElementById("hero-text"));
-  staggerItems(document.getElementById("categoria-filter"), 0.1);
+  import { gsap } from "gsap";
+  import { staggerItems } from "../../utils/gsap";
+
+  const heroFilters = document.getElementById("hero-filters");
+  const filterButtons = heroFilters
+    ? Array.from(heroFilters.querySelectorAll(".filter-btn"))
+    : [];
+
+  if (filterButtons.length) {
+    // Reset any hot-reload residue before this block owns the filter entrance.
+    gsap.killTweensOf(filterButtons);
+    gsap.set(filterButtons, { clearProps: "transform,opacity,visibility" });
+
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const entrance = gsap.fromTo(
+        filterButtons,
+        { autoAlpha: 0, x: -24 },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 0.55,
+          stagger: 0.1,
+          ease: "power2.out",
+          overwrite: "auto",
+          onComplete: () => {
+            gsap.set(filterButtons, { clearProps: "transform,opacity,visibility" });
+          },
+        },
+      );
+
+      return () => entrance.kill();
+    });
+  }
+
   staggerItems(document.getElementById("posts-grid"), 0.08);
 </script>
 
@@ -230,6 +262,12 @@ function paginationUrl(slug, pageNum) {
   .hero-filters {
     flex: 0 0 552px;
     max-width: 552px;
+  }
+  /* This block is animated only by the GSAP entrance above. */
+  .hero-filters,
+  .hero-filters * {
+    animation: none !important;
+    transition: none !important;
   }
   .hero-text {
     flex: 0 1 auto;
