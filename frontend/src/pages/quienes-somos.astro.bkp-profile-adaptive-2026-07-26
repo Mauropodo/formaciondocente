@@ -598,8 +598,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     .profile-container {
       position: relative;
       width: min(1096px, 96vw);
-      height: auto;
-      aspect-ratio: 1096 / 640;
+       height: min(var(--profile-carousel-height), 58vw);
       margin: 0 auto;
       overflow: visible;
     }
@@ -608,8 +607,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       left: 32.3%;
       top: 4%;
       width: 35.55%;
-      height: auto;
-      aspect-ratio: 390 / 589;
+      height: 92%;
       opacity: 0;
       pointer-events: none;
       will-change: left, top, opacity, transform;

@@ -5,4 +5,8 @@ export default defineConfig({
   output: 'server',
   adapter: netlify(),
   site: 'https://identidadprofesional.cl',
+  server: {
+    host: true,
+    port: 4321,
+  },
 });

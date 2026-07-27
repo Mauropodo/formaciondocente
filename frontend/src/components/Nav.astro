@@ -112,13 +112,13 @@ const menuItems = [
     align-items: flex-start;
     justify-content: space-between;
     padding: 0 max(16px, calc((100vw - 1200px) / 2));
-    min-height: 161px;
+    min-height: 130px;
     pointer-events: none;
     will-change: opacity, transform;
   }
   .menu .brand {
-    width: 161px;
-    height: 161px;
+    width: 130px;
+    height: 130px;
     flex: 0 0 auto;
     pointer-events: auto;
     overflow: clip;
@@ -243,6 +243,12 @@ const menuItems = [
   @media (max-width: 1200px) {
     .menu { padding: 0 1rem; }
   }
+  @media (max-width: 1200px) {
+    .menu .brand {
+      width: 130px;
+      height: 130px;
+    }
+  }
   @media (max-width: 900px) {
     .menu {
       padding: 12px 16px;
@@ -251,8 +257,8 @@ const menuItems = [
       min-height: auto;
     }
     .menu .brand {
-      width: 88px;
-      height: 88px;
+      width: 130px;
+      height: 130px;
       position: relative;
       z-index: 2;
     }

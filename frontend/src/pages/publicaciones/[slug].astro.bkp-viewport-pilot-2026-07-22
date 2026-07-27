@@ -131,124 +131,7 @@ const categoryColors = {
 </BaseLayout>
 
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const DESIGN_VIEWPORT = Object.freeze({ width: 1902, height: 910 });
-  const DESKTOP_BREAKPOINT = 901;
-  const rootStyle = document.documentElement;
-  const initialDevicePixelRatio = window.devicePixelRatio;
-  let viewportMode = window.innerWidth < DESKTOP_BREAKPOINT ? "mobile" : "desktop";
-  let viewportMetrics = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    scaleX: 1,
-    scaleY: 1,
-    scale: 1,
-    isCompactDesktop: false,
-  };
-  let viewportRefreshFrame = 0;
-
-  ScrollTrigger.config({
-    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
-    ignoreMobileResize: true,
-  });
-
-  const designPx = (value, axis = "y") => {
-    const scale = axis === "x" ? viewportMetrics.scaleX : viewportMetrics.scaleY;
-    return value * scale;
-  };
-
-  const getViewportMode = () =>
-    window.innerWidth < DESKTOP_BREAKPOINT ? "mobile" : "desktop";
-
-  const syncViewportMetrics = () => {
-    const width = Math.max(window.innerWidth, document.documentElement.clientWidth, 1);
-    const height = Math.max(window.innerHeight, document.documentElement.clientHeight, 1);
-    const scaleX = width / DESIGN_VIEWPORT.width;
-    const scaleY = height / DESIGN_VIEWPORT.height;
-    const isCompactDesktop = width >= DESKTOP_BREAKPOINT && height < 800;
-
-    viewportMetrics = {
-      width,
-      height,
-      scaleX,
-      scaleY,
-      scale: Math.min(scaleX, scaleY),
-      isCompactDesktop,
-    };
-
-    rootStyle.style.setProperty("--vw", `${(width * 0.01).toFixed(4)}px`);
-    rootStyle.style.setProperty("--vh", `${(height * 0.01).toFixed(4)}px`);
-    rootStyle.style.setProperty("--viewport-scale", viewportMetrics.scale.toFixed(5));
-    rootStyle.style.setProperty("--viewport-scale-x", scaleX.toFixed(5));
-    rootStyle.style.setProperty("--viewport-scale-y", scaleY.toFixed(5));
-    rootStyle.style.setProperty("--is-compact-desktop", isCompactDesktop ? "1" : "0");
-
-    if (width >= DESKTOP_BREAKPOINT) {
-      rootStyle.style.setProperty("--post-empty-padding-top", `${Math.round(designPx(180, "y"))}px`);
-      rootStyle.style.setProperty("--post-empty-padding-bottom", `${Math.round(designPx(120, "y"))}px`);
-      rootStyle.style.setProperty("--post-hero-padding-top", `${Math.round(designPx(170, "y"))}px`);
-      rootStyle.style.setProperty("--post-hero-padding-bottom", `${Math.round(designPx(52, "y"))}px`);
-      rootStyle.style.setProperty("--post-content-padding-bottom", `${Math.round(designPx(64, "y"))}px`);
-    } else {
-      rootStyle.style.removeProperty("--post-empty-padding-top");
-      rootStyle.style.removeProperty("--post-empty-padding-bottom");
-      rootStyle.style.removeProperty("--post-hero-padding-top");
-      rootStyle.style.removeProperty("--post-hero-padding-bottom");
-      rootStyle.style.removeProperty("--post-content-padding-bottom");
-    }
-  };
-
-  const refreshViewportAnimations = () => {
-    if (viewportRefreshFrame) return;
-
-    viewportRefreshFrame = window.requestAnimationFrame(() => {
-      viewportRefreshFrame = 0;
-      syncViewportMetrics();
-      window.requestAnimationFrame(() => ScrollTrigger.refresh());
-    });
-  };
-
-  const handleViewportResize = () => {
-    const nextViewportMode = getViewportMode();
-
-    if (
-      window.devicePixelRatio !== initialDevicePixelRatio ||
-      nextViewportMode !== viewportMode
-    ) {
-      window.location.reload();
-      return;
-    }
-
-    refreshViewportAnimations();
-  };
-
-  syncViewportMetrics();
-  window.addEventListener("resize", handleViewportResize, { passive: true });
-  window.addEventListener("orientationchange", handleViewportResize, { passive: true });
-  window.visualViewport?.addEventListener("resize", handleViewportResize, { passive: true });
-  window.addEventListener("load", refreshViewportAnimations, { once: true });
-  document.fonts?.ready?.then(refreshViewportAnimations);
-
-  const fadeInUp = (element, delay = 0) => {
-    if (!element) return;
-
-    gsap.from(element, {
-      autoAlpha: 0,
-      y: () => designPx(40, "y"),
-      duration: 0.8,
-      delay,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: element,
-        start: "top 85%",
-        invalidateOnRefresh: true,
-      },
-    });
-  };
+  import { fadeInUp } from "../../utils/gsap";
 
   const animateChildren = (selector, delay = 0) => {
     const container = document.querySelector(selector);
@@ -267,19 +150,6 @@ const categoryColors = {
 </script>
 
 <style>
-  :global(:root) {
-    --vw: 1vw;
-    --vh: 1vh;
-    --viewport-scale: 1;
-    --viewport-scale-x: 1;
-    --viewport-scale-y: 1;
-    --is-compact-desktop: 0;
-    --post-empty-padding-top: 180px;
-    --post-empty-padding-bottom: 120px;
-    --post-hero-padding-top: 170px;
-    --post-hero-padding-bottom: 52px;
-    --post-content-padding-bottom: 64px;
-  }
   :global(.footer-section) {
     background: #F9F4F1;
   }
@@ -317,7 +187,7 @@ const categoryColors = {
   }
 
   .post-detail-empty {
-    padding: var(--post-empty-padding-top) 0 var(--post-empty-padding-bottom);
+    padding: 180px 0 120px;
     text-align: center;
   }
   .post-detail-empty h1 {
@@ -336,7 +206,7 @@ const categoryColors = {
     position: relative;
     z-index: 2;
     background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #f9f4f1 100%);
-    padding: var(--post-hero-padding-top) 0 var(--post-hero-padding-bottom);
+    padding: 170px 0 52px;
   }
   .post-hero__inner {
     display: grid;
@@ -418,7 +288,7 @@ const categoryColors = {
     position: relative;
     z-index: 2;
     background: #f9f4f1;
-    padding: 30px 0 var(--post-content-padding-bottom);
+    padding: 30px 0 64px;
   }
   .post-content {
     width: 100%;

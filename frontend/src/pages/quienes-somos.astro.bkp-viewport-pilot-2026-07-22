@@ -147,19 +147,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       --teal: #3b959e;
       --orange: #c36438;
       --green: #8bc5ae;
-      --nav-h: 130px;
+      --nav-h: 161px;
       --radius: 24px;
-      --vw: 1vw;
-      --vh: 1vh;
-      --viewport-scale: 1;
-      --viewport-scale-x: 1;
-      --viewport-scale-y: 1;
-      --is-compact-desktop: 0;
-      --qs-ornament-height: 321px;
-      --team-section-padding-y: 50px;
-      --profile-section-padding-y: 80px;
-      --profile-carousel-height: 640px;
-      --profile-control-size: 58px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -192,8 +181,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       pointer-events: none;
     }
     .menu .brand {
-      width: 130px;
-      height: 130px;
+      width: 161px;
+      height: 161px;
       flex: 0 0 auto;
       pointer-events: auto;
       overflow: clip;
@@ -363,7 +352,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(235px, 1fr);
       align-items: center;
-      gap: 2rem;
+      gap: clamp(2rem, 6vw, 7rem);
       padding: 0 clamp(1.5rem, 5vw, 5rem);
       width: 100%;
       position: relative;
@@ -412,7 +401,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     }
     .fondecyt__bubbles {
       position: relative;
-      width: 100%;
+      width: min(561px, 100%);
       height: auto;
       height: auto;
     }
@@ -421,7 +410,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       pointer-events: none;
     }
     .bubble-q--orange {
-       width: 98%; height: var(--qs-ornament-height);
+      width: 98%; height: 321px;
       top: 0;
       right: 0;
       left: auto;
@@ -430,11 +419,11 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       filter: drop-shadow(8.8px 11.2px 6.12px rgba(0,0,0,0.23)) drop-shadow(0px 3.2px 1.6px rgba(0,0,0,0.25));
     }
     .bubble-q--copper {
-       width: 100%; height: var(--qs-ornament-height);
+      width: 100%; height: 321px;
       bottom: 0;
       left: 0;
       top: auto;
-      transform: translate(-33.333%, 40.333%) rotate(175deg) scaleY(-1);
+      transform: translate(-33.333%, 16.333%) rotate(175deg) scaleY(-1);
       z-index: 1;
       filter: drop-shadow(8.8px 11.2px 6.12px rgba(0,0,0,0.23)) drop-shadow(0px 3.2px 1.6px rgba(0,0,0,0.25));
     }
@@ -444,7 +433,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       inset: auto;
       z-index: 3;
       isolation: isolate;
-      width: 100%;
+      width: 33.333vw;
+      max-width: 560px;
       min-height: 0;
       height: auto;
       margin: 0;
@@ -520,7 +510,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       background: #214d4f;
       display: flex;
       flex-direction: column;
-       padding: var(--team-section-padding-y) 0;
+      padding: 50px 0;
     }
 
     .marquee-row {
@@ -585,7 +575,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       display: flex;
       align-items: center;
       justify-content: center;
-       padding: var(--profile-section-padding-y) 2%;
+      padding: 80px 2%;
       margin-top: -100dvh;
       overflow: hidden;
       pointer-events: none;
@@ -598,8 +588,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     .profile-container {
       position: relative;
       width: min(1096px, 96vw);
-      height: auto;
-      aspect-ratio: 1096 / 640;
+      height: min(640px, 58vw);
       margin: 0 auto;
       overflow: visible;
     }
@@ -608,8 +597,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       left: 32.3%;
       top: 4%;
       width: 35.55%;
-      height: auto;
-      aspect-ratio: 390 / 589;
+      height: 92%;
       opacity: 0;
       pointer-events: none;
       will-change: left, top, opacity, transform;
@@ -639,8 +627,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       position: absolute;
       top: 50%;
       z-index: 30;
-       width: var(--profile-control-size);
-       height: var(--profile-control-size);
+      width: 58px;
+      height: 58px;
       border: none;
       border-radius: 999px;
       display: inline-flex;
@@ -670,12 +658,6 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
 
     @media (max-width: 1200px) {
       .menu { padding: 0 1rem; }
-    }
-    @media (max-width: 1200px) {
-      .menu .brand {
-        width: 130px;
-        height: 130px;
-      }
     }
     @media (max-width: 1137px) {
       .fondecyt__bubbles {
@@ -729,8 +711,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         min-height: auto;
       }
       .menu .brand {
-        width: 130px;
-        height: 130px;
+        width: 88px;
+        height: 88px;
         position: relative;
         z-index: 2;
       }
@@ -829,8 +811,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
           aspect-ratio: auto;
       }
         .qs-bubble {
-          width: 100%;
-          max-width: 100%;
+          width: 90%;
+          max-width: 90%;
           margin-inline: auto;
           aspect-ratio: auto;
       }
@@ -1194,104 +1176,6 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
-  const DESIGN_VIEWPORT = Object.freeze({ width: 1902, height: 910 });
-  const DESKTOP_BREAKPOINT = 901;
-  const rootStyle = document.documentElement;
-  const initialDevicePixelRatio = window.devicePixelRatio;
-  let viewportMode = window.innerWidth < DESKTOP_BREAKPOINT ? "mobile" : "desktop";
-  let viewportMetrics = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    scaleX: 1,
-    scaleY: 1,
-    scale: 1,
-    isCompactDesktop: false,
-  };
-  let viewportRefreshFrame = 0;
-
-  ScrollTrigger.config({
-    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
-    ignoreMobileResize: true,
-  });
-
-  const designPx = (value, axis = "y") => {
-    const scale = axis === "x" ? viewportMetrics.scaleX : viewportMetrics.scaleY;
-    return value * scale;
-  };
-
-  const getViewportMode = () =>
-    window.innerWidth < DESKTOP_BREAKPOINT ? "mobile" : "desktop";
-
-  const syncViewportMetrics = () => {
-    const width = Math.max(window.innerWidth, document.documentElement.clientWidth, 1);
-    const height = Math.max(window.innerHeight, document.documentElement.clientHeight, 1);
-    const scaleX = width / DESIGN_VIEWPORT.width;
-    const scaleY = height / DESIGN_VIEWPORT.height;
-    const isCompactDesktop = width >= DESKTOP_BREAKPOINT && height < 800;
-
-    viewportMetrics = {
-      width,
-      height,
-      scaleX,
-      scaleY,
-      scale: Math.min(scaleX, scaleY),
-      isCompactDesktop,
-    };
-
-    rootStyle.style.setProperty("--vw", `${(width * 0.01).toFixed(4)}px`);
-    rootStyle.style.setProperty("--vh", `${(height * 0.01).toFixed(4)}px`);
-    rootStyle.style.setProperty("--viewport-scale", viewportMetrics.scale.toFixed(5));
-    rootStyle.style.setProperty("--viewport-scale-x", scaleX.toFixed(5));
-    rootStyle.style.setProperty("--viewport-scale-y", scaleY.toFixed(5));
-    rootStyle.style.setProperty("--is-compact-desktop", isCompactDesktop ? "1" : "0");
-
-    if (width >= DESKTOP_BREAKPOINT) {
-      rootStyle.style.setProperty("--qs-ornament-height", `${Math.round(designPx(321, "y"))}px`);
-      rootStyle.style.setProperty("--team-section-padding-y", `${Math.round(designPx(50, "y"))}px`);
-      rootStyle.style.setProperty("--profile-section-padding-y", `${Math.round(designPx(80, "y"))}px`);
-      rootStyle.style.setProperty("--profile-carousel-height", `${Math.round(designPx(640, "y"))}px`);
-      rootStyle.style.setProperty("--profile-control-size", `${Math.round(designPx(58, "y"))}px`);
-    } else {
-      rootStyle.style.removeProperty("--qs-ornament-height");
-      rootStyle.style.removeProperty("--team-section-padding-y");
-      rootStyle.style.removeProperty("--profile-section-padding-y");
-      rootStyle.style.removeProperty("--profile-carousel-height");
-      rootStyle.style.removeProperty("--profile-control-size");
-    }
-  };
-
-  const refreshViewportAnimations = () => {
-    if (viewportRefreshFrame) return;
-
-    viewportRefreshFrame = window.requestAnimationFrame(() => {
-      viewportRefreshFrame = 0;
-      syncViewportMetrics();
-      window.dispatchEvent(new CustomEvent("quienes:viewportchange"));
-      window.requestAnimationFrame(() => ScrollTrigger.refresh());
-    });
-  };
-
-  const handleViewportResize = () => {
-    const nextViewportMode = getViewportMode();
-
-    if (
-      window.devicePixelRatio !== initialDevicePixelRatio ||
-      nextViewportMode !== viewportMode
-    ) {
-      window.location.reload();
-      return;
-    }
-
-    refreshViewportAnimations();
-  };
-
-  syncViewportMetrics();
-  window.addEventListener("resize", handleViewportResize, { passive: true });
-  window.addEventListener("orientationchange", handleViewportResize, { passive: true });
-  window.visualViewport?.addEventListener("resize", handleViewportResize, { passive: true });
-  window.addEventListener("load", refreshViewportAnimations, { once: true });
-  document.fonts?.ready?.then(refreshViewportAnimations);
-
   const menu = document.getElementById("navbar");
   const navToggle = document.getElementById("nav-toggle");
   const navPanel = menu?.querySelector(".panel");
@@ -1520,7 +1404,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   }
 
   gsap.fromTo('.qs-hero .fondecyt',
-    { opacity: 0, scale: 0.88, y: () => designPx(40, 'y') },
+    { opacity: 0, scale: 0.88, y: 40 },
     { opacity: 1, scale: 1, y: 0, duration: 0.9, ease: 'back.out(1.3)', delay: 0.6 }
   );
 
@@ -1549,7 +1433,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   }
 
   gsap.fromTo('.team-title h2',
-    { opacity: 0, y: () => designPx(30, 'y') },
+    { opacity: 0, y: 30 },
     { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
       scrollTrigger: { trigger: '.team-title', start: 'top 85%' } }
   );
@@ -1560,8 +1444,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     gsap.set('.profile-carousel__button', { autoAlpha: 1, yPercent: 0, y: 0, pointerEvents: "auto" });
   } else if (teamProfileStage && profileSection && teamSection) {
     gsap.set(profileSection, { pointerEvents: "none" });
-    gsap.set('.profile-card-wrap', { yPercent: 135, y: () => designPx(200, 'y'), opacity: 0.42 });
-    gsap.set('.profile-carousel__button', { autoAlpha: 0, yPercent: 135, y: () => designPx(100, 'y'), pointerEvents: "none" });
+    gsap.set('.profile-card-wrap', { yPercent: 135, y: 200, opacity: 0.42 });
+    gsap.set('.profile-carousel__button', { autoAlpha: 0, yPercent: 135, y: 100, pointerEvents: "none" });
 
     let profileRevealStarted = false;
     let profileTimeline;
@@ -1572,7 +1456,6 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         start: 'top top',
         end: 'bottom 50%',
         scrub: 1,
-        invalidateOnRefresh: true,
         onUpdate: (self) => {
           if (profileRevealStarted) return;
 
@@ -1649,7 +1532,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
 
     updateDevReadout();
     window.addEventListener("scroll", updateDevReadout, { passive: true });
-    window.addEventListener("quienes:viewportchange", updateDevReadout);
+    window.addEventListener("resize", updateDevReadout);
 
     ScrollTrigger.create({
       trigger: teamProfileStage,

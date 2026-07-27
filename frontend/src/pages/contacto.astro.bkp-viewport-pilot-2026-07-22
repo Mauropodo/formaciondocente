@@ -38,18 +38,6 @@ const carasImages = [
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; }
-      :root {
-        --vw: 1vw;
-        --vh: 1vh;
-        --viewport-scale: 1;
-        --viewport-scale-x: 1;
-        --viewport-scale-y: 1;
-        --is-compact-desktop: 0;
-        --contact-hero-padding-top: clamp(8rem, 12vw, 11rem);
-        --contact-hero-padding-bottom: 6rem;
-        --contact-hand-width: 120px;
-        --social-section-padding-y: 5rem;
-      }
       body {
         font-family: 'Inter', sans-serif;
         background: #f9f5f2;
@@ -96,10 +84,10 @@ const carasImages = [
         display: flex; flex-wrap: wrap; align-items: center;
         justify-content: center;
         gap: clamp(2rem, 5vw, 5rem);
-        padding: var(--contact-hero-padding-top) 8vw var(--contact-hero-padding-bottom);
+        padding: clamp(8rem, 12vw, 11rem) 8vw 6rem;
       }
       .hero__heading {
-        flex: 0 1 420px;
+        flex: 0 1 520px;
         font-family: 'Playfair Display', serif; font-weight: 700;
         font-size: clamp(26px, 3vw, 46px); line-height: 1.18;
         color: #be572a; text-transform: uppercase;
@@ -114,13 +102,13 @@ const carasImages = [
       .hand--left {
         left: var(--hand-corner-offset);
         top: calc(var(--hand-corner-offset) - clamp(28px, 5vw, 56px));
-        width: var(--contact-hand-width);
+        width: 120px;
         transform: translate(-28%, -24%) rotate(35deg);
       }
       .hand--right {
         right: calc(var(--hand-corner-offset) + clamp(16px, 5vw, 20px));
         bottom: calc(var(--hand-corner-offset) - clamp(8px, 2.5vw, 10px));
-        width: var(--contact-hand-width);
+        width: 120px;
         transform: translate(28%, 24%) rotate(82deg);
       }
       @media (max-width: 1100px) {
@@ -201,7 +189,7 @@ const carasImages = [
         100% { transform: translateX(-50%); }
       }
       .social-section {
-        position: relative; padding: var(--social-section-padding-y) 8vw;
+        position: relative; padding: 5rem 8vw;
         display: flex; flex-direction: column; align-items: center; gap: 3.5rem;
       }
       .social-header { width: 100%; max-width: 960px; display: flex; flex-direction: column; gap: 1.5rem; }
@@ -462,101 +450,6 @@ const carasImages = [
     <script>
       gsap.registerPlugin(ScrollTrigger);
 
-      const DESIGN_VIEWPORT = Object.freeze({ width: 1902, height: 910 });
-      const DESKTOP_BREAKPOINT = 901;
-      const rootStyle = document.documentElement;
-      const initialDevicePixelRatio = window.devicePixelRatio;
-      let viewportMode = window.innerWidth < DESKTOP_BREAKPOINT ? 'mobile' : 'desktop';
-      let viewportMetrics = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        scaleX: 1,
-        scaleY: 1,
-        scale: 1,
-        isCompactDesktop: false,
-      };
-      let viewportRefreshFrame = 0;
-
-      ScrollTrigger.config({
-        autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-        ignoreMobileResize: true,
-      });
-
-      const designPx = (value, axis = 'y') => {
-        const scale = axis === 'x' ? viewportMetrics.scaleX : viewportMetrics.scaleY;
-        return value * scale;
-      };
-
-      const getViewportMode = () =>
-        window.innerWidth < DESKTOP_BREAKPOINT ? 'mobile' : 'desktop';
-
-      const syncViewportMetrics = () => {
-        const width = Math.max(window.innerWidth, document.documentElement.clientWidth, 1);
-        const height = Math.max(window.innerHeight, document.documentElement.clientHeight, 1);
-        const scaleX = width / DESIGN_VIEWPORT.width;
-        const scaleY = height / DESIGN_VIEWPORT.height;
-        const isCompactDesktop = width >= DESKTOP_BREAKPOINT && height < 800;
-
-        viewportMetrics = {
-          width,
-          height,
-          scaleX,
-          scaleY,
-          scale: Math.min(scaleX, scaleY),
-          isCompactDesktop,
-        };
-
-        rootStyle.style.setProperty('--vw', `${(width * 0.01).toFixed(4)}px`);
-        rootStyle.style.setProperty('--vh', `${(height * 0.01).toFixed(4)}px`);
-        rootStyle.style.setProperty('--viewport-scale', viewportMetrics.scale.toFixed(5));
-        rootStyle.style.setProperty('--viewport-scale-x', scaleX.toFixed(5));
-        rootStyle.style.setProperty('--viewport-scale-y', scaleY.toFixed(5));
-        rootStyle.style.setProperty('--is-compact-desktop', isCompactDesktop ? '1' : '0');
-
-        if (width >= DESKTOP_BREAKPOINT) {
-          rootStyle.style.setProperty('--contact-hero-padding-top', `${Math.round(designPx(176, 'y'))}px`);
-          rootStyle.style.setProperty('--contact-hero-padding-bottom', `${Math.round(designPx(96, 'y'))}px`);
-          rootStyle.style.setProperty('--contact-hand-width', `${Math.round(designPx(120, 'x'))}px`);
-          rootStyle.style.setProperty('--social-section-padding-y', `${Math.round(designPx(80, 'y'))}px`);
-        } else {
-          rootStyle.style.removeProperty('--contact-hero-padding-top');
-          rootStyle.style.removeProperty('--contact-hero-padding-bottom');
-          rootStyle.style.removeProperty('--contact-hand-width');
-          rootStyle.style.removeProperty('--social-section-padding-y');
-        }
-      };
-
-      const refreshViewportAnimations = () => {
-        if (viewportRefreshFrame) return;
-
-        viewportRefreshFrame = window.requestAnimationFrame(() => {
-          viewportRefreshFrame = 0;
-          syncViewportMetrics();
-          window.requestAnimationFrame(() => ScrollTrigger.refresh());
-        });
-      };
-
-      const handleViewportResize = () => {
-        const nextViewportMode = getViewportMode();
-
-        if (
-          window.devicePixelRatio !== initialDevicePixelRatio ||
-          nextViewportMode !== viewportMode
-        ) {
-          window.location.reload();
-          return;
-        }
-
-        refreshViewportAnimations();
-      };
-
-      syncViewportMetrics();
-      window.addEventListener('resize', handleViewportResize, { passive: true });
-      window.addEventListener('orientationchange', handleViewportResize, { passive: true });
-      window.visualViewport?.addEventListener('resize', handleViewportResize, { passive: true });
-      window.addEventListener('load', refreshViewportAnimations, { once: true });
-      document.fonts?.ready?.then(refreshViewportAnimations);
-
       const textarea = document.getElementById('comentarios');
       const charCount = document.getElementById('charCount');
       if (textarea && charCount) {
@@ -567,16 +460,16 @@ const carasImages = [
 
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       tl.fromTo('#heroHeading',
-        { opacity: 0, x: () => designPx(-70, 'x') },
+        { opacity: 0, x: -70 },
         { opacity: 1, x: 0, duration: 1 }
       ).fromTo('#formWrap',
-        { opacity: 0, x: () => designPx(70, 'x') },
+        { opacity: 0, x: 70 },
         { opacity: 1, x: 0, duration: 1 },
         '-=0.7'
       );
 
       gsap.to('#formCard', {
-        y: () => designPx(-14, 'y'),
+        y: -14,
         duration: 2.8,
         ease: 'sine.inOut',
         yoyo: true,
@@ -584,11 +477,11 @@ const carasImages = [
       });
 
       gsap.to('.hand--left', {
-        y: () => designPx(-6, 'y'), rotation: -2,
+        y: -6, rotation: -2,
         duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1,
       });
       gsap.to('.hand--right', {
-        y: () => designPx(6, 'y'), rotation: 2,
+        y: 6, rotation: 2,
         duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1,
       });
 

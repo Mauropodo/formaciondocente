@@ -83,21 +83,6 @@ const REFS_DATA = [
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; }
-      :root {
-        --vw: 1vw;
-        --vh: 1vh;
-        --viewport-scale: 1;
-        --viewport-scale-x: 1;
-        --viewport-scale-y: 1;
-        --is-compact-desktop: 0;
-        --hero-section-padding-top: 200px;
-        --temas-section-padding-top: 200px;
-        --objetivos-stage-padding-top: 168px;
-        --objetivos-stage-padding-bottom: 80px;
-        --obj-hand-width: 150px;
-        --obj-hand-height: 220px;
-        --objetivos-progress-bottom: 28px;
-      }
       body {
         font-family: 'Inter', sans-serif;
         background: #fff;
@@ -130,7 +115,6 @@ const REFS_DATA = [
         inset: 0;
         z-index: 0;
         background: #fff;
-        opacity: 0.2;
         overflow: hidden;
         pointer-events: none;
       }
@@ -168,7 +152,7 @@ const REFS_DATA = [
         justify-content: space-between;
         background: transparent;
         overflow: visible;
-        padding-top: var(--hero-section-padding-top);
+        padding-top: 200px;
         padding-bottom: 60px;
       }
       @keyframes heroBgLayerEnter {
@@ -224,7 +208,7 @@ const REFS_DATA = [
         line-height: 1.15;
         color: #be572a;
         text-transform: uppercase;
-        text-align: center;
+        text-align: right;
         position: relative;
         z-index: 1;
       }
@@ -373,7 +357,7 @@ const REFS_DATA = [
         position: relative;
         z-index: 10;
         min-height: 86vh;
-        padding: var(--temas-section-padding-top) 0 40px;
+        padding: 200px 0 40px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -519,7 +503,7 @@ const REFS_DATA = [
         position: relative;
         width: 100%;
         height: 100%;
-        padding: var(--objetivos-stage-padding-top) clamp(24px, 6vw, 88px) var(--objetivos-stage-padding-bottom);
+        padding: clamp(128px, 14vw, 168px) clamp(24px, 6vw, 88px) clamp(48px, 6vw, 80px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -562,7 +546,7 @@ const REFS_DATA = [
       .obj-group__content {
         position: relative;
         z-index: 10;
-        width: 72%;
+        width: min(100%, 1200px);
         margin-inline: auto;
         display: grid;
         grid-template-columns: minmax(0, 320px) minmax(320px, 460px);
@@ -616,15 +600,15 @@ const REFS_DATA = [
       .obj-hand--left {
         left: var(--hand-corner-offset);
         top: calc(var(--hand-corner-offset) - clamp(8px, 2.5vw, 10px));
-        width: var(--obj-hand-width);
-        height: var(--obj-hand-height);
+        width: 150px;
+        height: 220px;
         transform: translate(-28%, -24%) rotate(35deg);
       }
       .obj-hand--right {
         right: calc(var(--hand-corner-offset) + clamp(16px, 5vw, 20px));
         bottom: calc(var(--hand-corner-offset) - clamp(8px, 2.5vw, 10px));
-        width: var(--obj-hand-width);
-        height: var(--obj-hand-height);
+        width: 150px;
+        height: 220px;
         transform: translate(28%, 24%) rotate(85deg);
       }
       .obj-main-card {
@@ -656,7 +640,7 @@ const REFS_DATA = [
       .objetivos-progress {
         position: absolute;
         left: 50%;
-        bottom: var(--objetivos-progress-bottom);
+        bottom: 28px;
         z-index: 20;
         display: flex;
         align-items: center;
@@ -830,7 +814,7 @@ const REFS_DATA = [
       }
       @media (max-width: 900px) {
         .intro-stack__backdrop {
-          opacity: 0.2;
+          opacity: 0.3;
         }
         .hero__title {
           flex: 0 0 100%;
@@ -1257,108 +1241,6 @@ const REFS_DATA = [
 
       gsap.registerPlugin(ScrollTrigger);
 
-      const DESIGN_VIEWPORT = Object.freeze({ width: 1902, height: 910 });
-      const DESKTOP_BREAKPOINT = 901;
-      const rootStyle = document.documentElement;
-      const initialDevicePixelRatio = window.devicePixelRatio;
-      let viewportMode = window.innerWidth < DESKTOP_BREAKPOINT ? 'mobile' : 'desktop';
-      let viewportMetrics = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        scaleX: 1,
-        scaleY: 1,
-        scale: 1,
-        isCompactDesktop: false,
-      };
-      let viewportRefreshFrame = 0;
-
-      ScrollTrigger.config({
-        autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-        ignoreMobileResize: true,
-      });
-
-      const designPx = (value, axis = 'y') => {
-        const scale = axis === 'x' ? viewportMetrics.scaleX : viewportMetrics.scaleY;
-        return value * scale;
-      };
-
-      const getViewportMode = () =>
-        window.innerWidth < DESKTOP_BREAKPOINT ? 'mobile' : 'desktop';
-
-      const syncViewportMetrics = () => {
-        const width = Math.max(window.innerWidth, document.documentElement.clientWidth, 1);
-        const height = Math.max(window.innerHeight, document.documentElement.clientHeight, 1);
-        const scaleX = width / DESIGN_VIEWPORT.width;
-        const scaleY = height / DESIGN_VIEWPORT.height;
-        const isCompactDesktop = width >= DESKTOP_BREAKPOINT && height < 800;
-
-        viewportMetrics = {
-          width,
-          height,
-          scaleX,
-          scaleY,
-          scale: Math.min(scaleX, scaleY),
-          isCompactDesktop,
-        };
-
-        rootStyle.style.setProperty('--vw', `${(width * 0.01).toFixed(4)}px`);
-        rootStyle.style.setProperty('--vh', `${(height * 0.01).toFixed(4)}px`);
-        rootStyle.style.setProperty('--viewport-scale', viewportMetrics.scale.toFixed(5));
-        rootStyle.style.setProperty('--viewport-scale-x', scaleX.toFixed(5));
-        rootStyle.style.setProperty('--viewport-scale-y', scaleY.toFixed(5));
-        rootStyle.style.setProperty('--is-compact-desktop', isCompactDesktop ? '1' : '0');
-
-        if (width >= DESKTOP_BREAKPOINT) {
-          rootStyle.style.setProperty('--hero-section-padding-top', `${Math.round(designPx(200, 'y'))}px`);
-          rootStyle.style.setProperty('--temas-section-padding-top', `${Math.round(designPx(200, 'y'))}px`);
-          rootStyle.style.setProperty('--objetivos-stage-padding-top', `${Math.round(designPx(168, 'y'))}px`);
-          rootStyle.style.setProperty('--objetivos-stage-padding-bottom', `${Math.round(designPx(80, 'y'))}px`);
-          rootStyle.style.setProperty('--obj-hand-width', `${Math.round(designPx(150, 'x'))}px`);
-          rootStyle.style.setProperty('--obj-hand-height', `${Math.round(designPx(220, 'y'))}px`);
-          rootStyle.style.setProperty('--objetivos-progress-bottom', `${Math.round(designPx(28, 'y'))}px`);
-        } else {
-          rootStyle.style.removeProperty('--hero-section-padding-top');
-          rootStyle.style.removeProperty('--temas-section-padding-top');
-          rootStyle.style.removeProperty('--objetivos-stage-padding-top');
-          rootStyle.style.removeProperty('--objetivos-stage-padding-bottom');
-          rootStyle.style.removeProperty('--obj-hand-width');
-          rootStyle.style.removeProperty('--obj-hand-height');
-          rootStyle.style.removeProperty('--objetivos-progress-bottom');
-        }
-      };
-
-      const refreshViewportAnimations = () => {
-        if (viewportRefreshFrame) return;
-
-        viewportRefreshFrame = window.requestAnimationFrame(() => {
-          viewportRefreshFrame = 0;
-          syncViewportMetrics();
-          window.dispatchEvent(new CustomEvent('investigacion:viewportchange'));
-          window.requestAnimationFrame(() => ScrollTrigger.refresh());
-        });
-      };
-
-      const handleViewportResize = () => {
-        const nextViewportMode = getViewportMode();
-
-        if (
-          window.devicePixelRatio !== initialDevicePixelRatio ||
-          nextViewportMode !== viewportMode
-        ) {
-          window.location.reload();
-          return;
-        }
-
-        refreshViewportAnimations();
-      };
-
-      syncViewportMetrics();
-      window.addEventListener('resize', handleViewportResize, { passive: true });
-      window.addEventListener('orientationchange', handleViewportResize, { passive: true });
-      window.visualViewport?.addEventListener('resize', handleViewportResize, { passive: true });
-      window.addEventListener('load', refreshViewportAnimations, { once: true });
-      document.fonts?.ready?.then(refreshViewportAnimations);
-
       // ── Tags data for scroll-driven updates ────────────────────
       const TAGS = [
         { label: "Trayectorias formativas",      color: "#f0a443", rotate: 0  },
@@ -1397,15 +1279,15 @@ const REFS_DATA = [
 
       const heroTl = gsap.timeline({ delay: 0.2 });
       heroTl
-        .fromTo('#heroHeading',  { opacity: 0, x: () => designPx(-60, 'x') }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' })
-        .fromTo('#heroTitle',    { opacity: 0, x: () => designPx(60, 'x') }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.6')
-        .fromTo('#heroIllust',   { opacity: 0, scale: 0.8, x: () => designPx(-30, 'x') }, { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: 'back.out(1.4)' }, '-=0.5')
-        .fromTo('#heroQuote',    { opacity: 0, y: () => designPx(40, 'y'), scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.5');
+        .fromTo('#heroHeading',  { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' })
+        .fromTo('#heroTitle',    { opacity: 0, x: 60  }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.6')
+        .fromTo('#heroIllust',   { opacity: 0, scale: 0.8, x: -30 }, { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: 'back.out(1.4)' }, '-=0.5')
+        .fromTo('#heroQuote',    { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.5');
 
       // ── Temas: update active tag ────────────────────────────────
       // ── Temas: GSAP pin + scroll progress ──────────────────────
       // ── Objetivos: panel principal flotante ─────────────────────
-      gsap.to('#objMainCard', { y: () => designPx(-14, 'y'), duration: 2.8, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      gsap.to('#objMainCard', { y: -14, duration: 2.8, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
       // ── Objetivos: scroll lateral de 4 paneles ──────────────────
       const objSection = document.getElementById('objetivosSection');
@@ -1544,10 +1426,10 @@ const REFS_DATA = [
             y: 0,
             scale: 1,
             x: (index) => {
-              if (index === 0) return -(viewportMetrics.width - designPx(400, 'x'));
-              if (index === 1) return -(viewportMetrics.width - designPx(350, 'x'));
-              if (index === 2) return -(viewportMetrics.width - designPx(300, 'x'));
-              return -viewportMetrics.width * 1.2;
+              if (index === 0) return -(window.innerWidth - 400);
+              if (index === 1) return -(window.innerWidth - 350);
+              if (index === 2) return -(window.innerWidth - 300);
+              return -window.innerWidth * 1.2;
             },
           });
 
@@ -1555,7 +1437,7 @@ const REFS_DATA = [
             scrollTrigger: {
               trigger: objSection,
               start: 'top top',
-              end: () => `+=${Math.round(viewportMetrics.width * (objPanels.length - 1))}`,
+              end: () => `+=${window.innerWidth * (objPanels.length - 1)}`,
               pin: true,
               scrub: 0.9,
               anticipatePin: 1,
@@ -1586,18 +1468,6 @@ const REFS_DATA = [
       );
 
       // ── Referencias: stagger fade-in ───────────────────────────
-      let objectiveViewportRefreshQueued = false;
-      window.addEventListener('investigacion:viewportchange', () => {
-        if (objectiveViewportRefreshQueued) return;
-
-        objectiveViewportRefreshQueued = true;
-        window.requestAnimationFrame(() => {
-          objectiveViewportRefreshQueued = false;
-          gsap.matchMediaRefresh();
-          ScrollTrigger.refresh();
-        });
-      });
-
       gsap.fromTo('.ref-card',
         { opacity: 0, y: 40 },
         {
