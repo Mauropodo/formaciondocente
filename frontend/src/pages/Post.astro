@@ -13,6 +13,7 @@ export const prerender = false;
  */
 
 import Nav from '../components/Nav.astro';
+import SeoHead from "../components/SeoHead.astro";
 
 const tags = [
   { label: "Relatos",       bg: "#e5e5c6", border: "#7b7a4a" },
@@ -28,7 +29,12 @@ const navLinks = ["Inicio", "Quiénes somos", "Investigación", "Publicaciones",
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Titulo publicación — Post</title>
+  <SeoHead
+    title="Publicación"
+    description="Publicación del proyecto sobre identidad profesional docente y formación práctica de educación parvularia."
+    path="/post/"
+    noindex={true}
+  />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

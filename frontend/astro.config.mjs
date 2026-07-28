@@ -4,7 +4,7 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   output: 'server',
   adapter: netlify(),
-  site: 'https://identidadprofesional.cl',
+  site: 'http://identidadprofesional.cl',
   server: {
     host: true,
     port: 4321,

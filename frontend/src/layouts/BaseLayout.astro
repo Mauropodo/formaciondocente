@@ -1,14 +1,27 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import SeoHead from '../components/SeoHead.astro';
 import '../styles/global.css';
 
 export interface Props {
   title: string;
   description?: string;
   layoutClass?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
 }
-const { title, description, layoutClass } = Astro.props;
+const {
+  title,
+  description = 'Investigación sobre la construcción de la identidad profesional docente en la formación práctica de educación parvularia en Chile.',
+  layoutClass,
+  canonical,
+  image,
+  type = 'website',
+  noindex = false,
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -16,8 +29,14 @@ const { title, description, layoutClass } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} | Parvularias</title>
-    <meta name="description" content={description || 'Parvularias - Cuidado y desarrollo infantil basado en evidencia'} />
+    <SeoHead
+      title={title}
+      description={description}
+      path={canonical ?? Astro.url.pathname}
+      image={image}
+      type={type}
+      noindex={noindex}
+    />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="alternate icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

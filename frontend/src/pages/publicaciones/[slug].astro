@@ -28,7 +28,13 @@ const categoryColors = {
 };
 ---
 
-<BaseLayout title={post?.title ?? 'Publicación'} layoutClass="layout-shell--post-detail">
+<BaseLayout
+  title={post?.title ?? 'Publicación'}
+  description={post?.excerpt ?? 'Publicación del proyecto sobre identidad profesional docente y formación práctica de educación parvularia en Chile.'}
+  canonical={slug ? `/publicaciones/${slug}/` : '/publicaciones/'}
+  type="article"
+  layoutClass="layout-shell--post-detail"
+>
   <Fragment slot="pageBackground">
     <div class="layout-page-background post-detail-bg" aria-hidden="true">
       <div class="post-detail-bg__shape post-detail-bg__shape--1"></div>

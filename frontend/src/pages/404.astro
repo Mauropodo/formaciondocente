@@ -2,7 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Página no encontrada">
+<BaseLayout
+  title="Página no encontrada"
+  description="La página solicitada no existe dentro del sitio Identidad Profesional Docente."
+  canonical="/404/"
+  noindex={true}
+>
   <section class="not-found">
     <div class="container text-center">
       <h1>404</h1>

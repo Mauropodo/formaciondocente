@@ -1,6 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
 import ProfileFlipCard from '../components/ProfileFlipCard.astro';
+import SeoHead from "../components/SeoHead.astro";
 import brandImage from "../assets/figma-mcp/inicio/logo.png";
 
 const TAGS = [
@@ -131,7 +132,11 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>¿Quiénes Somos? | Parvularias</title>
+  <SeoHead
+    title="Quiénes somos"
+    description="Conoce al equipo y la comunidad que desarrolla una investigación narrativa y longitudinal sobre identidad profesional docente y educación parvularia."
+    path="/quienes-somos/"
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
@@ -609,7 +614,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       top: 4%;
       width: 35.55%;
       height: auto;
-      aspect-ratio: 390 / 589;
+      aspect-ratio: 390 / 625;
       opacity: 0;
       pointer-events: none;
       will-change: left, top, opacity, transform;

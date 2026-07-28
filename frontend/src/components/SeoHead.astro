@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+  keywords?: string;
+}
+
+const {
+  title,
+  description,
+  path = "/",
+  image = "/favicon.png",
+  type = "website",
+  noindex = false,
+  keywords = "identidad profesional docente, educación parvularia, formación docente, investigación educativa en Chile",
+} = Astro.props;
+
+const siteUrl = "http://identidadprofesional.cl";
+const normalizedPath = path === "/" ? "/" : `/${path.replace(/^\/+|\/+$/g, "")}/`;
+const canonicalUrl = `${siteUrl}${normalizedPath}`;
+const imageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
+const fullTitle = `${title} | Identidad Profesional Docente`;
+const cleanDescription = description.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Identidad Profesional Docente",
+      inLanguage: "es-CL",
+    },
+    {
+      "@type": "ResearchProject",
+      "@id": `${siteUrl}/#research-project`,
+      name: "Construcción de la Identidad Profesional Docente en la Formación Práctica de Educación Parvularia",
+      description: cleanDescription,
+      url: canonicalUrl,
+      image: imageUrl,
+      inLanguage: "es-CL",
+    },
+  ],
+};
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={cleanDescription} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content="Proyecto Fondecyt de Iniciación" />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:locale" content="es_CL" />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="Identidad Profesional Docente" />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={cleanDescription} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content="Identidad Profesional Docente y educación parvularia" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={cleanDescription} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="theme-color" content="#f9f5f2" />
+<link rel="alternate" hreflang="es-CL" href={canonicalUrl} />
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
