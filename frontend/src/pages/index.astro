@@ -64,8 +64,10 @@ import SeoHead from "../components/SeoHead.astro";
     .bg-shape {
       position: absolute;
       inset: 0;
-      opacity: 0;
-      transform: translate3d(-9vw, 0, 0);
+      /* Safari fallback: keep the artwork visible if the entrance script is
+         delayed or interrupted. */
+      opacity: 1;
+      transform: none;
       will-change: transform, opacity;
       backface-visibility: hidden;
     }

@@ -1,0 +1,476 @@
+
+> frontend@0.0.1 dev
+> astro dev --host 127.0.0.1 --force
+
+[2m14:41:45[22m [34m[@astrojs/netlify][39m Enabling sessions with Netlify Blobs
+[vite] connected.
+[2m14:41:49[22m [34m[vite][39m Environment loaded
+[2m14:41:49[22m [34m[vite][39m Middleware loaded. Emulating features: aiGateway, blobs, database, edgeFunctions, functions, geolocation, headers, images, redirects, static.
+[2m14:41:49[22m [34m[vite][39m 💭 Linking this project to a Netlify site lets you deploy your site, use any environment variables defined on your team and site and much more. Run npx netlify init to get started.
+[2m14:41:49[22m [34m[types][39m Generated [2m1ms[22m
+[42m[1m astro [22m[49m [32mv6.4.2[39m [2mready in[22m 9220 [2mms[22m
+[2m┃[22m Local    [36mhttp://127.0.0.1:4321/[39m
+[2m14:41:49[22m [32mwatching for file changes...[39m
+[2m14:41:51[22m [34m[200][39m /inicio/ [2m677ms[22m
+[2m14:41:52[22m [34m[vite][39m [32m✨ new dependencies optimized: [33mgsap, gsap/ScrollTrigger[32m[39m
+[2m14:41:52[22m [34m[vite][39m [32m✨ optimized dependencies changed. reloading[39m
+[2m14:41:52[22m [34m[200][39m /inicio/ [2m271ms[22m
+[2m14:42:13[22m [34m[200][39m /inicio/ [2m574ms[22m
+[2m14:46:01[22m [34m[200][39m /inicio [2m885ms[22m
+[2m14:46:01[22m [34m[200][39m /inicio [2m1696ms[22m
+[2m14:46:07[22m [34m[200][39m /inicio [2m548ms[22m
+[2m14:46:10[22m [34m[200][39m /indexsa2/ [2m10ms[22m
+[2m14:46:36[22m [33m[404][39m /index2 [2m84ms[22m
+[2m14:54:36[22m [34m[200][39m /inicio [2m1619ms[22m
+[2m18:14:52[22m [34m[200][39m /indexsa2/ [2m35ms[22m
+[2m18:14:56[22m [34m[200][39m /indexsa2/ [2m4ms[22m
+[2m18:15:32[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m18:15:32[22m [33m[404][39m /indexsa2/ [2m18ms[22m
+[2m18:15:32[22m [33m[404][39m /indexsa2/ [2m6ms[22m
+[2m18:15:33[22m [33m[404][39m /index2 [2m6ms[22m
+[2m18:15:34[22m [34m[200][39m /inicio [2m1580ms[22m
+[2m18:15:35[22m [34m[200][39m /inicio/ [2m2597ms[22m
+[2m18:15:36[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m18:15:36[22m [34m[200][39m /inicio/ [2m780ms[22m
+[2m18:15:36[22m [33m[404][39m /index2 [2m5ms[22m
+[2m18:15:37[22m [34m[200][39m /inicio [2m290ms[22m
+[2m18:15:37[22m [34m[200][39m /indexsa2/ [2m242ms[22m
+[2m18:15:37[22m [34m[200][39m /indexsa2/ [2m218ms[22m
+[2m18:15:42[22m [34m[200][39m /indexsa2/ [2m535ms[22m
+[2m18:16:11[22m [34m[200][39m /indexsa2/ [2m558ms[22m
+[2m18:25:49[22m [34m[200][39m /inicio [2m1550ms[22m
+[2m18:25:57[22m [34m[200][39m /inicio [2m571ms[22m
+[2m18:26:13[22m [34m[200][39m /inicio [2m569ms[22m
+[2m18:26:53[22m [34m[200][39m /inicio [2m567ms[22m
+[2m18:30:47[22m [34m[200][39m /inicio [2m1065ms[22m
+[2m18:30:47[22m [34m[200][39m /inicio [2m1203ms[22m
+[2m18:39:16[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m18:39:17[22m [33m[404][39m /index2 [2m4ms[22m
+[2m18:39:18[22m [34m[200][39m /inicio [2m938ms[22m
+[2m18:39:18[22m [34m[200][39m /inicio/ [2m1166ms[22m
+[2m18:39:18[22m [34m[200][39m /indexsa2/ [2m1120ms[22m
+[2m18:39:18[22m [34m[200][39m /indexsa2/ [2m223ms[22m
+[2m18:39:19[22m [34m[200][39m /indexsa2/ [2m253ms[22m
+[2m18:40:12[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m18:40:12[22m [33m[404][39m /index2 [2m11ms[22m
+[2m18:40:13[22m [34m[200][39m /inicio/ [2m625ms[22m
+[2m18:40:13[22m [34m[200][39m /inicio [2m666ms[22m
+[2m18:40:13[22m [34m[200][39m /indexsa2/ [2m623ms[22m
+[2m18:40:13[22m [34m[200][39m /indexsa2/ [2m223ms[22m
+[2m18:40:13[22m [34m[200][39m /indexsa2/ [2m222ms[22m
+[2m18:46:07[22m [34m[200][39m /inicio [2m1578ms[22m
+[2m18:46:10[22m [34m[200][39m /inicio [2m224ms[22m
+[2m18:46:43[22m [33m[404][39m /inicio2sa [2m3ms[22m
+[2m18:46:57[22m [33m[404][39m /iniciosa2 [2m5ms[22m
+[2m18:47:05[22m [34m[200][39m /indexsa2/ [2m546ms[22m
+[2m18:47:12[22m [34m[200][39m /indexsa2/ [2m540ms[22m
+[2m18:48:27[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m18:48:28[22m [34m[200][39m /inicio/ [2m588ms[22m
+[2m18:48:28[22m [34m[200][39m /indexsa2/ [2m567ms[22m
+[2m18:48:28[22m [33m[404][39m /index2 [2m4ms[22m
+[2m18:48:28[22m [34m[200][39m /indexsa2/ [2m221ms[22m
+[2m18:48:28[22m [34m[200][39m /indexsa2/ [2m223ms[22m
+[2m18:48:28[22m [34m[200][39m /indexsa2/ [2m217ms[22m
+[2m18:48:29[22m [34m[200][39m /indexsa2/ [2m215ms[22m
+[2m18:48:33[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m18:48:34[22m [33m[404][39m /index2 [2m4ms[22m
+[2m18:48:34[22m [34m[200][39m /inicio/ [2m909ms[22m
+[2m18:48:34[22m [34m[200][39m /indexsa2/ [2m519ms[22m
+[2m18:48:34[22m [34m[200][39m /indexsa2/ [2m546ms[22m
+[2m18:48:35[22m [34m[200][39m /indexsa2/ [2m294ms[22m
+[2m18:48:35[22m [34m[200][39m /indexsa2/ [2m215ms[22m
+[2m18:48:35[22m [34m[200][39m /indexsa2/ [2m214ms[22m
+[2m18:50:08[22m [34m[200][39m /indexsa2/ [2m582ms[22m
+[2m18:50:14[22m [34m[200][39m /indexsa2/ [2m550ms[22m
+[2m18:50:31[22m [34m[200][39m /inicio [2m545ms[22m
+[2m18:50:31[22m [34m[200][39m /inicio [2m219ms[22m
+[2m18:57:50[22m [34m[200][39m /indexsa2/ [2m1597ms[22m
+[2m18:59:49[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m18:59:49[22m [33m[404][39m /index2 [2m6ms[22m
+[2m18:59:50[22m [34m[200][39m /inicio/ [2m629ms[22m
+[2m18:59:50[22m [34m[200][39m /indexsa2/ [2m596ms[22m
+[2m18:59:50[22m [34m[200][39m /indexsa2/ [2m613ms[22m
+[2m18:59:50[22m [34m[200][39m /indexsa2/ [2m222ms[22m
+[2m18:59:50[22m [34m[200][39m /indexsa2/ [2m238ms[22m
+[2m18:59:51[22m [34m[200][39m /indexsa2/ [2m236ms[22m
+[2m19:01:10[22m [34m[200][39m /indexsa2/ [2m559ms[22m
+[2m19:01:14[22m [34m[200][39m /indexsa2/ [2m244ms[22m
+[2m19:01:46[22m [34m[200][39m /indexsa2 [2m555ms[22m
+[2m19:10:20[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m19:10:20[22m [33m[404][39m /index2 [2m3ms[22m
+[2m19:10:21[22m [34m[200][39m /indexsa2/ [2m1036ms[22m
+[2m19:10:21[22m [34m[200][39m /inicio/ [2m1488ms[22m
+[2m19:10:21[22m [34m[200][39m /indexsa2 [2m1048ms[22m
+[2m19:10:22[22m [34m[200][39m /indexsa2/ [2m227ms[22m
+[2m19:10:22[22m [34m[200][39m /indexsa2/ [2m263ms[22m
+[2m19:10:22[22m [34m[200][39m /indexsa2/ [2m226ms[22m
+[2m19:10:33[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m19:10:34[22m [34m[200][39m /inicio/ [2m893ms[22m
+[2m19:10:34[22m [34m[200][39m /indexsa2/ [2m537ms[22m
+[2m19:10:34[22m [33m[404][39m /index2 [2m3ms[22m
+[2m19:10:34[22m [34m[200][39m /indexsa2/ [2m221ms[22m
+[2m19:10:34[22m [34m[200][39m /indexsa2 [2m232ms[22m
+[2m19:10:34[22m [34m[200][39m /indexsa2/ [2m223ms[22m
+[2m19:10:35[22m [34m[200][39m /indexsa2/ [2m285ms[22m
+[2m19:11:27[22m [34m[200][39m /indexsa2 [2m563ms[22m
+[2m19:24:43[22m [34m[200][39m /inicio/ [2m1136ms[22m
+[2m19:24:43[22m [34m[200][39m /indexsa2/ [2m1070ms[22m
+[2m19:24:43[22m [34m[200][39m /indexsa2/ [2m241ms[22m
+[2m19:24:43[22m [34m[200][39m /indexsa2/ [2m237ms[22m
+[2m19:24:44[22m [34m[200][39m /indexsa2/ [2m305ms[22m
+[2m19:27:11[22m [34m[200][39m /indexsa2 [2m1563ms[22m
+[2m19:29:40[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m19:29:40[22m [33m[404][39m /index2 [2m11ms[22m
+[2m19:29:41[22m [34m[200][39m /inicio/ [2m1135ms[22m
+[2m19:29:41[22m [34m[200][39m /indexsa2/ [2m990ms[22m
+[2m19:29:41[22m [34m[200][39m /indexsa2 [2m998ms[22m
+[2m19:29:42[22m [34m[200][39m /indexsa2/ [2m337ms[22m
+[2m19:29:42[22m [34m[200][39m /indexsa2/ [2m231ms[22m
+[2m19:29:42[22m [34m[200][39m /indexsa2/ [2m220ms[22m
+[2m19:32:01[22m [34m[200][39m /indexsa2 [2m1593ms[22m
+[2m19:34:10[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m19:34:11[22m [33m[404][39m /index2 [2m6ms[22m
+[2m19:34:12[22m [34m[200][39m /inicio/ [2m598ms[22m
+[2m19:34:12[22m [34m[200][39m /indexsa2/ [2m590ms[22m
+[2m19:34:12[22m [34m[200][39m /indexsa2 [2m567ms[22m
+[2m19:34:12[22m [34m[200][39m /indexsa2/ [2m224ms[22m
+[2m19:34:12[22m [34m[200][39m /indexsa2/ [2m221ms[22m
+[2m19:34:13[22m [34m[200][39m /indexsa2/ [2m232ms[22m
+[2m19:35:17[22m [34m[200][39m /indexsa2 [2m583ms[22m
+[2m19:39:24[22m [34m[200][39m /indexsa2 [2m1574ms[22m
+[2m19:41:40[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m19:41:41[22m [33m[404][39m /index2 [2m5ms[22m
+[2m19:41:42[22m [34m[200][39m /indexsa2 [2m766ms[22m
+[2m19:41:42[22m [34m[200][39m /indexsa2/ [2m1122ms[22m
+[2m19:41:42[22m [34m[200][39m /indexsa2 [2m780ms[22m
+[2m19:41:42[22m [34m[200][39m /inicio/ [2m1199ms[22m
+[2m19:41:42[22m [34m[200][39m /indexsa2/ [2m242ms[22m
+[2m19:41:42[22m [34m[200][39m /indexsa2/ [2m231ms[22m
+[2m19:41:42[22m [34m[200][39m /indexsa2/ [2m227ms[22m
+[2m19:46:17[22m [34m[200][39m /indexsa2 [2m1540ms[22m
+[2m19:47:02[22m [34m[200][39m /indexsa2 [2m556ms[22m
+[2m20:04:50[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m20:04:51[22m [33m[404][39m /index2 [2m5ms[22m
+[2m20:04:52[22m [34m[200][39m /indexsa2 [2m1506ms[22m
+[2m20:04:52[22m [34m[200][39m /inicio/ [2m1822ms[22m
+[2m20:04:52[22m [34m[200][39m /indexsa2/ [2m1752ms[22m
+[2m20:04:53[22m [34m[200][39m /indexsa2 [2m1745ms[22m
+[2m20:04:53[22m [34m[200][39m /indexsa2/ [2m229ms[22m
+[2m20:04:54[22m [34m[200][39m /indexsa2/ [2m1048ms[22m
+[2m20:04:54[22m [34m[200][39m /indexsa2/ [2m225ms[22m
+[2m20:12:54[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m20:12:54[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m20:17:46[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m20:17:46[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m20:39:59[22m [34m[200][39m /indexsa2 [2m1565ms[22m
+[2m20:40:05[22m [34m[200][39m /indexsa2 [2m526ms[22m
+[2m20:43:27[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m20:43:27[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m20:46:59[22m [34m[200][39m /indexsa2 [2m1558ms[22m
+[2m20:47:01[22m [34m[200][39m /indexsa2 [2m234ms[22m
+[2m21:08:06[22m [34m[200][39m /indexsa2 [2m1997ms[22m
+[2m21:11:46[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m21:11:49[22m [34m[200][39m /indexsa2 [2m1318ms[22m
+[2m21:11:49[22m [34m[200][39m /indexsa2 [2m1331ms[22m
+[2m21:11:49[22m [34m[200][39m /indexsa2/ [2m1342ms[22m
+[2m21:11:49[22m [34m[200][39m /inicio/ [2m1716ms[22m
+[2m21:11:50[22m [34m[200][39m /indexsa2/ [2m311ms[22m
+[2m21:11:50[22m [34m[200][39m /indexsa2/ [2m245ms[22m
+[2m21:11:51[22m [34m[200][39m /indexsa2/ [2m220ms[22m
+[2m21:31:40[22m [34m[200][39m /indexsa2 [2m1487ms[22m
+[2m21:31:40[22m [34m[200][39m /indexsa2 [2m1163ms[22m
+[2m21:35:19[22m [34m[200][39m /indexsa2 [2m1649ms[22m
+[2m21:37:14[22m [34m[200][39m /indexsa2 [2m793ms[22m
+[2m21:38:06[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m21:38:06[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m21:38:07[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m21:38:07[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m00:24:16[22m [34m[200][39m /indexsa2 [2m2074ms[22m
+[2m00:24:16[22m [34m[200][39m /indexsa2 [2m530ms[22m
+[2m00:24:33[22m [34m[200][39m /indexsa2 [2m568ms[22m
+[2m00:25:22[22m [34m[200][39m /indexsa2 [2m555ms[22m
+[2m00:25:29[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m00:25:29[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m00:26:31[22m [34m[200][39m /indexsa2 [2m570ms[22m
+[2m00:27:54[22m [34m[200][39m /indexsa2 [2m646ms[22m
+[2m00:31:27[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m00:31:29[22m [34m[200][39m /indexsa2/ [2m1016ms[22m
+[2m00:31:29[22m [34m[200][39m /indexsa2 [2m605ms[22m
+[2m00:31:29[22m [34m[200][39m /indexsa2 [2m607ms[22m
+[2m00:31:29[22m [34m[200][39m /indexsa2 [2m651ms[22m
+[2m00:31:29[22m [34m[200][39m /inicio/ [2m1197ms[22m
+[2m00:31:29[22m [34m[200][39m /indexsa2/ [2m238ms[22m
+[2m00:31:29[22m [34m[200][39m /indexsa2/ [2m232ms[22m
+[2m00:31:30[22m [34m[200][39m /indexsa2/ [2m225ms[22m
+[2m00:31:42[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m00:31:42[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m00:36:56[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m00:36:56[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m00:41:38[22m [34m[200][39m /indexsa2 [2m1896ms[22m
+[2m00:42:52[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m00:42:52[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m00:43:07[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m00:43:09[22m [34m[200][39m /inicio/ [2m1255ms[22m
+[2m00:43:09[22m [34m[200][39m /indexsa2 [2m791ms[22m
+[2m00:43:09[22m [34m[200][39m /indexsa2/ [2m799ms[22m
+[2m00:43:09[22m [34m[200][39m /indexsa2 [2m812ms[22m
+[2m00:43:09[22m [34m[200][39m /indexsa2 [2m821ms[22m
+[2m00:43:09[22m [34m[200][39m /indexsa2/ [2m233ms[22m
+[2m00:43:10[22m [34m[200][39m /indexsa2/ [2m242ms[22m
+[2m00:43:10[22m [34m[200][39m /indexsa2/ [2m294ms[22m
+[2m00:45:44[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m00:45:44[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m00:50:57[22m [34m[200][39m /indexsa2 [2m1876ms[22m
+[2m00:51:22[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m00:51:24[22m [34m[200][39m /inicio/ [2m575ms[22m
+[2m00:51:24[22m [34m[200][39m /indexsa2 [2m707ms[22m
+[2m00:51:24[22m [34m[200][39m /indexsa2 [2m721ms[22m
+[2m00:51:24[22m [34m[200][39m /indexsa2 [2m731ms[22m
+[2m00:51:24[22m [34m[200][39m /indexsa2/ [2m761ms[22m
+[2m00:51:24[22m [34m[200][39m /indexsa2/ [2m219ms[22m
+[2m00:51:25[22m [34m[200][39m /indexsa2/ [2m232ms[22m
+[2m00:51:25[22m [34m[200][39m /indexsa2/ [2m223ms[22m
+[2m00:55:49[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m00:55:49[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m00:56:10[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m00:56:12[22m [34m[200][39m /indexsa2 [2m1069ms[22m
+[2m00:56:12[22m [34m[200][39m /indexsa2 [2m1090ms[22m
+[2m00:56:12[22m [34m[200][39m /indexsa2/ [2m1102ms[22m
+[2m00:56:12[22m [34m[200][39m /indexsa2 [2m1110ms[22m
+[2m00:56:12[22m [34m[200][39m /inicio/ [2m1248ms[22m
+[2m00:56:13[22m [34m[200][39m /indexsa2/ [2m227ms[22m
+[2m00:56:13[22m [34m[200][39m /indexsa2/ [2m219ms[22m
+[2m00:56:13[22m [34m[200][39m /indexsa2/ [2m234ms[22m
+[2m00:57:25[22m [34m[200][39m /indexsa2 [2m591ms[22m
+[2m00:58:38[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m00:58:38[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m01:08:51[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m01:08:55[22m [34m[200][39m /indexsa2/ [2m1342ms[22m
+[2m01:08:55[22m [34m[200][39m /indexsa2 [2m1354ms[22m
+[2m01:08:55[22m [34m[200][39m /indexsa2 [2m1362ms[22m
+[2m01:08:55[22m [34m[200][39m /inicio/ [2m1679ms[22m
+[2m01:08:55[22m [34m[200][39m /indexsa2 [2m1386ms[22m
+[2m01:08:55[22m [34m[200][39m /indexsa2/ [2m233ms[22m
+[2m01:08:56[22m [34m[200][39m /indexsa2/ [2m237ms[22m
+[2m01:08:56[22m [34m[200][39m /indexsa2/ [2m242ms[22m
+[2m01:12:12[22m [34m[200][39m /indexsa2 [2m1517ms[22m
+[2m01:19:22[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m01:19:22[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m01:19:48[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m01:19:50[22m [34m[200][39m /indexsa2 [2m1455ms[22m
+[2m01:19:50[22m [34m[200][39m /inicio/ [2m2382ms[22m
+[2m01:19:50[22m [34m[200][39m /indexsa2 [2m1503ms[22m
+[2m01:19:51[22m [34m[200][39m /indexsa2/ [2m2093ms[22m
+[2m01:19:51[22m [34m[200][39m /indexsa2 [2m2107ms[22m
+[2m01:19:51[22m [34m[200][39m /indexsa2/ [2m229ms[22m
+[2m01:19:51[22m [34m[200][39m /indexsa2/ [2m225ms[22m
+[2m01:19:52[22m [34m[200][39m /indexsa2/ [2m225ms[22m
+[2m01:20:58[22m [34m[200][39m /indexsa2/ [2m566ms[22m
+[2m01:28:15[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m01:28:15[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m01:30:11[22m [34m[200][39m /indexsa2/ [2m1551ms[22m
+[2m01:31:28[22m [34m[200][39m /indexsa2/ [2m547ms[22m
+[2m01:43:04[22m [34m[200][39m /indexsa2 [2m1561ms[22m
+[2m01:44:56[22m [34m[200][39m /indexsa2 [2m566ms[22m
+[2m01:45:41[22m [34m[200][39m /indexsa2 [2m533ms[22m
+[2m01:45:46[22m [34m[200][39m /indexsa2 [2m531ms[22m
+[2m01:45:50[22m [34m[200][39m /indexsa2 [2m227ms[22m
+[2m01:46:04[22m [34m[200][39m /indexsa2 [2m560ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m683ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m673ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m555ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m553ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m564ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m597ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m631ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m635ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m275ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m277ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m596ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m621ms[22m
+[2m01:46:31[22m [34m[200][39m /indexsa2/ [2m524ms[22m
+[2m01:46:32[22m [34m[200][39m /indexsa2/ [2m595ms[22m
+[2m01:46:57[22m [34m[200][39m /indexsa2 [2m569ms[22m
+[2m01:47:00[22m [34m[200][39m /indexsa2/ [2m278ms[22m
+[2m01:47:16[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m01:47:16[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m01:47:27[22m [34m[200][39m /indexsa2 [2m620ms[22m
+[2m01:47:38[22m [34m[200][39m /indexsa2 [2m556ms[22m
+[2m01:47:39[22m [34m[200][39m /indexsa2 [2m250ms[22m
+[2m01:47:42[22m [34m[200][39m /indexsa2/ [2m231ms[22m
+[2m01:48:24[22m [34m[200][39m /indexsa2/ [2m554ms[22m
+[2m01:50:30[22m [34m[200][39m /indexsa2/ [2m555ms[22m
+[2m01:51:32[22m [34m[200][39m /indexsa2/ [2m573ms[22m
+[2m01:52:17[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m01:52:17[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m01:52:17[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m01:52:19[22m [34m[200][39m /inicio/ [2m622ms[22m
+[2m01:52:19[22m [34m[200][39m /indexsa2 [2m790ms[22m
+[2m01:52:19[22m [34m[200][39m /indexsa2 [2m803ms[22m
+[2m01:52:19[22m [34m[200][39m /indexsa2 [2m810ms[22m
+[2m01:52:19[22m [34m[200][39m /indexsa2/ [2m822ms[22m
+[2m01:52:19[22m [34m[200][39m /indexsa2/ [2m266ms[22m
+[2m01:52:20[22m [34m[200][39m /indexsa2/ [2m218ms[22m
+[2m01:52:20[22m [34m[200][39m /indexsa2/ [2m234ms[22m
+[2m02:02:35[22m [34m[200][39m /indexsa2 [2m1527ms[22m
+[2m02:03:47[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m02:03:47[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m02:23:07[22m [34m[200][39m /indexsa2 [2m1592ms[22m
+[2m02:23:12[22m [34m[200][39m /indexsa2 [2m551ms[22m
+[2m10:45:00[22m [34m[200][39m /indexsa2 [2m3446ms[22m
+[2m10:47:18[22m [34m[200][39m /indexsa2 [2m1562ms[22m
+[2m11:27:32[22m [34m[watch][39m src/pages/indexsa2.astro
+[2m11:27:34[22m [34m[200][39m /indexsa2 [2m1247ms[22m
+[2m11:27:34[22m [34m[200][39m /indexsa2 [2m1255ms[22m
+[2m11:27:34[22m [34m[200][39m /inicio/ [2m1802ms[22m
+[2m11:27:34[22m [34m[200][39m /indexsa2 [2m1274ms[22m
+[2m11:27:34[22m [34m[200][39m /indexsa2/ [2m1285ms[22m
+[2m11:27:35[22m [34m[200][39m /indexsa2/ [2m261ms[22m
+[2m11:27:35[22m [34m[200][39m /indexsa2/ [2m234ms[22m
+[2m11:27:36[22m [34m[200][39m /indexsa2/ [2m286ms[22m
+[2m11:31:40[22m [34m[200][39m /quienes-somos [2m16ms[22m
+[2m11:31:44[22m [34m[200][39m /indexsa2 [2m1578ms[22m
+[2m11:31:51[22m [34m[200][39m /indexsa2 [2m567ms[22m
+[2m11:32:15[22m [34m[200][39m /indexsa2 [2m538ms[22m
+[2m17:36:48[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m17:36:48[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m17:38:49[22m [34m[watch][39m /src/pages/indexsa2.astro?astro&type=style&index=0&lang.css
+[2m17:38:49[22m [34m[watch][39m src/pages/indexsa2.astro
+[vite] program reload
+[2m17:39:58[22m [34m[200][39m /indexsa2 [2m2803ms[22m
+[2m17:39:59[22m [34m[200][39m /indexsa2 [2m243ms[22m
+[2m17:40:14[22m [34m[200][39m /indexsa2 [2m572ms[22m
+[2m17:40:14[22m [34m[200][39m /indexsa2 [2m548ms[22m
+[2m17:40:18[22m [34m[200][39m /indexsa2 [2m250ms[22m
+[2m17:49:39[22m [34m[200][39m /indexsa2 [2m1666ms[22m
+[2m17:50:41[22m [34m[200][39m /quienes-somos [2m11ms[22m
+[2m17:50:58[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m17:51:30[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m17:51:40[22m [34m[200][39m /inicio [2m551ms[22m
+[2m17:51:46[22m [34m[200][39m /inicio [2m543ms[22m
+[2m17:52:01[22m [33m[404][39m /iniciosa2 [2m24ms[22m
+[2m17:52:07[22m [33m[404][39m /inicio2sa [2m3ms[22m
+[2m18:00:36[22m [33m[404][39m /inicio2sa [2m4ms[22m
+[2m18:00:42[22m [34m[200][39m /indexsa2 [2m1523ms[22m
+[2m18:04:52[22m [34m[watch][39m src/pages/inicio.astro
+[2m18:04:54[22m [34m[200][39m /inicio/ [2m1011ms[22m
+[2m18:04:54[22m [34m[200][39m /indexsa2 [2m1106ms[22m
+[2m18:04:54[22m [34m[200][39m /indexsa2 [2m1122ms[22m
+[2m18:04:54[22m [34m[200][39m /indexsa2/ [2m1728ms[22m
+[2m18:04:54[22m [34m[200][39m /indexsa2 [2m1148ms[22m
+[2m18:04:54[22m [34m[200][39m /indexsa2/ [2m237ms[22m
+[2m18:04:54[22m [34m[200][39m /indexsa2/ [2m260ms[22m
+[2m18:04:55[22m [34m[200][39m /indexsa2/ [2m260ms[22m
+[2m18:47:49[22m [34m[200][39m /inicio [2m2716ms[22m
+[2m16:20:17[22m [34m[200][39m /quienes-somos [2m83ms[22m
+[2m16:20:37[22m [34m[200][39m /investigacion [2m81ms[22m
+[2m16:24:16[22m [34m[200][39m /inicio [2m3238ms[22m
+[2m16:33:47[22m [34m[200][39m /investigacion [2m6ms[22m
+[2m16:42:05[22m [34m[200][39m /investigacion [2m15ms[22m
+[2m16:45:44[22m [34m[200][39m /investigacion [2m32ms[22m
+[2m16:45:54[22m [34m[200][39m /investigacion [2m16ms[22m
+[2m16:46:17[22m [34m[200][39m /investigacion [2m5ms[22m
+[2m16:46:23[22m [34m[200][39m /investigacion [2m4ms[22m
+[2m16:46:40[22m [34m[200][39m /investigacionsa2 [2m12ms[22m
+[2m16:47:11[22m [34m[200][39m /investigacionsa2 [2m4ms[22m
+[2m16:47:53[22m [34m[200][39m /investigacionsa2 [2m5ms[22m
+[2m16:51:50[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[2m16:51:50[22m [34m[200][39m /investigacion [2m7ms[22m
+[2m16:51:51[22m [34m[200][39m /investigacion [2m7ms[22m
+[2m16:51:51[22m [34m[200][39m /investigacionsa2 [2m183ms[22m
+[2m16:51:52[22m [34m[200][39m /indexsa2/ [2m1391ms[22m
+[2m16:51:52[22m [34m[200][39m /inicio/ [2m1405ms[22m
+[2m16:51:52[22m [34m[200][39m /indexsa2 [2m733ms[22m
+[2m16:51:52[22m [34m[200][39m /indexsa2/ [2m239ms[22m
+[2m16:51:52[22m [34m[200][39m /indexsa2/ [2m273ms[22m
+[2m22:07:05[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m22:07:05[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m22:20:24[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m22:20:24[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m22:24:14[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m22:24:14[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m22:24:54[22m [34m[200][39m /investigacionsa2 [2m265ms[22m
+[2m22:34:53[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m22:34:53[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m22:38:25[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m22:38:25[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m22:38:27[22m [34m[200][39m /investigacionsa2 [2m13ms[22m
+[2m22:38:49[22m [34m[200][39m /investigacion [2m373ms[22m
+[2m22:39:02[22m [34m[200][39m /investigacion [2m6ms[22m
+[2m22:42:06[22m [34m[200][39m /investigacion [2m9ms[22m
+[2m22:42:11[22m [34m[200][39m /investigacion [2m5ms[22m
+[2m22:52:21[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m22:52:21[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m22:53:36[22m [34m[200][39m /investigacion [2m30ms[22m
+[2m22:54:49[22m [34m[200][39m /investigacion [2m5ms[22m
+[2m22:58:02[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m22:58:02[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m23:01:21[22m [34m[200][39m /investigacionsa2 [2m10ms[22m
+[2m23:02:02[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m23:02:02[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m23:05:26[22m [34m[watch][39m /src/pages/investigacionsa2.astro?astro&type=style&index=0&lang.css
+[2m23:05:26[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[vite] program reload
+[2m23:14:13[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[2m23:14:15[22m [34m[200][39m /investigacion [2m10ms[22m
+[2m23:14:16[22m [34m[200][39m /investigacionsa2 [2m916ms[22m
+[2m23:14:16[22m [34m[200][39m /investigacionsa2 [2m917ms[22m
+[2m23:14:19[22m [34m[200][39m /indexsa2 [2m2909ms[22m
+[2m23:14:19[22m [34m[200][39m /inicio/ [2m2285ms[22m
+[2m23:14:19[22m [34m[200][39m /indexsa2/ [2m3336ms[22m
+[2m23:14:19[22m [34m[200][39m /indexsa2/ [2m264ms[22m
+[2m23:14:19[22m [34m[200][39m /indexsa2/ [2m286ms[22m
+[2m23:14:58[22m [34m[200][39m /publicaciones [2m984ms[22m
+[2m23:15:04[22m [34m[200][39m /publicaciones/dar-inicio-a-una-investigacion-es-tambien-comenzar-a-construir-una-historia-en-conjunto [2m1000ms[22m
+[2m23:15:14[22m [34m[200][39m /contacto [2m129ms[22m
+[2m23:51:01[22m [34m[200][39m /investigacionsa2 [2m13ms[22m
+[2m23:51:36[22m [34m[watch][39m src/pages/investigacionsa2.astro
+[2m23:51:36[22m [34m[200][39m /contacto [2m8ms[22m
+[2m23:51:37[22m [34m[200][39m /investigacion [2m4ms[22m
+[2m23:51:38[22m [34m[200][39m /investigacionsa2 [2m28ms[22m
+[2m23:51:39[22m [34m[200][39m /inicio/ [2m1941ms[22m
+[2m23:51:39[22m [34m[200][39m /indexsa2 [2m1939ms[22m
+[2m23:51:39[22m [34m[200][39m /indexsa2/ [2m1965ms[22m
+[2m23:51:39[22m [34m[200][39m /indexsa2/ [2m261ms[22m
+[2m23:51:39[22m [34m[200][39m /indexsa2/ [2m236ms[22m
+[2m23:51:43[22m [34m[200][39m /investigacionsa2 [2m5ms[22m
+[2m23:52:53[22m [34m[200][39m /contacto [2m6ms[22m
+[2m23:52:58[22m [34m[200][39m /quienes-somos [2m11ms[22m
+[2m23:53:13[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m23:53:39[22m [34m[watch][39m src/pages/investigacion.astro
+[2m23:53:40[22m [34m[200][39m /investigacionsa2 [2m6ms[22m
+[2m23:53:40[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m23:53:40[22m [34m[200][39m /investigacion [2m130ms[22m
+[2m23:53:41[22m [34m[200][39m /indexsa2 [2m560ms[22m
+[2m23:53:41[22m [34m[200][39m /indexsa2/ [2m802ms[22m
+[2m23:53:41[22m [34m[200][39m /inicio/ [2m592ms[22m
+[2m23:53:41[22m [34m[200][39m /indexsa2/ [2m270ms[22m
+[2m23:53:41[22m [34m[200][39m /indexsa2/ [2m225ms[22m
+[2m00:00:00[22m [34m[200][39m /investigacion [2m4ms[22m
+[2m00:00:02[22m [34m[200][39m /investigacion [2m4ms[22m

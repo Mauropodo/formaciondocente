@@ -1,0 +1,6 @@
+[31m[1m14:10:34[22m [ERROR] [vite][39m [31merror while updating dependencies:
+Error: EPERM: operation not permitted, rename 'C:\Users\mwill\Documents\CODEX\Sitio Parbularias\frontend\node_modules\.vite\deps' -> 'C:\Users\mwill\Documents\CODEX\Sitio Parbularias\frontend\node_modules\.vite\deps_temp_3112767c'[39m
+[31m[1m14:36:59[22m [ERROR] [vite][39m [31merror while updating dependencies:
+Error: EPERM: operation not permitted, rename 'C:\Users\mwill\Documents\CODEX\Sitio Parbularias\frontend\node_modules\.vite\deps' -> 'C:\Users\mwill\Documents\CODEX\Sitio Parbularias\frontend\node_modules\.vite\deps_temp_20bc6052'[39m
+[31m[1m14:37:31[22m [ERROR] [vite][39m [31merror while updating dependencies:
+Error: EPERM: operation not permitted, rename 'C:\Users\mwill\Documents\CODEX\Sitio Parbularias\frontend\node_modules\.vite\deps' -> 'C:\Users\mwill\Documents\CODEX\Sitio Parbularias\frontend\node_modules\.vite\deps_temp_3d4f5f00'[39m
