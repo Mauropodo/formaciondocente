@@ -29,8 +29,8 @@ const categoryColors = {
 ---
 
 <BaseLayout
-  title={post?.title ?? 'Publicación'}
-  description={post?.excerpt ?? 'Publicación del proyecto sobre identidad profesional docente y formación práctica de educación parvularia en Chile.'}
+  title={post?.title ?? 'Bitácora'}
+  description={post?.excerpt ?? 'Entrada de bitácora del proyecto sobre identidad profesional docente y formación práctica de educación parvularia en Chile.'}
   canonical={slug ? `/publicaciones/${slug}/` : '/publicaciones/'}
   type="article"
   layoutClass="layout-shell--post-detail"
@@ -47,7 +47,7 @@ const categoryColors = {
   {!post ? (
     <section class="post-detail-empty">
       <div class="container">
-        <h1>Publicación no encontrada</h1>
+        <h1>Entrada no encontrada</h1>
         <p>No pudimos cargar el contenido solicitado.</p>
       </div>
     </section>
@@ -107,7 +107,7 @@ const categoryColors = {
         <section class="post-related-section" id="postRelatedSection">
           <div class="container">
             <div class="post-related-section__header">
-              <h2>Más publicaciones</h2>
+              <h2>Más entradas de la bitácora</h2>
               <a href="/publicaciones">Ver todas</a>
             </div>
 

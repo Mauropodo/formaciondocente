@@ -53,8 +53,8 @@ function paginationUrl(slug, pageNum) {
 ---
 
 <BaseLayout
-  title="Publicaciones"
-  description="Artículos, relatos y avances sobre identidad profesional docente, formación práctica y educación parvularia en Chile."
+  title="Bitácora"
+  description="Registros, relatos y avances sobre identidad profesional docente, formación práctica y educación parvularia en Chile."
   canonical="/publicaciones/"
   layoutClass="layout-shell--publicaciones"
 >
@@ -150,8 +150,8 @@ function paginationUrl(slug, pageNum) {
           <CategoriaFilter categorias={categorias} activeSlug={categoriaSlug} />
         </div>
         <div class="hero-text" id="hero-text">
-          <h1 class="hero-title">Publicaciones</h1>
-          <p class="hero-desc">Este espacio reúne las ideas, experiencias y conocimientos que dan vida a este proyecto. Aquí convergen publicaciones científicas, marcos teóricos, reflexiones, relatos, aprendizajes, buenas prácticas e hitos que nos permiten comprender, compartir y dialogar sobre las distintas dimensiones de esta investigación.</p>
+          <h1 class="hero-title">Bitácora</h1>
+          <p class="hero-desc">Este espacio reúne las ideas, experiencias y conocimientos que dan vida a este proyecto. Aquí convergen registros de investigación, marcos teóricos, reflexiones, relatos, aprendizajes, buenas prácticas e hitos que nos permiten comprender, compartir y dialogar sobre las distintas dimensiones de esta investigación.</p>
         </div>
       </div>
     </div>
@@ -160,7 +160,7 @@ function paginationUrl(slug, pageNum) {
   <section class="cards-section">
     <div class="container">
       {pagePosts.length === 0 ? (
-        <p class="empty-msg">No hay publicaciones en esta categoría.</p>
+        <p class="empty-msg">No hay entradas en esta categoría.</p>
       ) : (
         <div class="posts-grid" id="posts-grid">
           {pagePosts.map((p, i) => <BlogCard {...p} index={i} />)}
