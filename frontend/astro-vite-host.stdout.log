@@ -1,0 +1,73 @@
+[2m00:45:23[22m [34m[@astrojs/netlify][39m Enabling sessions with Netlify Blobs
+[vite] connected.
+[2m00:45:29[22m [34m[vite][39m Environment loaded
+[2m00:45:29[22m [34m[vite][39m Middleware loaded. Emulating features: aiGateway, blobs, database, edgeFunctions, functions, geolocation, headers, images, redirects, static.
+[2m00:45:29[22m [34m[vite][39m 💭 Linking this project to a Netlify site lets you deploy your site, use any environment variables defined on your team and site and much more. Run npx netlify init to get started.
+[2m00:45:29[22m [34m[types][39m Generated [2m2ms[22m
+[2m00:45:29[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[42m[1m astro [22m[49m [32mv6.4.2[39m [2mready in[22m 54556 [2mms[22m
+[2m┃[22m Local    [36mhttp://localhost:4321/[39m
+[2m┃[22m Network  [36mhttp://26.42.69.27:4321/[39m
+           [36mhttp://100.83.139.102:4321/[39m
+           [36mhttp://192.168.0.5:4321/[39m
+[2m00:45:30[22m [32mwatching for file changes...[39m
+[2m00:45:40[22m [34m[200][39m / [2m125ms[22m
+[2m00:45:40[22m [34m[200][39m / [2m5ms[22m
+[2m00:45:40[22m [34m[200][39m / [2m5ms[22m
+[2m00:45:40[22m [34m[200][39m / [2m4ms[22m
+[2m00:45:40[22m [34m[200][39m / [2m3ms[22m
+[2m00:46:50[22m [34m[200][39m /inicio [2m2005ms[22m
+[2m00:46:50[22m [34m[vite][39m [32m✨ new dependencies optimized: [33mgsap, gsap/ScrollTrigger[32m[39m
+[2m00:46:50[22m [34m[vite][39m [32m✨ optimized dependencies changed. reloading[39m
+[2m00:46:51[22m [34m[200][39m /inicio [2m265ms[22m
+[2m00:47:37[22m [34m[200][39m / [2m3ms[22m
+[2m00:47:44[22m [34m[200][39m /inicio [2m560ms[22m
+[2m00:50:19[22m [34m[200][39m /contacto [2m17ms[22m
+[2m00:50:35[22m [34m[200][39m /quienes-somos [2m18ms[22m
+[2m00:55:32[22m [34m[watch][39m src/components/Footer.astro
+[2m00:55:33[22m [34m[200][39m /quienes-somos [2m20ms[22m
+[2m00:55:34[22m [34m[200][39m /inicio [2m1554ms[22m
+[2m00:56:09[22m [34m[200][39m /inicio [2m546ms[22m
+[2m00:56:09[22m [34m[200][39m /contacto [2m11ms[22m
+[2m00:56:10[22m [34m[200][39m /investigacion [2m19ms[22m
+[2m00:56:10[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m00:56:11[22m [34m[200][39m /publicaciones [2m531ms[22m
+[2m00:56:22[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m00:56:29[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m00:56:36[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m00:57:27[22m [34m[watch][39m src/pages/quienes-somos.astro
+[2m00:57:27[22m [34m[200][39m /quienes-somos [2m17ms[22m
+[2m00:57:28[22m [34m[200][39m /inicio [2m687ms[22m
+[2m00:57:46[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m00:57:53[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m00:57:53[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m00:57:58[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m00:57:59[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m00:57:59[22m [34m[200][39m /quienes-somos [2m10ms[22m
+[2m00:59:33[22m [34m[watch][39m /src/pages/quienes-somos.astro?astro&type=style&index=0&lang.css
+[2m00:59:33[22m [34m[watch][39m src/pages/quienes-somos.astro
+[vite] program reload
+[2m01:00:03[22m [34m[200][39m /quienes-somos [2m25ms[22m
+[2m01:00:06[22m [34m[200][39m /investigacion [2m7ms[22m
+[2m01:00:23[22m [34m[watch][39m src/components/Footer.astro
+[2m01:00:24[22m [34m[200][39m /quienes-somos [2m21ms[22m
+[2m01:00:24[22m [34m[200][39m /investigacion [2m22ms[22m
+[2m01:00:26[22m [34m[200][39m /inicio [2m1606ms[22m
+[2m01:00:36[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m01:00:39[22m [34m[200][39m /investigacion [2m4ms[22m
+[2m01:00:55[22m [34m[watch][39m /src/pages/quienes-somos.astro?astro&type=style&index=0&lang.css
+[2m01:00:55[22m [34m[watch][39m src/pages/quienes-somos.astro
+[vite] program reload
+[2m01:01:06[22m [34m[200][39m /quienes-somos [2m17ms[22m
+[2m01:01:24[22m [34m[200][39m /investigacion [2m7ms[22m
+[2m01:01:26[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m01:01:35[22m [34m[200][39m /contacto [2m12ms[22m
+[2m01:01:44[22m [34m[watch][39m src/pages/investigacion.astro
+[2m01:01:44[22m [34m[200][39m /contacto [2m7ms[22m
+[2m01:01:44[22m [34m[200][39m /inicio [2m554ms[22m
+[2m01:01:45[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m01:01:45[22m [34m[200][39m /inicio [2m239ms[22m
+[2m01:02:00[22m [34m[watch][39m src/pages/investigacion.astro
+[2m01:02:01[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m01:02:01[22m [34m[200][39m /inicio [2m568ms[22m
+[2m01:02:01[22m [34m[200][39m /inicio [2m537ms[22m
