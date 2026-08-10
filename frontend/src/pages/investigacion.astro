@@ -18,14 +18,13 @@ import SeoHead from "../components/SeoHead.astro";
 const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44C514.25 9.04 555.44 50.2298 555.44 101.04V184.215C555.44 235.025 514.25 276.215 463.44 276.215H419.44H376.473C360.082 276.215 343.989 280.594 329.858 288.898L260.865 329.446C260.426 329.704 259.927 329.84 259.418 329.84C257.259 329.84 255.881 327.536 256.903 325.634L269.042 303.027C275.553 290.901 266.77 276.215 253.006 276.215H103.44C52.6298 276.215 11.44 235.025 11.44 184.215V101.04Z";
 
 const TAGS = [
-  { label: "Trayectorias formativas",       color: "#f0a443", rotate: 0  },
-  { label: "Agencia profesional",            color: "#95b3a7", rotate: -2 },
-  { label: "Identidad profesional docente",  color: "#f0a443", rotate: -1 },
-  { label: "Educación parvularia",           color: "#3b959e", rotate: -1 },
-  { label: "Incidentes críticos",            color: "#be572a", rotate: -2 },
-  { label: "Emociones y reflexividad",       color: "#204d50", rotate: 2  },
-  { label: "Experiencias de práctica",       color: "#95b3a7", rotate: 2  },
-  { label: "Dilemas formativos",             color: "#3b959e", rotate: 0  },
+  { label: "Identidad profesional docente",       color: "#f0a443", rotate: 0  },
+  { label: "Formación práctica y prácticum",       color: "#95b3a7", rotate: -2 },
+  { label: "Trayectorias y experiencias biográficas", color: "#f0a443", rotate: -1 },
+  { label: "Narrativas y reflexión profesional",    color: "#3b959e", rotate: -1 },
+  { label: "Incidentes críticos y dilemas éticos", color: "#be572a", rotate: -2 },
+  { label: "Agencia profesional",                  color: "#204d50", rotate: 2  },
+  { label: "Formación inicial en Educación Parvularia", color: "#95b3a7", rotate: 2  },
 ];
 const doubled = [...TAGS, ...TAGS];
 
@@ -57,12 +56,16 @@ const OBJ_SPECIFICS = [
 ];
 
 const REFS_DATA = [
-  { title: "Coparentalidad positiva en divorcios conflictivos", desc: "Revisión sistemática sobre las estrategias de coparentalidad y su impacto directo en la salud mental de los niños durante procesos judiciales conflictivos." },
-  { title: "Coparentalidad positiva en divorcios conflictivos", desc: "Revisión sistemática sobre las estrategias de coparentalidad y su impacto directo en la salud mental de los niños durante procesos judiciales conflictivos." },
-  { title: "Coparentalidad positiva en divorcios conflictivos", desc: "Revisión sistemática sobre las estrategias de coparentalidad y su impacto directo en la salud mental de los niños durante procesos judiciales conflictivos." },
-  { title: "Coparentalidad positiva en divorcios conflictivos", desc: "Revisión sistemática sobre las estrategias de coparentalidad y su impacto directo en la salud mental de los niños durante procesos judiciales conflictivos." },
-  { title: "Coparentalidad positiva en divorcios conflictivos", desc: "Revisión sistemática sobre las estrategias de coparentalidad y su impacto directo en la salud mental de los niños durante procesos judiciales conflictivos." },
-  { title: "Coparentalidad positiva en divorcios conflictivos", desc: "Revisión sistemática sobre las estrategias de coparentalidad y su impacto directo en la salud mental de los niños durante procesos judiciales conflictivos." },
+  { citation: "Akkerman, S. F., & Meijer, P. C. (2011). A dialogical approach to conceptualizing teacher identity. Teaching and Teacher Education, 27(2), 308–319.", doi: "https://doi.org/10.1016/j.tate.2010.08.013" },
+  { citation: "Anspal, T., Eisenschmidt, E., & Löfström, E. (2012). Finding myself as a teacher: Exploring the shaping of teacher identities through student teachers’ narratives. Teachers and Teaching, 18(2), 197–216.", doi: "https://doi.org/10.1080/13540602.2012.632268" },
+  { citation: "Beijaard, D., Meijer, P. C., & Verloop, N. (2004). Reconsidering research on teachers’ professional identity. Teaching and Teacher Education, 20(2), 107–128.", doi: "https://doi.org/10.1016/j.tate.2003.07.001" },
+  { citation: "Figueroa-Céspedes, I. (2023). Identidad profesional de educadoras de párvulos: Huellas biográficas de su infancia y adolescencia. Psicoperspectivas, 22(3), 184–198.", doi: "https://doi.org/10.5027/psicoperspectivas-Vol22-Issue3-fulltext-2991" },
+  { citation: "Figueroa-Céspedes, I., & Fica-Pinol, E. (2026). Imagining futures: Possible selves and professional identity in an early childhood pre-practicum incident. Journal of Childhood, Education & Society, 7(1), 120–136.", doi: "https://doi.org/10.37291/2717638X.202671791" },
+  { citation: "Figueroa-Céspedes, I., & Vergara-Flores, I. (2025). Identidad profesional en el prácticum de educación infantil: Una revisión sistemática. Cadernos de Pesquisa, 55, e12111.", doi: "https://doi.org/10.1590/1980531412111" },
+  { citation: "Henry, A. (2016). Conceptualizing teacher identity as a complex dynamic system: The inner dynamics of transformations during a practicum. Journal of Teacher Education, 67(4), 291–305.", doi: "https://doi.org/10.1177/0022487116655382" },
+  { citation: "Pardo, M., & Opazo, M.-J. (2019). Resisting schoolification from the classroom: Exploring the professional identity of early childhood teachers in Chile. Culture and Education, 31(1), 67–92.", doi: "https://doi.org/10.1080/11356405.2018.1559490" },
+  { citation: "Yuan, R., & Lee, I. (2016). “I need to be strong and competent”: A narrative inquiry of a student-teacher’s emotions and identities in teaching practicum. Teachers and Teaching, 22(7), 819–841.", doi: "https://doi.org/10.1080/13540602.2016.1185819" },
+  { citation: "Hermans, H. (2001). The dialogical self: Toward a theory of personal and cultural positioning. Culture & Psychology, 7, 243–281.", doi: "https://doi.org/10.1177/1354067X0173001" },
 ];
 ---
 
@@ -737,11 +740,24 @@ const REFS_DATA = [
         flex-direction: column;
         gap: 15px;
         background: #95b3a7;
+        color: inherit;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+        transition: box-shadow 0.22s ease, filter 0.22s ease;
+      }
+      .ref-card:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+        filter: brightness(1.04);
+      }
+      .ref-card:focus-visible {
+        outline: 3px solid #be572a;
+        outline-offset: 4px;
       }
       .ref-card__title {
         font-family: 'Inter', sans-serif;
         font-weight: 600;
-        font-size: 25px;
+        font-size: 18px;
         color: #000;
       }
       .ref-card__desc {
@@ -1130,7 +1146,7 @@ const REFS_DATA = [
           <div class="hero__heading" id="heroHeading">
             <h1 class="hero__eyebrow">investigaCiÓn</h1>
             <p class="hero__body">
-              Este proyecto Fondecyt de Iniciación busca comprender cómo estudiantes de Pedagogía en Educación Parvularia construyen su identidad profesional durante sus prácticas intermedia y final, en tres universidades chilenas con perfiles institucionales diversos. A través de un diseño cualitativo, narrativo y longitudinal, con seguimiento post-egreso hasta 2028, la investigación indaga en las trayectorias biográficas, dilemas éticos, incidentes críticos y formas de agencia profesional que emergen durante la práctica pedagógica, entendida como un espacio liminal donde se disputa el sentido de ser docente.
+              Este proyecto, denominado “Construcción de la Identidad Profesional Docente en la Formación Práctica de Educación Parvularia: Un Estudio Narrativo-Longitudinal” (Fondecyt de Iniciación N.º 11261230), busca comprender cómo estudiantes de Pedagogía en Educación Parvularia construyen y transforman su identidad profesional a lo largo de la formación práctica. Desarrollado en tres universidades chilenas con perfiles institucionales diversos, el estudio acompaña sus trayectorias durante las prácticas intermedia y final, y posteriormente al egreso, atendiendo a las experiencias, relaciones y acontecimientos que van dando forma a sus maneras de comprender, habitar y ejercer la profesión.
             </p>
           </div>
         </div>
@@ -1153,7 +1169,7 @@ const REFS_DATA = [
                     <path d={BUBBLE_PATH} fill="#C36438"/>
                   </svg>
                   <div class="bubble-quote">
-                    <p class="bubble-text">El estudio pone en el centro las voces de 15 estudiantes de tres universidades de la Región Metropolitana y de Valparaíso, combinando entrevistas narrativas, biogramas reflexivos y grupos de co-construcción. Su aporte es doble: visibilizar un nivel educativo históricamente desatendido en la investigación sobre formación docente, y generar evidencia situada para repensar los dispositivos de acompañamiento en la formación inicial, contribuyendo a procesos formativos más reflexivos, críticos y comprometidos con la educación parvularia en Chile.</p>
+                    <p class="bubble-text">Desde un enfoque cualitativo, narrativo y longitudinal, las trayectorias son acompañadas en tres momentos (práctica intermedia, final y egreso) mediante entrevistas narrativas, biogramas reflexivos y grupos de co-construcción. El análisis pone especial atención en las huellas biográficas, dilemas éticos, incidentes críticos y formas de agencia que emergen durante la práctica, entendida como un espacio especialmente significativo de encuentro entre la propia trayectoria, las expectativas sobre la profesión y las experiencias concretas de aprender a ser educadora.</p>
                   </div>
                 </div>
               </div>
@@ -1170,7 +1186,7 @@ const REFS_DATA = [
           <div class="temas-info-card">
             <p class="temas-info-card__title">Temas de la investigación</p>
             <p class="temas-info-card__body">
-              La investigación explora cómo estudiantes de Educación Parvularia construyen su identidad profesional durante la práctica, atendiendo a sus voces, experiencias, dilemas y aprendizajes.
+              El proyecto busca aportar una comprensión situada de la formación de educadoras de párvulos, poniendo en primer plano las voces y experiencias del propio estudiantado. A partir de ellas, se espera generar conocimiento que permita reconocer cómo las experiencias de práctica movilizan certezas, tensiones, aprendizajes y nuevas formas de posicionarse frente a la profesión, contribuyendo a pensar dispositivos de acompañamiento más reflexivos, sensibles a las trayectorias y vinculados con los desafíos actuales de la Educación Parvularia en Chile.
             </p>
           </div>
 
@@ -1280,7 +1296,14 @@ const REFS_DATA = [
 
         <h2 class="referencias-title">Referencias</h2>
 
-        <p class="referencias-coming-soon">Próximamente</p>
+        <div class="referencias-list">
+          {REFS_DATA.map((ref) => (
+            <a class="ref-card" href={ref.doi} target="_blank" rel="noopener noreferrer" aria-label={`Abrir referencia: ${ref.citation}`}>
+              <p class="ref-card__title">{ref.citation}</p>
+              <span class="ref-card__link">Abrir DOI ↗</span>
+            </a>
+          ))}
+        </div>
 
         <!-- Listado y paginación de referencias reservados para una próxima publicación.
         <div class="referencias-list">

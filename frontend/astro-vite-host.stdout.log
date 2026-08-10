@@ -71,3 +71,127 @@
 [2m01:02:01[22m [34m[200][39m /quienes-somos [2m7ms[22m
 [2m01:02:01[22m [34m[200][39m /inicio [2m568ms[22m
 [2m01:02:01[22m [34m[200][39m /inicio [2m537ms[22m
+[2m17:38:22[22m [34m[200][39m /inicio [2m5560ms[22m
+[2m17:44:43[22m [34m[watch][39m src/pages/inicio.astro
+[2m17:44:46[22m [34m[200][39m /inicio [2m1228ms[22m
+[2m17:44:46[22m [34m[200][39m /inicio [2m1244ms[22m
+[2m17:48:04[22m [34m[watch][39m src/pages/inicio.astro
+[2m17:48:06[22m [34m[200][39m /inicio [2m1297ms[22m
+[2m17:48:06[22m [34m[200][39m /inicio [2m1305ms[22m
+[2m17:48:09[22m [34m[watch][39m /src/pages/inicio.astro?astro&type=style&index=0&lang.css
+[2m17:48:09[22m [34m[watch][39m src/pages/inicio.astro
+[vite] program reload
+[2m17:51:43[22m [34m[watch][39m /src/pages/inicio.astro?astro&type=style&index=0&lang.css
+[2m17:51:43[22m [34m[watch][39m src/pages/inicio.astro
+[vite] program reload
+[2m17:53:32[22m [34m[watch][39m src/pages/inicio.astro
+[2m17:53:33[22m [34m[200][39m /inicio [2m621ms[22m
+[2m17:53:33[22m [34m[200][39m /inicio [2m635ms[22m
+[2m17:53:36[22m [34m[watch][39m src/pages/inicio.astro
+[2m17:53:37[22m [34m[200][39m /inicio [2m270ms[22m
+[2m17:53:37[22m [34m[200][39m /inicio [2m278ms[22m
+[2m18:00:29[22m [34m[200][39m /investigacion [2m56ms[22m
+[2m18:00:32[22m [34m[200][39m /quienes-somos [2m21ms[22m
+[2m18:02:24[22m [34m[watch][39m src/pages/inicio.astro
+[2m18:02:24[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m18:02:27[22m [34m[200][39m /inicio [2m2126ms[22m
+[2m18:02:49[22m [34m[200][39m /inicio [2m538ms[22m
+[2m18:04:11[22m [34m[200][39m /investigacion [2m5ms[22m
+[2m18:05:12[22m [34m[watch][39m src/pages/investigacion.astro
+[2m18:05:13[22m [34m[200][39m /investigacion [2m23ms[22m
+[2m18:05:14[22m [34m[200][39m /inicio [2m1701ms[22m
+[2m18:06:37[22m [34m[watch][39m src/pages/investigacion.astro
+[2m18:06:38[22m [34m[200][39m /investigacion [2m19ms[22m
+[2m18:06:38[22m [34m[200][39m /inicio [2m579ms[22m
+[2m18:07:48[22m [34m[watch][39m src/pages/investigacion.astro
+[2m18:07:48[22m [34m[200][39m /investigacion [2m18ms[22m
+[2m18:07:49[22m [34m[200][39m /inicio [2m558ms[22m
+[2m18:08:30[22m [34m[watch][39m src/pages/investigacion.astro
+[2m18:08:31[22m [34m[200][39m /investigacion [2m10ms[22m
+[2m18:08:31[22m [34m[200][39m /inicio [2m1080ms[22m
+[2m18:08:47[22m [34m[200][39m /investigacion [2m4ms[22m
+[2m18:10:04[22m [34m[watch][39m src/components/Footer.astro
+[2m18:10:05[22m [34m[200][39m /investigacion [2m35ms[22m
+[2m18:10:05[22m [34m[200][39m /inicio [2m604ms[22m
+[2m18:10:17[22m [34m[watch][39m src/pages/inicio.astro
+[2m18:10:17[22m [34m[watch][39m src/pages/contacto.astro
+[2m18:10:18[22m [34m[200][39m /investigacion [2m6ms[22m
+[2m18:10:18[22m [34m[200][39m /inicio [2m568ms[22m
+[2m18:10:29[22m [34m[watch][39m src/pages/inicio.astro
+[2m18:10:29[22m [34m[watch][39m src/pages/contacto.astro
+[2m18:10:29[22m [34m[watch][39m src/components/Footer.astro
+[2m18:10:29[22m [34m[200][39m /investigacion [2m12ms[22m
+[2m18:10:31[22m [34m[200][39m /inicio [2m640ms[22m
+[2m18:12:48[22m [34m[200][39m /inicio [2m1545ms[22m
+[2m18:13:35[22m [34m[watch][39m src/pages/inicio.astro
+[2m18:13:35[22m [34m[watch][39m src/pages/contacto.astro
+[2m18:13:35[22m [34m[watch][39m src/components/Footer.astro
+[2m18:13:38[22m [34m[200][39m /inicio [2m743ms[22m
+[2m18:13:38[22m [34m[200][39m /inicio [2m777ms[22m
+[2m18:15:55[22m [34m[watch][39m /src/components/Footer.astro?astro&type=style&index=0&lang.css
+[2m18:15:55[22m [34m[watch][39m src/components/Footer.astro
+[vite] program reload
+[2m18:17:09[22m [34m[watch][39m src/components/Footer.astro
+[2m18:17:11[22m [34m[200][39m /inicio [2m1035ms[22m
+[2m18:17:11[22m [34m[200][39m /inicio [2m1283ms[22m
+[2m18:19:23[22m [34m[watch][39m src/pages/investigacion.astro
+[2m18:19:25[22m [34m[200][39m /inicio [2m845ms[22m
+[2m18:19:25[22m [34m[200][39m /inicio [2m1537ms[22m
+[2m18:19:30[22m [34m[watch][39m src/pages/investigacion.astro
+[2m18:19:31[22m [34m[200][39m /inicio [2m538ms[22m
+[2m18:19:32[22m [34m[200][39m /inicio [2m235ms[22m
+[2m18:19:49[22m [34m[200][39m /investigacion [2m16ms[22m
+[2m18:20:54[22m [34m[watch][39m src/pages/investigacion.astro
+[2m18:20:54[22m [34m[200][39m /investigacion [2m34ms[22m
+[2m18:20:55[22m [34m[200][39m /inicio [2m565ms[22m
+[2m18:21:04[22m [34m[watch][39m /src/pages/investigacion.astro?astro&type=style&index=0&lang.css
+[2m18:21:04[22m [34m[watch][39m src/pages/investigacion.astro
+[vite] program reload
+[2m18:21:52[22m [34m[watch][39m src/components/Footer.astro
+[2m18:21:52[22m [34m[200][39m /investigacion [2m20ms[22m
+[2m18:21:53[22m [34m[200][39m /inicio [2m568ms[22m
+[2m18:22:41[22m [34m[200][39m /investigacion [2m4ms[22m
+[2m18:22:43[22m [34m[watch][39m /src/pages/investigacion.astro?astro&type=style&index=0&lang.css
+[2m18:22:43[22m [34m[watch][39m src/pages/investigacion.astro
+[vite] program reload
+[2m18:24:25[22m [34m[watch][39m src/components/Footer.astro
+[2m18:24:25[22m [34m[200][39m /investigacion [2m18ms[22m
+[2m18:24:27[22m [34m[200][39m /inicio [2m1635ms[22m
+[2m18:26:10[22m [34m[watch][39m src/components/Footer.astro
+[2m18:26:10[22m [34m[200][39m /investigacion [2m16ms[22m
+[2m18:26:11[22m [34m[200][39m /inicio [2m671ms[22m
+[2m18:32:33[22m [34m[200][39m /inicio [2m1622ms[22m
+[2m18:33:09[22m [34m[watch][39m /src/components/Footer.astro?astro&type=style&index=0&lang.css
+[2m18:33:09[22m [34m[watch][39m src/components/Footer.astro
+[vite] program reload
+[2m18:33:09[22m [34m[200][39m /contacto [2m22ms[22m
+[2m18:36:04[22m [34m[watch][39m /src/components/Footer.astro?astro&type=style&index=0&lang.css
+[2m18:36:04[22m [34m[watch][39m src/components/Footer.astro
+[vite] program reload
+[2m18:36:39[22m [34m[watch][39m src/pages/inicio.astro
+[2m18:36:39[22m [34m[watch][39m src/pages/contacto.astro
+[2m18:36:40[22m [34m[200][39m /contacto [2m11ms[22m
+[2m18:36:42[22m [34m[200][39m /inicio [2m1631ms[22m
+[2m19:09:30[22m Configuration file updated. Restarting...
+[2m19:09:30[22m [34m[@astrojs/netlify][39m Enabling sessions with Netlify Blobs
+[vite] connected.
+[33m[1m19:09:33[22m [WARN] [vite][39m ⚠ Warning: Multiple instances of @netlify/vite-plugin have been loaded. This may cause unexpected behavior if the plugin is configured differently in each instance. If you have one instance of this plugin in your Vite config, you may safely remove it.
+[2m19:09:36[22m [34m[vite][39m Environment loaded
+[2m19:09:36[22m [34m[vite][39m Middleware loaded. Emulating features: aiGateway, blobs, database, edgeFunctions, functions, geolocation, headers, images, redirects, static.
+[2m19:09:36[22m [34m[vite][39m 💭 Linking this project to a Netlify site lets you deploy your site, use any environment variables defined on your team and site and much more. Run npx netlify init to get started.
+[2m19:09:38[22m [34m[vite][39m Re-optimizing dependencies because lockfile has changed
+[2m19:09:38[22m [34m[vite][39m server restarted.
+[2m19:09:41[22m [34m[200][39m /inicio [2m1677ms[22m
+[2m19:09:42[22m [34m[vite][39m [32m✨ new dependencies optimized: [33mgsap, gsap/ScrollTrigger[32m[39m
+[2m19:09:42[22m [34m[vite][39m [32m✨ optimized dependencies changed. reloading[39m
+[2m19:11:13[22m Configuration file updated. Restarting...
+[2m19:11:14[22m [34m[@astrojs/netlify][39m Enabling sessions with Netlify Blobs
+[vite] connected.
+[2m19:11:15[22m [34m[vite][39m Environment loaded
+[2m19:11:15[22m [34m[vite][39m Middleware loaded. Emulating features: aiGateway, blobs, database, edgeFunctions, functions, geolocation, headers, images, redirects, static.
+[2m19:11:15[22m [34m[vite][39m 💭 Linking this project to a Netlify site lets you deploy your site, use any environment variables defined on your team and site and much more. Run npx netlify init to get started.
+[2m19:11:15[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m19:11:15[22m [34m[vite][39m server restarted.
+[2m19:11:17[22m [34m[200][39m /inicio [2m667ms[22m
+[2m19:11:18[22m [34m[vite][39m [32m✨ new dependencies optimized: [33mgsap, gsap/ScrollTrigger[32m[39m
+[2m19:11:18[22m [34m[vite][39m [32m✨ optimized dependencies changed. reloading[39m

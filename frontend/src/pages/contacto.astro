@@ -17,6 +17,7 @@ const carasImages = [
   "/assets/img/home/caras-4 2.svg",
   "/assets/img/home/caras-6 2.svg",
 ];
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? "";
 ---
 
 <!doctype html>
@@ -39,6 +40,7 @@ const carasImages = [
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    {recaptchaSiteKey && <script src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`} defer></script>}
 
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -163,6 +165,8 @@ const carasImages = [
       .form-input:focus, .form-textarea:focus { box-shadow: 0 0 0 2px #be572a; }
       .form-textarea { border-color: #545f71; resize: none; min-height: 120px; }
       .form-hint { font-family: 'Inconsolata', monospace; font-size: 14px; color: #161616; }
+      .form-status { min-height: 1.4em; font-family: 'Inconsolata', monospace; font-size: 14px; color: #620404; text-align: center; }
+      .hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
       .form-submit {
         align-self: center;
         margin-top: 0.75rem;
@@ -361,10 +365,14 @@ const carasImages = [
               <path d="M183.484 71.1972C183.488 71.1972 183.488 71.2016 183.485 71.2027C174.01 74.9488 164.355 76.5881 154.469 78.3972L129.419 82.9972L99.1807 91.6121C98.3756 91.8415 96.6424 92.4449 97.3193 92.9372C97.8359 93.3278 98.5054 93.4534 99.1298 93.2815C108.943 90.58 118.53 88.8433 128.649 87.5372C140.019 86.3672 150.989 85.5172 162.409 85.4572C163.489 85.4572 165.019 86.5072 165.539 87.1972C168.209 90.7972 157.819 99.4672 150.039 101.207L127.769 106.177C121.819 107.507 116.089 108.557 110.449 110.707C101.569 114.087 94.4594 119.437 88.1694 126.477C80.0094 135.597 71.0894 143.697 61.5294 151.327L50.3211 158.732C50.1001 158.878 50.0413 159.176 50.1903 159.395C50.3177 159.582 50.5594 159.654 50.768 159.566L55.6247 157.512C59.7626 155.762 64.4434 158.365 65.1396 162.803L67.0694 175.107C69.8294 187.457 74.5294 198.867 81.2394 209.487C85.8094 216.727 86.0994 224.767 83.5394 232.727C79.9294 243.927 75.0194 254.237 67.0294 262.937C61.4794 268.977 55.2194 273.987 47.6594 277.077C41.9894 279.397 35.8994 277.287 33.2094 271.597C29.6394 264.037 26.5194 256.407 24.0894 248.237C13.8794 213.947 9.59936 170.657 12.1694 135.057C13.0394 123.007 18.9094 112.117 25.9194 102.717L40.7394 82.8672L63.8794 51.0472L91.2793 17.6572C93.5993 14.8272 95.4794 11.2572 98.5894 9.31722C100.709 7.99722 103.279 11.7172 103.379 13.6172L103.849 22.6772C104.039 26.3172 102.689 29.2972 99.1094 30.8572L82.802 37.9858C82.2409 38.2311 82.0005 38.897 82.2755 39.4442C82.5301 39.9508 83.1362 40.1702 83.6561 39.9439L101.479 32.1872C119.249 24.4572 132.509 19.8572 152.359 22.4872C156.989 23.1072 161.729 22.4472 166.389 22.7972L176.279 23.5272C177.339 23.6072 178.799 24.9772 179.199 25.8172C179.689 26.8672 179.339 28.9672 178.559 29.8872C174.409 34.7772 168.699 36.3372 162.499 36.3272C141.018 36.2993 118.683 39.0511 99.4066 48.9697C97.4266 49.9885 97.7789 51.9243 99.7493 50.8872C118.109 41.1972 137.329 39.9872 157.639 38.9572L186.499 37.4972C189.119 37.3672 193.169 37.7672 194.019 40.8072C194.769 43.4872 192.709 47.1372 190.779 48.9572C189.039 50.5972 186.719 51.0072 184.339 51.4172L116.839 63.0572C114.056 63.5376 114.885 66.1267 117.678 65.706L130.949 63.7072L184.829 60.0472C186.189 59.9572 188.719 61.2372 188.899 62.3772C189.479 65.9127 187.125 69.7474 183.483 71.1917C183.48 71.1928 183.481 71.1972 183.484 71.1972Z" fill="#3B959E"/>
             </svg>
           </div>
-          <form class="form-card" id="formCard">
+          <form class="form-card" id="formCard" action="/api/contact" method="post" data-recaptcha-site-key={recaptchaSiteKey}>
             <div class="form-field">
               <label class="form-label" for="nombre">Nombre</label>
               <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Lou Espinoza" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="email">Correo electrónico</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="tu@correo.cl" autocomplete="email" required />
             </div>
             <div class="form-field">
               <label class="form-label" for="asunto">Asunto</label>
@@ -375,7 +383,13 @@ const carasImages = [
               <textarea class="form-textarea" id="comentarios" name="comentarios" placeholder="Texto libre" maxlength="500" required></textarea>
               <span class="form-hint" id="charCount">0/500 caracteres</span>
             </div>
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Sitio web</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            <input type="hidden" name="recaptchaToken" id="recaptchaToken" />
             <button class="form-submit" type="submit">Enviar</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
           <div class="hand hand--right" aria-hidden="true">
             <svg fill="none" viewBox="0 0 183 270" width="100%">
@@ -402,7 +416,7 @@ const carasImages = [
               Charlemos y compartamos también a través de...
             </h2>
             <div class="social-links" id="socialLinks">
-              <a href="#" class="social-link">
+              <a href="https://www.linkedin.com/in/identidad-profesional-docente-fondecyt-de-iniciaci%C3%B3n-a79432427/" class="social-link" target="_blank" rel="noopener noreferrer">
                 <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
                   <path d="M12.8 6.40022C14.073 6.40022 15.2939 6.90593 16.1941 7.8061C17.0943 8.70628 17.6 9.92718 17.6 11.2002V16.8002H14.4V11.2002C14.4 10.7759 14.2314 10.3689 13.9314 10.0688C13.6313 9.76879 13.2243 9.60021 12.8 9.60021C12.3757 9.60021 11.9687 9.76879 11.6686 10.0688C11.3686 10.3689 11.2 10.7759 11.2 11.2002V16.8002H8V11.2002C8 9.92718 8.50571 8.70628 9.40589 7.8061C10.3061 6.90593 11.527 6.40022 12.8 6.40022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
                   <path d="M4.8 7.20022H1.6V16.8002H4.8V7.20022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
@@ -410,7 +424,7 @@ const carasImages = [
                 </svg>
                 LINKEDIN
               </a>
-              <a href="#" class="social-link">
+              <a href="https://www.instagram.com/fondecyt.identidadprofesional/" class="social-link" target="_blank" rel="noopener noreferrer">
                 <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
                   <path d="M13.6 1.60022H5.6C3.39086 1.60022 1.6 3.39108 1.6 5.60022V13.6002C1.6 15.8094 3.39086 17.6002 5.6 17.6002H13.6C15.8091 17.6002 17.6 15.8094 17.6 13.6002V5.60022C17.6 3.39108 15.8091 1.60022 13.6 1.60022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
                   <path d="M12.7998 9.09646C12.8985 9.76225 12.7848 10.4422 12.4748 11.0397C12.1648 11.6371 11.6743 12.1216 11.0731 12.4242C10.4719 12.7268 9.79052 12.8321 9.12599 12.7252C8.46147 12.6183 7.84757 12.3045 7.37164 11.8286C6.8957 11.3526 6.58195 10.7388 6.47502 10.0742C6.36809 9.4097 6.47342 8.72837 6.77603 8.12716C7.07864 7.52594 7.56311 7.03545 8.16055 6.72545C8.75799 6.41545 9.43797 6.30173 10.1038 6.40046C10.7829 6.50116 11.4116 6.81763 11.8971 7.3031C12.3826 7.78858 12.6991 8.41732 12.7998 9.09646Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
@@ -430,29 +444,29 @@ const carasImages = [
           </div>
 
           <div class="cta-row" id="ctaRow">
-            <button class="cta-btn cta-btn--linkedin">
+            <a class="cta-btn cta-btn--linkedin" href="https://www.linkedin.com/in/identidad-profesional-docente-fondecyt-de-iniciaci%C3%B3n-a79432427/" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
                 <path d="M12.8 6.40022C14.073 6.40022 15.2939 6.90593 16.1941 7.8061C17.0943 8.70628 17.6 9.92718 17.6 11.2002V16.8002H14.4V11.2002C14.4 10.7759 14.2314 10.3689 13.9314 10.0688C13.6313 9.76879 13.2243 9.60021 12.8 9.60021C12.3757 9.60021 11.9687 9.76879 11.6686 10.0688C11.3686 10.3689 11.2 10.7759 11.2 11.2002V16.8002H8V11.2002C8 9.92718 8.50571 8.70628 9.40589 7.8061C10.3061 6.90593 11.527 6.40022 12.8 6.40022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
                 <path d="M4.8 7.20022H1.6V16.8002H4.8V7.20022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
                 <path d="M3.2 4.80022C4.08366 4.80022 4.8 4.08387 4.8 3.20022C4.8 2.31656 4.08366 1.60022 3.2 1.60022C2.31634 1.60022 1.6 2.31656 1.6 3.20022C1.6 4.08387 2.31634 4.80022 3.2 4.80022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
               </svg>
               Linkedin
-            </button>
-            <button class="cta-btn cta-btn--instagram">
+            </a>
+            <a class="cta-btn cta-btn--instagram" href="https://www.instagram.com/fondecyt.identidadprofesional/" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
                 <path d="M13.6 1.60022H5.6C3.39086 1.60022 1.6 3.39108 1.6 5.60022V13.6002C1.6 15.8094 3.39086 17.6002 5.6 17.6002H13.6C15.8091 17.6002 17.6 15.8094 17.6 13.6002V5.60022C17.6 3.39108 15.8091 1.60022 13.6 1.60022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
                 <path d="M12.7998 9.09646C12.8985 9.76225 12.7848 10.4422 12.4748 11.0397C12.1648 11.6371 11.6743 12.1216 11.0731 12.4242C10.4719 12.7268 9.79052 12.8321 9.12599 12.7252C8.46147 12.6183 7.84757 12.3045 7.37164 11.8286C6.8957 11.3526 6.58195 10.7388 6.47502 10.0742C6.36809 9.4097 6.47342 8.72837 6.77603 8.12716C7.07864 7.52594 7.56311 7.03545 8.16055 6.72545C8.75799 6.41545 9.43797 6.30173 10.1038 6.40046C10.7829 6.50116 11.4116 6.81763 11.8971 7.3031C12.3826 7.78858 12.6991 8.41732 12.7998 9.09646Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
                 <path d="M14 5.20022H14.008" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
               </svg>
               Instagram
-            </button>
-            <button class="cta-btn cta-btn--contact">
+            </a>
+            <a class="cta-btn cta-btn--contact" href="#formCard">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                 <path d="M22 6L12 13L2 6" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
               </svg>
               contáctanos
-            </button>
+            </a>
           </div>
         </section>
 
@@ -603,6 +617,48 @@ const carasImages = [
       if (textarea && charCount) {
         textarea.addEventListener('input', () => {
           charCount.textContent = `${textarea.value.length}/500 caracteres`;
+        });
+      }
+
+      const contactForm = document.getElementById('formCard');
+      const formStatus = document.getElementById('formStatus');
+      const recaptchaTokenInput = document.getElementById('recaptchaToken');
+      const submitButton = contactForm?.querySelector('button[type="submit"]');
+      if (contactForm && formStatus && submitButton) {
+        contactForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          formStatus.textContent = 'Enviando…';
+          submitButton.disabled = true;
+
+          try {
+            const grecaptcha = window.grecaptcha;
+            const recaptchaSiteKey = contactForm.dataset.recaptchaSiteKey;
+            if (!grecaptcha || !recaptchaSiteKey || !recaptchaTokenInput) {
+              throw new Error('captcha-config');
+            }
+
+            await new Promise((resolve) => grecaptcha.ready(resolve));
+            const token = await grecaptcha.execute(recaptchaSiteKey, { action: 'contact' });
+            recaptchaTokenInput.value = token;
+            const payload = Object.fromEntries(new FormData(contactForm).entries());
+            const response = await fetch(contactForm.action, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            const result = await response.json();
+
+            if (!response.ok || !result.ok) throw new Error(result.message || 'send-failed');
+            formStatus.textContent = result.message;
+            contactForm.reset();
+            if (charCount) charCount.textContent = '0/500 caracteres';
+          } catch (error) {
+            formStatus.textContent = error.message === 'captcha-config'
+              ? 'El formulario aún no está configurado.'
+              : (error.message || 'No fue posible enviar el mensaje.');
+          } finally {
+            submitButton.disabled = false;
+          }
         });
       }
 

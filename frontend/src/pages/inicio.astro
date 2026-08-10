@@ -4,8 +4,9 @@ import SeoHead from "../components/SeoHead.astro";
 import VoicePostDeck from "../components/VoicePostDeck.astro";
 import { getAllPosts } from "../services/wordpress/posts";
 import brandImage from "../assets/figma-mcp/inicio/logo.png";
-import heroSlideOne from "../assets/figma-mcp/inicio/hero-1.png";
-import heroSlideTwo from "../assets/figma-mcp/inicio/hero-2.png";
+import heroSlideOne from "../assets/figma-mcp/inicio/hero-foto-portada.jpg";
+import heroSlideTwo from "../assets/figma-mcp/inicio/hero-ilustracion-5c.jpg";
+import heroSlideThree from "../assets/figma-mcp/inicio/hero-educadoras.jpg";
 import cardThumb from "../assets/figma-mcp/inicio/relato-thumb.png";
 import galeria2 from "../assets/figma-mcp/inicio/galeria-2.png";
 import galeria3 from "../assets/figma-mcp/inicio/galeria-3.png";
@@ -1638,17 +1639,18 @@ const carasImages = [
 
         <section class="hero">
         <div class="hero-copy">
-          <h1>Susurros del aula<br />Historias que nos encuentran</h1>
-          <p class="eyebrow" style="letter-spacing: 8.48px;"><strong>Formación docente</strong></p>
-          <p class="eyebrow">Las voces que me habitan</p>
+          <h1>Construcción de la Identidad Profesional Docente</h1>
+          <p class="eyebrow" style="letter-spacing: 8.48px;"><strong>En la Formación Práctica de Educación Parvularia</strong></p>
+          <p class="eyebrow">Un estudio Narrativo-Longitudinal</p>
           <a class="cta" href="/investigacion">
             Sobre la investigación
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg>
           </a>
         </div>
         <div class="hero-slider" aria-label="Galería destacada">
-          <img class="hero-slide is-active" src={heroSlideOne.src} alt="" />
-          <img class="hero-slide is-second" src={heroSlideTwo.src} alt="" />
+          <img class="hero-slide is-active" src={heroSlideOne.src} alt="Educadoras reunidas en una actividad de trabajo" />
+          <img class="hero-slide is-second" src={heroSlideTwo.src} alt="Educadora acompañando a una niña en una actividad artística" />
+          <img class="hero-slide" src={heroSlideThree.src} alt="Educadora compartiendo una actividad con niñas y niños" />
         </div>
         <div class="scroll-hint" aria-hidden="true">
           <span>Desliza para explorar</span>
@@ -1661,7 +1663,7 @@ const carasImages = [
 
         <section class="hero-bridge" aria-label="Introducción">
           <p class="hero-bridge__copy">
-            Construcción de la Identidad Profesional Docente en la Formación Práctica de Educación Parvularia: Un Estudio Narrativo-Longitudinal.
+            Narrativas de identidad docente: historias que nos encuentran durante la formación inicial
           </p>
         </section>
 
@@ -1899,7 +1901,7 @@ const carasImages = [
             Charlemos y compartamos también a través de...
           </h2>
           <div class="social-links" id="socialLinks">
-            <a href="#" class="social-link">
+            <a href="https://www.linkedin.com/in/identidad-profesional-docente-fondecyt-de-iniciaci%C3%B3n-a79432427/" class="social-link" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
                 <path d="M12.8 6.40022C14.073 6.40022 15.2939 6.90593 16.1941 7.8061C17.0943 8.70628 17.6 9.92718 17.6 11.2002V16.8002H14.4V11.2002C14.4 10.7759 14.2314 10.3689 13.9314 10.0688C13.6313 9.76879 13.2243 9.60021 12.8 9.60021C12.3757 9.60021 11.9687 9.76879 11.6686 10.0688C11.3686 10.3689 11.2 10.7759 11.2 11.2002V16.8002H8V11.2002C8 9.92718 8.50571 8.70628 9.40589 7.8061C10.3061 6.90593 11.527 6.40022 12.8 6.40022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
                 <path d="M4.8 7.20022H1.6V16.8002H4.8V7.20022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
@@ -1907,7 +1909,7 @@ const carasImages = [
               </svg>
               LINKEDIN
             </a>
-            <a href="#" class="social-link">
+            <a href="https://www.instagram.com/fondecyt.identidadprofesional/" class="social-link" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
                 <path d="M13.6 1.60022H5.6C3.39086 1.60022 1.6 3.39108 1.6 5.60022V13.6002C1.6 15.8094 3.39086 17.6002 5.6 17.6002H13.6C15.8091 17.6002 17.6 15.8094 17.6 13.6002V5.60022C17.6 3.39108 15.8091 1.60022 13.6 1.60022Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
                 <path d="M12.7998 9.09646C12.8985 9.76225 12.7848 10.4422 12.4748 11.0397C12.1648 11.6371 11.6743 12.1216 11.0731 12.4242C10.4719 12.7268 9.79052 12.8321 9.12599 12.7252C8.46147 12.6183 7.84757 12.3045 7.37164 11.8286C6.8957 11.3526 6.58195 10.7388 6.47502 10.0742C6.36809 9.4097 6.47342 8.72837 6.77603 8.12716C7.07864 7.52594 7.56311 7.03545 8.16055 6.72545C8.75799 6.41545 9.43797 6.30173 10.1038 6.40046C10.7829 6.50116 11.4116 6.81763 11.8971 7.3031C12.3826 7.78858 12.6991 8.41732 12.7998 9.09646Z" stroke="#620404" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
@@ -1927,29 +1929,29 @@ const carasImages = [
         </div>
 
         <div class="cta-row" id="ctaRow">
-          <button class="cta-btn cta-btn--linkedin">
+          <a class="cta-btn cta-btn--linkedin" href="https://www.linkedin.com/in/identidad-profesional-docente-fondecyt-de-iniciaci%C3%B3n-a79432427/" target="_blank" rel="noopener noreferrer">
             <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
               <path d="M12.8 6.40022C14.073 6.40022 15.2939 6.90593 16.1941 7.8061C17.0943 8.70628 17.6 9.92718 17.6 11.2002V16.8002H14.4V11.2002C14.4 10.7759 14.2314 10.3689 13.9314 10.0688C13.6313 9.76879 13.2243 9.60021 12.8 9.60021C12.3757 9.60021 11.9687 9.76879 11.6686 10.0688C11.3686 10.3689 11.2 10.7759 11.2 11.2002V16.8002H8V11.2002C8 9.92718 8.50571 8.70628 9.40589 7.8061C10.3061 6.90593 11.527 6.40022 12.8 6.40022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
               <path d="M4.8 7.20022H1.6V16.8002H4.8V7.20022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
               <path d="M3.2 4.80022C4.08366 4.80022 4.8 4.08387 4.8 3.20022C4.8 2.31656 4.08366 1.60022 3.2 1.60022C2.31634 1.60022 1.6 2.31656 1.6 3.20022C1.6 4.08387 2.31634 4.80022 3.2 4.80022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
             </svg>
             Linkedin
-          </button>
-          <button class="cta-btn cta-btn--instagram">
+          </a>
+          <a class="cta-btn cta-btn--instagram" href="https://www.instagram.com/fondecyt.identidadprofesional/" target="_blank" rel="noopener noreferrer">
             <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
               <path d="M13.6 1.60022H5.6C3.39086 1.60022 1.6 3.39108 1.6 5.60022V13.6002C1.6 15.8094 3.39086 17.6002 5.6 17.6002H13.6C15.8091 17.6002 17.6 15.8094 17.6 13.6002V5.60022C17.6 3.39108 15.8091 1.60022 13.6 1.60022Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
               <path d="M12.7998 9.09646C12.8985 9.76225 12.7848 10.4422 12.4748 11.0397C12.1648 11.6371 11.6743 12.1216 11.0731 12.4242C10.4719 12.7268 9.79052 12.8321 9.12599 12.7252C8.46147 12.6183 7.84757 12.3045 7.37164 11.8286C6.8957 11.3526 6.58195 10.7388 6.47502 10.0742C6.36809 9.4097 6.47342 8.72837 6.77603 8.12716C7.07864 7.52594 7.56311 7.03545 8.16055 6.72545C8.75799 6.41545 9.43797 6.30173 10.1038 6.40046C10.7829 6.50116 11.4116 6.81763 11.8971 7.3031C12.3826 7.78858 12.6991 8.41732 12.7998 9.09646Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
               <path d="M14 5.20022H14.008" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
             </svg>
             Instagram
-          </button>
-          <button class="cta-btn cta-btn--contact">
+          </a>
+          <a class="cta-btn cta-btn--contact" href="/contacto">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
               <path d="M22 6L12 13L2 6" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
             </svg>
             contáctanos
-          </button>
+          </a>
         </div>
       </section>
 
