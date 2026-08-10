@@ -140,6 +140,18 @@ const REFS_DATA = [
         overflow: hidden;
         pointer-events: none;
       }
+      .intro-stack__bg-fallback {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 0;
+        visibility: hidden;
+        overflow: hidden;
+        background: #f9f4f1;
+      }
+      .intro-stack__bg-fallback img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center top; }
+      .intro-stack.is-bg-fallback .intro-stack__bg-fallback { opacity: 1; visibility: visible; }
+      .intro-stack.is-bg-fallback .intro-stack__bg-shape { opacity: 0 !important; visibility: hidden; animation: none !important; }
       .intro-stack__bg-shape {
         position: absolute;
         inset: 0;
@@ -1026,8 +1038,11 @@ const REFS_DATA = [
       <Nav />
 
       <div class="intro-stack" id="introStack">
-        <div class="intro-stack__backdrop" aria-hidden="true">
-          <div class="intro-stack__bg-shape intro-stack__bg-shape--1">
+      <div class="intro-stack__backdrop" aria-hidden="true">
+        <div class="intro-stack__bg-fallback">
+          <img data-bg-fallback-src="/assets/img/home/INICIO.webp" alt="" decoding="async" />
+        </div>
+        <div class="intro-stack__bg-shape intro-stack__bg-shape--1">
             <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
               <g filter="url(#heroBgFilter1)">
                 <rect x="-1400" y="0" width="1400" height="3215" fill="#7C7C4A"/>
@@ -1155,7 +1170,7 @@ const REFS_DATA = [
           <div class="temas-info-card">
             <p class="temas-info-card__title">Temas de la investigación</p>
             <p class="temas-info-card__body">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit augue ac diam venenatis, eget mollis lacus congue. Quisque nec mauris id odio Lorem ipsum dolor sit amet.
+              La investigación explora cómo estudiantes de Educación Parvularia construyen su identidad profesional durante la práctica, atendiendo a sus voces, experiencias, dilemas y aprendizajes.
             </p>
           </div>
 
@@ -1265,6 +1280,9 @@ const REFS_DATA = [
 
         <h2 class="referencias-title">Referencias</h2>
 
+        <p class="referencias-coming-soon">Próximamente</p>
+
+        <!-- Listado y paginación de referencias reservados para una próxima publicación.
         <div class="referencias-list">
           {REFS_DATA.map((ref, i) => (
             <div class="ref-card">
@@ -1297,6 +1315,8 @@ const REFS_DATA = [
             </button>
           </div>
         </div>
+        </section>
+        -->
       </section>
 
       <Footer />
@@ -1427,6 +1447,28 @@ const REFS_DATA = [
       // ── Hero — entrance animations ──────────────────────────────
       const introStack = document.getElementById('introStack');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const bgFallback = introStack?.querySelector('.intro-stack__bg-fallback');
+      const bgFallbackImage = bgFallback?.querySelector('img[data-bg-fallback-src]');
+      const bgSVGs = Array.from(introStack?.querySelectorAll('.intro-stack__bg-shape svg') || []);
+      const activateBackgroundFallback = (reason = 'unknown') => {
+        if (!introStack || !bgFallback || introStack.classList.contains('is-bg-fallback')) return;
+        if (bgFallbackImage && !bgFallbackImage.getAttribute('src')) {
+          bgFallbackImage.setAttribute('src', bgFallbackImage.dataset.bgFallbackSrc || '');
+        }
+        introStack.classList.add('is-bg-fallback');
+        console.warn(`[investigacion] Fondo SVG reemplazado por WebP (${reason}).`);
+      };
+      const verifyBackgroundSVG = () => {
+        if (prefersReducedMotion.matches || !bgSVGs.length) return;
+        const svgIsRenderable = bgSVGs.every((svg) => {
+          const rect = svg.getBoundingClientRect();
+          try {
+            const box = svg.getBBox();
+            return rect.width > 1 && rect.height > 1 && box.width > 1 && box.height > 1;
+          } catch { return false; }
+        });
+        if (!svgIsRenderable) activateBackgroundFallback('verificación de renderizado SVG');
+      };
 
       const revealHeroBackground = () => {
         if (!introStack) return;
@@ -1438,6 +1480,7 @@ const REFS_DATA = [
         requestAnimationFrame(() => {
           setTimeout(() => {
             introStack.classList.add('is-bg-revealed');
+            setTimeout(verifyBackgroundSVG, 2200);
           }, 140);
         });
       };

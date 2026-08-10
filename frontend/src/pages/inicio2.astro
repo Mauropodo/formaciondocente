@@ -37,10 +37,9 @@ const carasImages = [
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <SeoHead
-    title="Inicio (prueba)"
-    description="Versión de prueba del proyecto sobre identidad profesional docente y educación parvularia."
-    path="/inicio2/"
-    noindex={true}
+    title="Inicio"
+    description="Proyecto Fondecyt de Iniciación sobre la construcción de la identidad profesional docente en la formación práctica de educación parvularia en Chile."
+    path="/inicio/"
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -111,6 +110,17 @@ const carasImages = [
       overflow: hidden;
       pointer-events: none;
     }
+    .bg-raster-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      pointer-events: none;
+      user-select: none;
+    }
     .bg-freeze-layer {
       position: fixed;
       inset: 0;
@@ -140,8 +150,11 @@ const carasImages = [
     .bg-shape {
       position: absolute;
       inset: 0;
-      opacity: 0;
-      transform: translate3d(-9vw, 0, 0);
+      z-index: 1;
+      /* Fallback visible: Safari must not leave the background blank if the
+         entrance script is delayed or interrupted. */
+      opacity: 1;
+      transform: none;
       will-change: transform, opacity;
       backface-visibility: hidden;
     }
@@ -344,43 +357,53 @@ const carasImages = [
     }
     .scroll-hint {
       position: absolute;
-      right: 120px;
-      bottom: 54px;
-      width: 167px;
-      min-height: 76px;
+      left: 50%;
+      bottom: clamp(16px, 2.4svh, 28px);
+      width: max-content;
+      min-height: 0;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
+      align-items: center;
+      gap: 7px;
       font-family: Inconsolata, monospace;
-      font-weight: 400;
+      font-size: 11px;
+      font-weight: 700;
       color: var(--text);
-      font-size: 17px;
       line-height: 1;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       pointer-events: none;
       opacity: 0;
+      transform: translateX(-50%);
     }
-    .scroll-hint .hint-icons {
+    .scroll-hint__rail {
       position: relative;
-      width: 100%;
-      height: 28px;
+      width: 1px;
+      height: 30px;
+      overflow: hidden;
+      background: rgba(22, 22, 22, 0.18);
     }
-    .scroll-hint .hint-icons svg {
+    .scroll-hint__rail::after {
+      content: "";
       position: absolute;
-      right: 4px;
-      width: 32px;
-      height: 14px;
-      opacity: 0;
-      transform: translateY(-2px);
-      will-change: opacity, transform;
+      inset: 0;
+      background: var(--primary);
+      transform: translateY(-105%);
+      animation: scrollHintRail 1.8s cubic-bezier(.22,.61,.36,1) infinite;
     }
-    .scroll-hint .hint-icons svg:first-child {
-      top: 0;
-      animation: hintChevronOne 3s infinite ease-in-out;
+    .scroll-hint__arrow {
+      width: 17px;
+      height: 9px;
+      animation: scrollHintArrow 1.8s cubic-bezier(.22,.61,.36,1) infinite;
+      will-change: transform, opacity;
     }
-    .scroll-hint .hint-icons svg:last-child {
-      top: 14px;
-      animation: hintChevronTwo 3s infinite ease-in-out;
+    @keyframes scrollHintRail {
+      0% { transform: translateY(-105%); }
+      55%, 100% { transform: translateY(105%); }
+    }
+    @keyframes scrollHintArrow {
+      0%, 100% { opacity: 0.35; transform: translateY(-3px); }
+      55% { opacity: 1; transform: translateY(3px); }
     }
     .hero-bridge {
       position: fixed;
@@ -574,7 +597,7 @@ const carasImages = [
     .bubble--quote .bubble-text {
       margin: 0;
       max-width: 80%;
-      font-family: Inconsolata, monospace;
+      font-family: "Open Sans", sans-serif;
       font-size: 20px;
       font-weight: 400;
       line-height: 1.18;
@@ -610,11 +633,22 @@ const carasImages = [
     .connect .bubble--quote {
       --bubble-shift-x: 0px;
       --bubble-shift-y: 0px;
+      --bubble-position-offset-x: 0%;
       --bubble-rotate: 0deg;
       --bubble-scale: 1;
       opacity: 0;
-      transform: translate3d(var(--bubble-shift-x), var(--bubble-shift-y), 0) rotate(var(--bubble-rotate)) scale(var(--bubble-scale));
+      transform: translate3d(calc(var(--bubble-shift-x) + var(--bubble-position-offset-x)), var(--bubble-shift-y), 0) rotate(var(--bubble-rotate)) scale(var(--bubble-scale));
       will-change: transform, opacity;
+    }
+    @media (min-width: 901px) {
+      .connect .bubble--quote.green,
+      .connect .bubble--quote.coral {
+        --bubble-position-offset-x: 2%;
+      }
+      .connect .bubble--quote.orange,
+      .connect .bubble--quote.teal {
+        --bubble-position-offset-x: -2%;
+      }
     }
     .connect .bubble.green {
       left: 0;
@@ -1168,12 +1202,14 @@ const carasImages = [
       }
       .scroll-hint {
         position: relative;
+        left: auto;
         right: auto;
         bottom: auto;
-        width: 100%;
+        width: max-content;
         min-height: auto;
-        margin-top: 12px;
-        align-self: start;
+        margin-top: 16px;
+        align-self: center;
+        transform: none;
       }
       .hero-bridge {
         min-height: var(--mobile-frozen-vh);
@@ -1345,6 +1381,7 @@ const carasImages = [
       .question-story__prompt-float-secondary svg {
         height: 100%;
       }
+    }
     @media (prefers-reduced-motion: reduce) {
       .menu {
         opacity: 1;
@@ -1359,14 +1396,106 @@ const carasImages = [
         opacity: 1;
         transform: translate3d(0, 0, 0);
       }
+      .scroll-hint__rail::after,
+      .scroll-hint__arrow {
+        animation: none;
+      }
+      .question-story {
+        min-height: 0;
+        background: var(--paper);
+      }
+      .question-story__viewport {
+        height: auto;
+        overflow: visible;
+      }
+      .question-story__track {
+        display: block;
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+      }
+      .question-story__panel {
+        grid-area: auto;
+        position: relative;
+        min-height: 100svh;
+        height: 100svh;
+        isolation: isolate;
+      }
+      .question-story__panel--prompt {
+        z-index: 1;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+      }
       .question-story__panel--followup {
+        background: #204e4c;
+        z-index: 1;
         opacity: 1;
         pointer-events: auto;
+        margin-top: 0;
+      }
+      .question-story__prompt-float,
+      .question-story__prompt-float-secondary {
+        left: -90% !important;
+        z-index: 0;
+        opacity: 1;
+      }
+      .question-story__prompt-copy {
+        z-index: 10;
+        opacity: 1 !important;
+        visibility: visible !important;
+        background: transparent;
+        border-radius: 0;
+        padding: 0 24px;
+      }
+      .question-story__followup-copy {
+        z-index: 10;
+        background: transparent;
+        border-radius: 0;
+        padding: 0 24px;
       }
       .question-story__followup-copy,
       .question-story__followup-bg {
         opacity: 1;
         transform: none;
+      }
+      .question-story__followup-bg {
+        display: none;
+      }
+      .question-story__prompt-float-secondary {
+        display: none;
+      }
+      .question-story__followup-float {
+        position: absolute;
+        inset: 0 auto 0 0;
+        left: 0 !important;
+        z-index: 0;
+        width: max-content;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.32;
+      }
+      .question-story__followup-float svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: auto;
+        height: 100%;
+        overflow: visible;
+      }
+    }
+    @media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+      .question-story__panel--prompt {
+        background: #eee2d9 !important;
+      }
+      .question-story__prompt-float {
+        display: none !important;
+      }
+      .question-story__float-shape.question-story__float-shape--green {
+        display: none !important;
+      }
+      .question-story__float-shape.question-story__float-shape--gray {
+        display: none !important;
       }
     }
     body.nav-menu-open {
@@ -1380,9 +1509,10 @@ const carasImages = [
       <div class="bg-freeze-layer" aria-hidden="true"></div>
       <section class="story-stack">
         <div class="bg">
+          <img class="bg-raster-fallback" src="/assets/img/home/INICIO.webp" alt="" aria-hidden="true" fetchpriority="high" />
           <div class="bg-shape bg-shape--1" aria-hidden="true">
             <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-              <g filter="url(#bgFilter1)">
+                <g>
                 <rect x="-1400" y="0" width="1400" height="3215" fill="#7C7C4A"/>
                 <path d="M2483 0H195.304H79.2751V3164.27C72.0362 3183.6 204.984 3190.37 794.684 3062.76C1531.81 2903.25 2403.92 2260.69 1311.54 1564.63C219.157 868.574 2004.61 365.031 2483 0Z" fill="#7C7C4A"/>
               </g>
@@ -1402,7 +1532,7 @@ const carasImages = [
           </div>
           <div class="bg-shape bg-shape--2" aria-hidden="true">
             <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-              <g filter="url(#bgFilter2)">
+                <g>
                 <rect x="-1400" y="0" width="1400" height="3215" fill="#F3B568"/>
                 <path d="M2404 0H116.304H0.275126V3164.27C-6.96376 3183.6 125.984 3190.37 715.684 3062.76C1452.81 2903.25 2324.92 2260.69 1232.54 1564.63C140.157 868.574 1925.61 365.031 2404 0Z" fill="#F3B568"/>
               </g>
@@ -1422,7 +1552,7 @@ const carasImages = [
           </div>
           <div class="bg-shape bg-shape--3" aria-hidden="true">
             <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-              <g filter="url(#bgFilter3)">
+                <g>
                 <rect x="-1400" y="0" width="1400" height="3215" fill="#EEE2D9"/>
                 <path d="M1937.22 0H-720V3164C-5.61163 3183.33 101.522 3190.1 576.722 3062.5C1170.72 2903 1873.5 2260.5 993.222 1564.5C112.943 868.5 1551.72 365 1937.22 0Z" fill="#EEE2D9"/>
               </g>
@@ -1442,7 +1572,7 @@ const carasImages = [
           </div>
           <div class="bg-shape bg-shape--4" aria-hidden="true">
             <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-              <g filter="url(#bgFilter4)">
+                <g>
                 <rect x="-1400" y="0" width="1400" height="3215" fill="#F9F4F1"/>
                 <path d="M1280 0H-720V3164.27C-3.70783 3183.61 67.0794 3190.37 381.063 3062.76C773.543 2903.25 1237.9 2260.69 656.261 1564.63C74.6262 868.574 1025.28 365.031 1280 0Z" fill="#F9F4F1"/>
               </g>
@@ -1478,7 +1608,7 @@ const carasImages = [
               <span>scroll <strong data-dev-scroll>0px</strong></span>
               <span>hero <strong data-dev-hero>0%</strong></span>
             </div>
-            <a class="cta" href="/publicaciones">Relatos</a>
+            <a class="cta" href="/publicaciones?categoria=relatos">Relatos</a>
           </nav>
           <button
             class="nav-toggle"
@@ -1497,7 +1627,7 @@ const carasImages = [
           <h1>Susurros del aula<br />Historias que nos encuentran</h1>
           <p class="eyebrow" style="letter-spacing: 8.48px;"><strong>Formación docente</strong></p>
           <p class="eyebrow">Las voces que me habitan</p>
-          <a class="cta" href="/quienes-somos">
+          <a class="cta" href="/investigacion">
             Sobre la investigación
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg>
           </a>
@@ -1507,15 +1637,11 @@ const carasImages = [
           <img class="hero-slide is-second" src={heroSlideTwo.src} alt="" />
         </div>
         <div class="scroll-hint" aria-hidden="true">
-          <div>Desliza hacia abajo</div>
-          <div class="hint-icons">
-            <svg width="32" height="14" viewBox="0 0 32 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 2L16 12L30 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <svg width="32" height="14" viewBox="0 0 32 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 2L16 12L30 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+          <span>Desliza para explorar</span>
+          <span class="scroll-hint__rail"></span>
+          <svg class="scroll-hint__arrow" viewBox="0 0 17 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L8.5 8L16 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
       </section>
 
@@ -1662,14 +1788,15 @@ const carasImages = [
 
     <div class="social-footer-wrapper">
       <div class="bg" aria-hidden="true">
+        <img class="bg-raster-fallback" src="/assets/img/home/INICIO.webp" alt="" aria-hidden="true" loading="lazy" />
         <div class="bg-shape bg-shape--1" aria-hidden="true">
           <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-            <g filter="url(#bgFilter1)">
+            <g>
               <rect x="-1400" y="0" width="1400" height="3215" fill="#7C7C4A"/>
               <path d="M2483 0H195.304H79.2751V3164.27C72.0362 3183.6 204.984 3190.37 794.684 3062.76C1531.81 2903.25 2403.92 2260.69 1311.54 1564.63C219.157 868.574 2004.61 365.031 2483 0Z" fill="#7C7C4A"/>
             </g>
             <defs>
-              <filter id="bgFilter1" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <filter id="bgFreezeFilter1" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                 <feOffset dx="0" dy="4"/>
@@ -1684,12 +1811,12 @@ const carasImages = [
         </div>
         <div class="bg-shape bg-shape--2" aria-hidden="true">
           <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-            <g filter="url(#bgFilter2)">
+            <g>
               <rect x="-1400" y="0" width="1400" height="3215" fill="#F3B568"/>
               <path d="M2404 0H116.304H0.275126V3164.27C-6.96376 3183.6 125.984 3190.37 715.684 3062.76C1452.81 2903.25 2324.92 2260.69 1232.54 1564.63C140.157 868.574 1925.61 365.031 2404 0Z" fill="#F3B568"/>
             </g>
             <defs>
-              <filter id="bgFilter2" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <filter id="bgFreezeFilter2" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                 <feOffset dx="0" dy="4"/>
@@ -1704,12 +1831,12 @@ const carasImages = [
         </div>
         <div class="bg-shape bg-shape--3" aria-hidden="true">
           <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-            <g filter="url(#bgFilter3)">
+            <g>
               <rect x="-1400" y="0" width="1400" height="3215" fill="#EEE2D9"/>
               <path d="M1937.22 0H-720V3164C-5.61163 3183.33 101.522 3190.1 576.722 3062.5C1170.72 2903 1873.5 2260.5 993.222 1564.5C112.943 868.5 1551.72 365 1937.22 0Z" fill="#EEE2D9"/>
             </g>
             <defs>
-              <filter id="bgFilter3" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <filter id="bgFreezeFilter3" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                 <feOffset dx="0" dy="4"/>
@@ -1724,12 +1851,12 @@ const carasImages = [
         </div>
         <div class="bg-shape bg-shape--4" aria-hidden="true">
           <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
-            <g filter="url(#bgFilter4)">
+            <g>
               <rect x="-1400" y="0" width="1400" height="3215" fill="#F9F4F1"/>
               <path d="M1280 0H-720V3164.27C-3.70783 3183.61 67.0794 3190.37 381.063 3062.76C773.543 2903.25 1237.9 2260.69 656.261 1564.63C74.6262 868.574 1025.28 365.031 1280 0Z" fill="#F9F4F1"/>
             </g>
             <defs>
-              <filter id="bgFilter4" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <filter id="bgFreezeFilter4" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                 <feOffset dx="0" dy="4"/>
@@ -1913,9 +2040,11 @@ const carasImages = [
         designPx(3595, "y") - height * 0.7,
         height * 3.1
       );
+      const heroTop = Math.max(135, 130 + 5);
+      const heroStageHeight = Math.max(designPx(620, "y"), height - heroTop);
 
       rootStyle.style.setProperty("--story-stack-height", `${Math.round(storyStackHeight)}px`);
-      rootStyle.style.setProperty("--hero-stage-height", `${Math.round(designPx(819, "y"))}px`);
+      rootStyle.style.setProperty("--hero-stage-height", `${Math.round(heroStageHeight)}px`);
       rootStyle.style.setProperty("--hero-bridge-stage-height", `${Math.round(designPx(655, "y"))}px`);
       rootStyle.style.setProperty("--connect-offset", `${Math.round(designPx(720, "y"))}px`);
     } else {
@@ -2085,6 +2214,24 @@ const carasImages = [
   const registerIndexStyleReveals = (y, duration, ease, start) => {
     revealGroups.forEach(({ selector, delay = 0, delayStep = 0 }) => {
       gsap.utils.toArray(selector).forEach((element, index) => {
+        if (prefersReducedMotion.matches) {
+          gsap.fromTo(element,
+            { autoAlpha: 0 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.24,
+              ease: "none",
+              scrollTrigger: {
+                trigger: element,
+                start,
+                once: true,
+              },
+            }
+          );
+          return;
+        }
+
         gsap.from(element, {
           opacity: 0,
           y,
@@ -2116,19 +2263,62 @@ const carasImages = [
       narrowViewport.matches ? 900 : designPx(1650, "y");
 
     if (prefersReducedMotion.matches) {
-      gsap.set(heroBridge, { autoAlpha: 0 });
-      gsap.set(heroBridgeCopy, { autoAlpha: 1, y: 0 });
+      const setReducedHeroBridgeState = ({ bridgeVisible, copyVisible }) => {
+        gsap.killTweensOf([heroBridge, heroBridgeCopy]);
+        gsap.set(heroBridge, { pointerEvents: bridgeVisible ? "auto" : "none" });
+        gsap.to(heroBridge, {
+          autoAlpha: bridgeVisible ? 1 : 0,
+          duration: 0.12,
+          ease: "none",
+          overwrite: true,
+        });
+        gsap.to(heroBridgeCopy, {
+          autoAlpha: copyVisible ? 1 : 0,
+          duration: 0.16,
+          ease: "none",
+          overwrite: true,
+        });
+      };
 
-      ScrollTrigger.create({
-        trigger: storyStack,
-        start: getHeroBridgeStart,
-        end: getHeroBridgeEnd,
-        invalidateOnRefresh: true,
-        onEnter: () => gsap.set(heroBridge, { autoAlpha: 1 }),
-        onLeave: () => gsap.set(heroBridge, { autoAlpha: 0 }),
-        onEnterBack: () => gsap.set(heroBridge, { autoAlpha: 1 }),
-        onLeaveBack: () => gsap.set(heroBridge, { autoAlpha: 0 }),
-      });
+      gsap.set(heroBridge, { autoAlpha: 0, pointerEvents: "none", clearProps: "transform" });
+      gsap.set(heroBridgeCopy, { autoAlpha: 0, clearProps: "transform" });
+
+      let reducedHeroBridgeState = "hidden";
+      let reducedHeroBridgeFrame = 0;
+      const reducedHeroBridgeHideProgress = 0.4;
+      const syncReducedHeroBridge = () => {
+        if (reducedHeroBridgeFrame) return;
+
+        reducedHeroBridgeFrame = window.requestAnimationFrame(() => {
+          reducedHeroBridgeFrame = 0;
+          const stackTop = storyStack.getBoundingClientRect().top + window.scrollY;
+          const localScroll = window.scrollY - stackTop;
+          const start = Number(getHeroBridgeStart());
+          const end = Number(getHeroBridgeEnd());
+          const progress = Math.min(Math.max((localScroll - start) / Math.max(end - start, 1), 0), 1);
+          const connectReachedHalfViewport =
+            connectSection && connectSection.getBoundingClientRect().top <= window.innerHeight * 0.5;
+          const nextState =
+            !connectReachedHalfViewport &&
+              progress >= 0.08 &&
+              progress < reducedHeroBridgeHideProgress
+                ? "bridge-and-copy"
+                : "hidden";
+
+          if (nextState === reducedHeroBridgeState) return;
+          reducedHeroBridgeState = nextState;
+          setReducedHeroBridgeState({
+            bridgeVisible: nextState !== "hidden",
+            copyVisible: nextState === "bridge-and-copy",
+          });
+        });
+      };
+
+      syncReducedHeroBridge();
+      window.addEventListener("scroll", syncReducedHeroBridge, { passive: true });
+      window.addEventListener("resize", syncReducedHeroBridge, { passive: true });
+      window.addEventListener("orientationchange", syncReducedHeroBridge, { passive: true });
+      window.addEventListener("inicio:viewportchange", syncReducedHeroBridge);
     } else {
       gsap.set(heroBridge, { autoAlpha: 0 });
       gsap.set(heroBridgeCopy, { autoAlpha: 0 });
@@ -2241,12 +2431,6 @@ const carasImages = [
     };
 
     const updateHeroFade = () => {
-      if (prefersReducedMotion.matches) {
-        heroState.scrollOpacity = 1;
-        renderHero();
-        return;
-      }
-
       if (narrowViewport.matches) {
         const stackTop = storyStack.offsetTop;
         const mobileFadeDistance = 300;
@@ -2283,10 +2467,10 @@ const carasImages = [
 
     const bubbleOrder = ["green", "teal", "coral", "orange"];
     const bubbleTargets = {
-      green: { centerX: 0.218, centerY: 0.401, scaleAdjust: 1 },
-      teal: { centerX: 0.804, centerY: 0.642, scaleAdjust: 1 },
-      coral: { centerX: 0.253, centerY: 0.707, scaleAdjust: 0.98 },
-      orange: { centerX: 0.81, centerY: 0.333, scaleAdjust: 0.97 },
+      green: { centerX: 0.228, centerY: 0.270, scaleAdjust: 0.8 },
+      teal: { centerX: 0.614, centerY: 0.612, scaleAdjust: 0.8 },
+      coral: { centerX: 0.263, centerY: 0.607, scaleAdjust: 0.8 },
+      orange: { centerX: 0.614, centerY: 0.293, scaleAdjust: 0.8 },
     };
 
     const getBubbleOrderIndex = (bubble) => {
@@ -2350,10 +2534,16 @@ const carasImages = [
         connectSection.classList.add("is-active");
 
         connectBubbles.forEach((bubble, index) => {
+          const finalOffset = narrowViewport.matches
+            ? { x: 0, y: 0 }
+            : (connectMotionState.visibleOffsets[index] || { x: 0, y: 0 });
+          const finalScale = narrowViewport.matches
+            ? 1
+            : (connectMotionState.visibleScale[index] ?? 1);
           const visibleOpacity = connectMotionState.visibleOpacity[index] ?? 1;
-          bubble.style.setProperty("--bubble-shift-x", "0px");
-          bubble.style.setProperty("--bubble-shift-y", "0px");
-          bubble.style.setProperty("--bubble-scale", "1");
+          bubble.style.setProperty("--bubble-shift-x", `${finalOffset.x.toFixed(2)}px`);
+          bubble.style.setProperty("--bubble-shift-y", `${finalOffset.y.toFixed(2)}px`);
+          bubble.style.setProperty("--bubble-scale", `${finalScale.toFixed(4)}`);
           bubble.style.opacity = String(visibleOpacity);
         });
         return;
@@ -2649,6 +2839,80 @@ const carasImages = [
 
       return translateMainFloatPathX(shift);
     };
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      const isMobile = narrowViewport.matches;
+      const reducedPromptCopy = questionPromptPanel.querySelector("[data-question-copy]");
+      const reducedFollowupCopy = questionFollowupPanel.querySelector("[data-question-next-copy]");
+      const reducedFollowupFloat = questionPromptFloatSecondary.cloneNode(true);
+      reducedFollowupFloat.className = "question-story__followup-float";
+      reducedFollowupFloat.setAttribute("aria-hidden", "true");
+      questionFollowupPanel.prepend(reducedFollowupFloat);
+      const reducedGreenFloat = reducedFollowupFloat.querySelector(".question-story__float-shape--green");
+      const reducedGrayFloat = reducedFollowupFloat.querySelector(".question-story__float-shape--gray");
+
+      gsap.set([questionPromptPanel, questionFollowupPanel], {
+        autoAlpha: 1,
+        pointerEvents: "auto",
+      });
+      gsap.set([reducedPromptCopy, reducedFollowupCopy], {
+        autoAlpha: 1,
+        clearProps: "visibility",
+      });
+      gsap.set(questionPromptPanel, {
+        autoAlpha: 1,
+        visibility: "visible",
+        pointerEvents: "auto",
+      });
+      gsap.set(reducedPromptCopy, {
+        autoAlpha: 1,
+        opacity: 1,
+        visibility: "visible",
+      });
+      gsap.set(mainFloatSVG, { x: -20 });
+      gsap.set(mainFloatPath, { attr: { d: mainFloatPathStart } });
+      gsap.set(questionPromptFloat, {
+        xPercent: isMobile ? -21 : 0,
+        x: 0,
+        left: 0,
+      });
+      gsap.set(questionPromptFloatSecondary, {
+        autoAlpha: 0,
+        left: 0,
+      });
+      gsap.set(greenFloatSVG, {
+        autoAlpha: 0,
+      });
+      gsap.set(grayFloatSVG, {
+        autoAlpha: 0,
+      });
+      gsap.set(reducedFollowupFloat, {
+        x: isMobile ? 32 : designPx(200, "x"),
+        autoAlpha: 1,
+        left: 0,
+      });
+      gsap.set(reducedGreenFloat, {
+        xPercent: isMobile ? -92 : -80,
+        autoAlpha: 1,
+      });
+      gsap.set(reducedGrayFloat, {
+        xPercent: isMobile ? -96 : -90,
+        autoAlpha: 1,
+      });
+
+      return () => {
+        gsap.set([questionPromptPanel, questionFollowupPanel], { clearProps: "all" });
+        gsap.set(mainFloatPath, { attr: { d: mainFloatPathStart } });
+        gsap.set([
+          mainFloatSVG,
+          questionPromptFloat,
+          questionPromptFloatSecondary,
+          greenFloatSVG,
+          grayFloatSVG,
+        ], { clearProps: "all" });
+        reducedFollowupFloat.remove();
+      };
+    });
 
     mm.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)", () => {
       gsap.set(mainFloatSVG, { x: -20 });

@@ -110,6 +110,31 @@ const carasImages = [
       overflow: hidden;
       pointer-events: none;
     }
+    .bg-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      background: #f9f4f1;
+    }
+    .bg-fallback img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .story-stack.is-bg-fallback .bg-fallback {
+      opacity: 1;
+      visibility: visible;
+    }
+    .story-stack.is-bg-fallback .bg-shape {
+      opacity: 0 !important;
+      visibility: hidden;
+      animation: none !important;
+    }
     .bg-freeze-layer {
       position: fixed;
       inset: 0;
@@ -139,9 +164,8 @@ const carasImages = [
     .bg-shape {
       position: absolute;
       inset: 0;
-      /* Fallback visible: Safari must not leave the background blank if the
-         entrance script is delayed or interrupted. */
-      opacity: 1;
+      /* Keep the SVG layers hidden until the entrance sequence starts. */
+      opacity: 0;
       transform: none;
       will-change: transform, opacity;
       backface-visibility: hidden;
@@ -1497,6 +1521,9 @@ const carasImages = [
       <div class="bg-freeze-layer" aria-hidden="true"></div>
       <section class="story-stack">
         <div class="bg">
+          <div class="bg-fallback" aria-hidden="true">
+            <img data-bg-fallback-src="/assets/img/home/INICIO.webp" alt="" decoding="async" />
+          </div>
           <div class="bg-shape bg-shape--1" aria-hidden="true">
             <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
                 <g filter="url(#bgFilter1)">
@@ -1949,6 +1976,9 @@ const carasImages = [
   const heroBridgeCopy = document.querySelector(".hero-bridge__copy");
   const storyStack = document.querySelector(".story-stack");
   const storyBg = document.querySelector(".bg");
+  const bgFallback = document.querySelector(".bg-fallback");
+  const bgFallbackImage = bgFallback?.querySelector("img[data-bg-fallback-src]");
+  const bgSVGs = Array.from(document.querySelectorAll(".bg-shape svg"));
   const bgFreezeLayer = document.querySelector(".bg-freeze-layer");
   const connectSection = document.querySelector(".connect");
   const connectContent = document.querySelector(".connect .content");
@@ -2174,6 +2204,35 @@ const carasImages = [
         }, BG_REVEAL_DELAY_MS);
       });
     });
+  };
+
+  const activateBackgroundFallback = (reason = "unknown") => {
+    if (!storyStack || !bgFallback || storyStack.classList.contains("is-bg-fallback")) return;
+
+    if (bgFallbackImage && !bgFallbackImage.getAttribute("src")) {
+      bgFallbackImage.setAttribute("src", bgFallbackImage.dataset.bgFallbackSrc || "");
+    }
+
+    storyStack.classList.add("is-bg-fallback");
+    console.warn(`[inicio] Fondo SVG reemplazado por WebP (${reason}).`);
+  };
+
+  const verifyBackgroundSVG = () => {
+    if (prefersReducedMotion.matches || !bgSVGs.length) return;
+
+    const svgIsRenderable = bgSVGs.every((svg) => {
+      const rect = svg.getBoundingClientRect();
+      try {
+        const box = svg.getBBox();
+        return rect.width > 1 && rect.height > 1 && box.width > 1 && box.height > 1;
+      } catch {
+        return false;
+      }
+    });
+
+    if (!svgIsRenderable) {
+      activateBackgroundFallback("verificación de renderizado SVG");
+    }
   };
 
   let backgroundRevealPromise;
@@ -2434,6 +2493,9 @@ const carasImages = [
     };
 
     Promise.resolve(backgroundRevealPromise).then(() => {
+      if (!prefersReducedMotion.matches) {
+        window.setTimeout(verifyBackgroundSVG, 260);
+      }
       updateHeroFade();
       animateHeroEntrance();
       window.addEventListener("scroll", updateHeroFade, { passive: true });

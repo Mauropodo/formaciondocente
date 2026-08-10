@@ -328,9 +328,22 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       inset: 0;
       z-index: 0;
       background: var(--bg);
+      opacity: 0.2;
       overflow: hidden;
       pointer-events: none;
     }
+    .qs-hero__bg-fallback {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      background: #f9f4f1;
+    }
+    .qs-hero__bg-fallback img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center top; }
+    .qs-hero.is-bg-fallback .qs-hero__bg-fallback { opacity: 1; visibility: visible; }
+    .qs-hero.is-bg-fallback .qs-hero-bg-shape { opacity: 0 !important; visibility: hidden; animation: none !important; }
     .qs-hero-bg-shape {
       position: absolute;
       inset: 0;
@@ -501,12 +514,18 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     }
     .colaboran {
       flex-shrink: 0;
-      width: 235px;
-      height: 185px;
+      width: 350px;
+      max-width: 100%;
+      min-height: 185px;
       margin-top: 0;
       justify-self: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
     }
-    .colaboran img { width: 100%; height: 100%; object-fit: cover; }
+    .colaboran img { width: 100%; height: auto; object-fit: contain; }
 
     .team-profile-stage {
       position: relative;
@@ -821,6 +840,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         justify-items: center;
         gap: 2rem;
       }
+      .colaboran { width: min(350px, 100%); }
       .qs-hero__inner { gap: 2rem; }
       .fondecyt {
         width: 100%;
@@ -1013,6 +1033,9 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
 
     <section class="qs-hero" id="qs-hero">
       <div class="qs-hero__backdrop" aria-hidden="true">
+        <div class="qs-hero__bg-fallback">
+          <img data-bg-fallback-src="/assets/img/home/INICIO.webp" alt="" decoding="async" />
+        </div>
         <div class="qs-hero-bg-shape qs-hero-bg-shape--1">
           <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
             <g filter="url(#heroBgFilter1)">
@@ -1114,7 +1137,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         </div>
 
         <div class="colaboran">
-          <img src="/images/quienes-somos/colaboran.png" alt="Colaboran" />
+          <img src="/images/investigacion/FONDECYT%201.png" alt="FONDECYT" />
+          <img src="/images/investigacion/Logo_Universidad_Diego_Portales.png" alt="Universidad Diego Portales" />
         </div>
         </div>
       </div>
@@ -1303,6 +1327,9 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   const mobileMenuQuery = window.matchMedia("(max-width: 900px)");
   const qsHero = document.getElementById("qs-hero");
   const qsHeroTitle = document.querySelector(".qs-hero__title");
+  const bgFallback = qsHero?.querySelector(".qs-hero__bg-fallback");
+  const bgFallbackImage = bgFallback?.querySelector("img[data-bg-fallback-src]");
+  const bgSVGs = Array.from(qsHero?.querySelectorAll(".qs-hero-bg-shape svg") || []);
   const teamSection = document.querySelector(".team-section");
   const teamProfileStage = document.querySelector(".team-profile-stage");
   const profileSection = document.querySelector(".profile-section");
@@ -1312,6 +1339,25 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   const devStageValue = document.querySelector("[data-dev-stage]");
   const devHeightValue = document.querySelector("[data-dev-height]");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const activateBackgroundFallback = (reason = "unknown") => {
+    if (!qsHero || !bgFallback || qsHero.classList.contains("is-bg-fallback")) return;
+    if (bgFallbackImage && !bgFallbackImage.getAttribute("src")) {
+      bgFallbackImage.setAttribute("src", bgFallbackImage.dataset.bgFallbackSrc || "");
+    }
+    qsHero.classList.add("is-bg-fallback");
+    console.warn(`[quienes-somos] Fondo SVG reemplazado por WebP (${reason}).`);
+  };
+  const verifyBackgroundSVG = () => {
+    if (prefersReducedMotion.matches || !bgSVGs.length) return;
+    const svgIsRenderable = bgSVGs.every((svg) => {
+      const rect = svg.getBoundingClientRect();
+      try {
+        const box = svg.getBBox();
+        return rect.width > 1 && rect.height > 1 && box.width > 1 && box.height > 1;
+      } catch { return false; }
+    });
+    if (!svgIsRenderable) activateBackgroundFallback("verificación de renderizado SVG");
+  };
   const mobileViewport = window.matchMedia("(max-width: 900px)");
   const profileContainer = document.querySelector("[data-profile-carousel]");
   const profileCards = Array.from(document.querySelectorAll(".profile-card-wrap"));
@@ -1493,7 +1539,8 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   const revealHeroBackground = () => {
     if (!qsHero) return;
     if (prefersReducedMotion.matches) {
-      qsHero.classList.add("is-bg-revealed");
+         qsHero.classList.add("is-bg-revealed");
+         window.setTimeout(verifyBackgroundSVG, 2200);
       if (qsHeroTitle) {
         qsHeroTitle.style.opacity = "1";
         qsHeroTitle.style.transform = "none";
