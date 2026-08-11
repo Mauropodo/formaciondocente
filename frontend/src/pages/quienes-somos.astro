@@ -140,6 +140,15 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Red+Hat+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <script is:inline>
+    (() => {
+      const isIOS = /iP(ad|hone|od)/.test(navigator.platform) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isMobileSafari = isIOS && /Safari/.test(navigator.userAgent) &&
+        !/CriOS|FxiOS|EdgiOS|OPiOS/.test(navigator.userAgent);
+      if (isMobileSafari) document.documentElement.classList.add('mobile-safari');
+    })();
+  </script>
   <style>
     :root {
       --bg: #f9f5f2;
@@ -838,7 +847,30 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         background: rgba(249, 245, 242, 0.92);
         box-shadow: 0.8px 2.4px 0 #464646, 0 6.4px 9.6px rgba(0,0,0,.12);
       }
-      .qs-hero { padding-top: 140px; }
+      .qs-hero {
+        min-height: 100svh;
+        padding-top: 140px;
+        overflow: hidden;
+      }
+      :global(html.mobile-safari) .qs-hero__title,
+      :global(html.mobile-safari) .fondecyt,
+      :global(html.mobile-safari) .team-title h2 {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+      }
+      :global(html.mobile-safari) .qs-hero-bg-shape {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+      .qs-hero__bg-fallback {
+        opacity: 1;
+        visibility: visible;
+      }
+      .qs-hero__bg-fallback img {
+        content: url('/assets/img/home/INICIO.webp');
+      }
       .qs-hero__content {
         grid-template-columns: 1fr;
         justify-items: center;
@@ -981,7 +1013,10 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       }
       .profile-carousel__button--prev { left: -22px; }
       .profile-carousel__button--next { right: -22px; }
-      .team-section { min-height: 60vh; }
+      .team-section {
+        height: 100svh;
+        min-height: 100svh;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1056,7 +1091,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     <section class="qs-hero" id="qs-hero">
       <div class="qs-hero__backdrop" aria-hidden="true">
         <div class="qs-hero__bg-fallback">
-          <img data-bg-fallback-src="/assets/img/home/INICIO.webp" alt="" decoding="async" />
+          <img src="/assets/img/home/INICIO.webp" data-bg-fallback-src="/assets/img/home/INICIO.webp" alt="" decoding="async" />
         </div>
         <div class="qs-hero-bg-shape qs-hero-bg-shape--1">
           <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">

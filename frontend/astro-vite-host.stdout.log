@@ -529,3 +529,15 @@
 [2m00:39:56[22m [34m[200][39m /publicaciones [2m564ms[22m
 [2m00:40:00[22m [34m[200][39m /inicio [2m256ms[22m
 [2m00:46:52[22m [34m[200][39m /inicio [2m2517ms[22m
+[2m00:58:14[22m [34m[200][39m /investigacion [2m4ms[22m
+[2m01:11:16[22m [34m[watch][39m src/pages/quienes-somos.astro
+[2m01:11:16[22m [34m[watch][39m /src/pages/quienes-somos.astro?astro&type=style&index=0&lang.css
+[2m01:11:16[22m [34m[watch][39m src/pages/quienes-somos.astro
+[vite] program reload
+[2m01:11:17[22m [34m[200][39m /contacto [2m17ms[22m
+[2m01:11:17[22m [34m[200][39m /quienes-somos [2m23ms[22m
+[2m01:11:18[22m [34m[200][39m /inicio [2m1707ms[22m
+[2m08:58:51[22m [34m[watch][39m src/pages/quienes-somos.astro
+[2m08:58:51[22m [34m[200][39m /contacto [2m20ms[22m
+[2m08:58:52[22m [34m[200][39m /quienes-somos [2m21ms[22m
+[2m08:58:54[22m [34m[200][39m /inicio [2m2135ms[22m
