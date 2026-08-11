@@ -277,24 +277,32 @@ function paginationUrl(slug, pageNum) {
     });
   };
 
-  const handleViewportResize = () => {
+  let lastLayoutWidth = document.documentElement.clientWidth;
+  let viewportRefreshTimer = 0;
+
+  const handleViewportResize = (source = "window") => {
     const nextViewportMode = getViewportMode();
 
-    if (
-      window.devicePixelRatio !== initialDevicePixelRatio ||
-      nextViewportMode !== viewportMode
-    ) {
-      window.location.reload();
-      return;
-    }
+    // Safari puede emitir resize al mostrar u ocultar la barra de dirección.
+    // El layout se actualiza sin recargar la página.
+    viewportMode = nextViewportMode;
 
-    refreshViewportAnimations();
+    const nextLayoutWidth = document.documentElement.clientWidth;
+    const widthChanged = Math.abs(nextLayoutWidth - lastLayoutWidth) > 1;
+    if (source === "visualViewport" && !widthChanged) return;
+    if (source !== "orientationchange" && !widthChanged) return;
+
+    window.clearTimeout(viewportRefreshTimer);
+    viewportRefreshTimer = window.setTimeout(() => {
+      lastLayoutWidth = document.documentElement.clientWidth;
+      refreshViewportAnimations();
+    }, 180);
   };
 
   syncViewportMetrics();
   window.addEventListener("resize", handleViewportResize, { passive: true });
-  window.addEventListener("orientationchange", handleViewportResize, { passive: true });
-  window.visualViewport?.addEventListener("resize", handleViewportResize, { passive: true });
+  window.addEventListener("orientationchange", () => handleViewportResize("orientationchange"), { passive: true });
+  window.visualViewport?.addEventListener("resize", () => handleViewportResize("visualViewport"), { passive: true });
   window.addEventListener("load", refreshViewportAnimations, { once: true });
   document.fonts?.ready?.then(refreshViewportAnimations);
 
@@ -491,6 +499,16 @@ function paginationUrl(slug, pageNum) {
     background: var(--color-primary);
     color: var(--color-text-inverse);
     font-weight: 700;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #posts-grid > *,
+    #hero-filters,
+    #hero-filters * {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
   }
 
   @media (max-width: 768px) {

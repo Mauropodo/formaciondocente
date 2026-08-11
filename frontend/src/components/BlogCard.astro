@@ -58,7 +58,7 @@ const categoryColors = {
   <a class="card-link" href={`/publicaciones/${slug}`} aria-label={`Leer ${title}`}>
     <div class="card-inner">
       <div class={`card-img ${imageUrl ? 'card-img--has-image' : 'card-img--fallback'}`}>
-        {imageUrl && <img src={imageUrl} alt={title} loading="lazy" />}
+        {imageUrl && <img src={imageUrl} alt={title} />}
       </div>
       <div class="card-content">
         <h3 class="card-title">{title}</h3>

@@ -58,16 +58,26 @@
 <script>
   const card = document.getElementById('footerCard');
   if (card) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          card.classList.add('is-visible');
-          observer.unobserve(card);
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(card);
+    const reveal = () => card.classList.add('is-visible');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            reveal();
+            observer.unobserve(card);
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(card);
+
+      // WebKit can defer the observer when the page contains transformed sections.
+      // Keep the normal reveal when it fires, but never leave the footer invisible.
+      window.setTimeout(reveal, 1800);
+    } else {
+      reveal();
+    }
   }
 </script>
 

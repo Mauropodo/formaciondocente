@@ -1,5 +1,4 @@
 import type { APIRoute } from "astro";
-import nodemailer from "nodemailer";
 
 const json = (body: Record<string, unknown>, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -9,6 +8,13 @@ const json = (body: Record<string, unknown>, status = 200) =>
 
 const clean = (value: unknown, maxLength: number) =>
   typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+
+const escapeHtml = (value: string) =>
+  value.replace(/[&<>\"']/g, (character) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '\"': "&quot;", "'": "&#039;" })[
+      character
+    ] ?? character,
+  );
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -51,30 +57,43 @@ export const POST: APIRoute = async ({ request }) => {
       return json({ ok: false, message: "No se pudo validar el envío. Inténtalo nuevamente." }, 403);
     }
 
-    const smtpHost = import.meta.env.SMTP_HOST;
-    const smtpUser = import.meta.env.SMTP_USER;
-    const smtpPassword = import.meta.env.SMTP_PASSWORD;
-    const smtpPort = Number(import.meta.env.SMTP_PORT || "465");
+    const resendApiKey = import.meta.env.RESEND_API_KEY;
+    const emailFrom = import.meta.env.EMAIL_FROM;
     const contactTo = import.meta.env.CONTACT_TO || "contacto@identidadprofesional.cl";
 
-    if (!smtpHost || !smtpUser || !smtpPassword) {
+    if (!resendApiKey || !emailFrom) {
       return json({ ok: false, message: "El servicio de correo no está configurado todavía." }, 503);
     }
 
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: { user: smtpUser, pass: smtpPassword },
+    const text = `Nombre: ${nombre}\nCorreo: ${email}\nAsunto: ${asunto}\n\n${comentarios}`;
+    const html = `
+      <h2>Nuevo mensaje desde el sitio web</h2>
+      <p><strong>Nombre:</strong> ${escapeHtml(nombre)}</p>
+      <p><strong>Correo:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Asunto:</strong> ${escapeHtml(asunto)}</p>
+      <hr />
+      <p>${escapeHtml(comentarios).replace(/\n/g, "<br />")}</p>
+    `;
+
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: emailFrom,
+        to: [contactTo],
+        reply_to: email,
+        subject: `[Sitio web] ${asunto}`,
+        text,
+        html,
+      }),
     });
 
-    await transporter.sendMail({
-      from: import.meta.env.SMTP_FROM || smtpUser,
-      to: contactTo,
-      replyTo: email,
-      subject: `[Sitio web] ${asunto}`,
-      text: `Nombre: ${nombre}\nCorreo: ${email}\n\n${comentarios}`,
-    });
+    if (!resendResponse.ok) {
+      return json({ ok: false, message: "No fue posible enviar el mensaje. Inténtalo nuevamente." }, 502);
+    }
 
     return json({ ok: true, message: "Mensaje enviado correctamente." });
   } catch {

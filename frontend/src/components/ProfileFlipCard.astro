@@ -38,6 +38,7 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
   class:list={["profile-flip-card", `profile-flip-card--${size}`]}
   style={`--card-tilt:${tilt};`}
   data-interactive={interactive ? "true" : "false"}
+  data-flipped="false"
   tabindex={interactive ? "0" : "-1"}
   aria-label={`Tarjeta de perfil de ${name}`}
 >
@@ -55,7 +56,7 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
     <section class="profile-flip-card__face profile-flip-card__face--front">
       <div class="profile-flip-card__photo" style={`clip-path:url(#${photoClipId});`}>
         <div class="profile-flip-card__photo-inner">
-          <img src={photoSrc} alt={name} loading="lazy" />
+          <img src={photoSrc} alt={name} />
         </div>
       </div>
       <p class="profile-flip-card__name">{name}</p>
@@ -74,7 +75,7 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
       <p class="profile-flip-card__back-title">{backTitle}</p>
       <div class="profile-flip-card__photo profile-flip-card__photo--back" style={`clip-path:url(#${photoClipId});`}>
         <div class="profile-flip-card__photo-inner">
-          <img src={backPhotoSrc} alt="" loading="lazy" aria-hidden="true" />
+          <img src={backPhotoSrc} alt="" aria-hidden="true" />
         </div>
       </div>
       <ul class="profile-flip-card__back-list">
@@ -106,6 +107,7 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
+    transform: rotateY(0deg);
     transition: transform 760ms cubic-bezier(.22,1,.36,1);
   }
 
@@ -277,6 +279,12 @@ const photoClipId = `profile-photo-clip-${name.toLowerCase().replace(/[^a-z0-9]+
 
     .profile-flip-card__face--back {
       display: flex;
+    }
+
+    /* WebKit/iPhone renders the mobile card faces in the opposite visual
+       orientation; keep the source image untransformed in that viewport. */
+    .profile-flip-card__photo-inner {
+      transform: none;
     }
   }
 
