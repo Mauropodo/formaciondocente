@@ -17,7 +17,6 @@ const carasImages = [
   "/assets/img/home/caras-4 2.svg",
   "/assets/img/home/caras-6 2.svg",
 ];
-const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? "";
 ---
 
 <!doctype html>
@@ -40,8 +39,6 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? "";
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    {recaptchaSiteKey && <script src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`} defer></script>}
-
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       html { scroll-behavior: smooth; }
@@ -370,7 +367,15 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? "";
               <path d="M183.484 71.1972C183.488 71.1972 183.488 71.2016 183.485 71.2027C174.01 74.9488 164.355 76.5881 154.469 78.3972L129.419 82.9972L99.1807 91.6121C98.3756 91.8415 96.6424 92.4449 97.3193 92.9372C97.8359 93.3278 98.5054 93.4534 99.1298 93.2815C108.943 90.58 118.53 88.8433 128.649 87.5372C140.019 86.3672 150.989 85.5172 162.409 85.4572C163.489 85.4572 165.019 86.5072 165.539 87.1972C168.209 90.7972 157.819 99.4672 150.039 101.207L127.769 106.177C121.819 107.507 116.089 108.557 110.449 110.707C101.569 114.087 94.4594 119.437 88.1694 126.477C80.0094 135.597 71.0894 143.697 61.5294 151.327L50.3211 158.732C50.1001 158.878 50.0413 159.176 50.1903 159.395C50.3177 159.582 50.5594 159.654 50.768 159.566L55.6247 157.512C59.7626 155.762 64.4434 158.365 65.1396 162.803L67.0694 175.107C69.8294 187.457 74.5294 198.867 81.2394 209.487C85.8094 216.727 86.0994 224.767 83.5394 232.727C79.9294 243.927 75.0194 254.237 67.0294 262.937C61.4794 268.977 55.2194 273.987 47.6594 277.077C41.9894 279.397 35.8994 277.287 33.2094 271.597C29.6394 264.037 26.5194 256.407 24.0894 248.237C13.8794 213.947 9.59936 170.657 12.1694 135.057C13.0394 123.007 18.9094 112.117 25.9194 102.717L40.7394 82.8672L63.8794 51.0472L91.2793 17.6572C93.5993 14.8272 95.4794 11.2572 98.5894 9.31722C100.709 7.99722 103.279 11.7172 103.379 13.6172L103.849 22.6772C104.039 26.3172 102.689 29.2972 99.1094 30.8572L82.802 37.9858C82.2409 38.2311 82.0005 38.897 82.2755 39.4442C82.5301 39.9508 83.1362 40.1702 83.6561 39.9439L101.479 32.1872C119.249 24.4572 132.509 19.8572 152.359 22.4872C156.989 23.1072 161.729 22.4472 166.389 22.7972L176.279 23.5272C177.339 23.6072 178.799 24.9772 179.199 25.8172C179.689 26.8672 179.339 28.9672 178.559 29.8872C174.409 34.7772 168.699 36.3372 162.499 36.3272C141.018 36.2993 118.683 39.0511 99.4066 48.9697C97.4266 49.9885 97.7789 51.9243 99.7493 50.8872C118.109 41.1972 137.329 39.9872 157.639 38.9572L186.499 37.4972C189.119 37.3672 193.169 37.7672 194.019 40.8072C194.769 43.4872 192.709 47.1372 190.779 48.9572C189.039 50.5972 186.719 51.0072 184.339 51.4172L116.839 63.0572C114.056 63.5376 114.885 66.1267 117.678 65.706L130.949 63.7072L184.829 60.0472C186.189 59.9572 188.719 61.2372 188.899 62.3772C189.479 65.9127 187.125 69.7474 183.483 71.1917C183.48 71.1928 183.481 71.1972 183.484 71.1972Z" fill="#3B959E"/>
             </svg>
           </div>
-          <form class="form-card" id="formCard" action="/api/contact" method="post" data-recaptcha-site-key={recaptchaSiteKey}>
+          <form name="contact" data-netlify="true" netlify-honeypot="website" hidden>
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="text" name="nombre" />
+            <input type="email" name="email" />
+            <input type="text" name="asunto" />
+            <textarea name="comentarios"></textarea>
+            <input type="text" name="website" />
+          </form>
+          <form class="form-card" id="formCard" name="contact" action="/" method="post">
             <div class="form-field">
               <label class="form-label" for="nombre">Nombre</label>
               <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Lou Espinoza" required />
@@ -392,7 +397,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? "";
               <label for="website">Sitio web</label>
               <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
             </div>
-            <input type="hidden" name="recaptchaToken" id="recaptchaToken" />
+            <input type="hidden" name="form-name" value="contact" />
             <button class="form-submit" type="submit">Enviar</button>
             <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
@@ -635,7 +640,6 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? "";
 
       const contactForm = document.getElementById('formCard');
       const formStatus = document.getElementById('formStatus');
-      const recaptchaTokenInput = document.getElementById('recaptchaToken');
       const submitButton = contactForm?.querySelector('button[type="submit"]');
       if (contactForm && formStatus && submitButton) {
         contactForm.addEventListener('submit', async (event) => {
@@ -644,31 +648,18 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ?? "";
           submitButton.disabled = true;
 
           try {
-            const grecaptcha = window.grecaptcha;
-            const recaptchaSiteKey = contactForm.dataset.recaptchaSiteKey;
-            if (!grecaptcha || !recaptchaSiteKey || !recaptchaTokenInput) {
-              throw new Error('captcha-config');
-            }
-
-            await new Promise((resolve) => grecaptcha.ready(resolve));
-            const token = await grecaptcha.execute(recaptchaSiteKey, { action: 'contact' });
-            recaptchaTokenInput.value = token;
-            const payload = Object.fromEntries(new FormData(contactForm).entries());
-            const response = await fetch(contactForm.action, {
+            const response = await fetch('/', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload),
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(new FormData(contactForm)).toString(),
             });
-            const result = await response.json();
 
-            if (!response.ok || !result.ok) throw new Error(result.message || 'send-failed');
-            formStatus.textContent = result.message;
+            if (!response.ok) throw new Error('send-failed');
+            formStatus.textContent = 'Mensaje enviado correctamente.';
             contactForm.reset();
             if (charCount) charCount.textContent = '0/500 caracteres';
           } catch (error) {
-            formStatus.textContent = error.message === 'captcha-config'
-              ? 'El formulario aún no está configurado.'
-              : (error.message || 'No fue posible enviar el mensaje.');
+            formStatus.textContent = 'No fue posible enviar el mensaje. Inténtalo nuevamente.';
           } finally {
             submitButton.disabled = false;
           }
