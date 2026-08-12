@@ -558,3 +558,31 @@
 [2m22:20:06[22m [34m[200][39m /quienes-somos [2m21ms[22m
 [2m22:20:06[22m [34m[200][39m /quienes-somos [2m7ms[22m
 [2m22:20:28[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m22:26:19[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m22:26:30[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m22:29:39[22m [34m[watch][39m src/pages/quienes-somos.astro
+[2m22:29:40[22m [34m[200][39m /quienes-somos [2m16ms[22m
+[2m22:29:40[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:03:54[22m [34m[watch][39m src/pages/quienes-somos.astro
+[2m23:03:55[22m [34m[200][39m /quienes-somos [2m21ms[22m
+[2m23:03:55[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:04:22[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m23:07:36[22m [34m[200][39m /inicio [2m1682ms[22m
+[2m23:07:37[22m [34m[200][39m /inicio [2m247ms[22m
+[2m23:07:42[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m23:09:20[22m [34m[watch][39m /src/pages/quienes-somos.astro?astro&type=style&index=0&lang.css
+[2m23:09:20[22m [34m[watch][39m src/pages/quienes-somos.astro
+[vite] program reload
+[2m23:09:37[22m [34m[200][39m /quienes-somos [2m21ms[22m
+[2m23:09:45[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m23:09:45[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m23:09:47[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:10:03[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m23:10:03[22m [34m[200][39m /quienes-somos [2m5ms[22m
+[2m23:11:54[22m [34m[watch][39m src/pages/quienes-somos.astro
+[2m23:11:55[22m [34m[200][39m /quienes-somos [2m32ms[22m
+[2m23:11:55[22m [34m[200][39m /quienes-somos [2m33ms[22m
+[2m23:11:55[22m [34m[200][39m /quienes-somos [2m33ms[22m
+[2m23:11:55[22m [34m[200][39m /quienes-somos [2m16ms[22m
+[2m23:11:56[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m23:12:29[22m [34m[200][39m /quienes-somos [2m6ms[22m

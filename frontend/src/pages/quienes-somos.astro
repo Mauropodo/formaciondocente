@@ -144,8 +144,10 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     (() => {
       const isIOS = /iP(ad|hone|od)/.test(navigator.platform) ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      const isMobileSafari = isIOS && /Safari/.test(navigator.userAgent) &&
+      const isIOSWebKit = isIOS && /AppleWebKit/.test(navigator.userAgent);
+      const isMobileSafari = isIOSWebKit && /Safari/.test(navigator.userAgent) &&
         !/CriOS|FxiOS|EdgiOS|OPiOS/.test(navigator.userAgent);
+      if (isIOSWebKit) document.documentElement.classList.add('mobile-webkit');
       if (isMobileSafari) document.documentElement.classList.add('mobile-safari');
     })();
   </script>
@@ -934,24 +936,32 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         bottom: 2.2rem;
       }
       .team-profile-stage {
-        min-height: auto;
+        min-height: 200svh;
       }
       .team-section {
-        position: relative;
-        top: auto;
-        height: auto;
+        position: sticky;
+        top: 0;
+        height: 100svh;
         min-height: 100svh;
+        max-height: 100svh;
+        box-sizing: border-box;
+        z-index: 1;
       }
       .profile-section {
         position: relative;
         top: auto;
+        height: 100svh;
         min-height: 100svh;
+        max-height: 100svh;
+        box-sizing: border-box;
         margin-top: 0;
         display: flex;
+        z-index: 2;
         opacity: 1;
         visibility: visible;
         transform: none;
         pointer-events: auto;
+        background: transparent;
       }
       .profile-shell {
         width: 100%;
@@ -1022,10 +1032,6 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       }
       .profile-carousel__button--prev { left: -22px; }
       .profile-carousel__button--next { right: -22px; }
-      .team-section {
-        height: 100svh;
-        min-height: 100svh;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1038,6 +1044,20 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         transform: none;
       }
       .marquee-track { animation: none !important; }
+
+      :global(html.mobile-webkit) .marquee-container {
+        opacity: 1;
+      }
+      :global(html.mobile-webkit) .marquee-track {
+        transform: translate3d(0, 0, 0) !important;
+        will-change: auto;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      :global(html.mobile-webkit) .marquee-row {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
     }
 
     :global(.quienes-footer .footer-section) {
@@ -1660,8 +1680,9 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     console.warn('[quienes-somos] Fallback visual activado para FONDECYT.', error);
   }
 
+  const isMobileWebKit = document.documentElement.classList.contains('mobile-webkit');
   const row1 = document.getElementById('marqueeRow1');
-  if (row1) {
+  if (row1 && !isMobileWebKit) {
     const half1 = row1.scrollWidth / 2;
     gsap.to(row1, {
       x: -half1, duration: 112, ease: 'none', repeat: -1,
@@ -1670,7 +1691,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   }
 
   const row2 = document.getElementById('marqueeRow2');
-  if (row2) {
+  if (row2 && !isMobileWebKit) {
     const half2 = row2.scrollWidth / 2;
     gsap.to(row2, {
       x: -half2, duration: 80, ease: 'none', repeat: -1,
@@ -1679,7 +1700,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   }
 
   const row3 = document.getElementById('marqueeRow3');
-  if (row3) {
+  if (row3 && !isMobileWebKit) {
     const half3 = row3.scrollWidth / 2;
     gsap.fromTo(row3, { x: -half3 }, { x: 0, duration: 128, ease: 'none', repeat: -1 });
   }
