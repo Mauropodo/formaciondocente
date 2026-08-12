@@ -612,3 +612,32 @@
 [2m23:29:38[22m [34m[200][39m /quienes-somos [2m17ms[22m
 [2m23:29:38[22m [34m[200][39m /quienes-somos [2m8ms[22m
 [2m23:29:40[22m [34m[200][39m /inicio [2m1700ms[22m
+[2m08:36:17[22m [34m[watch][39m src/pages/contacto.astro
+[2m08:36:18[22m [34m[200][39m /quienes-somos [2m30ms[22m
+[2m08:36:18[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m08:36:21[22m [34m[200][39m /inicio [2m2881ms[22m
+[2m08:36:27[22m [34m[watch][39m src/pages/contacto.astro
+[2m08:36:27[22m [34m[200][39m /quienes-somos [2m27ms[22m
+[2m08:36:27[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m08:36:27[22m [34m[200][39m /inicio [2m588ms[22m
+[2m08:40:22[22m [34m[200][39m /inicio [2m1548ms[22m
+[2m08:40:30[22m [34m[200][39m /contacto-exito [2m21ms[22m
+[2m08:43:39[22m [34m[watch][39m /src/pages/contacto-exito.astro?astro&type=style&index=0&lang.css
+[2m08:43:40[22m [34m[200][39m /quienes-somos [2m20ms[22m
+[2m08:43:40[22m [34m[200][39m /contacto-exito [2m109ms[22m
+[2m08:43:40[22m [34m[200][39m /quienes-somos [2m37ms[22m
+[2m08:43:41[22m [34m[200][39m /inicio [2m813ms[22m
+[2m08:46:23[22m [34m[200][39m /contacto-exito [2m4ms[22m
+[2m08:49:28[22m [34m[watch][39m /src/pages/contacto-exito.astro?astro&type=style&index=0&lang.css
+[2m08:49:28[22m [34m[200][39m /quienes-somos [2m10ms[22m
+[2m08:49:28[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m08:49:29[22m [34m[200][39m /contacto-exito [2m33ms[22m
+[2m08:49:30[22m [34m[200][39m /inicio [2m1729ms[22m
+[2m08:50:12[22m [34m[watch][39m /src/pages/contacto-exito.astro?astro&type=style&index=0&lang.css
+[2m08:50:13[22m [34m[200][39m /quienes-somos [2m38ms[22m
+[2m08:50:13[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m08:50:13[22m [34m[200][39m /contacto-exito [2m34ms[22m
+[2m08:50:13[22m [34m[200][39m /inicio [2m615ms[22m
+[2m08:50:15[22m [34m[watch][39m /src/pages/contacto-exito.astro?astro&type=style&index=0&lang.css
+[2m08:50:15[22m [34m[watch][39m src/pages/contacto-exito.astro
+[vite] program reload

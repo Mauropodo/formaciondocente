@@ -1,0 +1,117 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import SeoHead from '../components/SeoHead.astro';
+import brandImage from '../assets/figma-mcp/inicio/logo.png';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SeoHead
+      title="Mensaje enviado"
+      description="Tu mensaje fue enviado correctamente al equipo del proyecto."
+      path="/contacto-exito/"
+      noindex={true}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      :global(*) { box-sizing: border-box; }
+      :global(body) { margin: 0; background: #f9f5f2; color: #620404; }
+      :global(a) { text-decoration: none; }
+      .page { position: relative; min-height: 100vh; overflow: hidden; background: #f9f5f2; }
+      .main {
+        position: relative;
+        min-height: min(720px, 78vh);
+        display: grid;
+        place-items: center;
+        padding: 10rem 1.5rem 7rem;
+        isolation: isolate;
+        overflow: hidden;
+      }
+      .bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: #fff; pointer-events: none; }
+      .bg--global { z-index: 0; height: 100%; }
+      .main { z-index: 1; }
+      :global(.footer-section) { background: transparent; z-index: 1; }
+      .bg-shape { position: absolute; inset: 0; opacity: 0; transform: translate3d(-9vw, 0, 0); will-change: transform, opacity; }
+      .bg-shape svg { width: 100%; height: 100%; display: block; overflow: visible; }
+      .bg-shape--1 { animation: bg-layer-enter 1.25s .12s cubic-bezier(.2,.75,.18,1) forwards; }
+      .bg-shape--2 { animation: bg-layer-enter 1.25s .34s cubic-bezier(.2,.75,.18,1) forwards; }
+      .bg-shape--3 { animation: bg-layer-enter 1.25s .56s cubic-bezier(.2,.75,.18,1) forwards; }
+      .bg-shape--4 { animation: bg-layer-enter 1.25s .78s cubic-bezier(.2,.75,.18,1) forwards; }
+      @keyframes bg-layer-enter { from { opacity: 0; transform: translate3d(-9vw, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+      .message {
+        width: min(100%, 650px);
+        padding: clamp(2rem, 5vw, 4.5rem);
+        text-align: center;
+        background: rgba(249, 245, 242, .92);
+        border: 2px solid #620404;
+        border-radius: 22px;
+        box-shadow: 10px 12px 0 #620404, 0 18px 28px rgba(0,0,0,.16);
+        animation: message-in .7s cubic-bezier(.2,.75,.18,1) both;
+      }
+      .message__logo { width: 118px; height: 118px; margin: 0 auto 1.6rem; border-radius: 50%; overflow: hidden; }
+      .message__logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+      .message__eyebrow { margin: 0 0 .8rem; font: 900 1rem/1 'Inconsolata', monospace; letter-spacing: .14em; text-transform: uppercase; color: #be572a; }
+      h1 { margin: 0; font: 700 clamp(2.3rem, 6vw, 4.6rem)/1.05 'Playfair Display', serif; text-wrap: balance; }
+      .message__line { width: 62px; height: 4px; margin: 1.7rem auto; border-radius: 5px; background: #d2892d; }
+      .message__copy { margin: 0 auto 2rem; max-width: 30rem; font: 1.15rem/1.55 'Inconsolata', monospace; color: #514444; }
+      .back-button { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: .8rem 1.8rem; border-radius: 999px; background: #be572a; color: #fff; font: 900 1rem/1 'Inconsolata', monospace; box-shadow: 0 4px 0 #620404; transition: transform .18s ease, filter .18s ease; }
+      .back-button:hover { transform: translateY(-2px); filter: brightness(1.06); }
+      .back-button:focus-visible { outline: 3px solid #620404; outline-offset: 4px; }
+      @keyframes message-in { from { opacity: 0; transform: translateY(24px) rotate(-1deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
+      @media (max-width: 700px) {
+        .main { min-height: 620px; padding-top: 9rem; padding-bottom: 5rem; }
+        .message { box-shadow: 6px 8px 0 #620404, 0 14px 22px rgba(0,0,0,.14); }
+        .bg-shape { transform: translate3d(-18vw, 0, 0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .bg-shape { opacity: 1; transform: none; animation: none; }
+        .message { animation: none; }
+        .back-button { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="bg bg--global" aria-hidden="true">
+        <div class="bg-shape bg-shape--1">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <path d="M2483 0H195.304H79.2751V3164.27C72.0362 3183.6 204.984 3190.37 794.684 3062.76C1531.81 2903.25 2403.92 2260.69 1311.54 1564.63C219.157 868.574 2004.61 365.031 2483 0Z" fill="#7C7C4A"/>
+          </svg>
+        </div>
+        <div class="bg-shape bg-shape--2">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <path d="M2404 0H116.304H0.275126V3164.27C-6.96376 3183.6 125.984 3190.37 715.684 3062.76C1452.81 2903.25 2324.92 2260.69 1232.54 1564.63C140.157 868.574 1925.61 365.031 2404 0Z" fill="#F3B568"/>
+          </svg>
+        </div>
+        <div class="bg-shape bg-shape--3">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <path d="M1937.22 0H-720V3164C-5.61163 3183.33 101.522 3190.1 576.722 3062.5C1170.72 2903 1873.5 2260.5 993.222 1564.5C112.943 868.5 1551.72 365 1937.22 0Z" fill="#EEE2D9"/>
+          </svg>
+        </div>
+        <div class="bg-shape bg-shape--4">
+          <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+            <path d="M1280 0H-720V3164.27C-3.70783 3183.61 67.0794 3190.37 381.063 3062.76C773.543 2903.25 1237.9 2260.69 656.261 1564.63C74.6262 868.574 1025.28 365.031 1280 0Z" fill="#F9F4F1"/>
+          </svg>
+        </div>
+      </div>
+      <Nav />
+      <main class="main">
+        <section class="message" aria-labelledby="success-title">
+          <div class="message__logo"><img src={brandImage.src} alt="Parvularias" /></div>
+          <p class="message__eyebrow">Mensaje recibido</p>
+          <h1 id="success-title">¡Gracias por escribirnos!</h1>
+          <div class="message__line" aria-hidden="true"></div>
+          <p class="message__copy">Tu mensaje fue enviado correctamente. Nos pondremos en contacto contigo pronto.</p>
+          <a class="back-button" href="/contacto">Volver a contacto</a>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

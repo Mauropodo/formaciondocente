@@ -163,6 +163,7 @@ const carasImages = [
       .form-textarea { border-color: #545f71; resize: none; min-height: 120px; }
       .form-hint { font-family: 'Inconsolata', monospace; font-size: 14px; color: #161616; }
       .form-status { min-height: 1.4em; font-family: 'Inconsolata', monospace; font-size: 14px; color: #620404; text-align: center; }
+      .form-status.is-error { color: #8b1e1e; font-weight: 700; }
       .hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
       .form-submit {
         align-self: center;
@@ -644,6 +645,7 @@ const carasImages = [
       if (contactForm && formStatus && submitButton) {
         contactForm.addEventListener('submit', async (event) => {
           event.preventDefault();
+          formStatus.classList.remove('is-error', 'is-success');
           formStatus.textContent = 'Enviando…';
           submitButton.disabled = true;
 
@@ -655,10 +657,9 @@ const carasImages = [
             });
 
             if (!response.ok) throw new Error('send-failed');
-            formStatus.textContent = 'Mensaje enviado correctamente.';
-            contactForm.reset();
-            if (charCount) charCount.textContent = '0/500 caracteres';
+            window.location.assign('/contacto-exito/');
           } catch (error) {
+            formStatus.classList.add('is-error');
             formStatus.textContent = 'No fue posible enviar el mensaje. Inténtalo nuevamente.';
           } finally {
             submitButton.disabled = false;
