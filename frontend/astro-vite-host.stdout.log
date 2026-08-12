@@ -586,3 +586,29 @@
 [2m23:11:55[22m [34m[200][39m /quienes-somos [2m16ms[22m
 [2m23:11:56[22m [34m[200][39m /quienes-somos [2m6ms[22m
 [2m23:12:29[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m23:14:48[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:15:11[22m [34m[200][39m /inicio [2m1750ms[22m
+[2m23:17:29[22m [34m[watch][39m src/pages/inicio.astro
+[2m23:17:30[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m23:17:30[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:17:30[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m23:17:30[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:17:31[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:19:48[22m [34m[200][39m /inicio [2m1617ms[22m
+[2m23:21:37[22m [34m[200][39m /inicio [2m582ms[22m
+[2m23:22:18[22m [34m[watch][39m src/pages/inicio.astro
+[2m23:22:18[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m23:22:18[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:22:19[22m [34m[200][39m /inicio [2m571ms[22m
+[2m23:23:18[22m [34m[200][39m /inicio [2m559ms[22m
+[2m23:25:16[22m [34m[watch][39m src/pages/inicio.astro
+[2m23:25:17[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m23:25:17[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m23:25:18[22m [34m[200][39m /inicio [2m589ms[22m
+[2m23:27:38[22m [34m[watch][39m /src/pages/inicio.astro?astro&type=style&index=0&lang.css
+[2m23:27:38[22m [34m[watch][39m src/pages/inicio.astro
+[vite] program reload
+[2m23:29:37[22m [34m[watch][39m src/pages/inicio.astro
+[2m23:29:38[22m [34m[200][39m /quienes-somos [2m17ms[22m
+[2m23:29:38[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m23:29:40[22m [34m[200][39m /inicio [2m1700ms[22m
