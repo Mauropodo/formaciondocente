@@ -376,7 +376,7 @@ const carasImages = [
             <textarea name="comentarios"></textarea>
             <input type="text" name="website" />
           </form>
-          <form class="form-card" id="formCard" name="contact" action="/" method="post">
+          <form class="form-card" id="formCard" name="contact" action="/contacto-exito/" method="post" netlify netlify-honeypot="website">
             <div class="form-field">
               <label class="form-label" for="nombre">Nombre</label>
               <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Lou Espinoza" required />
@@ -402,6 +402,19 @@ const carasImages = [
             <button class="form-submit" type="submit">Enviar</button>
             <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
           </form>
+          <script>
+            const contactMessage = document.querySelector('#formCard #comentarios');
+            const contactCharacterCount = document.querySelector('#formCard #charCount');
+
+            if (contactMessage && contactCharacterCount) {
+              const updateContactCharacterCount = () => {
+                contactCharacterCount.textContent = `${contactMessage.value.length}/${contactMessage.maxLength} caracteres`;
+              };
+
+              contactMessage.addEventListener('input', updateContactCharacterCount);
+              updateContactCharacterCount();
+            }
+          </script>
           <div class="hand hand--right" aria-hidden="true">
             <svg fill="none" viewBox="0 0 183 270" width="100%">
               <path d="M51.644 78.4448C51.6412 78.456 51.6301 78.4632 51.6187 78.4611C41.2262 76.5626 31.3828 74.9023 21.939 71.0348C19.3903 69.9871 17.322 67.4817 16.8089 64.8685C16.4605 63.094 17.2238 61.1039 18.926 60.4933C20.233 60.0244 21.8411 60.0015 23.109 60.0848L73.669 63.5348L87.4671 65.5683C90.452 66.0081 91.271 63.4449 88.299 62.9248L18.789 50.8748C13.339 49.9348 10.659 42.6248 11.639 40.5848C13.189 37.3648 16.899 37.3848 19.899 37.5348L49.079 38.9648C69.409 39.9548 88.209 41.4248 106.479 51.1148C108.249 52.0506 108.551 50.1375 106.779 49.2056C87.5151 39.0763 64.6867 36.2585 43.269 36.3148C37.089 36.3348 31.469 34.8148 27.249 30.0148C26.559 29.2248 26.029 27.3248 26.299 26.2548C27.329 22.2748 34.959 22.9948 40.329 22.7848L56.589 22.1448C72.719 20.0848 87.369 24.7848 102.049 31.2148L121.009 39.5003C122.016 39.9407 123.351 40.1081 123.699 39.0648C123.839 38.6448 122.909 37.8648 122.399 37.6448L106.499 30.7648C102.759 29.1448 101.699 25.8948 101.869 22.2048L102.239 14.1048C102.329 12.0948 104.629 8.0448 107.069 9.2648C109.789 10.6248 111.499 14.0448 113.469 16.4348L141.949 51.1848L167.729 86.6748L179.299 102.015C186.499 111.565 192.549 122.525 193.529 134.815C195.009 153.465 194.199 171.655 192.509 190.265C190.739 209.745 187.309 228.505 181.929 247.215C179.489 255.685 176.249 263.545 172.619 271.355C169.829 277.365 163.559 279.445 157.569 276.835C147.549 272.475 139.509 265.005 133.209 256.025C128.029 248.635 124.769 240.735 122.029 232.125C119.629 224.585 119.939 216.745 124.259 209.865C134.824 193.019 139.323 176.941 141.581 157.171C141.761 155.593 143.384 154.598 144.863 155.177C147.303 156.131 148.387 154.171 146.181 152.757C145.065 152.041 143.973 151.277 142.929 150.395C134.199 143.015 125.779 135.625 118.169 127.045C111.269 119.255 103.289 113.365 93.349 109.945L77.749 106.085C63.439 102.545 50.619 103.155 40.599 91.2048C39.779 90.2348 39.579 88.1748 40.119 87.2348C40.609 86.3948 42.379 85.2948 43.639 85.3648L74.339 87.2048C85.6295 87.8781 96.2343 90.3703 107.204 93.3803C107.647 93.502 108.103 93.2285 108.203 92.7796C108.296 92.3621 108.046 91.9448 107.634 91.83L74.589 82.6248L51.6693 78.4285C51.6579 78.4264 51.6468 78.4335 51.644 78.4448Z" fill="#3B959E"/>
@@ -630,14 +643,6 @@ const carasImages = [
       window.visualViewport?.addEventListener('resize', () => handleViewportResize('visualViewport'), { passive: true });
       window.addEventListener('load', refreshViewportAnimations, { once: true });
       document.fonts?.ready?.then(refreshViewportAnimations);
-
-      const textarea = document.getElementById('comentarios');
-      const charCount = document.getElementById('charCount');
-      if (textarea && charCount) {
-        textarea.addEventListener('input', () => {
-          charCount.textContent = `${textarea.value.length}/500 caracteres`;
-        });
-      }
 
       const contactForm = document.getElementById('formCard');
       const formStatus = document.getElementById('formStatus');

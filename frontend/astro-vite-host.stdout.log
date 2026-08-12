@@ -641,3 +641,38 @@
 [2m08:50:15[22m [34m[watch][39m /src/pages/contacto-exito.astro?astro&type=style&index=0&lang.css
 [2m08:50:15[22m [34m[watch][39m src/pages/contacto-exito.astro
 [vite] program reload
+[2m10:36:07[22m Configuration file updated. Restarting...
+[2m10:36:10[22m [34m[@astrojs/netlify][39m Enabling sessions with Netlify Blobs
+[vite] connected.
+[2m10:36:30[22m [34m[vite][39m Environment loaded
+[2m10:36:30[22m [34m[vite][39m Middleware loaded. Emulating features: aiGateway, blobs, database, edgeFunctions, functions, geolocation, headers, images, redirects, static.
+[2m10:36:30[22m [34m[vite][39m 💭 Linking this project to a Netlify site lets you deploy your site, use any environment variables defined on your team and site and much more. Run npx netlify init to get started.
+[2m10:36:32[22m [34m[vite][39m Re-optimizing dependencies because lockfile has changed
+[2m10:36:32[22m [34m[vite][39m server restarted.
+[2m10:36:36[22m [34m[200][39m /contacto-exito [2m227ms[22m
+[2m10:36:36[22m [34m[200][39m /quienes-somos [2m143ms[22m
+[2m10:36:36[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m10:36:37[22m [34m[vite][39m [32m✨ new dependencies optimized: [33mgsap, gsap/ScrollTrigger[32m[39m
+[2m10:36:37[22m [34m[vite][39m [32m✨ optimized dependencies changed. reloading[39m
+[2m10:36:38[22m [34m[200][39m /inicio [2m2011ms[22m
+[2m10:36:38[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m10:36:38[22m [34m[200][39m /contacto-exito [2m6ms[22m
+[2m10:36:38[22m [34m[200][39m /quienes-somos [2m10ms[22m
+[2m10:37:39[22m [34m[200][39m /contacto-exito [2m34ms[22m
+[2m10:37:39[22m [34m[200][39m /contacto-exito [2m6ms[22m
+[2m10:37:42[22m [34m[200][39m /contacto [2m35ms[22m
+[2m10:49:54[22m [34m[watch][39m src/pages/contacto.astro
+[2m10:49:55[22m [34m[200][39m /quienes-somos [2m14ms[22m
+[2m10:49:55[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m10:49:55[22m [34m[200][39m /contacto [2m14ms[22m
+[2m10:49:57[22m [34m[200][39m /inicio [2m1848ms[22m
+[2m10:50:31[22m [34m[watch][39m src/pages/contacto.astro
+[2m10:50:32[22m [34m[200][39m /quienes-somos [2m9ms[22m
+[2m10:50:32[22m [34m[200][39m /quienes-somos [2m11ms[22m
+[2m10:50:32[22m [34m[200][39m /contacto [2m13ms[22m
+[2m10:50:32[22m [34m[200][39m /inicio [2m565ms[22m
+[2m10:55:27[22m [34m[watch][39m src/pages/contacto.astro
+[2m10:55:27[22m [34m[200][39m /quienes-somos [2m6ms[22m
+[2m10:55:27[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m10:55:27[22m [34m[200][39m /contacto [2m14ms[22m
+[2m10:55:29[22m [34m[200][39m /inicio [2m1618ms[22m

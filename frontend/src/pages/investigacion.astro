@@ -1358,12 +1358,38 @@ const REFS_DATA = [
     <script>
       import gsap from 'gsap';
       import ScrollTrigger from 'gsap/ScrollTrigger';
+      import Lenis from 'lenis';
 
       gsap.registerPlugin(ScrollTrigger);
+      const rootStyle = document.documentElement;
+
+      // Investigacion-only smooth scroll pilot.
+      // To revert: remove this block and the `lenis` dependency from package.json.
+      const investigacionMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const previousScrollBehavior = rootStyle?.style?.scrollBehavior;
+      let investigacionLenis;
+
+      if (!investigacionMotionQuery.matches) {
+        investigacionLenis = new Lenis({
+          lerp: 0.12,
+          autoRaf: false,
+          smoothWheel: true,
+          syncTouch: false,
+        });
+
+        rootStyle.style.scrollBehavior = 'auto';
+        investigacionLenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => investigacionLenis?.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        window.addEventListener('beforeunload', () => {
+          investigacionLenis?.destroy();
+          rootStyle.style.scrollBehavior = previousScrollBehavior;
+        }, { once: true });
+      }
 
       const DESIGN_VIEWPORT = Object.freeze({ width: 1902, height: 910 });
       const DESKTOP_BREAKPOINT = 901;
-      const rootStyle = document.documentElement;
       const initialDevicePixelRatio = window.devicePixelRatio;
       let viewportMode = window.innerWidth < DESKTOP_BREAKPOINT ? 'mobile' : 'desktop';
       let viewportMetrics = {
