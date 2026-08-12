@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Formulario de contacto</title>
+  </head>
+  <body>
+    <form name="contact" method="POST" netlify netlify-honeypot="website">
+      <input type="hidden" name="form-name" value="contact" />
+      <label>Nombre <input type="text" name="nombre" /></label>
+      <label>Correo electrónico <input type="email" name="email" /></label>
+      <label>Asunto <input type="text" name="asunto" /></label>
+      <label>Comentarios <textarea name="comentarios"></textarea></label>
+      <label>Sitio web <input type="text" name="website" /></label>
+      <button type="submit">Enviar</button>
+    </form>
+  </body>
+</html>

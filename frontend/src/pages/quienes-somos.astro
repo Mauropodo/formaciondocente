@@ -936,10 +936,16 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       .team-profile-stage {
         min-height: auto;
       }
+      .team-section {
+        position: relative;
+        top: auto;
+        height: auto;
+        min-height: 100svh;
+      }
       .profile-section {
         position: relative;
         top: auto;
-        min-height: auto;
+        min-height: 100svh;
         margin-top: 0;
         opacity: 1;
         pointer-events: auto;
@@ -1675,11 +1681,15 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     gsap.fromTo(row3, { x: -half3 }, { x: 0, duration: 128, ease: 'none', repeat: -1 });
   }
 
-  gsap.fromTo('.team-title h2',
-    { opacity: 0, y: () => designPx(30, 'y') },
-    { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
-      scrollTrigger: { trigger: '.team-title', start: 'top 85%' } }
-  );
+  if (mobileViewport.matches) {
+    gsap.set('.team-title h2', { autoAlpha: 1, y: 0, clearProps: 'opacity,visibility,transform' });
+  } else {
+    gsap.fromTo('.team-title h2',
+      { opacity: 0, y: () => designPx(30, 'y') },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+        scrollTrigger: { trigger: '.team-title', start: 'top 85%' } }
+    );
+  }
 
   if (profileSection && (prefersReducedMotion.matches || mobileViewport.matches)) {
     gsap.set(profileSection, { pointerEvents: "auto" });
@@ -1778,45 +1788,47 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
     window.addEventListener("scroll", updateDevReadout, { passive: true });
     window.addEventListener("quienes:viewportchange", updateDevReadout);
 
-    ScrollTrigger.create({
-      trigger: teamProfileStage,
-      start: "top top",
-      end: "bottom bottom",
-      markers: {
-        startColor: "#be572a",
-        endColor: "#be572a",
-        fontSize: "12px",
-        indent: 20,
-      },
-      id: "team-profile-stage",
-    });
+    if (!mobileViewport.matches) {
+      ScrollTrigger.create({
+        trigger: teamProfileStage,
+        start: "top top",
+        end: "bottom bottom",
+        markers: {
+          startColor: "#be572a",
+          endColor: "#be572a",
+          fontSize: "12px",
+          indent: 20,
+        },
+        id: "team-profile-stage",
+      });
 
-    ScrollTrigger.create({
-      trigger: ".team-section",
-      endTrigger: teamProfileStage,
-      start: "top top",
-      end: "bottom 50%",
-      markers: {
-        startColor: "#3b959e",
-        endColor: "#3b959e",
-        fontSize: "11px",
-        indent: 36,
-      },
-      id: "team-section",
-    });
+      ScrollTrigger.create({
+        trigger: ".team-section",
+        endTrigger: teamProfileStage,
+        start: "top top",
+        end: "bottom 50%",
+        markers: {
+          startColor: "#3b959e",
+          endColor: "#3b959e",
+          fontSize: "11px",
+          indent: 36,
+        },
+        id: "team-section",
+      });
 
-    ScrollTrigger.create({
-      trigger: ".profile-section",
-      start: "top top",
-      end: "bottom 50%",
-      markers: {
-        startColor: "#d2892d",
-        endColor: "#d2892d",
-        fontSize: "11px",
-        indent: 52,
-      },
-      id: "profile-section",
-    });
+      ScrollTrigger.create({
+        trigger: ".profile-section",
+        start: "top top",
+        end: "bottom 50%",
+        markers: {
+          startColor: "#d2892d",
+          endColor: "#d2892d",
+          fontSize: "11px",
+          indent: 52,
+        },
+        id: "profile-section",
+      });
+    }
 
     ScrollTrigger.refresh();
   }
