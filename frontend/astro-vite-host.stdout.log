@@ -552,3 +552,9 @@
 [2m10:01:08[22m [34m[200][39m /inicio [2m1769ms[22m
 [2m10:10:01[22m [34m[200][39m /inicio [2m1653ms[22m
 [2m10:10:06[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m22:09:33[22m [34m[200][39m /inicio [2m1919ms[22m
+[2m22:19:00[22m [34m[200][39m /quienes-somos [2m8ms[22m
+[2m22:20:06[22m [34m[watch][39m src/pages/quienes-somos.astro
+[2m22:20:06[22m [34m[200][39m /quienes-somos [2m21ms[22m
+[2m22:20:06[22m [34m[200][39m /quienes-somos [2m7ms[22m
+[2m22:20:28[22m [34m[200][39m /quienes-somos [2m6ms[22m

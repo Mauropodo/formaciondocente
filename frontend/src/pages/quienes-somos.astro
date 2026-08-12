@@ -947,7 +947,10 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         top: auto;
         min-height: 100svh;
         margin-top: 0;
+        display: flex;
         opacity: 1;
+        visibility: visible;
+        transform: none;
         pointer-events: auto;
       }
       .profile-shell {
@@ -1253,7 +1256,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
             &#8249;
           </button>
           {DISPLAY_PROFILES.map((profile, index) => (
-          <div class="profile-card-wrap" data-profile-index={index}>
+          <div class:list={["profile-card-wrap", { "is-active": index === 0 }]} data-profile-index={index}>
             <ProfileFlipCard
               name={profile.name}
               photoSrc={profile.photoSrc}
