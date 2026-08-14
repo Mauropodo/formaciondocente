@@ -27,12 +27,12 @@ const colores = {
 ---
 
 <div class="filter-wrapper" id="categoria-filter">
-  <a href="/publicaciones" class={`filter-btn ${!activeSlug ? 'active' : ''}`}>Todas</a>
+  <a href="/relatos" class={`filter-btn ${!activeSlug ? 'active' : ''}`}>Todas</a>
   {categorias.map(cat => {
     const c = colores[cat.slug] || { bg: "#f9f5f2", border: "#e6cbcb" };
     return (
       <a
-        href={`/publicaciones?categoria=${cat.slug}`}
+        href={`/relatos?categoria=${cat.slug}`}
         class={`filter-btn ${cat.slug === activeSlug ? 'active' : ''}`}
         style={`--cat-bg:${c.bg};--cat-border:${c.border}`}
       >

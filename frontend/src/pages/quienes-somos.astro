@@ -219,15 +219,16 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       pointer-events: auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      padding: 12.8px 50.4px;
+      justify-content: flex-end;
+      gap: 25px;
+      padding: 10px 28px;
       background: #f9f5f2;
       border-radius: 0 0 12.8px 12.8px;
       box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
       transform: translateX(-2px);
       margin-top: 0;
-      min-width: min(100%, 735px);
+      min-width: 0;
+      width: max-content;
     }
     .menu .dev-readout {
       display: none;
@@ -789,7 +790,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        gap: 28px;
+      gap: 20px;
         min-width: 0;
         max-width: none;
         box-shadow: 0px 4px 2px rgba(0,0,0,0.25);
@@ -830,12 +831,12 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       .menu .dev-readout {
         margin-left: 0;
       }
-      .cta {
-        align-self: flex-start;
-        margin-top: auto;
-        font-size: 1rem;
-        padding: 14px 28px;
-      }
+    .menu .cta {
+      align-self: flex-start;
+      margin-top: 0;
+      font-size: clamp(1.35rem, 5vw, 1.75rem);
+      padding: 14px 28px;
+    }
       .nav-toggle {
         display: flex;
         position: relative;
@@ -851,9 +852,10 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       }
       .qs-hero {
         min-height: 100svh;
-        padding-top: 140px;
+        padding-top: 156px;
         overflow: hidden;
       }
+      p { font-size: 1rem !important; }
       :global(html.mobile-safari) .qs-hero__title,
       :global(html.mobile-safari) .fondecyt,
       :global(html.mobile-safari) .team-title h2 {
@@ -928,7 +930,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         font-size: 5.4rem;
       }
       .qs-bubble .bubble-mark--open {
-        top: 3.25rem;
+        top: 0;
         left: 2.1rem;
       }
       .qs-bubble .bubble-mark--close {
@@ -1080,7 +1082,6 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
           <li><a href="/inicio">Inicio</a></li>
           <li><a href="/quienes-somos">Quiénes somos</a></li>
           <li><a href="/investigacion">Investigación</a></li>
-          <li><a href="/publicaciones">Bitácora</a></li>
           <li><a href="/contacto">Contacto</a></li>
         </ul>
         <div class="dev-readout" data-dev-readout aria-live="polite">
@@ -1088,7 +1089,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
           <span>stage <strong data-dev-stage>0%</strong></span>
           <span>alto <strong data-dev-height>0px</strong></span>
         </div>
-        <a class="cta" href="/publicaciones">Relatos</a>
+        <a class="cta" href="/relatos">Relatos</a>
       </nav>
       <button
         class="nav-toggle"
@@ -1223,7 +1224,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
         </div>
 
         <div class="colaboran">
-          <img src="/images/investigacion/FONDECYT%201.png" alt="FONDECYT" />
+          <img src="/images/investigacion/logo-anid-ministerio-ciencia.png" alt="Ministerio de Ciencia, Tecnología, Conocimiento e Innovación y ANID" />
           <img src="/images/investigacion/Logo_Universidad_Diego_Portales.png" alt="Universidad Diego Portales" />
         </div>
         </div>
@@ -1307,6 +1308,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
   gsap.registerPlugin(ScrollTrigger);
 
   const enableGsapFallbackMode = () => {
@@ -1316,6 +1318,32 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   const DESIGN_VIEWPORT = Object.freeze({ width: 1902, height: 910 });
   const DESKTOP_BREAKPOINT = 901;
   const rootStyle = document.documentElement;
+
+  // Quienes somos-only smooth scroll pilot.
+  // To revert: remove this block and keep the `lenis` dependency only if another page uses it.
+  const quienesMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const previousScrollBehavior = rootStyle.style.scrollBehavior;
+  let quienesLenis;
+
+  if (!quienesMotionQuery.matches) {
+    quienesLenis = new Lenis({
+      lerp: 0.12,
+      autoRaf: false,
+      smoothWheel: true,
+      syncTouch: false,
+    });
+
+    rootStyle.style.scrollBehavior = "auto";
+    quienesLenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => quienesLenis?.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    window.addEventListener("beforeunload", () => {
+      quienesLenis?.destroy();
+      rootStyle.style.scrollBehavior = previousScrollBehavior;
+    }, { once: true });
+  }
+
   const initialDevicePixelRatio = window.devicePixelRatio;
   let viewportMode = window.innerWidth < DESKTOP_BREAKPOINT ? "mobile" : "desktop";
   let viewportMetrics = {

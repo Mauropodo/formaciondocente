@@ -1,6 +1,7 @@
 ---
 import brandImage from "../assets/figma-mcp/inicio/logo.png";
 import SeoHead from "../components/SeoHead.astro";
+import SmoothScroll from "../components/SmoothScroll.astro";
 ---
 
 <!DOCTYPE html>
@@ -155,12 +156,14 @@ import SeoHead from "../components/SeoHead.astro";
       opacity: 0.7;
     }
     @media (max-width: 768px) {
+      p { font-size: 1rem !important; }
       .main { height: calc(100vh - 112px); }
       .content h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
+  <SmoothScroll />
   <div class="page">
     <div class="layout">
       <div class="story-stack" id="story-stack">

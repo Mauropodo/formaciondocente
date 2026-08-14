@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import SeoHead from '../components/SeoHead.astro';
+import SmoothScroll from '../components/SmoothScroll.astro';
 import brandImage from '../assets/figma-mcp/inicio/logo.png';
 ---
 
@@ -65,7 +66,8 @@ import brandImage from '../assets/figma-mcp/inicio/logo.png';
       .back-button:focus-visible { outline: 3px solid #620404; outline-offset: 4px; }
       @keyframes message-in { from { opacity: 0; transform: translateY(24px) rotate(-1deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
       @media (max-width: 700px) {
-        .main { min-height: 620px; padding-top: 9rem; padding-bottom: 5rem; }
+        p { font-size: 1rem !important; }
+        .main { min-height: 620px; padding-top: 156px; padding-bottom: 5rem; }
         .message { box-shadow: 6px 8px 0 #620404, 0 14px 22px rgba(0,0,0,.14); }
         .bg-shape { transform: translate3d(-18vw, 0, 0); }
       }
@@ -77,6 +79,7 @@ import brandImage from '../assets/figma-mcp/inicio/logo.png';
     </style>
   </head>
   <body>
+    <SmoothScroll />
     <div class="page">
       <div class="bg bg--global" aria-hidden="true">
         <div class="bg-shape bg-shape--1">

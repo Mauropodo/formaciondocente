@@ -48,11 +48,16 @@ function paginationUrl(slug, pageNum) {
   if (slug) params.set('categoria', slug);
   if (pageNum > 1) params.set('pagina', String(pageNum));
   const qs = params.toString();
-  return `/publicaciones${qs ? '?' + qs : ''}`;
+  return `/relatos${qs ? '?' + qs : ''}`;
 }
 ---
 
-<BaseLayout title="Publicaciones" layoutClass="layout-shell--publicaciones">
+<BaseLayout
+  title="Relatos"
+  description="Registros, relatos y avances sobre identidad profesional docente, formación práctica y educación parvularia en Chile."
+  canonical="/relatos/"
+  layoutClass="layout-shell--publicaciones"
+>
   <Fragment slot="pageBackground">
     <div class="layout-page-background publicaciones-bg" aria-hidden="true">
       <div class="publicaciones-bg__shape publicaciones-bg__shape--1">
@@ -145,8 +150,8 @@ function paginationUrl(slug, pageNum) {
           <CategoriaFilter categorias={categorias} activeSlug={categoriaSlug} />
         </div>
         <div class="hero-text" id="hero-text">
-          <h1 class="hero-title">Publicaciones</h1>
-          <p class="hero-desc">Este espacio reúne las ideas, experiencias y conocimientos que dan vida a este proyecto. Aquí convergen publicaciones científicas, marcos teóricos, reflexiones, relatos, aprendizajes, buenas prácticas e hitos que nos permiten comprender, compartir y dialogar sobre las distintas dimensiones de esta investigación.</p>
+          <h1 class="hero-title">Relatos</h1>
+          <p class="hero-desc">Este espacio reúne las ideas, experiencias y conocimientos que dan vida a este proyecto. Aquí convergen registros de investigación, marcos teóricos, reflexiones, relatos, aprendizajes, buenas prácticas e hitos que nos permiten comprender, compartir y dialogar sobre las distintas dimensiones de esta investigación.</p>
         </div>
       </div>
     </div>
@@ -155,7 +160,7 @@ function paginationUrl(slug, pageNum) {
   <section class="cards-section">
     <div class="container">
       {pagePosts.length === 0 ? (
-        <p class="empty-msg">No hay publicaciones en esta categoría.</p>
+        <p class="empty-msg">No hay entradas en esta categoría.</p>
       ) : (
         <div class="posts-grid" id="posts-grid">
           {pagePosts.map((p, i) => <BlogCard {...p} index={i} />)}
@@ -198,7 +203,108 @@ function paginationUrl(slug, pageNum) {
 
 <script>
   import { gsap } from "gsap";
-  import { staggerItems } from "../../utils/gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const DESIGN_VIEWPORT = Object.freeze({ width: 1902, height: 910 });
+  const DESKTOP_BREAKPOINT = 901;
+  const rootStyle = document.documentElement;
+  const initialDevicePixelRatio = window.devicePixelRatio;
+  let viewportMode = window.innerWidth < DESKTOP_BREAKPOINT ? "mobile" : "desktop";
+  let viewportMetrics = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    scaleX: 1,
+    scaleY: 1,
+    scale: 1,
+    isCompactDesktop: false,
+  };
+  let viewportRefreshFrame = 0;
+
+  ScrollTrigger.config({
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+    ignoreMobileResize: true,
+  });
+
+  const designPx = (value, axis = "y") => {
+    const scale = axis === "x" ? viewportMetrics.scaleX : viewportMetrics.scaleY;
+    return value * scale;
+  };
+
+  const getViewportMode = () =>
+    window.innerWidth < DESKTOP_BREAKPOINT ? "mobile" : "desktop";
+
+  const syncViewportMetrics = () => {
+    const width = Math.max(window.innerWidth, document.documentElement.clientWidth, 1);
+    const height = Math.max(window.innerHeight, document.documentElement.clientHeight, 1);
+    const scaleX = width / DESIGN_VIEWPORT.width;
+    const scaleY = height / DESIGN_VIEWPORT.height;
+    const isCompactDesktop = width >= DESKTOP_BREAKPOINT && height < 800;
+
+    viewportMetrics = {
+      width,
+      height,
+      scaleX,
+      scaleY,
+      scale: Math.min(scaleX, scaleY),
+      isCompactDesktop,
+    };
+
+    rootStyle.style.setProperty("--vw", `${(width * 0.01).toFixed(4)}px`);
+    rootStyle.style.setProperty("--vh", `${(height * 0.01).toFixed(4)}px`);
+    rootStyle.style.setProperty("--viewport-scale", viewportMetrics.scale.toFixed(5));
+    rootStyle.style.setProperty("--viewport-scale-x", scaleX.toFixed(5));
+    rootStyle.style.setProperty("--viewport-scale-y", scaleY.toFixed(5));
+    rootStyle.style.setProperty("--is-compact-desktop", isCompactDesktop ? "1" : "0");
+
+    if (width >= DESKTOP_BREAKPOINT) {
+      rootStyle.style.setProperty("--publications-hero-padding-top", `${Math.round(designPx(174, "y"))}px`);
+      rootStyle.style.setProperty("--publications-hero-padding-bottom", `${Math.round(designPx(143, "y"))}px`);
+    } else {
+      rootStyle.style.removeProperty("--publications-hero-padding-top");
+      rootStyle.style.removeProperty("--publications-hero-padding-bottom");
+    }
+  };
+
+  const refreshViewportAnimations = () => {
+    if (viewportRefreshFrame) return;
+
+    viewportRefreshFrame = window.requestAnimationFrame(() => {
+      viewportRefreshFrame = 0;
+      syncViewportMetrics();
+      window.requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+  };
+
+  let lastLayoutWidth = document.documentElement.clientWidth;
+  let viewportRefreshTimer = 0;
+
+  const handleViewportResize = (source = "window") => {
+    const nextViewportMode = getViewportMode();
+
+    // Safari puede emitir resize al mostrar u ocultar la barra de dirección.
+    // El layout se actualiza sin recargar la página.
+    viewportMode = nextViewportMode;
+
+    const nextLayoutWidth = document.documentElement.clientWidth;
+    const widthChanged = Math.abs(nextLayoutWidth - lastLayoutWidth) > 1;
+    if (source === "visualViewport" && !widthChanged) return;
+    if (source !== "orientationchange" && !widthChanged) return;
+
+    window.clearTimeout(viewportRefreshTimer);
+    viewportRefreshTimer = window.setTimeout(() => {
+      lastLayoutWidth = document.documentElement.clientWidth;
+      refreshViewportAnimations();
+    }, 180);
+  };
+
+  syncViewportMetrics();
+  window.addEventListener("resize", handleViewportResize, { passive: true });
+  window.addEventListener("orientationchange", () => handleViewportResize("orientationchange"), { passive: true });
+  window.visualViewport?.addEventListener("resize", () => handleViewportResize("visualViewport"), { passive: true });
+  window.addEventListener("load", refreshViewportAnimations, { once: true });
+  document.fonts?.ready?.then(refreshViewportAnimations);
 
   const heroFilters = document.getElementById("hero-filters");
   const filterButtons = heroFilters
@@ -214,7 +320,7 @@ function paginationUrl(slug, pageNum) {
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const entrance = gsap.fromTo(
         filterButtons,
-        { autoAlpha: 0, x: -24 },
+        { autoAlpha: 0, x: () => designPx(-24, "x") },
         {
           autoAlpha: 1,
           x: 0,
@@ -232,10 +338,34 @@ function paginationUrl(slug, pageNum) {
     });
   }
 
-  staggerItems(document.getElementById("posts-grid"), 0.08);
+  const postsGrid = document.getElementById("posts-grid");
+  if (postsGrid) {
+    gsap.from(postsGrid.children, {
+      autoAlpha: 0,
+      y: () => designPx(30, "y"),
+      stagger: 0.08,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: postsGrid,
+        start: "top 80%",
+        invalidateOnRefresh: true,
+      },
+    });
+  }
 </script>
 
 <style>
+  :global(:root) {
+    --vw: 1vw;
+    --vh: 1vh;
+    --viewport-scale: 1;
+    --viewport-scale-x: 1;
+    --viewport-scale-y: 1;
+    --is-compact-desktop: 0;
+    --publications-hero-padding-top: 174px;
+    --publications-hero-padding-bottom: 143px;
+  }
   .publicaciones-bg {
     opacity: 0.4;
     background: var(--color-bg);
@@ -251,7 +381,7 @@ function paginationUrl(slug, pageNum) {
     overflow: visible;
   }
   .hero-section {
-    padding: 174px 0 143px;
+    padding: var(--publications-hero-padding-top) 0 var(--publications-hero-padding-bottom);
   }
   .hero-layout {
     display: flex;
@@ -304,7 +434,7 @@ function paginationUrl(slug, pageNum) {
   }
   .posts-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 25px;
   }
 
@@ -371,8 +501,18 @@ function paginationUrl(slug, pageNum) {
     font-weight: 700;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    #posts-grid > *,
+    #hero-filters,
+    #hero-filters * {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
+  }
+
   @media (max-width: 768px) {
-    .hero-section { padding: 100px 0 60px; }
+    .hero-section { padding: 156px 0 60px; }
     .hero-layout { flex-direction: column-reverse; align-items: stretch; gap: var(--gap-lg); }
     .hero-filters { flex: 1; max-width: 100%; }
     .hero-text { text-align: left; }

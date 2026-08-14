@@ -14,7 +14,7 @@ interface Props {
   moreHref?: string;
 }
 
-const { posts, moreHref = "/publicaciones" } = Astro.props;
+const { posts, moreHref = "/relatos" } = Astro.props;
 
 const latestPosts = posts.slice(0, 5);
 

@@ -53,7 +53,7 @@ function normalizeImageUrl(value?: string | null): string | null {
 
 function normalizeLink(slug: string, value?: string | null): string {
   const cleaned = value?.trim();
-  return cleaned || `/publicaciones/${slug}`;
+  return cleaned || `/relatos/${slug}`;
 }
 
 function mapLegacyCategory(post: LegacyPost): PostCategoryRef {
