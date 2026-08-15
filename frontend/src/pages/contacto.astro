@@ -421,34 +421,6 @@ const carasImages = [
               updateContactCharacterCount();
             }
 
-            const contactForm = document.querySelector('#formCard');
-            const contactStatus = document.querySelector('#formStatus');
-
-            if (contactForm && contactStatus) {
-              contactForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
-
-                const submitButton = contactForm.querySelector('button[type="submit"]');
-                if (submitButton) submitButton.disabled = true;
-                contactStatus.textContent = 'Enviando…';
-                contactStatus.classList.remove('is-error');
-
-                try {
-                  const response = await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(new FormData(contactForm)).toString(),
-                  });
-
-                  if (!response.ok) throw new Error('Form submission failed');
-                  window.location.assign('/contacto-exito/');
-                } catch {
-                  contactStatus.textContent = 'No fue posible enviar el mensaje. Inténtalo nuevamente.';
-                  contactStatus.classList.add('is-error');
-                  if (submitButton) submitButton.disabled = false;
-                }
-              });
-            }
           </script>
           <div class="hand hand--right" aria-hidden="true">
             <svg fill="none" viewBox="0 0 183 270" width="100%">
@@ -690,7 +662,7 @@ const carasImages = [
           submitButton.disabled = true;
 
           try {
-            const response = await fetch('/', {
+            const response = await fetch('/netlify-contact-form.html', {
               method: 'POST',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
               body: new URLSearchParams(new FormData(contactForm)).toString(),
