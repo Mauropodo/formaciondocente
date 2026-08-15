@@ -546,6 +546,35 @@ const carasImages = [
     </script>
 
     <script>
+      const contactFormEarly = document.getElementById('formCard');
+      const formStatusEarly = document.getElementById('formStatus');
+      const submitButtonEarly = contactFormEarly?.querySelector('button[type="submit"]');
+
+      if (contactFormEarly && formStatusEarly && submitButtonEarly) {
+        contactFormEarly.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          formStatusEarly.textContent = 'Enviando…';
+          submitButtonEarly.disabled = true;
+
+          try {
+            const response = await fetch('/netlify-contact-form.html', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(new FormData(contactFormEarly)).toString(),
+            });
+
+            if (!response.ok) throw new Error('send-failed');
+            window.location.assign('/contacto-exito/');
+          } catch {
+            formStatusEarly.classList.add('is-error');
+            formStatusEarly.textContent = 'No fue posible enviar el mensaje. Inténtalo nuevamente.';
+            submitButtonEarly.disabled = false;
+          }
+        });
+      }
+    </script>
+
+    <script>
       gsap.registerPlugin(ScrollTrigger);
 
       const DESIGN_VIEWPORT = Object.freeze({ width: 1902, height: 910 });
