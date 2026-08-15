@@ -382,7 +382,7 @@ const carasImages = [
             <textarea name="comentarios"></textarea>
             <input type="text" name="website" />
           </form>
-          <form class="form-card" id="formCard" name="contact" action="/contacto-exito/" method="post" netlify netlify-honeypot="website">
+          <form class="form-card" id="formCard" name="contact" method="post" netlify netlify-honeypot="website">
             <div class="form-field">
               <label class="form-label" for="nombre">Nombre</label>
               <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Lou Espinoza" required />
@@ -419,6 +419,35 @@ const carasImages = [
 
               contactMessage.addEventListener('input', updateContactCharacterCount);
               updateContactCharacterCount();
+            }
+
+            const contactForm = document.querySelector('#formCard');
+            const contactStatus = document.querySelector('#formStatus');
+
+            if (contactForm && contactStatus) {
+              contactForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                if (submitButton) submitButton.disabled = true;
+                contactStatus.textContent = 'Enviando…';
+                contactStatus.classList.remove('is-error');
+
+                try {
+                  const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(contactForm)).toString(),
+                  });
+
+                  if (!response.ok) throw new Error('Form submission failed');
+                  window.location.assign('/contacto-exito/');
+                } catch {
+                  contactStatus.textContent = 'No fue posible enviar el mensaje. Inténtalo nuevamente.';
+                  contactStatus.classList.add('is-error');
+                  if (submitButton) submitButton.disabled = false;
+                }
+              });
             }
           </script>
           <div class="hand hand--right" aria-hidden="true">
