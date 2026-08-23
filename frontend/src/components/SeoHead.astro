@@ -19,11 +19,12 @@ const {
   keywords = "identidad profesional docente, educación parvularia, formación docente, investigación educativa en Chile",
 } = Astro.props;
 
-const siteUrl = "http://identidadprofesional.cl";
+const siteUrl = (Astro.site ?? new URL("https://identidadprofesional.cl")).origin;
 const normalizedPath = path === "/" ? "/" : `/${path.replace(/^\/+|\/+$/g, "")}/`;
 const canonicalUrl = `${siteUrl}${normalizedPath}`;
 const imageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
-const fullTitle = `${title} | Identidad Profesional Docente`;
+const brand = "Identidad Profesional Docente";
+const fullTitle = title.includes(brand) ? title : `${title} | ${brand}`;
 const cleanDescription = description.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160);
 const structuredData = {
   "@context": "https://schema.org",
