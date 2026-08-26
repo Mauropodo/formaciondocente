@@ -1,0 +1,77 @@
+---
+import { getLinkedInFeed } from "../lib/linkedinFeed";
+
+const items = (await getLinkedInFeed()).slice(0, 6);
+---
+
+<section class="linkedin-feed">
+  {
+    items.length > 0 ? (
+      <div class="linkedin-feed__grid">
+        {items.map((post) => (
+          <a
+            href={post.post_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linkedin-feed__item"
+          >
+            {post.image_url && (
+              <img
+                src={post.image_url}
+                alt={post.headline ?? "Publicación de LinkedIn"}
+                loading="lazy"
+              />
+            )}
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="linkedin-feed__fallback">
+        No se pudo cargar el feed de LinkedIn por el momento.
+      </p>
+    )
+  }
+</section>
+
+<style>
+  .linkedin-feed {
+    width: 100%;
+  }
+  .linkedin-feed__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .linkedin-feed__item {
+    flex: 0 1 calc((100% - 5 * 1rem) / 6);
+    max-width: 150px;
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    box-shadow: 0 6.5px 9.8px 4.9px #00000026, 0 3.3px 3.3px #0000004d;
+  }
+  .linkedin-feed__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .linkedin-feed__fallback {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+    color: #620404;
+    font-family: "Inter", sans-serif;
+  }
+  @media (max-width: 639px) {
+    .linkedin-feed__item {
+      flex-basis: calc((100% - 2 * 1rem) / 3);
+    }
+  }
+</style>
