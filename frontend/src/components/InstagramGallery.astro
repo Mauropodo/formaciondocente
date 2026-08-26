@@ -1,0 +1,72 @@
+---
+import { getInstagramFeed } from "../lib/instagramFeed";
+
+const items = (await getInstagramFeed()).slice(0, 6);
+---
+
+{
+  items.length > 0 ? (
+    <div class="photo-grid" id="photoGrid">
+      {items
+        .filter((item) => item.media.thumbnail || item.media.url)
+        .map((item) => (
+          <a
+            href={item.share_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="photo-item"
+          >
+            <img
+              src={item.media.thumbnail || item.media.url}
+              alt={(item.media_description ?? "Publicación de Instagram").slice(0, 120)}
+              loading="lazy"
+            />
+          </a>
+        ))}
+    </div>
+  ) : (
+    <p class="photo-grid__fallback">
+      No se pudo cargar el feed de Instagram por el momento.
+    </p>
+  )
+}
+
+<style>
+  .photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .photo-item {
+    flex: 0 1 calc((100% - 5 * 1rem) / 6);
+    max-width: 150px;
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    box-shadow: 0 6.5px 9.8px 4.9px #00000026, 0 3.3px 3.3px #0000004d;
+  }
+  @media (max-width: 639px) {
+    .photo-item {
+      flex-basis: calc((100% - 2 * 1rem) / 3);
+    }
+  }
+  .photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-grid__fallback {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+    color: #620404;
+    font-family: "Inter", sans-serif;
+  }
+</style>

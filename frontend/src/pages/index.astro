@@ -9,10 +9,12 @@ import heroSlideOne from "../assets/figma-mcp/inicio/hero-foto-portada.jpg";
 import heroSlideTwo from "../assets/figma-mcp/inicio/hero-ilustracion-5c.jpg";
 import heroSlideThree from "../assets/figma-mcp/inicio/hero-educadoras.jpg";
 import cardThumb from "../assets/figma-mcp/inicio/relato-thumb.png";
-import galeria2 from "../assets/figma-mcp/inicio/galeria-2.png";
-import galeria3 from "../assets/figma-mcp/inicio/galeria-3.png";
-import galeria5 from "../assets/figma-mcp/inicio/galeria-5.png";
-import galeria6 from "../assets/figma-mcp/inicio/galeria-6.png";
+// Fotos de prueba (versión anterior, por si hay que revertir):
+// import galeria2 from "../assets/figma-mcp/inicio/galeria-2.png";
+// import galeria3 from "../assets/figma-mcp/inicio/galeria-3.png";
+// import galeria5 from "../assets/figma-mcp/inicio/galeria-5.png";
+// import galeria6 from "../assets/figma-mcp/inicio/galeria-6.png";
+import InstagramGallery from "../components/InstagramGallery.astro";
 
 const voicePosts = (await getAllPosts()).slice(0, 5).map((post) => ({
   title: post.title,
@@ -21,9 +23,9 @@ const voicePosts = (await getAllPosts()).slice(0, 5).map((post) => ({
   autor: post.authorName ?? undefined,
   imagen: post.imageUrl ?? undefined,
 }));
-const photos = [
-  galeria2, galeria3, galeria5, galeria6, galeria2, galeria3,
-];
+// const photos = [
+//   galeria2, galeria3, galeria5, galeria6, galeria2, galeria3,
+// ];
 const carasImages = [
   "/assets/img/home/caras-1 2.svg",
   "/assets/img/home/caras-2 2.svg",
@@ -1062,16 +1064,6 @@ const carasImages = [
       color: #620404; transition: opacity .2s;
     }
     .social-link:hover { opacity: .7; }
-    .photo-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
-      width: 100%; max-width: 960px;
-    }
-    @media (min-width: 640px) { .photo-grid { grid-template-columns: repeat(6, 1fr); } }
-    .photo-item {
-      border-radius: 8px; overflow: hidden; aspect-ratio: 1;
-      box-shadow: 0px 6.5px 9.8px 4.9px rgba(0,0,0,0.15), 0px 3.3px 3.3px rgba(0,0,0,0.3);
-    }
-    .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .cta-row { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center; }
 .cta-btn {
   display: flex; align-items: center; gap: 0.9rem;
@@ -2011,13 +2003,7 @@ const carasImages = [
           </div>
         </div>
 
-        <div class="photo-grid" id="photoGrid">
-          {photos.map((img, i) => (
-            <div class="photo-item">
-              <img src={img.src} alt={`Imagen ${i + 1}`} loading="lazy" />
-            </div>
-          ))}
-        </div>
+        <InstagramGallery />
 
         <div class="cta-row" id="ctaRow">
           <a class="cta-btn cta-btn--linkedin" href="https://www.linkedin.com/in/identidad-profesional-docente-fondecyt-de-iniciaci%C3%B3n-a79432427/" target="_blank" rel="noopener noreferrer">
