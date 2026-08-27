@@ -124,16 +124,12 @@ export async function getInstagramFeed(): Promise<InstagramItem[]> {
   const params = new URLSearchParams({
     account_id: config.account_id,
     limit: String(config.limit),
-    hide_items_with_copyright: "true",
+    hide_items_with_copyright: "false",
     hide_reels: "false",
     after: "",
     pagination: "0",
     order_by: config.order_by,
   });
-
-  if (config.tag) {
-    params.set("tag", config.tag);
-  }
 
   try {
     const res = await fetch(`${WP_REST_ENDPOINT}?${params.toString()}`, {
