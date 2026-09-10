@@ -15,6 +15,7 @@ export const prerender = false;
 import Nav from '../components/Nav.astro';
 import SeoHead from "../components/SeoHead.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
+import TextSizeControl from "../components/TextSizeControl.astro";
 
 const tags = [
   { label: "Relatos",       bg: "#e5e5c6", border: "#7b7a4a" },
@@ -701,5 +702,6 @@ const navLinks = ["Inicio", "Quiénes somos", "Investigación", "Contacto"];
     });
   </script>
 
+  <TextSizeControl />
 </body>
 </html>

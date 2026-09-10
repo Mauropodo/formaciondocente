@@ -2,6 +2,7 @@
 import Footer from '../components/Footer.astro';
 import SeoHead from "../components/SeoHead.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
+import TextSizeControl from "../components/TextSizeControl.astro";
 import VoicePostDeck from "../components/VoicePostDeck.astro";
 import { getAllPosts } from "../services/wordpress/posts";
 import brandImage from "../assets/figma-mcp/inicio/logo.png";
@@ -2037,6 +2038,7 @@ const carasImages = [
       <Footer />
     </div>
   </div>
+  <TextSizeControl />
 </body>
 <script>
   import { gsap } from "gsap";
