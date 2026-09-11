@@ -15,6 +15,7 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import SeoHead from "../components/SeoHead.astro";
 import TextSizeControl from "../components/TextSizeControl.astro";
+import SkipLink from "../components/SkipLink.astro";
 
 const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44C514.25 9.04 555.44 50.2298 555.44 101.04V184.215C555.44 235.025 514.25 276.215 463.44 276.215H419.44H376.473C360.082 276.215 343.989 280.594 329.858 288.898L260.865 329.446C260.426 329.704 259.927 329.84 259.418 329.84C257.259 329.84 255.881 327.536 256.903 325.634L269.042 303.027C275.553 290.901 266.77 276.215 253.006 276.215H103.44C52.6298 276.215 11.44 235.025 11.44 184.215V101.04Z";
 
@@ -1063,8 +1064,11 @@ const REFS_DATA = [
   </head>
 
   <body>
+    <SkipLink />
     <div class="page">
       <Nav />
+
+      <div id="main-content" tabindex="-1"></div>
 
       <div class="intro-stack" id="introStack">
       <div class="intro-stack__backdrop" aria-hidden="true">

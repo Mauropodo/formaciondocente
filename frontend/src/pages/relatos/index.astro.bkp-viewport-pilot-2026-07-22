@@ -1,0 +1,390 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import CategoriaFilter from '../../components/CategoriaFilter.astro';
+import type { CategoryBadge } from '../../types/category';
+import { getAllCategories } from '../../services/wordpress/categories';
+import { getPaginatedPosts } from '../../services/wordpress/posts';
+
+const CATS_PER_PAGE = 12;
+const categoriaSlug = Astro.url.searchParams.get('categoria');
+const pageParam = Number.parseInt(Astro.url.searchParams.get('pagina') ?? '1', 10);
+const page = Number.isNaN(pageParam) ? 1 : pageParam;
+
+const [categories, postsResult] = await Promise.all([
+  getAllCategories(),
+  getPaginatedPosts({
+    categorySlug: categoriaSlug,
+    page,
+    perPage: CATS_PER_PAGE,
+  }),
+]);
+
+const categorias: CategoryBadge[] = categories.map((category) => ({
+  id: category.id,
+  nombre: category.name,
+  slug: category.slug,
+}));
+
+const totalPages = postsResult.totalPages;
+const currentPage = postsResult.currentPage;
+const filteredPostsCount = postsResult.totalItems;
+const pagePosts = postsResult.items.map((post) => ({
+  title: post.title,
+  slug: post.slug,
+  excerpt: post.excerpt,
+  fecha: post.date,
+  imageUrl: post.imageUrl,
+  categories: post.categories,
+  categoria: post.primaryCategory?.name ?? '',
+  categoriaSlug: post.primaryCategory?.slug ?? '',
+  autor: post.authorName ?? undefined,
+}));
+
+function paginationUrl(slug, pageNum) {
+  const params = new URLSearchParams();
+  if (slug) params.set('categoria', slug);
+  if (pageNum > 1) params.set('pagina', String(pageNum));
+  const qs = params.toString();
+  return `/publicaciones${qs ? '?' + qs : ''}`;
+}
+---
+
+<BaseLayout title="Publicaciones" layoutClass="layout-shell--publicaciones">
+  <Fragment slot="pageBackground">
+    <div class="layout-page-background publicaciones-bg" aria-hidden="true">
+      <div class="publicaciones-bg__shape publicaciones-bg__shape--1">
+        <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+          <g filter="url(#pubBgFilter1)">
+            <rect x="-1400" y="0" width="1400" height="3215" fill="#7C7C4A"/>
+            <path d="M2483 0H195.304H79.2751V3164.27C72.0362 3183.6 204.984 3190.37 794.684 3062.76C1531.81 2903.25 2403.92 2260.69 1311.54 1564.63C219.157 868.574 2004.61 365.031 2483 0Z" fill="#7C7C4A"/>
+          </g>
+          <defs>
+            <filter id="pubBgFilter1" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dx="0" dy="4"/>
+              <feGaussianBlur stdDeviation="15.3"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_pub1"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_pub1" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div class="publicaciones-bg__shape publicaciones-bg__shape--2">
+        <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+          <g filter="url(#pubBgFilter2)">
+            <rect x="-1400" y="0" width="1400" height="3215" fill="#F3B568"/>
+            <path d="M2404 0H116.304H0.275126V3164.27C-6.96376 3183.6 125.984 3190.37 715.684 3062.76C1452.81 2903.25 2324.92 2260.69 1232.54 1564.63C140.157 868.574 1925.61 365.031 2404 0Z" fill="#F3B568"/>
+          </g>
+          <defs>
+            <filter id="pubBgFilter2" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dx="0" dy="4"/>
+              <feGaussianBlur stdDeviation="15.3"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_pub2"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_pub2" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div class="publicaciones-bg__shape publicaciones-bg__shape--3">
+        <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+          <g filter="url(#pubBgFilter3)">
+            <rect x="-1400" y="0" width="1400" height="3215" fill="#EEE2D9"/>
+            <path d="M1937.22 0H-720V3164C-5.61163 3183.33 101.522 3190.1 576.722 3062.5C1170.72 2903 1873.5 2260.5 993.222 1564.5C112.943 868.5 1551.72 365 1937.22 0Z" fill="#EEE2D9"/>
+          </g>
+          <defs>
+            <filter id="pubBgFilter3" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dx="0" dy="4"/>
+              <feGaussianBlur stdDeviation="15.3"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_pub3"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_pub3" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div class="publicaciones-bg__shape publicaciones-bg__shape--4">
+        <svg viewBox="0 0 1920 3215" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice">
+          <g filter="url(#pubBgFilter4)">
+            <rect x="-1400" y="0" width="1400" height="3215" fill="#F9F4F1"/>
+            <path d="M1280 0H-720V3164.27C-3.70783 3183.61 67.0794 3190.37 381.063 3062.76C773.543 2903.25 1237.9 2260.69 656.261 1564.63C74.6262 868.574 1025.28 365.031 1280 0Z" fill="#F9F4F1"/>
+          </g>
+          <defs>
+            <filter id="pubBgFilter4" x="-1450" y="-20" width="3955" height="3255" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+              <feOffset dx="0" dy="4"/>
+              <feGaussianBlur stdDeviation="15.3"/>
+              <feComposite in2="hardAlpha" operator="out"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_pub4"/>
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_pub4" result="shape"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </Fragment>
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="hero-filters" id="hero-filters">
+          <CategoriaFilter categorias={categorias} activeSlug={categoriaSlug} />
+        </div>
+        <div class="hero-text" id="hero-text">
+          <h1 class="hero-title">Publicaciones</h1>
+          <p class="hero-desc">Este espacio reúne las ideas, experiencias y conocimientos que dan vida a este proyecto. Aquí convergen publicaciones científicas, marcos teóricos, reflexiones, relatos, aprendizajes, buenas prácticas e hitos que nos permiten comprender, compartir y dialogar sobre las distintas dimensiones de esta investigación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cards-section">
+    <div class="container">
+      {pagePosts.length === 0 ? (
+        <p class="empty-msg">No hay publicaciones en esta categoría.</p>
+      ) : (
+        <div class="posts-grid" id="posts-grid">
+          {pagePosts.map((p, i) => <BlogCard {...p} index={i} />)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  {totalPages > 1 && (
+    <section class="pagination-section">
+      <div class="container">
+        <div class="pagination-wrapper">
+          <p class="pagination-info">Mostrando {(currentPage - 1) * CATS_PER_PAGE + 1} a {Math.min(currentPage * CATS_PER_PAGE, filteredPostsCount)} de {filteredPostsCount} resultados</p>
+          <div class="pagination-controls">
+            <a href={paginationUrl(categoriaSlug, 1)} class={`page-btn ${currentPage === 1 ? 'disabled' : ''}`} aria-label="Primera página">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 3L6 8L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3L3 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href={paginationUrl(categoriaSlug, currentPage - 1)} class={`page-btn ${currentPage === 1 ? 'disabled' : ''}`} aria-label="Página anterior">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="page-numbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+                <a href={paginationUrl(categoriaSlug, p)} class={`page-num ${p === currentPage ? 'active' : ''}`}>{p}</a>
+              ))}
+            </div>
+            <a href={paginationUrl(categoriaSlug, currentPage + 1)} class={`page-btn ${currentPage === totalPages ? 'disabled' : ''}`} aria-label="Página siguiente">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href={paginationUrl(categoriaSlug, totalPages)} class={`page-btn ${currentPage === totalPages ? 'disabled' : ''}`} aria-label="Última página">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 3L10 8L5 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3L13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<script>
+  import { gsap } from "gsap";
+  import { staggerItems } from "../../utils/gsap";
+
+  const heroFilters = document.getElementById("hero-filters");
+  const filterButtons = heroFilters
+    ? Array.from(heroFilters.querySelectorAll(".filter-btn"))
+    : [];
+
+  if (filterButtons.length) {
+    // Reset any hot-reload residue before this block owns the filter entrance.
+    gsap.killTweensOf(filterButtons);
+    gsap.set(filterButtons, { clearProps: "transform,opacity,visibility" });
+
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const entrance = gsap.fromTo(
+        filterButtons,
+        { autoAlpha: 0, x: -24 },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 0.55,
+          stagger: 0.1,
+          ease: "power2.out",
+          overwrite: "auto",
+          onComplete: () => {
+            gsap.set(filterButtons, { clearProps: "transform,opacity,visibility" });
+          },
+        },
+      );
+
+      return () => entrance.kill();
+    });
+  }
+
+  staggerItems(document.getElementById("posts-grid"), 0.08);
+</script>
+
+<style>
+  .publicaciones-bg {
+    opacity: 0.4;
+    background: var(--color-bg);
+  }
+  .publicaciones-bg__shape {
+    position: absolute;
+    inset: 0;
+  }
+  .publicaciones-bg__shape svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .hero-section {
+    padding: 174px 0 143px;
+  }
+  .hero-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--gap-xl);
+  }
+  .hero-filters {
+    flex: 0 0 552px;
+    max-width: 552px;
+  }
+  /* This block is animated only by the GSAP entrance above. */
+  .hero-filters,
+  .hero-filters * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero-text {
+    flex: 0 1 auto;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 44.8px;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .hero-desc {
+    font-family: 'Inconsolata', monospace;
+    font-size: 20.545px;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    max-width: 508px;
+    margin: 0 0 0 auto;
+  }
+
+  .cards-section {
+    padding: 10px 0 25px;
+  }
+  .empty-msg {
+    text-align: center;
+    padding: var(--gap-xl) 0;
+    color: var(--color-text-muted);
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  .pagination-section {
+    padding: 10px 0 var(--gap-xl);
+  }
+  .pagination-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-md);
+  }
+  .pagination-info {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+  }
+  .page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    transition: var(--transition);
+  }
+  .page-btn:hover:not(.disabled) {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+  .page-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .page-numbers {
+    display: flex;
+    gap: 2px;
+  }
+  .page-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--color-text);
+    transition: var(--transition);
+  }
+  .page-num:hover { background: var(--color-bg-soft); }
+  .page-num.active {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .hero-section { padding: 100px 0 60px; }
+    .hero-layout { flex-direction: column-reverse; align-items: stretch; gap: var(--gap-lg); }
+    .hero-filters { flex: 1; max-width: 100%; }
+    .hero-text { text-align: left; }
+    .hero-title { font-size: 32px; }
+    .hero-desc { font-size: 16px; max-width: 100%; margin: 0; }
+    .posts-grid { grid-template-columns: 1fr; gap: 20px; }
+    .pagination-wrapper { flex-direction: column; align-items: center; }
+    .page-numbers { gap: 0; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .hero-layout { flex-direction: column; align-items: stretch; gap: var(--gap-lg); }
+    .hero-filters { flex: 1; max-width: 100%; }
+    .posts-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

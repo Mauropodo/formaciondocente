@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import SeoHead from "../components/SeoHead.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
 import TextSizeControl from "../components/TextSizeControl.astro";
+import SkipLink from "../components/SkipLink.astro";
 import galeria2 from "../assets/figma-mcp/inicio/galeria-2.png";
 import galeria3 from "../assets/figma-mcp/inicio/galeria-3.png";
 import galeria5 from "../assets/figma-mcp/inicio/galeria-5.png";
@@ -266,6 +267,7 @@ const carasImages = [
   </head>
 
   <body>
+    <SkipLink />
     <SmoothScroll />
     <div class="page">
     <div class="layout">
@@ -357,6 +359,8 @@ const carasImages = [
 
       <div class="story-stack" id="story-stack">
         <Nav />
+
+        <div id="main-content" tabindex="-1"></div>
 
         <section class="hero" id="hero">
         <h1 class="hero__heading" id="heroHeading">

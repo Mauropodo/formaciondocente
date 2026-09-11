@@ -3,6 +3,7 @@ import Footer from '../components/Footer.astro';
 import ProfileFlipCard from '../components/ProfileFlipCard.astro';
 import SeoHead from "../components/SeoHead.astro";
 import TextSizeControl from "../components/TextSizeControl.astro";
+import SkipLink from "../components/SkipLink.astro";
 import brandImage from "../assets/figma-mcp/inicio/logo.png";
 
 const TAGS = [
@@ -1075,6 +1076,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
   </style>
 </head>
 <body>
+  <SkipLink />
   <div class="page">
 
     <header class="menu" id="navbar">
@@ -1122,7 +1124,7 @@ const BUBBLE_PATH = "M11.44 101.04C11.44 50.2298 52.6298 9.04 103.44 9.04H463.44
       </svg>
     </div>
 
-    <section class="qs-hero" id="qs-hero">
+    <section id="main-content" class="qs-hero" tabindex="-1">
       <div class="qs-hero__backdrop" aria-hidden="true">
         <div class="qs-hero__bg-fallback">
           <img src="/assets/img/home/INICIO.webp" data-bg-fallback-src="/assets/img/home/INICIO.webp" alt="" decoding="async" />

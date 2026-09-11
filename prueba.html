@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Página HTML de prueba" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Página de prueba</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #21313a;
+        --muted: #60727a;
+        --cream: #fffaf0;
+        --mint: #d9f1e6;
+        --coral: #ed8069;
+        --yellow: #f8d77b;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        color: #514444;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(248, 215, 123, .7), transparent 27%),
+          radial-gradient(circle at 90% 80%, rgba(237, 128, 105, .25), transparent 32%),
+          var(--cream);
+        font-family: 'Inter', sans-serif;
+        line-height: 1.65;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      main {
+        width: min(100%, 720px);
+        padding: 0;
+        animation: appear .7s ease both;
+      }
+
+      .bubble {
+        position: relative;
+        isolation: isolate;
+        display: flow-root;
+        --bubble-color: #83BAA4;
+        width: 100%;
+        max-width: calc(100% - 6.4rem);
+        padding: 2.75rem 9rem 4rem;
+        margin-inline: auto;
+        transform: rotate(-3deg);
+        filter: drop-shadow(0 4px 15.3px rgba(0, 0, 0, 0.25));
+        --bubble-background: url("data:image/svg+xml,%3Csvg width='544' height='321' viewBox='0 0 544 321' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M544 91.9999C544 41.1898 502.81 0 452 0H92C41.1898 0 0 41.1898 0 92V175.175C0 225.985 41.1898 267.175 92 267.175H178.967C195.358 267.175 211.451 271.554 225.582 279.858L294.575 320.406C295.014 320.664 295.513 320.8 296.022 320.8C298.181 320.8 299.559 318.496 298.537 316.594L286.398 293.987C279.887 281.861 288.67 267.175 302.434 267.175H452C502.81 267.175 544 225.985 544 175.175V91.9999Z' fill='%2383BAA4'/%3E%3C/svg%3E");
+        background-color: var(--bubble-color);
+        -webkit-mask-image: var(--bubble-background);
+        mask-image: var(--bubble-background);
+        -webkit-mask-position: center;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .bubble > p { position: relative; z-index: 1; }
+
+      p {
+        margin: 0;
+        margin-bottom: 16px;
+        color: #514444;
+        font-size: 16px;
+        line-height: inherit;
+        text-align: center;
+        text-wrap: balance;
+        overflow-wrap: break-word;
+      }
+
+      .comilla {
+        margin-bottom: 0;
+        color: #514444;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 3.2rem;
+        font-weight: 700;
+        line-height: .7;
+      }
+
+      .comilla-inicial { text-align: left; }
+      .comilla-final { text-align: right; }
+
+      .bubble + .bubble { margin-top: 2rem; }
+      .bubble-2 { transform: rotate(2deg); }
+      .bubble-3 { transform: rotate(-1deg); }
+      .bubble-4 { transform: rotate(4deg); }
+      .bubble-2 { --bubble-color: #F0A444; }
+      .bubble-3 { --bubble-color: #C36438; }
+      .bubble-4 { --bubble-color: #3B959E; }
+      .bubble-2 > p,
+      .bubble-3 > p,
+      .bubble-4 > p { color: #fff; }
+
+      @keyframes appear {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (max-width: 1024px) {
+        body { padding: 1.25rem; }
+        main { padding: 0; }
+        .bubble {
+          max-width: 100%;
+          padding: 2.75rem 9rem 4rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body { padding: 1rem; }
+        .bubble { padding: 2.5rem 8.5rem 3.75rem; }
+      }
+
+      @media (max-width: 600px) {
+        .bubble { padding: 2.5rem 3.5rem 3.75rem; }
+      }
+
+      @media (max-width: 405px) {
+        .bubble {
+          overflow: visible;
+          padding: 2.5rem .5rem 3.75rem;
+          background-color: transparent;
+          -webkit-mask-image: none;
+          mask-image: none;
+        }
+
+        .bubble::before {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          top: 0;
+          bottom: 0;
+          left: -6.5%;
+          width: 113%;
+          background-color: var(--bubble-color);
+          -webkit-mask-image: var(--bubble-background);
+          mask-image: var(--bubble-background);
+          -webkit-mask-position: center;
+          mask-position: center;
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+          -webkit-mask-size: 113% 100%;
+          mask-size: 113% 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 113% 100%;
+          pointer-events: none;
+        }
+      }
+
+      @media (max-width: 320px) {
+        .bubble p:not(.comilla) {
+          font-size: clamp(9px, 4vw, 16px);
+        }
+
+        .bubble .comilla {
+          font-size: clamp(2rem, 10vw, 3.2rem);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="bubble">
+        <p class="comilla comilla-inicial" aria-hidden="true">“</p>
+        <p>Aprendí que mi identidad profesional no se construye desde la perfección, sino desde reflexionar sobre mis experiencias y seguir aprendiendo en medio de la incertidumbre</p>
+        <p class="comilla comilla-final" aria-hidden="true">”</p>
+      </div>
+      <div class="bubble bubble-2">
+        <p class="comilla comilla-inicial" aria-hidden="true">“</p>
+        <p>Entendí que educar implica aceptar que no siempre podremos resolver todo de inmediato...</p>
+        <p class="comilla comilla-final" aria-hidden="true">”</p>
+      </div>
+      <div class="bubble bubble-3">
+        <p class="comilla comilla-inicial" aria-hidden="true">“</p>
+        <p>Enseñar también confronta nuestras propias emociones, límites y experiencias. Y en ese camino vas definiendo tu quehacer docente</p>
+        <p class="comilla comilla-final" aria-hidden="true">”</p>
+      </div>
+      <div class="bubble bubble-4">
+        <p class="comilla comilla-inicial" aria-hidden="true">“</p>
+        <p>Descubrí que ser educadora no significa tener todas las respuestas, sino desarrollar la capacidad de sostenerse incluso cuando aparece la frustración</p>
+        <p class="comilla comilla-final" aria-hidden="true">”</p>
+      </div>
+    </main>
+  </body>
+</html>

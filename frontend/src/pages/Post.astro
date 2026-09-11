@@ -16,6 +16,7 @@ import Nav from '../components/Nav.astro';
 import SeoHead from "../components/SeoHead.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
 import TextSizeControl from "../components/TextSizeControl.astro";
+import SkipLink from "../components/SkipLink.astro";
 
 const tags = [
   { label: "Relatos",       bg: "#e5e5c6", border: "#7b7a4a" },
@@ -415,6 +416,7 @@ const navLinks = ["Inicio", "Quiénes somos", "Investigación", "Contacto"];
 </head>
 
 <body>
+  <SkipLink />
   <SmoothScroll />
 
   <!-- ══ Background blobs ══ -->
@@ -434,6 +436,8 @@ const navLinks = ["Inicio", "Quiénes somos", "Investigación", "Contacto"];
   </div>
 
   <Nav />
+
+  <div id="main-content" tabindex="-1"></div>
 
   <!-- ══ Hero ══ -->
   <section class="hero" id="hero">

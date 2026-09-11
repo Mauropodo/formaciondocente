@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import SeoHead from '../components/SeoHead.astro';
 import SmoothScroll from '../components/SmoothScroll.astro';
 import TextSizeControl from '../components/TextSizeControl.astro';
+import SkipLink from '../components/SkipLink.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -46,11 +47,12 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inconsolata:wght@400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   </head>
   <body>
+    <SkipLink />
     <SmoothScroll />
     <Nav />
     <div class:list={['layout-shell', layoutClass]}>
       <slot name="pageBackground" />
-      <main class="layout-main">
+      <main id="main-content" class="layout-main" tabindex="-1">
         <slot />
       </main>
       <Footer />

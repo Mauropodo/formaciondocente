@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import SeoHead from '../components/SeoHead.astro';
 import SmoothScroll from '../components/SmoothScroll.astro';
 import TextSizeControl from '../components/TextSizeControl.astro';
+import SkipLink from '../components/SkipLink.astro';
 import brandImage from '../assets/figma-mcp/inicio/logo.png';
 ---
 
@@ -80,6 +81,7 @@ import brandImage from '../assets/figma-mcp/inicio/logo.png';
     </style>
   </head>
   <body>
+    <SkipLink />
     <SmoothScroll />
     <div class="page">
       <div class="bg bg--global" aria-hidden="true">
@@ -105,7 +107,7 @@ import brandImage from '../assets/figma-mcp/inicio/logo.png';
         </div>
       </div>
       <Nav />
-      <main class="main">
+      <main id="main-content" class="main" tabindex="-1">
         <section class="message" aria-labelledby="success-title">
           <div class="message__logo"><img src={brandImage.src} alt="Parvularias" /></div>
           <p class="message__eyebrow">Mensaje recibido</p>

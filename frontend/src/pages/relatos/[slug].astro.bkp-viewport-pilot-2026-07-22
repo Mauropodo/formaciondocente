@@ -1,0 +1,448 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPostBySlug, getRelatedPosts } from '../../services/wordpress/posts';
+
+const slug = Astro.params.slug;
+const post = slug ? await getPostBySlug(slug) : null;
+
+if (!post) {
+  Astro.response.status = 404;
+}
+
+const relatedPosts = post ? await getRelatedPosts(post.slug, 4) : [];
+
+const categoryColors = {
+  "noticias":        { bg: "#f9f5f2", border: "#e6cbcb" },
+  "marco-teorico":   { bg: "#f3b568", border: "#f0a443" },
+  "reflexiones":     { bg: "#95b3a7", border: "#214d51" },
+  "hitos":           { bg: "#cee6dd", border: "#98b5ab" },
+  "relatos":         { bg: "#e5e5c6", border: "#7b7a4a" },
+  "aprendizajes":    { bg: "#f0d0d0", border: "#620404" },
+  "experiencias":    { bg: "#a1cad3", border: "#4a5c7c" },
+  "papers":          { bg: "#f9f5f2", border: "#e6cbcb" },
+  "buenas-practicas":{ bg: "#f9f5f2", border: "#e6cbcb" },
+  "comentarios":     { bg: "#f9f5f2", border: "#e6cbcb" },
+  "uncategorized":   { bg: "#f9f5f2", border: "#e6cbcb" },
+};
+---
+
+<BaseLayout title={post?.title ?? 'Publicación'} layoutClass="layout-shell--post-detail">
+  <Fragment slot="pageBackground">
+    <div class="layout-page-background post-detail-bg" aria-hidden="true">
+      <div class="post-detail-bg__shape post-detail-bg__shape--1"></div>
+      <div class="post-detail-bg__shape post-detail-bg__shape--2"></div>
+      <div class="post-detail-bg__shape post-detail-bg__shape--3"></div>
+      <div class="post-detail-bg__shape post-detail-bg__shape--4"></div>
+    </div>
+  </Fragment>
+
+  {!post ? (
+    <section class="post-detail-empty">
+      <div class="container">
+        <h1>Publicación no encontrada</h1>
+        <p>No pudimos cargar el contenido solicitado.</p>
+      </div>
+    </section>
+  ) : (
+    <>
+      <section class="post-hero" id="postHero">
+        <div class="container post-hero__inner">
+          <div class="post-hero__meta" id="postHeroMeta">
+            {(post.authorName || post.formattedDate) && (
+              <p class="post-hero__byline">
+                {post.authorName ?? 'Anónimo'}
+                {post.formattedDate ? ` | ${post.formattedDate}` : ''}
+              </p>
+            )}
+
+            <h1 class="post-hero__title">{post.title}</h1>
+
+            {post.excerpt && (
+              <p class="post-hero__excerpt">{post.excerpt}</p>
+            )}
+
+            {post.categories.length > 0 && (
+              <div class="post-hero__tags">
+                {post.categories.map((category) => {
+                  const colors = categoryColors[category.slug] || { bg: "#f9f5f2", border: "#e6cbcb" };
+                  return (
+                    <a
+                      href={`/publicaciones?categoria=${category.slug}`}
+                      class="post-tag"
+                      style={`--tag-bg:${colors.bg};--tag-border:${colors.border}`}
+                    >
+                      {category.name}
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <div class="post-hero__img-wrap" id="postHeroImage">
+            <div class={`post-hero__img ${post.imageUrl ? 'post-hero__img--has-image' : 'post-hero__img--fallback'}`}>
+              {post.imageUrl && (
+                <img src={post.imageUrl} alt={post.imageAlt ?? post.title} loading="eager" />
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="post-content-section" id="postContentSection">
+        <div class="container post-content-section__inner">
+          <article class="post-content" id="postContent" set:html={post.contentHtml} />
+        </div>
+      </section>
+
+      {relatedPosts.length > 0 && (
+        <section class="post-related-section" id="postRelatedSection">
+          <div class="container">
+            <div class="post-related-section__header">
+              <h2>Más publicaciones</h2>
+              <a href="/publicaciones">Ver todas</a>
+            </div>
+
+            <div class="post-related-grid">
+              {relatedPosts.map((related, index) => (
+                <article class="post-related-card" style={`--related-delay:${index * 0.08}s`}>
+                  <a class="post-related-card__media" href={`/publicaciones/${related.slug}`}>
+                    {related.imageUrl ? (
+                      <img src={related.imageUrl} alt={related.imageAlt ?? related.title} loading="lazy" />
+                    ) : (
+                      <div class="post-related-card__media-fallback"></div>
+                    )}
+                  </a>
+
+                  <div class="post-related-card__body">
+                    <h3><a href={`/publicaciones/${related.slug}`}>{related.title}</a></h3>
+                    <p>{related.excerpt}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
+  )}
+</BaseLayout>
+
+<script>
+  import { fadeInUp } from "../../utils/gsap";
+
+  const animateChildren = (selector, delay = 0) => {
+    const container = document.querySelector(selector);
+    if (!container) return;
+
+    Array.from(container.children).forEach((element, index) => {
+      fadeInUp(element, delay + index * 0.08);
+    });
+  };
+
+  animateChildren("#postHeroMeta");
+  animateChildren("#postHeroImage", 0.15);
+  animateChildren("#postContent", 0.2);
+  animateChildren(".post-related-section__header", 0.25);
+  animateChildren(".post-related-grid", 0.25);
+</script>
+
+<style>
+  :global(.footer-section) {
+    background: #F9F4F1;
+  }
+
+  .post-detail-bg {
+    opacity: 0.32;
+    background: #f9f4f1;
+  }
+  .post-detail-bg__shape {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 50%;
+    filter: blur(4px);
+  }
+  .post-detail-bg__shape--1 {
+    left: -18%;
+    width: 52%;
+    background: #f9f4f1;
+  }
+  .post-detail-bg__shape--2 {
+    left: 8%;
+    width: 60%;
+    background: #eee2d9;
+  }
+  .post-detail-bg__shape--3 {
+    left: 28%;
+    width: 56%;
+    background: #f3b568;
+  }
+  .post-detail-bg__shape--4 {
+    left: 40%;
+    width: 54%;
+    background: #7c7c4a;
+  }
+
+  .post-detail-empty {
+    padding: 180px 0 120px;
+    text-align: center;
+  }
+  .post-detail-empty h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #620404;
+    margin-bottom: 12px;
+  }
+  .post-detail-empty p {
+    font-family: 'Inconsolata', monospace;
+    font-size: 18px;
+    color: #514444;
+  }
+
+  .post-hero {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #f9f4f1 100%);
+    padding: 170px 0 52px;
+  }
+  .post-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: end;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+  .post-hero__meta {
+    min-width: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .post-hero__byline {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000;
+  }
+  .post-hero__title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(32px, 3.8vw, 52px);
+    color: #620404;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .post-hero__excerpt {
+    font-family: 'Inconsolata', monospace;
+    font-size: clamp(16px, 1.4vw, 20px);
+    color: #514444;
+    max-width: 660px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .post-hero__tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .post-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #161616;
+    border: 2px solid var(--tag-border, #e6cbcb);
+    background: var(--tag-bg, #f9f5f2);
+  }
+
+  .post-hero__img-wrap {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .post-hero__img {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 30px;
+    overflow: hidden;
+    transform: rotate(2deg);
+    box-shadow: 8px 10px 20px rgba(0,0,0,0.18);
+    aspect-ratio: 485 / 345;
+    background: linear-gradient(135deg, var(--color-primary-200), var(--color-tertiary-300));
+  }
+  .post-hero__img--has-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .post-content-section {
+    position: relative;
+    z-index: 2;
+    background: #f9f4f1;
+    padding: 30px 0 64px;
+  }
+  .post-content {
+    width: 100%;
+    max-width: 940px;
+    font-family: 'Poppins', sans-serif;
+    color: #474747;
+    line-height: 1.7;
+    font-size: clamp(16px, 1.25vw, 21px);
+  }
+  .post-content :global(p) {
+    margin: 0 0 1rem;
+  }
+  .post-content :global(h2),
+  .post-content :global(h3),
+  .post-content :global(h4) {
+    font-family: 'Playfair Display', serif;
+    color: #620404;
+    margin: 2rem 0 0.75rem;
+    line-height: 1.2;
+  }
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin: 0 0 1rem 1.5rem;
+  }
+  .post-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .post-content :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    margin: 1.5rem 0;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .post-content :global(blockquote) {
+    border-left: 4px solid #d2892d;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    background: rgba(255,255,255,0.55);
+    border-radius: 0 14px 14px 0;
+  }
+
+  .post-related-section {
+    position: relative;
+    z-index: 2;
+    background: #f9f4f1;
+    padding: 0 0 72px;
+  }
+  .post-related-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 24px;
+  }
+  .post-related-section__header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 2.2vw, 36px);
+    color: #620404;
+    margin: 0;
+  }
+  .post-related-section__header a {
+    font-family: 'Inconsolata', monospace;
+    color: #620404;
+    font-size: 16px;
+  }
+  .post-related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .post-related-card {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    background: #fff;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow: 8px 10px 20px rgba(0,0,0,0.12);
+  }
+  .post-related-card__media,
+  .post-related-card__media-fallback {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+  }
+  .post-related-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .post-related-card__media-fallback {
+    background: linear-gradient(135deg, var(--color-primary-300), var(--color-tertiary-300));
+  }
+  .post-related-card__body {
+    padding: 22px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .post-related-card__body h3 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    color: #620404;
+    font-size: 24px;
+    line-height: 1.1;
+  }
+  .post-related-card__body h3 a {
+    color: inherit;
+  }
+  .post-related-card__body p {
+    margin: 0;
+    font-family: 'Inconsolata', monospace;
+    font-size: 16px;
+    line-height: 1.45;
+    color: #514444;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+
+  @media (max-width: 900px) {
+    .post-hero {
+      padding: 130px 0 42px;
+    }
+    .post-hero__inner {
+      grid-template-columns: 1fr;
+      align-items: flex-start;
+    }
+    .post-related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .post-detail-empty {
+      padding: 120px 0 80px;
+    }
+    .post-hero__img {
+      transform: none;
+      max-width: 100%;
+    }
+    .post-related-card {
+      grid-template-columns: 1fr;
+    }
+    .post-related-card__media,
+    .post-related-card__media-fallback {
+      min-height: 200px;
+    }
+    .post-related-section__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

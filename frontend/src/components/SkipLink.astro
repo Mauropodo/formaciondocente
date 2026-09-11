@@ -1,0 +1,30 @@
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+<style>
+  .skip-link {
+    position: fixed;
+    z-index: 1100;
+    top: 0.75rem;
+    left: 50%;
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    background: #620404;
+    color: #fffaf7;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    transform: translate(-50%, -160%);
+    transition: transform 160ms ease;
+  }
+
+  .skip-link:focus-visible {
+    transform: translate(-50%, 0);
+    outline: 3px solid #d2892d;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skip-link { transition: none; }
+  }
+</style>
